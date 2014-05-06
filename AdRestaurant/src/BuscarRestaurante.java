@@ -29,7 +29,7 @@ public class BuscarRestaurante extends JFrame{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -40,7 +40,7 @@ public class BuscarRestaurante extends JFrame{
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
@@ -171,6 +171,12 @@ public class BuscarRestaurante extends JFrame{
 		frame.getContentPane().add(lblnomUser);
 		
 		JButton btnNewButton_1 = new JButton("Salir");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main main=new Main();
+				frame.dispose();
+			}
+		});
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setBackground(new Color(255, 153, 51));
 		btnNewButton_1.setBounds(802, 34, 66, 23);
@@ -184,12 +190,19 @@ public class BuscarRestaurante extends JFrame{
 		frame.getContentPane().add(lblBuscarRestaurante);
 		
 		JButton btnNewButton = new JButton("Volver al men\u00FA principal");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MenuCliente menuclie=new MenuCliente();
+				frame.dispose();
+			}
+		});
 		btnNewButton.setBackground(new Color(255, 153, 0));
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBounds(22, 578, 171, 23);
 		frame.getContentPane().add(btnNewButton);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 	}
 
 }

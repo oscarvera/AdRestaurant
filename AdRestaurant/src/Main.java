@@ -1,30 +1,22 @@
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import java.awt.Dialog.ModalExclusionType;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import java.awt.Font;
 import java.awt.Color;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.GridLayout;
-import javax.swing.JTextField;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JSeparator;
-import javax.swing.JSlider;
-import javax.swing.JPasswordField;
-import javax.swing.BoxLayout;
-import java.awt.GridBagLayout;
+import java.awt.Dialog.ModalExclusionType;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.ImageIcon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 
-public class LogIn {
+public class Main extends JPanel{
 
 	private JFrame frame;
 	private JTextField textField_1;
@@ -37,7 +29,7 @@ public class LogIn {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LogIn window = new LogIn();
+					Main window = new Main();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,14 +41,14 @@ public class LogIn {
 	/**
 	 * Create the application.
 	 */
-	public LogIn() {
+	public Main() {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(255, 153, 0));
 		frame.getContentPane().setForeground(Color.LIGHT_GRAY);
@@ -126,8 +118,8 @@ public class LogIn {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RegistroCliente regcli=new RegistroCliente();
-				frame=regcli.getFrame();
-				frame.repaint();
+				frame.dispose();
+			
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
@@ -137,20 +129,14 @@ public class LogIn {
 		panel.add(btnNewButton_1, gbc_btnNewButton_1);
 		
 		JButton btnNewButton = new JButton("INGRESAR");
-		if(textField_1==null){
-			btnNewButton.setEnabled(false);
-		}
-		if(pwdKp==null){
-			btnNewButton.setEnabled(false);
-		}
-		else{
-			btnNewButton.setEnabled(true);
-		}
+		
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setForeground(new Color(255, 153, 51));
 		btnNewButton.setFont(new Font("Fira Sans OT", Font.PLAIN, 11));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				MenuCliente menuclie=new MenuCliente();
+				frame.dispose();
 			}
 		});
 		btnNewButton.setBounds(339, 374, 227, 37);
@@ -160,5 +146,6 @@ public class LogIn {
 		pwdKp.setToolTipText("Introduzca su contraseña");
 		pwdKp.setBounds(339, 321, 227, 37);
 		frame.getContentPane().add(pwdKp);
+		frame.setVisible(true);
 	}
 }

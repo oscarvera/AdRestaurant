@@ -21,7 +21,7 @@ public class MenuCliente {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -32,7 +32,7 @@ public class MenuCliente {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
@@ -58,6 +58,8 @@ public class MenuCliente {
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				BuscarRestaurante busRest=new BuscarRestaurante();
+				frame.dispose();
 			}
 		});
 		
@@ -120,11 +122,18 @@ public class MenuCliente {
 		frame.getContentPane().add(lblnomUser);
 		
 		JButton btnNewButton_1 = new JButton("Salir");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main main=new Main();
+				frame.dispose();
+			}
+		});
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setBackground(new Color(255, 153, 51));
 		btnNewButton_1.setBounds(802, 34, 66, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 	}
 }

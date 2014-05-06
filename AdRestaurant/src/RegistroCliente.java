@@ -1,20 +1,18 @@
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.Dialog.ModalExclusionType;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
-import javax.swing.JToggleButton;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 
-public class RegistroCliente {
+public class RegistroCliente extends JPanel{
 
 	private JFrame frame;
 	private JTextField textField;
@@ -79,6 +77,12 @@ public class RegistroCliente {
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnRestaurante = new JButton("RESTAURANTE");
+		btnRestaurante.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RegistroRestaurante regRest=new RegistroRestaurante();
+				frame.dispose();
+			}
+		});
 		btnRestaurante.setForeground(new Color(255, 255, 255));
 		btnRestaurante.setBackground(new Color(255, 153, 0));
 		btnRestaurante.setBounds(428, 137, 263, 36);
@@ -173,6 +177,12 @@ public class RegistroCliente {
 		frame.getContentPane().add(lblyaEstaRegistrado);
 		
 		JButton btnIniciarSesin = new JButton("INICIAR SESI\u00D3N");
+		btnIniciarSesin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main main=new Main();
+				frame.dispose();
+			}
+		});
 		btnIniciarSesin.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		btnIniciarSesin.setForeground(Color.WHITE);
 		btnIniciarSesin.setBackground(new Color(255, 153, 51));
@@ -186,11 +196,7 @@ public class RegistroCliente {
 		lblInformacionSobreUsuarios.setBounds(684, 565, 185, 34);
 		frame.getContentPane().add(lblInformacionSobreUsuarios);
 		
-		//frame.setVisible(true);
-	}
-	
-	public JFrame getFrame(){
-		return this.frame;
+		frame.setVisible(true);
 	}
 	
 }

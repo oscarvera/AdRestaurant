@@ -1,28 +1,20 @@
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.Dialog.ModalExclusionType;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JList;
 import javax.swing.JPasswordField;
-import javax.swing.JProgressBar;
-import javax.swing.ListSelectionModel;
-import javax.swing.AbstractListModel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerListModel;
-import javax.swing.JTextArea;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextField;
 
 
-public class RegistroRestaurante {
+public class RegistroRestaurante extends JPanel {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -40,7 +32,7 @@ public class RegistroRestaurante {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -51,7 +43,7 @@ public class RegistroRestaurante {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
@@ -63,7 +55,7 @@ public class RegistroRestaurante {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(255, 153, 0));
@@ -85,7 +77,8 @@ public class RegistroRestaurante {
 		btnNewButton.setBackground(new Color(255, 153, 0));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
+			RegistroCliente regClie=new RegistroCliente();
+			frame.dispose();
 			}
 		});
 		btnNewButton.setBounds(165, 137, 263, 36);
@@ -265,6 +258,12 @@ public class RegistroRestaurante {
 		frame.getContentPane().add(lblyaEstaRegistrado);
 		
 		JButton btnIniciarSesin = new JButton("INICIAR SESI\u00D3N");
+		btnIniciarSesin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Main main=new Main();
+				frame.dispose();
+			}
+		});
 		btnIniciarSesin.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		btnIniciarSesin.setForeground(Color.WHITE);
 		btnIniciarSesin.setBackground(new Color(255, 153, 51));
@@ -277,5 +276,6 @@ public class RegistroRestaurante {
 		lblInformacionSobreUsuarios.setBackground(new Color(255, 153, 51));
 		lblInformacionSobreUsuarios.setBounds(684, 565, 185, 34);
 		frame.getContentPane().add(lblInformacionSobreUsuarios);
+		frame.setVisible(true);
 	}
 }
