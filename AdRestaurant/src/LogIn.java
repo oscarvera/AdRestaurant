@@ -21,9 +21,10 @@ import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import javax.swing.ImageIcon;
 
 
-public class Principal {
+public class LogIn {
 
 	private JFrame frame;
 	private JTextField textField_1;
@@ -36,7 +37,7 @@ public class Principal {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal window = new Principal();
+					LogIn window = new LogIn();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +49,7 @@ public class Principal {
 	/**
 	 * Create the application.
 	 */
-	public Principal() {
+	public LogIn() {
 		initialize();
 	}
 
@@ -85,6 +86,7 @@ public class Principal {
 		frame.getContentPane().add(lblUsuario);
 		
 		textField_1 = new JTextField();
+		textField_1.setToolTipText("Introduzca su Nombre de Usuario");
 		textField_1.setColumns(10);
 		textField_1.setBounds(339, 270, 227, 37);
 		frame.getContentPane().add(textField_1);
@@ -118,6 +120,7 @@ public class Principal {
 		panel.add(lblnoEstasRegistrado, gbc_lblnoEstasRegistrado);
 		
 		JButton btnNewButton_1 = new JButton("REGISTRARSE");
+		btnNewButton_1.setToolTipText("Simple y cómodo, REGISTRATE AHORA!");
 		btnNewButton_1.setBackground(new Color(255, 153, 51));
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -131,6 +134,15 @@ public class Principal {
 		panel.add(btnNewButton_1, gbc_btnNewButton_1);
 		
 		JButton btnNewButton = new JButton("INGRESAR");
+		if(textField_1==null){
+			btnNewButton.setEnabled(false);
+		}
+		if(pwdKp==null){
+			btnNewButton.setEnabled(false);
+		}
+		else{
+			btnNewButton.setEnabled(true);
+		}
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setForeground(new Color(255, 153, 51));
 		btnNewButton.setFont(new Font("Fira Sans OT", Font.PLAIN, 11));
@@ -142,6 +154,7 @@ public class Principal {
 		frame.getContentPane().add(btnNewButton);
 		
 		pwdKp = new JPasswordField();
+		pwdKp.setToolTipText("Introduzca su contraseña");
 		pwdKp.setBounds(339, 321, 227, 37);
 		frame.getContentPane().add(pwdKp);
 	}

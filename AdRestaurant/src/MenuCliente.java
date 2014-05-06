@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class Principal2 {
+public class MenuCliente {
 
 	private JFrame frame;
 
@@ -25,7 +25,7 @@ public class Principal2 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal2 window = new Principal2();
+					MenuCliente window = new MenuCliente();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class Principal2 {
 	/**
 	 * Create the application.
 	 */
-	public Principal2() {
+	public MenuCliente() {
 		initialize();
 	}
 
@@ -60,15 +60,18 @@ public class Principal2 {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\dam1\\Desktop\\Boton1.png"));
+		
+		btnNewButton.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1.png")));
 		
 		JButton button = new JButton("New button");
-		button.setIcon(new ImageIcon("C:\\Users\\dam1\\Desktop\\boton2.png"));
+		button.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/boton2.png")));
+		//button.setIcon(new ImageIcon("C:\\Users\\dam1\\Desktop\\boton2.png"));
 		
 		JButton button_1 = new JButton("New button");
-		button_1.setIcon(new ImageIcon("C:\\Users\\dam1\\Desktop\\reservas.png"));
+		button_1.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/reservas.png")));
+		//button_1.setIcon(new ImageIcon("C:\\Users\\dam1\\Desktop\\reservas.png"));
 		
-		JButton button_2 = new JButton("New button");
+		JButton btnPerfilCliente = new JButton("Perfil Cliente?");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -80,18 +83,18 @@ public class Principal2 {
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(60)
+							.addGap(44)
 							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 466, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18)
-					.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 294, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnPerfilCliente, GroupLayout.PREFERRED_SIZE, 294, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(51, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
+			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap(42, Short.MAX_VALUE)
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(button_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnPerfilCliente, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 196, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -124,5 +127,4 @@ public class Principal2 {
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
 }
