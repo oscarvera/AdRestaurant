@@ -27,7 +27,7 @@ public class RegistroCliente {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -38,7 +38,7 @@ public class RegistroCliente {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
@@ -50,7 +50,7 @@ public class RegistroCliente {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(255, 153, 0));
@@ -185,5 +185,12 @@ public class RegistroCliente {
 		lblInformacionSobreUsuarios.setBackground(new Color(255, 153, 51));
 		lblInformacionSobreUsuarios.setBounds(684, 565, 185, 34);
 		frame.getContentPane().add(lblInformacionSobreUsuarios);
+		
+		//frame.setVisible(true);
 	}
+	
+	public JFrame getFrame(){
+		return this.frame;
+	}
+	
 }

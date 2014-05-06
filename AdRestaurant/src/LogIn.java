@@ -125,6 +125,9 @@ public class LogIn {
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				RegistroCliente regcli=new RegistroCliente();
+				frame=regcli.getFrame();
+				frame.repaint();
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
