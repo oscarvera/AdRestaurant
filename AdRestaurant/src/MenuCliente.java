@@ -124,7 +124,7 @@ public class MenuCliente {
 		JButton btnNewButton_1 = new JButton("Salir");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main main=new Main();
+				Ingreso ingreso=new Ingreso();
 				frame.dispose();
 			}
 		});

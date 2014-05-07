@@ -163,6 +163,8 @@ public class RegistroRestaurante extends JPanel {
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				RegistroCompleto regCom=new RegistroCompleto();
+				frame.dispose();
 			}
 		});
 		btnNewButton_1.setBounds(332, 293, 210, 33);
@@ -260,7 +262,7 @@ public class RegistroRestaurante extends JPanel {
 		JButton btnIniciarSesin = new JButton("INICIAR SESI\u00D3N");
 		btnIniciarSesin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Main main=new Main();
+				Ingreso ingreso=new Ingreso();
 				frame.dispose();
 			}
 		});

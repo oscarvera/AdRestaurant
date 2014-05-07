@@ -17,6 +17,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
+import javax.swing.JToolBar;
+import javax.swing.JScrollPane;
 
 
 public class BuscarRestaurante extends JFrame{
@@ -66,9 +68,29 @@ public class BuscarRestaurante extends JFrame{
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 153, 0));
 		
+		JScrollPane scrollPane = new JScrollPane();
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(22)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		
 		JList list = new JList();
+		scrollPane.setViewportView(list);
 		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Aqui", "los ", "restaurantes", "listados", "todos", "y", "cada", "uno", "de", "ellos"};
+			String[] values = new String[] {"Aqui", "los ", "restaurantes", "listados", "todos", "y", "cada", "uno", "de", "ellos", "asdd", "asg", "asg", "asdg", "asdg", "asdg", "asdg", "asd", "gas", "dg", "asg", "asd", "g", "asd", "g", "asdg", "as", "dg", "asdg", "s", "dgas", "dg", "asdg", "as", "dg", "asd", "g", "asdg", "asdg", "as", "dg", "aqui", "acaba"};
 			public int getSize() {
 				return values.length;
 			}
@@ -76,23 +98,6 @@ public class BuscarRestaurante extends JFrame{
 				return values[index];
 			}
 		});
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(list, GroupLayout.PREFERRED_SIZE, 638, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(26, Short.MAX_VALUE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
-				.addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
-				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
-					.addGap(21)
-					.addComponent(list, GroupLayout.PREFERRED_SIZE, 439, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
 		
 		JButton button = new JButton("BUSCAR");
 		button.setBounds(20, 231, 165, 43);
@@ -173,7 +178,7 @@ public class BuscarRestaurante extends JFrame{
 		JButton btnNewButton_1 = new JButton("Salir");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main main=new Main();
+				Ingreso ingreso=new Ingreso();
 				frame.dispose();
 			}
 		});
@@ -204,5 +209,4 @@ public class BuscarRestaurante extends JFrame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
-
 }

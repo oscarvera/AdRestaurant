@@ -19,7 +19,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 
-public class RegistroCompleto {
+public class RegistroCompleto extends JPanel{
 
 	private JFrame frame;
 
@@ -107,10 +107,13 @@ public class RegistroCompleto {
 		btnNewButton.setFont(new Font("Fira Sans OT", Font.PLAIN, 11));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				Ingreso ingreso=new Ingreso();
+				frame.dispose();
 			}
 		});
 		btnNewButton.setBounds(316, 415, 227, 37);
 		frame.getContentPane().add(btnNewButton);
+		frame.setVisible(true);
 	}
 
 }

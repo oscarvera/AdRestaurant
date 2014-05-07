@@ -16,10 +16,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 
-public class Main extends JPanel{
+public class Ingreso extends JPanel{
 
 	private JFrame frame;
-	private JTextField textField_1;
+	private JTextField txtN;
 	private JPasswordField pwdKp;
 
 	/**
@@ -29,7 +29,7 @@ public class Main extends JPanel{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Main window = new Main();
+					Ingreso window = new Ingreso();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class Main extends JPanel{
 	/**
 	 * Create the application.
 	 */
-	public Main() {
+	public Ingreso() {
 		initialize();
 	}
 
@@ -77,11 +77,11 @@ public class Main extends JPanel{
 		lblUsuario.setBounds(237, 281, 100, 22);
 		frame.getContentPane().add(lblUsuario);
 		
-		textField_1 = new JTextField();
-		textField_1.setToolTipText("Introduzca su Nombre de Usuario");
-		textField_1.setColumns(10);
-		textField_1.setBounds(339, 270, 227, 37);
-		frame.getContentPane().add(textField_1);
+		txtN = new JTextField();
+		txtN.setToolTipText("Introduzca su Nombre de Usuario");
+		txtN.setColumns(10);
+		txtN.setBounds(339, 270, 227, 37);
+		frame.getContentPane().add(txtN);
 		
 		JLabel lblContrasea = new JLabel("CONTRASE\u00D1A:");
 		lblContrasea.setForeground(Color.WHITE);
