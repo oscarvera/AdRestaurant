@@ -24,6 +24,7 @@ public class RegistroCliente extends JPanel{
 	private JTextField textApellido2;
 	private JPasswordField passUser;
 	private JButton BotonRegistrarse;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -126,31 +127,31 @@ public class RegistroCliente extends JPanel{
 		JLabel lblNombreUsuario = new JLabel("Nombre usuario:");
 		lblNombreUsuario.setForeground(new Color(255, 153, 51));
 		lblNombreUsuario.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-		lblNombreUsuario.setBounds(258, 173, 155, 22);
+		lblNombreUsuario.setBounds(258, 145, 155, 22);
 		panel.add(lblNombreUsuario);
 		
 		textNomUser = new JTextField();
 		textNomUser.setColumns(10);
-		textNomUser.setBounds(423, 173, 197, 22);
+		textNomUser.setBounds(423, 145, 197, 22);
 		panel.add(textNomUser);
 		textNomUser.addKeyListener(keyLis);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
 		lblContrasea.setForeground(new Color(255, 153, 51));
 		lblContrasea.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-		lblContrasea.setBounds(258, 206, 155, 22);
+		lblContrasea.setBounds(258, 178, 155, 22);
 		panel.add(lblContrasea);
 		
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setForeground(new Color(255, 153, 0));
 		lblEmail.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-		lblEmail.setBounds(258, 239, 155, 22);
+		lblEmail.setBounds(258, 211, 155, 22);
 		panel.add(lblEmail);
 		
 		
 		textEmail = new JTextField();
 		textEmail.setColumns(10);
-		textEmail.setBounds(423, 239, 197, 22);
+		textEmail.setBounds(423, 211, 197, 22);
 		panel.add(textEmail);
 		textEmail.addKeyListener(keyLis);
 		
@@ -168,26 +169,26 @@ public class RegistroCliente extends JPanel{
 		
 		textApellido1 = new JTextField();
 		textApellido1.setColumns(10);
-		textApellido1.setBounds(423, 85, 197, 22);
+		textApellido1.setBounds(423, 79, 197, 22);
 		panel.add(textApellido1);
 		textApellido1.addKeyListener(keyLis);
 		
 		JLabel lblPrimerApellido = new JLabel("Primer apellido:");
 		lblPrimerApellido.setForeground(new Color(255, 153, 51));
 		lblPrimerApellido.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-		lblPrimerApellido.setBounds(258, 85, 155, 22);
+		lblPrimerApellido.setBounds(258, 79, 155, 22);
 		panel.add(lblPrimerApellido);
 		
 		textApellido2 = new JTextField();
 		textApellido2.setColumns(10);
-		textApellido2.setBounds(423, 121, 197, 22);
+		textApellido2.setBounds(423, 112, 197, 22);
 		panel.add(textApellido2);
 		textApellido2.addKeyListener(keyLis);
 		
 		JLabel lblSegundoApellido = new JLabel("Segundo apellido:");
 		lblSegundoApellido.setForeground(new Color(255, 153, 0));
 		lblSegundoApellido.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-		lblSegundoApellido.setBounds(258, 121, 169, 22);
+		lblSegundoApellido.setBounds(258, 112, 169, 22);
 		panel.add(lblSegundoApellido);
 		
 		BotonRegistrarse = new JButton("RESGISTRARSE");
@@ -206,8 +207,19 @@ public class RegistroCliente extends JPanel{
 		
 		
 		passUser = new JPasswordField();
-		passUser.setBounds(423, 206, 197, 20);
+		passUser.setBounds(423, 178, 197, 22);
 		panel.add(passUser);
+		
+		JLabel lblTelfono = new JLabel("Tel\u00E9fono:");
+		lblTelfono.setForeground(new Color(255, 153, 0));
+		lblTelfono.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblTelfono.setBounds(258, 244, 104, 22);
+		panel.add(lblTelfono);
+		
+		textField = new JTextField();
+		textField.setBounds(423, 244, 197, 22);
+		panel.add(textField);
+		textField.setColumns(10);
 		passUser.addKeyListener(keyLis);
 		
 		JLabel lblyaEstaRegistrado = new JLabel("\u00BFYa est\u00E1s registrado?");
@@ -239,5 +251,4 @@ public class RegistroCliente extends JPanel{
 		
 		frame.setVisible(true);
 	}
-	
 }
