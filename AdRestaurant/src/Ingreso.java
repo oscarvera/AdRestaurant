@@ -9,13 +9,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 public class Ingreso extends JPanel{
@@ -58,6 +65,7 @@ public class Ingreso extends JPanel{
 		frame.getContentPane().setForeground(Color.LIGHT_GRAY);
 		frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		frame.setBounds(100, 100, 895, 646);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setDefaultLookAndFeelDecorated(true);
 		frame.setUndecorated(true);
@@ -65,18 +73,11 @@ public class Ingreso extends JPanel{
 		
 		
 		JLabel lblBienvenid = new JLabel("BIENVENID@");
-		lblBienvenid.setBounds(377, 163, 135, 64);
+		lblBienvenid.setBounds(380, 163, 135, 64);
 		lblBienvenid.setForeground(new Color(255, 255, 255));
 		lblBienvenid.setBackground(new Color(255, 255, 0));
 		lblBienvenid.setFont(new Font("Fira Sans OT", Font.PLAIN, 22));
 		frame.getContentPane().add(lblBienvenid);
-		
-		JLabel lblAdrestaurant = new JLabel("AdRestaurant");
-		lblAdrestaurant.setBounds(168, 77, 563, 93);
-		lblAdrestaurant.setForeground(new Color(255, 255, 255));
-		lblAdrestaurant.setBackground(new Color(255, 255, 255));
-		lblAdrestaurant.setFont(new Font("Francois One", Font.PLAIN, 90));
-		frame.getContentPane().add(lblAdrestaurant);
 		
 		JLabel lblUsuario = new JLabel("USUARIO:");
 		lblUsuario.setForeground(new Color(255, 255, 255));
@@ -87,13 +88,12 @@ public class Ingreso extends JPanel{
 		textLabelUser = new JTextField();
 		textLabelUser.setToolTipText("Introduzca su Nombre de Usuario");
 		textLabelUser.setColumns(10);
-		textLabelUser.setBounds(339, 270, 227, 37);
+		textLabelUser.setBounds(334, 270, 227, 37);
 		frame.getContentPane().add(textLabelUser);
 		KeyListener kl = new KeyListener() {
 			
 			@Override
 			public void keyTyped(KeyEvent e) {	
-				
 			}
 			
 			@Override
@@ -107,7 +107,6 @@ public class Ingreso extends JPanel{
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
-				
 			}
 		};
 		textLabelUser.addKeyListener(kl);
@@ -120,27 +119,10 @@ public class Ingreso extends JPanel{
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 514, 879, 93);
+		panel.setBounds(0, 514, 895, 93);
 		frame.getContentPane().add(panel);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] {120, 70, 100, 50, 0, 0};
-		gbl_panel.rowHeights = new int[]{28, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		panel.setLayout(gbl_panel);
 		
-		JLabel lblnoEstasRegistrado = new JLabel("\u00BFNo est\u00E1s registrado?");
-		lblnoEstasRegistrado.setFont(new Font("Fira Sans OT", Font.PLAIN, 33));
-		lblnoEstasRegistrado.setForeground(new Color(255, 153, 51));
-		lblnoEstasRegistrado.setBackground(new Color(255, 153, 51));
-		GridBagConstraints gbc_lblnoEstasRegistrado = new GridBagConstraints();
-		gbc_lblnoEstasRegistrado.fill = GridBagConstraints.BOTH;
-		gbc_lblnoEstasRegistrado.insets = new Insets(0, 0, 0, 5);
-		gbc_lblnoEstasRegistrado.gridx = 1;
-		gbc_lblnoEstasRegistrado.gridy = 1;
-		panel.add(lblnoEstasRegistrado, gbc_lblnoEstasRegistrado);
-		
-		btnRegistrar = new JButton("REGISTRARSE");
+		btnRegistrar = new JButton("REGISTRATE");
 		btnRegistrar.setToolTipText("Simple y cómodo, REGISTRATE AHORA!");
 		btnRegistrar.setBackground(new Color(255, 153, 51));
 		btnRegistrar.setForeground(new Color(255, 255, 255));
@@ -151,11 +133,33 @@ public class Ingreso extends JPanel{
 			
 			}
 		});
-		GridBagConstraints gbc_btnRegistrar = new GridBagConstraints();
-		gbc_btnRegistrar.fill = GridBagConstraints.BOTH;
-		gbc_btnRegistrar.gridx = 4;
-		gbc_btnRegistrar.gridy = 1;
-		panel.add(btnRegistrar, gbc_btnRegistrar);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/QuieresReg.png")));
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(104)
+					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+					.addGap(876))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(18)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(11)
+							.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+							.addGap(27))))
+		);
+		panel.setLayout(gl_panel);
 		
 		btnIngresar = new JButton("INGRESAR");
 		
@@ -168,17 +172,72 @@ public class Ingreso extends JPanel{
 				frame.dispose();
 			}
 		});
-		btnIngresar.setBounds(339, 374, 227, 37);
+		btnIngresar.setBounds(334, 374, 227, 37);
 		btnIngresar.setEnabled(false);
 		frame.getContentPane().add(btnIngresar);
 		
 		
 		textLabelPass = new JPasswordField();
 		textLabelPass.setToolTipText("Introduzca su contraseña");
-		textLabelPass.setBounds(339, 321, 227, 37);
+		textLabelPass.setBounds(334, 321, 227, 37);
 		frame.getContentPane().add(textLabelPass);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(0, 0, 895, 22);
+		frame.getContentPane().add(panel_1);
+		
+		JLabel cerrarImage = new JLabel("");
+		cerrarImage.setIcon(new ImageIcon("C:\\Users\\Oscar\\Desktop\\boton.png"));
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+					.addContainerGap(870, Short.MAX_VALUE)
+					.addComponent(cerrarImage)
+					.addContainerGap())
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addComponent(cerrarImage, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+		);
+		cerrarImage.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int eleccion=JOptionPane.showConfirmDialog(frame,"¿Seguro que desea salir?");
+				if(eleccion==0){
+				System.exit(0);
+				}
+				
+			}
+		});
+	
+		panel_1.setLayout(gl_panel_1);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/Titulo.png")));
+		lblNewLabel.setBounds(107, 72, 680, 110);
+		frame.getContentPane().add(lblNewLabel);
 		frame.setVisible(true);
 		textLabelPass.addKeyListener(kl);
+		
 		
 	}
 }

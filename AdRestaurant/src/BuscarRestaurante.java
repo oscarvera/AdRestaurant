@@ -3,6 +3,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -25,7 +29,7 @@ public class BuscarRestaurante extends JFrame{
 
 	private JFrame frame;
 	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textNombre;
 	private JTextField textField_2;
 
 	/**
@@ -60,10 +64,12 @@ public class BuscarRestaurante extends JFrame{
 		frame.getContentPane().setBackground(new Color(255, 153, 0));
 		frame.getContentPane().setLayout(null);
 		
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 86, 889, 481);
 		frame.getContentPane().add(panel);
+		
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 153, 0));
@@ -119,12 +125,79 @@ public class BuscarRestaurante extends JFrame{
 		textField.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(10, 28, 187, 46);
-		textField_1.setText("Nombre");
-		textField_1.setForeground(new Color(255, 153, 0));
-		textField_1.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
-		textField_1.setColumns(10);
+		
+		MouseListener mouse=new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			
+				
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+			
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				textNombre.setBackground(new Color(255, 153, 51));
+				if(textNombre.getText().isEmpty()){
+				textNombre.setText("Nombre");
+				}
+				textNombre.setForeground(new Color(255, 255, 255));
+				
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				textNombre.setBackground(new Color(255, 255, 255));
+				textNombre.setForeground(new Color(255, 153, 0));
+				if(textNombre.getText().isEmpty()){
+				textNombre.setText("");
+				}
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				
+			}
+		};
+		
+		FocusListener focus=new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				textNombre.setBackground(new Color(255, 153, 51));
+				
+			}
+			
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				textNombre.setBackground(new Color(255, 255, 255));
+				
+			}
+		};
+		
+		
+		textNombre = new JTextField();
+		textNombre.setBackground(new Color(255, 153, 51));
+		textNombre.setBounds(10, 28, 187, 46);
+		textNombre.setText("Nombre");
+		textNombre.setForeground(new Color(255, 255, 255));
+		textNombre.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		textNombre.setColumns(10);
+		textNombre.addMouseListener(mouse);
+		textNombre.addFocusListener(focus);
+		textNombre.setBorder(null);
+		
+		
+		
 		
 		textField_2 = new JTextField();
 		textField_2.setBounds(10, 80, 187, 46);
@@ -145,7 +218,7 @@ public class BuscarRestaurante extends JFrame{
 		btnMejorValorado.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
 		btnMejorValorado.setBackground(Color.WHITE);
 		panel_1.setLayout(null);
-		panel_1.add(textField_1);
+		panel_1.add(textNombre);
 		panel_1.add(textField_2);
 		panel_1.add(textField);
 		panel_1.add(comboBox);
@@ -207,6 +280,7 @@ public class BuscarRestaurante extends JFrame{
 		frame.getContentPane().add(btnNewButton);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 }

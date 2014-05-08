@@ -50,6 +50,7 @@ public class MenuCliente {
 		frame.getContentPane().setBackground(new Color(255, 153, 0));
 		frame.getContentPane().setLayout(null);
 		
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 86, 889, 481);
@@ -66,7 +67,13 @@ public class MenuCliente {
 		btnNewButton.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1.png")));
 		
 		JButton button = new JButton("New button");
-		button.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/boton2.png")));
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Comentarios comen=new Comentarios();
+				frame.dispose();
+			}
+		});
+		button.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/ComentsBoton.png")));
 		//button.setIcon(new ImageIcon("C:\\Users\\dam1\\Desktop\\boton2.png"));
 		
 		JButton button_1 = new JButton("New button");
@@ -74,36 +81,50 @@ public class MenuCliente {
 		//button_1.setIcon(new ImageIcon("C:\\Users\\dam1\\Desktop\\reservas.png"));
 		
 		JButton btnPerfilCliente = new JButton("Perfil Cliente?");
+		
+		JLabel label_1 = new JLabel("");
+		
+		JButton btnBoton = new JButton("Boton2");
+		
+		JButton button_2 = new JButton("Boton2");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(label_1)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(58)
-							.addComponent(button, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(44)
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 466, GroupLayout.PREFERRED_SIZE)))
-					.addGap(18)
-					.addComponent(btnPerfilCliente, GroupLayout.PREFERRED_SIZE, 294, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(51, Short.MAX_VALUE))
+							.addGap(89)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(button, 0, 0, Short.MAX_VALUE)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(btnPerfilCliente, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnBoton, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(button_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 474, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE)))))
+					.addContainerGap(89, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(42, Short.MAX_VALUE)
+					.addGap(22)
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnPerfilCliente, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 196, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(button, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
-								.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE))))
-					.addGap(24))
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 185, Short.MAX_VALUE)
+						.addComponent(button_1, 0, 0, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(button_2, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+						.addComponent(btnBoton, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+						.addComponent(btnPerfilCliente, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+						.addComponent(label_1))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(button, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+					.addGap(27))
 		);
 		panel.setLayout(gl_panel);
 		
@@ -134,6 +155,8 @@ public class MenuCliente {
 		frame.getContentPane().add(btnNewButton_1);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		System.out.println(frame.getWidth()+" "+frame.getHeight());
 	}
 }

@@ -3,6 +3,8 @@ import java.awt.Dialog.ModalExclusionType;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,12 +17,13 @@ import javax.swing.JTextField;
 public class RegistroCliente extends JPanel{
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JPasswordField passwordField;
+	private JTextField textNomUser;
+	private JTextField textEmail;
+	private JTextField textNombre;
+	private JTextField textApellido1;
+	private JTextField textApellido2;
+	private JPasswordField passUser;
+	private JButton BotonRegistrarse;
 
 	/**
 	 * Launch the application.
@@ -57,6 +60,7 @@ public class RegistroCliente extends JPanel{
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setLocationRelativeTo(null);
 		
 		JLabel lblAdrestaurant = new JLabel("AdRestaurant");
 		lblAdrestaurant.setBounds(170, 33, 563, 93);
@@ -94,16 +98,42 @@ public class RegistroCliente extends JPanel{
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
+		KeyListener keyLis =new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(!textNombre.getText().isEmpty()&&!textApellido1.getText().isEmpty()&&!textApellido2.getText().isEmpty()&&!textNomUser.getText().isEmpty()&&!textEmail.getText().isEmpty()&&!passUser.getText().isEmpty()){
+					BotonRegistrarse.setEnabled(true);
+				}else{
+					BotonRegistrarse.setEnabled(false);
+				}
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		
 		JLabel lblNombreUsuario = new JLabel("Nombre usuario:");
 		lblNombreUsuario.setForeground(new Color(255, 153, 51));
 		lblNombreUsuario.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
 		lblNombreUsuario.setBounds(258, 173, 155, 22);
 		panel.add(lblNombreUsuario);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(423, 173, 197, 22);
-		panel.add(textField);
+		textNomUser = new JTextField();
+		textNomUser.setColumns(10);
+		textNomUser.setBounds(423, 173, 197, 22);
+		panel.add(textNomUser);
+		textNomUser.addKeyListener(keyLis);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
 		lblContrasea.setForeground(new Color(255, 153, 51));
@@ -117,15 +147,18 @@ public class RegistroCliente extends JPanel{
 		lblEmail.setBounds(258, 239, 155, 22);
 		panel.add(lblEmail);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(423, 239, 197, 22);
-		panel.add(textField_2);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(423, 46, 197, 22);
-		panel.add(textField_3);
+		textEmail = new JTextField();
+		textEmail.setColumns(10);
+		textEmail.setBounds(423, 239, 197, 22);
+		panel.add(textEmail);
+		textEmail.addKeyListener(keyLis);
+		
+		textNombre = new JTextField();
+		textNombre.setColumns(10);
+		textNombre.setBounds(423, 46, 197, 22);
+		panel.add(textNombre);
+		textNombre.addKeyListener(keyLis);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setForeground(new Color(255, 153, 0));
@@ -133,10 +166,11 @@ public class RegistroCliente extends JPanel{
 		lblNombre.setBounds(258, 46, 155, 22);
 		panel.add(lblNombre);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(423, 85, 197, 22);
-		panel.add(textField_4);
+		textApellido1 = new JTextField();
+		textApellido1.setColumns(10);
+		textApellido1.setBounds(423, 85, 197, 22);
+		panel.add(textApellido1);
+		textApellido1.addKeyListener(keyLis);
 		
 		JLabel lblPrimerApellido = new JLabel("Primer apellido:");
 		lblPrimerApellido.setForeground(new Color(255, 153, 51));
@@ -144,10 +178,11 @@ public class RegistroCliente extends JPanel{
 		lblPrimerApellido.setBounds(258, 85, 155, 22);
 		panel.add(lblPrimerApellido);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(423, 121, 197, 22);
-		panel.add(textField_5);
+		textApellido2 = new JTextField();
+		textApellido2.setColumns(10);
+		textApellido2.setBounds(423, 121, 197, 22);
+		panel.add(textApellido2);
+		textApellido2.addKeyListener(keyLis);
 		
 		JLabel lblSegundoApellido = new JLabel("Segundo apellido:");
 		lblSegundoApellido.setForeground(new Color(255, 153, 0));
@@ -155,21 +190,25 @@ public class RegistroCliente extends JPanel{
 		lblSegundoApellido.setBounds(258, 121, 169, 22);
 		panel.add(lblSegundoApellido);
 		
-		JButton btnNewButton_1 = new JButton("RESGISTRARSE");
-		btnNewButton_1.setBackground(new Color(255, 153, 0));
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.addActionListener(new ActionListener() {
+		BotonRegistrarse = new JButton("RESGISTRARSE");
+		BotonRegistrarse.setBackground(new Color(255, 153, 0));
+		BotonRegistrarse.setForeground(new Color(255, 255, 255));
+		BotonRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RegistroCompleto regCom=new RegistroCompleto();
 				frame.dispose();
 			}
 		});
-		btnNewButton_1.setBounds(332, 293, 210, 33);
-		panel.add(btnNewButton_1);
+		BotonRegistrarse.setBounds(332, 293, 210, 33);
+		BotonRegistrarse.setEnabled(false);
+		panel.add(BotonRegistrarse);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(423, 206, 197, 20);
-		panel.add(passwordField);
+		
+		
+		passUser = new JPasswordField();
+		passUser.setBounds(423, 206, 197, 20);
+		panel.add(passUser);
+		passUser.addKeyListener(keyLis);
 		
 		JLabel lblyaEstaRegistrado = new JLabel("\u00BFYa est\u00E1s registrado?");
 		lblyaEstaRegistrado.setForeground(new Color(255, 255, 255));

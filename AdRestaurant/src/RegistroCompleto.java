@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ImageIcon;
 
 
 public class RegistroCompleto extends JPanel{
@@ -57,46 +58,28 @@ public class RegistroCompleto extends JPanel{
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		JLabel lblAdrestaurant = new JLabel("AdRestaurant");
-		lblAdrestaurant.setBounds(172, 77, 536, 93);
-		lblAdrestaurant.setForeground(new Color(255, 255, 255));
-		lblAdrestaurant.setBackground(new Color(255, 255, 255));
-		lblAdrestaurant.setFont(new Font("Francois One", Font.PLAIN, 90));
-		frame.getContentPane().add(lblAdrestaurant);
+		frame.setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 224, 879, 160);
 		frame.getContentPane().add(panel);
 		
-		JLabel lblRegistroCompletado = new JLabel("\u00A1REGISTRO COMPLETADO!");
-		lblRegistroCompletado.setForeground(new Color(255, 153, 0));
-		lblRegistroCompletado.setFont(new Font("Fira Sans OT", Font.BOLD, 35));
-		
-		JLabel lblYaEstaTodo = new JLabel("Ya est\u00E1 todo listo. Ahora solo tienes que iniciar sesi\u00F3n para comenzar.");
-		lblYaEstaTodo.setForeground(new Color(255, 153, 0));
-		lblYaEstaTodo.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 15));
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(RegistroCompleto.class.getResource("/Imagen/RegComple.png")));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(195)
-							.addComponent(lblYaEstaTodo, GroupLayout.PREFERRED_SIZE, 490, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(234)
-							.addComponent(lblRegistroCompletado, GroupLayout.PREFERRED_SIZE, 410, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(194, Short.MAX_VALUE))
+					.addGap(132)
+					.addComponent(lblNewLabel)
+					.addContainerGap(133, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(39)
-					.addComponent(lblRegistroCompletado, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-					.addGap(3)
-					.addComponent(lblYaEstaTodo, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+					.addContainerGap(27, Short.MAX_VALUE)
+					.addComponent(lblNewLabel)
 					.addContainerGap())
 		);
 		panel.setLayout(gl_panel);
@@ -113,7 +96,11 @@ public class RegistroCompleto extends JPanel{
 		});
 		btnNewButton.setBounds(316, 415, 227, 37);
 		frame.getContentPane().add(btnNewButton);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(RegistroCompleto.class.getResource("/Imagen/Titulo.png")));
+		lblNewLabel_1.setBounds(90, 65, 699, 97);
+		frame.getContentPane().add(lblNewLabel_1);
 		frame.setVisible(true);
 	}
-
 }
