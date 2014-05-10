@@ -19,19 +19,19 @@ public class Restaurante {
 	public Restaurante(){
 		
 	}
-
+	
 	public int getCodigoRestaurante() {
 		return codigoRestaurante;
 	}
-
+	
 	public void setCodigoRestaurante(int codigoRestaurante) {
 		this.codigoRestaurante = codigoRestaurante;
 	}
-
+	
 	public String getPassword() {
 		return password;
 	}
-
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
