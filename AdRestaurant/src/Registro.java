@@ -17,7 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 
-public class RegistroCliente extends JPanel{
+public class Registro extends JPanel{
 
 	private JFrame frame;
 	private JTextField textNomUser;
@@ -57,7 +57,7 @@ public class RegistroCliente extends JPanel{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegistroCliente window = new RegistroCliente();
+					Registro window = new Registro();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -69,7 +69,7 @@ public class RegistroCliente extends JPanel{
 	/**
 	 * Create the application.
 	 */
-	public RegistroCliente() {
+	public Registro() {
 		initialize();
 	}
 
@@ -453,22 +453,22 @@ public class RegistroCliente extends JPanel{
 		frame.getContentPane().add(lblInformacionSobreUsuarios);
 		
 		Flecha1 = new JLabel("");
-		Flecha1.setIcon(new ImageIcon("C:\\Users\\Oscar\\Desktop\\Imagenes AdRestaurant\\flecha.png"));
+		Flecha1.setIcon(new ImageIcon(Registro.class.getResource("/Imagen/flecha.png")));
 		Flecha1.setBounds(175, 184, 185, 151);
 		frame.getContentPane().add(Flecha1);
 		
 		LabelNuevoClie = new JLabel("New label");
-		LabelNuevoClie.setIcon(new ImageIcon("C:\\Users\\Oscar\\Desktop\\Imagenes AdRestaurant\\eresUnNuevoCliente.png"));
+		LabelNuevoClie.setIcon(new ImageIcon(Registro.class.getResource("/Imagen/eresUnNuevoCliente.png")));
 		LabelNuevoClie.setBounds(10, 298, 287, 93);
 		frame.getContentPane().add(LabelNuevoClie);
 		
 		Flecha2 = new JLabel("New label");
-		Flecha2.setIcon(new ImageIcon("C:\\Users\\Oscar\\Desktop\\Imagenes AdRestaurant\\flecha2.png"));
+		Flecha2.setIcon(new ImageIcon(Registro.class.getResource("/Imagen/flecha2.png")));
 		Flecha2.setBounds(467, 195, 250, 209);
 		frame.getContentPane().add(Flecha2);
 		
 		LabelNuevoRest = new JLabel("New label");
-		LabelNuevoRest.setIcon(new ImageIcon("C:\\Users\\Oscar\\Desktop\\Imagenes AdRestaurant\\eresUnNuevoRestaurante.png"));
+		LabelNuevoRest.setIcon(new ImageIcon(Registro.class.getResource("/Imagen/eresUnNuevoRestaurante.png")));
 		LabelNuevoRest.setBounds(488, 402, 346, 36);
 		frame.getContentPane().add(LabelNuevoRest);
 		

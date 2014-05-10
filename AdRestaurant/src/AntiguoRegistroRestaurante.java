@@ -14,7 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 
-public class RegistroRestaurante extends JPanel {
+public class AntiguoRegistroRestaurante extends JPanel {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -36,7 +36,7 @@ public class RegistroRestaurante extends JPanel {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegistroRestaurante window = new RegistroRestaurante();
+					AntiguoRegistroRestaurante window = new AntiguoRegistroRestaurante();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +48,7 @@ public class RegistroRestaurante extends JPanel {
 	/**
 	 * Create the application.
 	 */
-	public RegistroRestaurante() {
+	public AntiguoRegistroRestaurante() {
 		initialize();
 	}
 
@@ -78,7 +78,7 @@ public class RegistroRestaurante extends JPanel {
 		btnNewButton.setBackground(new Color(255, 153, 0));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			RegistroCliente regClie=new RegistroCliente();
+			Registro regClie=new Registro();
 			frame.dispose();
 			}
 		});
