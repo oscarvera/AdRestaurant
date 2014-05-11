@@ -15,6 +15,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.Box;
+import javax.swing.JCheckBox;
+import java.awt.Panel;
 
 
 public class Registro extends JPanel{
@@ -32,17 +39,16 @@ public class Registro extends JPanel{
 	private JTextField textField;
 	JPanel panel = new JPanel();
 
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JPasswordField pwdJio;
+	private JButton btnRegRest;
+	private JTextField textNomUserRest;
+	private JTextField textEmailRest;
+	private JTextField textNombreRest;
+	private JTextField textProvinciaRest;
+	private JTextField textCodPostRest;
+	private JTextField textPoblacionRest;
+	private JTextField textDireccionRest;
+	private JPasswordField pwdContraRest;
+	private JComboBox comboTipoRest;
 	
 	private JLabel Flecha1;
 	private JLabel LabelNuevoClie;
@@ -246,10 +252,13 @@ public class Registro extends JPanel{
 		btnRestaurante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				
+				
 				LabelNuevoClie.setVisible(false);
 				Flecha1.setVisible(false);
 				Flecha2.setVisible(false);
 				LabelNuevoRest.setVisible(false);
+				
 				
 				
 				panel.removeAll();
@@ -258,21 +267,59 @@ public class Registro extends JPanel{
 				frame.getContentPane().add(panel);
 				panel.setLayout(null);
 				
+				KeyListener keyLis =new KeyListener() {
+					
+					@Override
+					public void keyTyped(KeyEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					@Override
+					public void keyReleased(KeyEvent e) {
+						if(!textNombreRest.getText().isEmpty()&&!textCodPostRest.getText().isEmpty()&&!textDireccionRest.getText().isEmpty()&&!textEmailRest.getText().isEmpty()&&!textNombreRest.getText().isEmpty()&&!pwdContraRest.getText().isEmpty()&&!textNomUserRest.getText().isEmpty()&&!textPoblacionRest.getText().isEmpty()&&!textProvinciaRest.getText().isEmpty()&&(comboTipoRest.getSelectedIndex()!=0)){
+							 btnRegRest.setEnabled(true);
+						}else{
+							 btnRegRest.setEnabled(false);
+						}
+						
+					}
+					
+					@Override
+					public void keyPressed(KeyEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+				};
+			
+				
+				comboTipoRest = new JComboBox();
+				comboTipoRest.setModel(new DefaultComboBoxModel(new String[] {"Elige un tipo", "Chino", "Japon\u00E9s", "Mexicano", "Italiano", "Espa\u00F1ol", "Alem\u00E1n", "Estadounidense"}));
+				comboTipoRest.setBounds(219, 94, 197, 22);
+				panel.add(comboTipoRest);
+				comboTipoRest.addKeyListener(keyLis);
+				
+				
+				
 				JLabel lblNombreUsuario = new JLabel("Nombre usuario:");
 				lblNombreUsuario.setForeground(new Color(255, 153, 51));
 				lblNombreUsuario.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblNombreUsuario.setBounds(54, 180, 155, 22);
+				lblNombreUsuario.setBounds(54, 213, 155, 22);
 				panel.add(lblNombreUsuario);
 				
-				textField_1 = new JTextField();
-				textField_1.setColumns(10);
-				textField_1.setBounds(219, 180, 197, 22);
-				panel.add(textField_1);
+				
+				
+				textNomUserRest = new JTextField();
+				textNomUserRest.setColumns(10);
+				textNomUserRest.setBounds(219, 213, 197, 22);
+				panel.add(textNomUserRest);
+				textNomUserRest.addKeyListener(keyLis);
+				
 				
 				JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
 				lblContrasea.setForeground(new Color(255, 153, 51));
 				lblContrasea.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblContrasea.setBounds(54, 213, 155, 22);
+				lblContrasea.setBounds(434, 213, 155, 22);
 				panel.add(lblContrasea);
 				
 				JLabel lblEmail = new JLabel("Email:");
@@ -281,137 +328,125 @@ public class Registro extends JPanel{
 				lblEmail.setBounds(54, 246, 155, 22);
 				panel.add(lblEmail);
 				
-				textField_2 = new JTextField();
-				textField_2.setColumns(10);
-				textField_2.setBounds(219, 246, 197, 22);
-				panel.add(textField_2);
+				textEmailRest = new JTextField();
+				textEmailRest.setColumns(10);
+				textEmailRest.setBounds(219, 246, 197, 22);
+				panel.add(textEmailRest);
+				textEmailRest.addKeyListener(keyLis);
 				
-				textField_3 = new JTextField();
-				textField_3.setColumns(10);
-				textField_3.setBounds(219, 60, 197, 22);
-				panel.add(textField_3);
+				textNombreRest = new JTextField();
+				textNombreRest.setColumns(10);
+				textNombreRest.setBounds(219, 28, 197, 22);
+				panel.add(textNombreRest);
+				textNombreRest.addKeyListener(keyLis);
 				
 				JLabel lblNombre_1 = new JLabel("Nombre:");
 				lblNombre_1.setForeground(new Color(255, 153, 0));
 				lblNombre_1.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblNombre_1.setBounds(54, 60, 155, 22);
+				lblNombre_1.setBounds(54, 27, 155, 22);
 				panel.add(lblNombre_1);
 				
-				textField_4 = new JTextField();
-				textField_4.setColumns(10);
-				textField_4.setBounds(219, 93, 197, 22);
-				panel.add(textField_4);
-				
-				JLabel lblPrimerApellido = new JLabel("Primer apellido:");
-				lblPrimerApellido.setForeground(new Color(255, 153, 51));
-				lblPrimerApellido.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblPrimerApellido.setBounds(54, 93, 155, 22);
-				panel.add(lblPrimerApellido);
-				
-				textField_5 = new JTextField();
-				textField_5.setColumns(10);
-				textField_5.setBounds(219, 126, 197, 22);
-				panel.add(textField_5);
-				
-				JLabel lblSegundoApellido = new JLabel("Segundo apellido:");
-				lblSegundoApellido.setForeground(new Color(255, 153, 0));
-				lblSegundoApellido.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblSegundoApellido.setBounds(54, 126, 169, 22);
-				panel.add(lblSegundoApellido);
-				
-				JButton btnNewButton_1 = new JButton("RESGISTRARSE");
-				btnNewButton_1.setBackground(new Color(255, 153, 0));
-				btnNewButton_1.setForeground(new Color(255, 255, 255));
-				btnNewButton_1.addActionListener(new ActionListener() {
+				btnRegRest = new JButton("RESGISTRARSE");
+				btnRegRest.setBackground(new Color(255, 153, 0));
+				btnRegRest.setForeground(new Color(255, 255, 255));
+				btnRegRest.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						RegistroCompleto regCom=new RegistroCompleto();
 						frame.dispose();
 					}
 				});
-				btnNewButton_1.setBounds(332, 293, 210, 33);
-				panel.add(btnNewButton_1);
+				btnRegRest.setBounds(332, 293, 210, 33);
+				btnRegRest.setEnabled(false);
+				panel.add(btnRegRest);
 				
-				JLabel lblPersonal = new JLabel("PERSONAL");
-				lblPersonal.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
-				lblPersonal.setForeground(new Color(255, 153, 0));
-				lblPersonal.setBounds(190, 22, 105, 27);
-				panel.add(lblPersonal);
+				JLabel lblProvincia = new JLabel("Provincia:");
+				lblProvincia.setForeground(new Color(255, 153, 51));
+				lblProvincia.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
+				lblProvincia.setBounds(476, 60, 155, 22);
+				panel.add(lblProvincia);
 				
-				JLabel lblRestaurante = new JLabel("RESTAURANTE");
-				lblRestaurante.setForeground(new Color(255, 153, 0));
-				lblRestaurante.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
-				lblRestaurante.setBounds(607, 22, 138, 27);
-				panel.add(lblRestaurante);
-				
-				JLabel lblCiudad = new JLabel("Ciudad:");
-				lblCiudad.setForeground(new Color(255, 153, 51));
-				lblCiudad.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblCiudad.setBounds(476, 180, 155, 22);
-				panel.add(lblCiudad);
-				
-				textField_6 = new JTextField();
-				textField_6.setColumns(10);
-				textField_6.setBounds(641, 180, 197, 22);
-				panel.add(textField_6);
+				textProvinciaRest = new JTextField();
+				textProvinciaRest.setColumns(10);
+				textProvinciaRest.setBounds(641, 61, 197, 22);
+				panel.add(textProvinciaRest);
+				textProvinciaRest.addKeyListener(keyLis);
 				
 				JLabel lblPais = new JLabel("C\u00F3digo Postal:");
 				lblPais.setForeground(new Color(255, 153, 51));
 				lblPais.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblPais.setBounds(476, 213, 155, 22);
+				lblPais.setBounds(476, 93, 155, 22);
 				panel.add(lblPais);
 				
-				textField_7 = new JTextField();
-				textField_7.setColumns(10);
-				textField_7.setBounds(641, 213, 197, 22);
-				panel.add(textField_7);
+				textCodPostRest = new JTextField();
+				textCodPostRest.setColumns(10);
+				textCodPostRest.setBounds(641, 94, 197, 22);
+				panel.add(textCodPostRest);
+				textCodPostRest.addKeyListener(keyLis);
 				
-				JLabel lblNumeroRef = new JLabel("N\u00FAmero Ref.:");
-				lblNumeroRef.setForeground(new Color(255, 153, 0));
-				lblNumeroRef.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblNumeroRef.setBounds(476, 246, 155, 22);
-				panel.add(lblNumeroRef);
+				JLabel lblPoblacion = new JLabel("Poblaci\u00F3n:");
+				lblPoblacion.setForeground(new Color(255, 153, 0));
+				lblPoblacion.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
+				lblPoblacion.setBounds(476, 27, 155, 22);
+				panel.add(lblPoblacion);
 				
-				textField_8 = new JTextField();
-				textField_8.setColumns(10);
-				textField_8.setBounds(641, 246, 197, 22);
-				panel.add(textField_8);
+				textPoblacionRest = new JTextField();
+				textPoblacionRest.setColumns(10);
+				textPoblacionRest.setBounds(641, 28, 197, 22);
+				panel.add(textPoblacionRest);
+				textPoblacionRest.addKeyListener(keyLis);
 				
-				textField_9 = new JTextField();
-				textField_9.setColumns(10);
-				textField_9.setBounds(641, 60, 197, 22);
-				panel.add(textField_9);
-				
-				JLabel lblNombre = new JLabel("Nombre:");
-				lblNombre.setForeground(new Color(255, 153, 0));
-				lblNombre.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblNombre.setBounds(476, 60, 155, 22);
-				panel.add(lblNombre);
-				
-				textField_10 = new JTextField();
-				textField_10.setColumns(10);
-				textField_10.setBounds(641, 93, 197, 22);
-				panel.add(textField_10);
+				textDireccionRest = new JTextField();
+				textDireccionRest.setColumns(10);
+				textDireccionRest.setBounds(219, 61, 197, 22);
+				panel.add(textDireccionRest);
+				textDireccionRest.addKeyListener(keyLis);
 				
 				JLabel lblDireccin = new JLabel("Direcci\u00F3n:");
 				lblDireccin.setForeground(new Color(255, 153, 51));
 				lblDireccin.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblDireccin.setBounds(476, 93, 155, 22);
+				lblDireccin.setBounds(54, 60, 155, 22);
 				panel.add(lblDireccin);
 				
 				JLabel lblTipo = new JLabel("Tipo:");
 				lblTipo.setForeground(new Color(255, 153, 0));
 				lblTipo.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblTipo.setBounds(476, 126, 169, 22);
+				lblTipo.setBounds(54, 94, 169, 22);
 				panel.add(lblTipo);
 				
-				pwdJio = new JPasswordField();
-				pwdJio.setBounds(219, 213, 197, 20);
-				panel.add(pwdJio);
+				pwdContraRest = new JPasswordField();
+				pwdContraRest.setBounds(599, 213, 197, 20);
+				panel.add(pwdContraRest);
+				pwdContraRest.addKeyListener(keyLis);
 				
-				JComboBox comboBox = new JComboBox();
-				comboBox.setModel(new DefaultComboBoxModel(new String[] {"Elige un tipo", "Chino", "Japon\u00E9s", "Mexicano", "Italiano", "Espa\u00F1ol", "Alem\u00E1n", "Estadounidense"}));
-				comboBox.setBounds(641, 127, 197, 22);
-				panel.add(comboBox);
+				
+				
+				JLabel lblAptoParaliticos = new JLabel("Apto paraliticos:");
+				lblAptoParaliticos.setForeground(new Color(255, 153, 0));
+				lblAptoParaliticos.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
+				lblAptoParaliticos.setBounds(54, 127, 155, 22);
+				panel.add(lblAptoParaliticos);
+				
+				JCheckBox chckbxNewCheckBox = new JCheckBox("");
+				chckbxNewCheckBox.setBackground(Color.WHITE);
+				chckbxNewCheckBox.setBounds(219, 126, 27, 23);
+				panel.add(chckbxNewCheckBox);
+				
+				JLabel lblImagen1 = new JLabel("Im\u00E1gen 1:");
+				lblImagen1.setForeground(new Color(255, 153, 51));
+				lblImagen1.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
+				lblImagen1.setBounds(318, 127, 92, 22);
+				panel.add(lblImagen1);
+				
+				JLabel lblImagen2 = new JLabel("Im\u00E1gen 2:");
+				lblImagen2.setForeground(new Color(255, 153, 51));
+				lblImagen2.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
+				lblImagen2.setBounds(577, 127, 92, 22);
+				panel.add(lblImagen2);
+				
+				Panel panel_1 = new Panel();
+				panel_1.setBackground(new Color(255, 153, 51));
+				panel_1.setBounds(34, 176, 821, 5);
+				panel.add(panel_1);
 				
 				btnCliente.setEnabled(true);
 				btnRestaurante.setEnabled(false);
@@ -473,5 +508,22 @@ public class Registro extends JPanel{
 		frame.getContentPane().add(LabelNuevoRest);
 		
 		frame.setVisible(true);
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }

@@ -61,6 +61,7 @@ public class Ingreso extends JPanel{
 	 */
 	public void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(255, 153, 0));
 		frame.getContentPane().setForeground(Color.LIGHT_GRAY);
 		frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
@@ -140,24 +141,22 @@ public class Ingreso extends JPanel{
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(104)
+					.addGap(121)
 					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-					.addGap(876))
+					.addGap(18)
+					.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(239))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
 					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addContainerGap())
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(11)
-							.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-							.addGap(27))))
+					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+					.addGap(29)
+					.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+					.addGap(27))
 		);
 		panel.setLayout(gl_panel);
 		
