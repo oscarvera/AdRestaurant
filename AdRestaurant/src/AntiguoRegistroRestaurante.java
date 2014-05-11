@@ -13,6 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Pantallas.Ingreso;
+import Pantallas.Registro;
+
 
 public class AntiguoRegistroRestaurante extends JPanel {
 

@@ -1,3 +1,4 @@
+package Clases;
 
 public class Cliente {
 	String nombre;
@@ -8,8 +9,8 @@ public class Cliente {
 	int telefono;
 	String email;
 	
-	public Cliente(){
-		
+	public Cliente(String nombre){
+		this.nombre=nombre;
 	}
 
 	public String getNombre() {

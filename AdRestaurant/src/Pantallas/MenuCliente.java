@@ -1,3 +1,6 @@
+package Pantallas;
+
+
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -6,17 +9,21 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import Clases.Cliente;
 
 public class MenuCliente {
 
 	private JFrame frame;
+	Cliente clie;
 
 	/**
 	 * Launch the application.
@@ -37,7 +44,8 @@ public class MenuCliente {
 	/**
 	 * Create the application.
 	 */
-	public MenuCliente() {
+	public MenuCliente(Cliente clie) {
+		this.clie=clie;
 		initialize();
 	}
 
@@ -59,7 +67,7 @@ public class MenuCliente {
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				BuscarRestaurante busRest=new BuscarRestaurante();
+				BuscarRestaurante busRest=new BuscarRestaurante(clie);
 				frame.dispose();
 			}
 		});
@@ -69,7 +77,7 @@ public class MenuCliente {
 		JButton button = new JButton("New button");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Comentarios comen=new Comentarios();
+				Comentarios comen=new Comentarios(clie);
 				frame.dispose();
 			}
 		});
@@ -135,7 +143,7 @@ public class MenuCliente {
 		label.setBounds(22, 1, 371, 74);
 		frame.getContentPane().add(label);
 		
-		JLabel lblnomUser = new JLabel("\"Nom user\"");
+		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setForeground(Color.WHITE);
 		lblnomUser.setFont(new Font("Fira Sans OT", Font.PLAIN, 20));
 		lblnomUser.setBackground(Color.YELLOW);
@@ -157,6 +165,6 @@ public class MenuCliente {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-		System.out.println(frame.getWidth()+" "+frame.getHeight());
+	
 	}
 }

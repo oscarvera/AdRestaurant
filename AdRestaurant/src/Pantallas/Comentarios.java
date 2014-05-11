@@ -1,3 +1,4 @@
+package Pantallas;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -17,12 +18,13 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
-
+import Clases.Cliente;
 
 public class Comentarios extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame frame;
+	Cliente clie;
 
 	/**
 	 * Launch the application.
@@ -43,7 +45,8 @@ public class Comentarios extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Comentarios() {
+	public Comentarios( final Cliente clie) {
+		this.clie=clie;
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(255, 153, 0));
@@ -95,7 +98,7 @@ public class Comentarios extends JFrame {
 		label.setBounds(22, 1, 371, 74);
 		frame.getContentPane().add(label);
 		
-		JLabel lblnomUser = new JLabel("\"Nom user\"");
+		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setForeground(Color.WHITE);
 		lblnomUser.setFont(new Font("Fira Sans OT", Font.PLAIN, 20));
 		lblnomUser.setBackground(Color.YELLOW);
@@ -124,7 +127,7 @@ public class Comentarios extends JFrame {
 		JButton btnNewButton = new JButton("Volver al men\u00FA principal");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MenuCliente mencli=new MenuCliente();
+				MenuCliente mencli=new MenuCliente(clie);
 				frame.dispose();
 			}
 		});

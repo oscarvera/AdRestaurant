@@ -1,3 +1,5 @@
+package Pantallas;
+
 import java.awt.Color;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.EventQueue;
@@ -23,6 +25,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import Clases.Cliente;
 
 
 public class Ingreso extends JPanel{
@@ -161,14 +165,16 @@ public class Ingreso extends JPanel{
 		panel.setLayout(gl_panel);
 		
 		btnIngresar = new JButton("INGRESAR");
-		
 		btnIngresar.setBackground(new Color(255, 255, 255));
 		btnIngresar.setForeground(new Color(255, 153, 51));
 		btnIngresar.setFont(new Font("Fira Sans OT", Font.PLAIN, 11));
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MenuCliente menuclie=new MenuCliente();
+				final Cliente clie;
+				clie=new Clases.Cliente(textLabelUser.getText());
+				MenuCliente menuclie=new MenuCliente(clie);
 				frame.dispose();
+				
 			}
 		});
 		btnIngresar.setBounds(334, 374, 227, 37);
@@ -187,7 +193,7 @@ public class Ingreso extends JPanel{
 		frame.getContentPane().add(panel_1);
 		
 		JLabel cerrarImage = new JLabel("");
-		cerrarImage.setIcon(new ImageIcon("C:\\Users\\Oscar\\Desktop\\boton.png"));
+		cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)

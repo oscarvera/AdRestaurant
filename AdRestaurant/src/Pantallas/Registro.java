@@ -1,3 +1,4 @@
+package Pantallas;
 import java.awt.Color;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Font;
@@ -16,11 +17,14 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JPopupMenu;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.Box;
 import javax.swing.JCheckBox;
+
 import java.awt.Panel;
 
 
