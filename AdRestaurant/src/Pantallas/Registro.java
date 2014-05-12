@@ -11,6 +11,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,6 +27,9 @@ import javax.swing.Box;
 import javax.swing.JCheckBox;
 
 import java.awt.Panel;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Registro extends JPanel{
@@ -40,7 +44,7 @@ public class Registro extends JPanel{
 	private JButton BotonRegistrarse;
 	private JButton btnCliente;
 	private JButton btnRestaurante;
-	private JTextField textField;
+	private JTextField textTelefono;
 	JPanel panel = new JPanel();
 
 	private JButton btnRegRest;
@@ -130,7 +134,7 @@ public class Registro extends JPanel{
 					
 					@Override
 					public void keyReleased(KeyEvent e) {
-						if(!textNombre.getText().isEmpty()&&!textApellido1.getText().isEmpty()&&!textApellido2.getText().isEmpty()&&!textNomUser.getText().isEmpty()&&!textEmail.getText().isEmpty()&&!passUser.getText().isEmpty()){
+						if(!textNombre.getText().isEmpty()&&!textApellido1.getText().isEmpty()&&!textApellido2.getText().isEmpty()&&!textNomUser.getText().isEmpty()&&!textEmail.getText().isEmpty()&&!(passUser.getPassword().length==0)&&!textTelefono.getText().isEmpty()){
 							BotonRegistrarse.setEnabled(true);
 						}else{
 							BotonRegistrarse.setEnabled(false);
@@ -212,13 +216,23 @@ public class Registro extends JPanel{
 				lblSegundoApellido.setBounds(258, 112, 169, 22);
 				panel.add(lblSegundoApellido);
 				
+				/**
+				 * Botón Registrarse. Al accionarse llama a comprobarDatos() y si son correctos
+				 * pasa a la pantalla RegistroCompleto. 
+				 */
 				BotonRegistrarse = new JButton("RESGISTRARSE");
 				BotonRegistrarse.setBackground(new Color(255, 153, 0));
 				BotonRegistrarse.setForeground(new Color(255, 255, 255));
 				BotonRegistrarse.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						RegistroCompleto regCom=new RegistroCompleto();
-						frame.dispose();
+						//Comprueba que los datos introducidos son correctos.
+						comprobarDatosCliente();
+						if(comprobarDatosCliente()==false){
+							
+						}else{
+							RegistroCompleto regCom=new RegistroCompleto();
+							frame.dispose();
+						}						
 					}
 				});
 				BotonRegistrarse.setBounds(332, 293, 210, 33);
@@ -237,11 +251,11 @@ public class Registro extends JPanel{
 				lblTelfono.setBounds(258, 244, 104, 22);
 				panel.add(lblTelfono);
 				
-				textField = new JTextField();
-				textField.setBounds(423, 244, 197, 22);
-				panel.add(textField);
-				textField.setColumns(10);
-				passUser.addKeyListener(keyLis);
+				textTelefono = new JTextField();
+				textTelefono.setBounds(423, 244, 197, 22);
+				panel.add(textTelefono);
+				textTelefono.setColumns(10);
+				textTelefono.addKeyListener(keyLis);
 				btnCliente.setEnabled(false);
 				
 				btnCliente.setEnabled(false);
@@ -281,7 +295,7 @@ public class Registro extends JPanel{
 					
 					@Override
 					public void keyReleased(KeyEvent e) {
-						if(!textNombreRest.getText().isEmpty()&&!textCodPostRest.getText().isEmpty()&&!textDireccionRest.getText().isEmpty()&&!textEmailRest.getText().isEmpty()&&!textNombreRest.getText().isEmpty()&&!pwdContraRest.getText().isEmpty()&&!textNomUserRest.getText().isEmpty()&&!textPoblacionRest.getText().isEmpty()&&!textProvinciaRest.getText().isEmpty()&&(comboTipoRest.getSelectedIndex()!=0)){
+						if(!textNombreRest.getText().isEmpty()&&!textCodPostRest.getText().isEmpty()&&!textDireccionRest.getText().isEmpty()&&!textEmailRest.getText().isEmpty()&&!textNombreRest.getText().isEmpty()&&!(pwdContraRest.getPassword().length==0)&&!textNomUserRest.getText().isEmpty()&&!textPoblacionRest.getText().isEmpty()&&!textProvinciaRest.getText().isEmpty()&&(comboTipoRest.getSelectedIndex()!=0)){
 							 btnRegRest.setEnabled(true);
 						}else{
 							 btnRegRest.setEnabled(false);
@@ -513,6 +527,7 @@ public class Registro extends JPanel{
 		
 		frame.setVisible(true);
 	}
+	
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -529,5 +544,64 @@ public class Registro extends JPanel{
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+	}
+	
+	public boolean comprobarDatosCliente(){
+		boolean esCorrecto=false;
+		ArrayList <String> errors = new ArrayList <String>();
+		
+		//Comprobamos el número de teléfono
+		String textoIntroducido=this.textTelefono.getText();	
+		Pattern pat = Pattern.compile("[0-9]{9}");
+	    Matcher mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errors.add("Error en el campo Teléfono. Introduce 9 números entre 0 y 9."); 
+	    } 
+	    
+		//Comprobamos el nombre
+	    textoIntroducido = this.textNomUser.getText();	
+		pat = Pattern.compile("[a-zA-Z]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errors.add("Error en el campo Nombre. Introduce sólo letras."); 
+	    } 
+	    
+	    //Comprobamos el primer apellido
+	    textoIntroducido = this.textApellido1.getText();	
+		pat = Pattern.compile("[a-zA-Z]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errors.add("Error en el campo Primer Apellido. Introduce sólo letras."); 
+	    } 
+	    
+	    //Comprobamos el segundo apellido
+	    textoIntroducido = this.textApellido2.getText();	
+		pat = Pattern.compile("[a-zA-Z]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errors.add("Error en el campo Segundo Apellido. Introduce sólo letras."); 
+	    } 
+	    
+	    //Comprobamos el segundo apellido
+	    textoIntroducido = this.textNomUser.getText();	
+		pat = Pattern.compile("[a-zA-Z0-9]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errors.add("Error en el campo Nombre de Usuario. Introduce sólo letras o números"); 
+	    } 
+	    
+	  //Comprobamos el segundo apellido
+	    textoIntroducido = this.textEmail.getText();	
+		pat = Pattern.compile("[a-zA-Z]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errors.add("Error en el campo Segundo Apellido. Introduce sólo letras."); 
+	    } 
+	    
+	    if(errors.size()>0){
+	    	JDialog aviso = new ErrorRegistro();
+	    	aviso.setVisible(true);
+	    }
+	    return (esCorrecto);
 	}
 }

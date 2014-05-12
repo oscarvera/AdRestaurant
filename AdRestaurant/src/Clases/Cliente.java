@@ -5,12 +5,22 @@ public class Cliente {
 	String primerApellido;
 	String segundoApellido;
 	int codigoCliente;
+	String usuario;
 	String contraseña;
 	int telefono;
 	String email;
 	
 	public Cliente(String nombre){
 		this.nombre=nombre;
+	}
+	
+	public Cliente(String nombre, String primerApellido, String segundoApellido,
+			int codigoCliente, String usuario, String contraseña, int telefono, String email){
+		
+	}
+	
+	public Cliente(String usuario, String contraseña){
+		
 	}
 
 	public String getNombre() {
