@@ -582,7 +582,7 @@ public class Registro extends JPanel{
 	    	errors.add("Error en el campo Segundo Apellido. Introduce sólo letras."); 
 	    } 
 	    
-	    //Comprobamos el segundo apellido
+	    //Comprobamos el nombre de usuario
 	    textoIntroducido = this.textNomUser.getText();	
 		pat = Pattern.compile("[a-zA-Z0-9]");
 	    mat = pat.matcher(textoIntroducido);
@@ -590,12 +590,20 @@ public class Registro extends JPanel{
 	    	errors.add("Error en el campo Nombre de Usuario. Introduce sólo letras o números"); 
 	    } 
 	    
-	  //Comprobamos el segundo apellido
+	  //Comprobamos el email
 	    textoIntroducido = this.textEmail.getText();	
-		pat = Pattern.compile("[a-zA-Z]");
+		pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$;");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
-	    	errors.add("Error en el campo Segundo Apellido. Introduce sólo letras."); 
+	    	errors.add("Error en el campo Email. Siga la estructura, ejemplo: X____@''dominio''.__");
+	    } 
+	    
+	  //Comprobamos la contraseña
+	    textoIntroducido = this.textEmail.getText();	
+		pat = Pattern.compile("[a-zA-Z0-9]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errors.add("Error en el campo Contraseña. Introduce solo numeros y letras.");
 	    } 
 	    
 	    if(errors.size()>0){
