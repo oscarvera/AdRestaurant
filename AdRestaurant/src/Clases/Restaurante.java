@@ -17,9 +17,32 @@ public class Restaurante {
 	BufferedImage foto1;
 	BufferedImage foto2;
 	
-	public Restaurante(){
+	//Constructor para el registro de un nuevo restaurante:
+		public Restaurante(String password, String nombre, String tipo, int telefono, String direccion, 
+				String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto, BufferedImage foto1, BufferedImage foto2){
+			
+			password=this.password;
+			nombre=this.nombre;
+			tipo=this.tipo;
+			telefono=this.telefono;
+			direccion=this.direccion;
+			poblacion=this.poblacion;
+			provincia=this.provincia;
+			codigoPostal=this.codigoPostal;
+			minusvalidoApto=this.minusvalidoApto;
+			foto1=this.foto1;
+			foto2=this.foto2;
+		}
 		
-	}
+		//Constructor para consultar restaurantes:
+			public Restaurante(String nombre, String tipo,  
+					String poblacion){
+			
+				nombre=this.nombre;
+				tipo=this.tipo;
+				poblacion=this.poblacion;
+				
+			}
 	
 	public int getCodigoRestaurante() {
 		return codigoRestaurante;

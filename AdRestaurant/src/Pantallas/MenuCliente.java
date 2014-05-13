@@ -177,7 +177,7 @@ public class MenuCliente {
 		
 		JLabel lblBienvenido = new JLabel("Bienvenido");
 		lblBienvenido.setForeground(Color.WHITE);
-		lblBienvenido.setFont(new Font("Fira Sans OT", Font.PLAIN, 16));
+		lblBienvenido.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBienvenido.setBackground(Color.YELLOW);
 		lblBienvenido.setBounds(413, 12, 86, 64);
 		frame.getContentPane().add(lblBienvenido);

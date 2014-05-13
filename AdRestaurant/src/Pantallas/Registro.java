@@ -272,8 +272,7 @@ public class Registro extends JPanel{
 		
 		btnRestaurante = new JButton("RESTAURANTE");
 		btnRestaurante.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-		/*btnRestaurante.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {*/
+
 				
 				
 				

@@ -2,6 +2,7 @@ package Clases;
 
 public class Reserva {
 	
+	int codReserva;
 	String nombreRestaurante;
 	String usuarioReserva;
 	String fechaReserva;
@@ -14,22 +15,23 @@ public class Reserva {
 	//Reserva ya creada. Para consulta
 	
 	public Reserva(String nomRest, String user,String fechaCrea){
-		nomRest=this.nombreRestaurante;
-		user=this.usuarioReserva;
-		fechaCrea=this.fechaCreacion;
+		this.nombreRestaurante=nomRest;
+		this.usuarioReserva=user;
+		this.fechaCreacion=fechaCrea;
 		
 		//consultar hora fechaReserva verificación realizacion
 	}
 	
 	//Reserva no creada. Para creacion.
 	
-	public Reserva(String nomRest, String user, String fechaReserva, String hora, String fechaCrea, int personas){
-		nomRest=this.nombreRestaurante;
-		user=this.usuarioReserva;
-		fechaReserva=this.fechaReserva;
-		hora=this.hora;
-		fechaCrea=this.fechaCreacion;
-		personas=this.personas;
+	public Reserva(int codRe, String nomRest, String user, String fechaReserva, String hora, String fechaCrea, int personas){
+		this.codReserva=codRe;
+		this.nombreRestaurante=nomRest;
+		this.usuarioReserva=user;
+		this.fechaReserva=fechaReserva;
+		this.hora=hora;
+		this.fechaCreacion=fechaCrea;
+		this.personas=personas;
 		this.verificacion=false;
 		this.realizacion=false;
 		
