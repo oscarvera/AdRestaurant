@@ -272,6 +272,11 @@ public class Registro extends JPanel{
 		
 		btnRestaurante = new JButton("RESTAURANTE");
 		btnRestaurante.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
+		btnRestaurante.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			
+		
+		
 
 				
 				
@@ -485,8 +490,8 @@ public class Registro extends JPanel{
 				btnCliente.setEnabled(true);
 				btnRestaurante.setEnabled(false);
 				frame.repaint();
-			/*}
-		});*/
+			}
+		});
 		btnRestaurante.setForeground(new Color(255, 140, 0));
 		btnRestaurante.setBackground(new Color(255, 255, 255));
 		btnRestaurante.setBounds(428, 137, 263, 36);
