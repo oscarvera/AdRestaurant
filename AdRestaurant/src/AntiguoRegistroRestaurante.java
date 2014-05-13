@@ -15,7 +15,12 @@ import javax.swing.JTextField;
 
 import Pantallas.Ingreso;
 import Pantallas.Registro;
-
+/*
+ * LA descripción de esta clase es para TOTORO
+ * 
+ * 
+ * 
+ * */
 
 public class AntiguoRegistroRestaurante extends JPanel {
 
