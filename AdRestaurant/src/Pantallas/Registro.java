@@ -1,4 +1,5 @@
 package Pantallas;
+
 import java.awt.Color;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Font;
@@ -11,6 +12,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,6 +28,9 @@ import javax.swing.Box;
 import javax.swing.JCheckBox;
 
 import java.awt.Panel;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Registro extends JPanel{
@@ -37,10 +42,10 @@ public class Registro extends JPanel{
 	private JTextField textApellido1;
 	private JTextField textApellido2;
 	private JPasswordField passUser;
-	private JButton btnRegistrarse;
+	private JButton BotonRegistrarse;
 	private JButton btnCliente;
 	private JButton btnRestaurante;
-	private JTextField textField;
+	private JTextField textTelefono;
 	JPanel panel = new JPanel();
 
 	private JButton btnRegRest;
@@ -51,13 +56,30 @@ public class Registro extends JPanel{
 	private JTextField textCodPostRest;
 	private JTextField textPoblacionRest;
 	private JTextField textDireccionRest;
-	private JPasswordField pwdPassRest;
+	private JPasswordField pwdContraRest;
 	private JComboBox comboTipoRest;
 	
 	private JLabel Flecha1;
 	private JLabel LabelNuevoClie;
 	private JLabel Flecha2;
 	private JLabel LabelNuevoRest;
+	
+
+	/**
+	 * Launch the application.
+	 */
+	/*public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Registro window = new Registro();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}*/
 
 	/**
 	 * Create the application.
@@ -76,11 +98,9 @@ public class Registro extends JPanel{
 		frame.getContentPane().setForeground(Color.LIGHT_GRAY);
 		frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		frame.setBounds(100, 100, 895, 646);
-		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setDefaultLookAndFeelDecorated(true);
-		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
+		frame.setLocationRelativeTo(null);
 		
 		JLabel lblAdrestaurant = new JLabel("AdRestaurant");
 		lblAdrestaurant.setBounds(170, 33, 563, 93);
@@ -90,7 +110,6 @@ public class Registro extends JPanel{
 		frame.getContentPane().add(lblAdrestaurant);
 		
 		btnCliente = new JButton("CLIENTE");
-		btnCliente.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
 		btnCliente.setForeground(new Color(255, 153, 0));
 		btnCliente.setBackground(Color.WHITE);
 		btnCliente.addActionListener(new ActionListener() {
@@ -116,10 +135,10 @@ public class Registro extends JPanel{
 					
 					@Override
 					public void keyReleased(KeyEvent e) {
-						if(!textNombre.getText().isEmpty()&&!textApellido1.getText().isEmpty()&&!textNomUser.getText().isEmpty()&&!textEmail.getText().isEmpty()&&!passUser.getText().isEmpty()){
-							btnRegistrarse.setEnabled(true);
+						if(!textNombre.getText().isEmpty()&&!textApellido1.getText().isEmpty()&&!textApellido2.getText().isEmpty()&&!textNomUser.getText().isEmpty()&&!textEmail.getText().isEmpty()&&!(passUser.getPassword().length==0)&&!textTelefono.getText().isEmpty()){
+							BotonRegistrarse.setEnabled(true);
 						}else{
-							btnRegistrarse.setEnabled(false);
+							BotonRegistrarse.setEnabled(false);
 						}
 						
 					}
@@ -143,11 +162,11 @@ public class Registro extends JPanel{
 				panel.add(textNomUser);
 				textNomUser.addKeyListener(keyLis);
 				
-				JLabel lblPass = new JLabel("Contrase\u00F1a:");
-				lblPass.setForeground(new Color(255, 153, 51));
-				lblPass.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblPass.setBounds(258, 178, 155, 22);
-				panel.add(lblPass);
+				JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
+				lblContrasea.setForeground(new Color(255, 153, 51));
+				lblContrasea.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
+				lblContrasea.setBounds(258, 178, 155, 22);
+				panel.add(lblContrasea);
 				
 				JLabel lblEmail = new JLabel("Email:");
 				lblEmail.setForeground(new Color(255, 153, 0));
@@ -198,18 +217,28 @@ public class Registro extends JPanel{
 				lblSegundoApellido.setBounds(258, 112, 169, 22);
 				panel.add(lblSegundoApellido);
 				
-				btnRegistrarse = new JButton("RESGISTRARSE");
-				btnRegistrarse.setBackground(new Color(255, 153, 0));
-				btnRegistrarse.setForeground(new Color(255, 255, 255));
-				btnRegistrarse.addActionListener(new ActionListener() {
+				/**
+				 * Botón Registrarse. Al accionarse llama a comprobarDatos() y si son correctos
+				 * pasa a la pantalla RegistroCompleto. 
+				 */
+				BotonRegistrarse = new JButton("RESGISTRARSE");
+				BotonRegistrarse.setBackground(new Color(255, 153, 0));
+				BotonRegistrarse.setForeground(new Color(255, 255, 255));
+				BotonRegistrarse.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						RegistroCompleto regCom=new RegistroCompleto();
-						frame.dispose();
+						//Comprueba que los datos introducidos son correctos.
+						comprobarDatosCliente();
+						if(comprobarDatosCliente()==false){
+							
+						}else{
+							RegistroCompleto regCom=new RegistroCompleto();
+							frame.dispose();
+						}						
 					}
 				});
-				btnRegistrarse.setBounds(332, 293, 210, 33);
-				btnRegistrarse.setEnabled(false);
-				panel.add(btnRegistrarse);
+				BotonRegistrarse.setBounds(332, 293, 210, 33);
+				BotonRegistrarse.setEnabled(false);
+				panel.add(BotonRegistrarse);
 				
 				
 				
@@ -223,11 +252,11 @@ public class Registro extends JPanel{
 				lblTelfono.setBounds(258, 244, 104, 22);
 				panel.add(lblTelfono);
 				
-				textField = new JTextField();
-				textField.setBounds(423, 244, 197, 22);
-				panel.add(textField);
-				textField.setColumns(10);
-				passUser.addKeyListener(keyLis);
+				textTelefono = new JTextField();
+				textTelefono.setBounds(423, 244, 197, 22);
+				panel.add(textTelefono);
+				textTelefono.setColumns(10);
+				textTelefono.addKeyListener(keyLis);
 				btnCliente.setEnabled(false);
 				
 				btnCliente.setEnabled(false);
@@ -239,7 +268,6 @@ public class Registro extends JPanel{
 		frame.getContentPane().add(btnCliente);
 		
 		btnRestaurante = new JButton("RESTAURANTE");
-		btnRestaurante.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
 		btnRestaurante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -268,7 +296,7 @@ public class Registro extends JPanel{
 					
 					@Override
 					public void keyReleased(KeyEvent e) {
-						if(!textNombreRest.getText().isEmpty()&&!textCodPostRest.getText().isEmpty()&&!textDireccionRest.getText().isEmpty()&&!textEmailRest.getText().isEmpty()&&!textNombreRest.getText().isEmpty()&&!pwdPassRest.getText().isEmpty()&&!textNomUserRest.getText().isEmpty()&&!textPoblacionRest.getText().isEmpty()&&!textProvinciaRest.getText().isEmpty()&&(comboTipoRest.getSelectedIndex()!=0)){
+						if(!textNombreRest.getText().isEmpty()&&!textCodPostRest.getText().isEmpty()&&!textDireccionRest.getText().isEmpty()&&!textEmailRest.getText().isEmpty()&&!textNombreRest.getText().isEmpty()&&!(pwdContraRest.getPassword().length==0)&&!textNomUserRest.getText().isEmpty()&&!textPoblacionRest.getText().isEmpty()&&!textProvinciaRest.getText().isEmpty()&&(comboTipoRest.getSelectedIndex()!=0)){
 							 btnRegRest.setEnabled(true);
 						}else{
 							 btnRegRest.setEnabled(false);
@@ -307,11 +335,11 @@ public class Registro extends JPanel{
 				textNomUserRest.addKeyListener(keyLis);
 				
 				
-				JLabel lblPass = new JLabel("Contrase\u00F1a:");
-				lblPass.setForeground(new Color(255, 153, 51));
-				lblPass.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblPass.setBounds(434, 213, 155, 22);
-				panel.add(lblPass);
+				JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
+				lblContrasea.setForeground(new Color(255, 153, 51));
+				lblContrasea.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
+				lblContrasea.setBounds(434, 213, 155, 22);
+				panel.add(lblContrasea);
 				
 				JLabel lblEmail = new JLabel("Email:");
 				lblEmail.setForeground(new Color(255, 153, 0));
@@ -392,11 +420,11 @@ public class Registro extends JPanel{
 				panel.add(textDireccionRest);
 				textDireccionRest.addKeyListener(keyLis);
 				
-				JLabel lblDireccion = new JLabel("Direcci\u00F3n:");
-				lblDireccion.setForeground(new Color(255, 153, 51));
-				lblDireccion.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblDireccion.setBounds(54, 60, 155, 22);
-				panel.add(lblDireccion);
+				JLabel lblDireccin = new JLabel("Direcci\u00F3n:");
+				lblDireccin.setForeground(new Color(255, 153, 51));
+				lblDireccin.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
+				lblDireccin.setBounds(54, 60, 155, 22);
+				panel.add(lblDireccin);
 				
 				JLabel lblTipo = new JLabel("Tipo:");
 				lblTipo.setForeground(new Color(255, 153, 0));
@@ -404,10 +432,10 @@ public class Registro extends JPanel{
 				lblTipo.setBounds(54, 94, 169, 22);
 				panel.add(lblTipo);
 				
-				pwdPassRest = new JPasswordField();
-				pwdPassRest.setBounds(599, 213, 197, 20);
-				panel.add(pwdPassRest);
-				pwdPassRest.addKeyListener(keyLis);
+				pwdContraRest = new JPasswordField();
+				pwdContraRest.setBounds(599, 213, 197, 20);
+				panel.add(pwdContraRest);
+				pwdContraRest.addKeyListener(keyLis);
 				
 				
 				
@@ -458,18 +486,18 @@ public class Registro extends JPanel{
 		lblyaEstaRegistrado.setBounds(182, 564, 216, 34);
 		frame.getContentPane().add(lblyaEstaRegistrado);
 		
-		JButton btnIniciarSesion = new JButton("INICIAR SESI\u00D3N");
-		btnIniciarSesion.addActionListener(new ActionListener() {
+		JButton btnIniciarSesin = new JButton("INICIAR SESI\u00D3N");
+		btnIniciarSesin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Ingreso ingreso=new Ingreso();
 				frame.dispose();
 			}
 		});
-		btnIniciarSesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 13));
-		btnIniciarSesion.setForeground(Color.WHITE);
-		btnIniciarSesion.setBackground(new Color(255, 153, 51));
-		btnIniciarSesion.setBounds(10, 572, 146, 19);
-		frame.getContentPane().add(btnIniciarSesion);
+		btnIniciarSesin.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		btnIniciarSesin.setForeground(Color.WHITE);
+		btnIniciarSesin.setBackground(new Color(255, 153, 51));
+		btnIniciarSesin.setBounds(53, 573, 119, 19);
+		frame.getContentPane().add(btnIniciarSesin);
 		
 		JLabel lblInformacionSobreUsuarios = new JLabel("Informaci\u00F3n sobre usuarios");
 		lblInformacionSobreUsuarios.setForeground(Color.WHITE);
@@ -500,6 +528,7 @@ public class Registro extends JPanel{
 		
 		frame.setVisible(true);
 	}
+	
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -517,4 +546,92 @@ public class Registro extends JPanel{
 			}
 		});
 	}
+	
+	public boolean comprobarDatosCliente(){
+		boolean esCorrecto=false;
+		ArrayList <String> errorsCliente = new ArrayList <String>();
+		
+		//Comprobamos el número de teléfono
+		String textoIntroducido=this.textTelefono.getText();	
+		Pattern pat = Pattern.compile("[0-9]{9}");
+	    Matcher mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsCliente.add("Error en el campo Teléfono. Introduce 9 números entre 0 y 9."); 
+	    } 
+	    
+		//Comprobamos el nombre
+	    textoIntroducido = this.textNomUser.getText();	
+		pat = Pattern.compile("[a-zA-Z]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsCliente.add("Error en el campo Nombre. Introduce sólo letras."); 
+	    } 
+	    
+	    //Comprobamos el primer apellido
+	    textoIntroducido = this.textApellido1.getText();	
+		pat = Pattern.compile("[a-zA-Z]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsCliente.add("Error en el campo Primer Apellido. Introduce sólo letras."); 
+	    } 
+	    
+	    //Comprobamos el segundo apellido
+	    textoIntroducido = this.textApellido2.getText();	
+		pat = Pattern.compile("[a-zA-Z]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsCliente.add("Error en el campo Segundo Apellido. Introduce sólo letras."); 
+	    } 
+	    
+	    //Comprobamos el nombre de usuario
+	    textoIntroducido = this.textNomUser.getText();	
+		pat = Pattern.compile("[a-zA-Z0-9]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsCliente.add("Error en el campo Nombre de Usuario. Introduce sólo letras o números"); 
+	    } 
+	    
+	  //Comprobamos el email
+	    textoIntroducido = this.textEmail.getText();	
+		pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$;");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsCliente.add("Error en el campo Email. Siga la estructura, ejemplo: X____@''dominio''.__");
+	    } 
+	    
+	  //Comprobamos la contraseña
+	    textoIntroducido = this.textEmail.getText();	
+		pat = Pattern.compile("[a-zA-Z0-9]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsCliente.add("Error en el campo Contraseña. Introduce solo numeros y letras.");
+	    } 
+	    
+	    if(errorsCliente.size()>0){
+	    	JDialog aviso = new ErrorRegistro();
+	    	aviso.setVisible(true);
+	    }
+	    return (esCorrecto);
+	}
+	
+	
+	public boolean comprobarDatosRestaurante(){
+		boolean esCorrecto=false;
+		ArrayList <String> errorsRestaurante = new ArrayList <String>();
+		
+		//Comprobamos el número de teléfono
+		String textoIntroducido=this.textTelefono.getText();	
+		Pattern pat = Pattern.compile("[0-9]{9}");
+	    Matcher mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsRestaurante.add("Error en el campo Teléfono. Introduce 9 números entre 0 y 9."); 
+	    } 
+	    
+	    if(errorsRestaurante.size()>0){
+	    	JDialog aviso = new ErrorRegistro();
+	    	aviso.setVisible(true);
+	    }
+	    return (esCorrecto);
+	}
 }
+	
