@@ -42,7 +42,7 @@ public class Registro extends JPanel{
 	private JTextField textApellido1;
 	private JTextField textApellido2;
 	private JPasswordField passUser;
-	private JButton BotonRegistrarse;
+	private JButton btnRegistrarse;
 	private JButton btnCliente;
 	private JButton btnRestaurante;
 	private JTextField textTelefono;
@@ -139,9 +139,9 @@ public class Registro extends JPanel{
 					@Override
 					public void keyReleased(KeyEvent e) {
 						if(!textNombre.getText().isEmpty()&&!textApellido1.getText().isEmpty()&&!textApellido2.getText().isEmpty()&&!textNomUser.getText().isEmpty()&&!textEmail.getText().isEmpty()&&!(passUser.getPassword().length==0)&&!textTelefono.getText().isEmpty()){
-							BotonRegistrarse.setEnabled(true);
+							btnRegistrarse.setEnabled(true);
 						}else{
-							BotonRegistrarse.setEnabled(false);
+							btnRegistrarse.setEnabled(false);
 						}
 						
 					}
@@ -224,10 +224,10 @@ public class Registro extends JPanel{
 				 * Botón Registrarse. Al accionarse llama a comprobarDatos() y si son correctos
 				 * pasa a la pantalla RegistroCompleto. 
 				 */
-				BotonRegistrarse = new JButton("RESGISTRARSE");
-				BotonRegistrarse.setBackground(new Color(255, 153, 0));
-				BotonRegistrarse.setForeground(new Color(255, 255, 255));
-				BotonRegistrarse.addActionListener(new ActionListener() {
+				btnRegistrarse = new JButton("RESGISTRARSE");
+				btnRegistrarse.setBackground(new Color(255, 153, 0));
+				btnRegistrarse.setForeground(new Color(255, 255, 255));
+				btnRegistrarse.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						//Comprueba que los datos introducidos son correctos.
 						comprobarDatosCliente();
@@ -239,9 +239,9 @@ public class Registro extends JPanel{
 						}						
 					}
 				});
-				BotonRegistrarse.setBounds(332, 293, 210, 33);
-				BotonRegistrarse.setEnabled(false);
-				panel.add(BotonRegistrarse);
+				btnRegistrarse.setBounds(332, 293, 210, 33);
+				btnRegistrarse.setEnabled(false);
+				panel.add(btnRegistrarse);
 				
 				
 				

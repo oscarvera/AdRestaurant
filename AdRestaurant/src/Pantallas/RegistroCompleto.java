@@ -71,18 +71,18 @@ public class RegistroCompleto extends JPanel{
 		);
 		panel.setLayout(gl_panel);
 		
-		JButton btnNewButton = new JButton("INICIAR SESI\u00D3N");
-		btnNewButton.setBackground(new Color(255, 255, 255));
-		btnNewButton.setForeground(new Color(255, 153, 51));
-		btnNewButton.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnIniciarSesion = new JButton("INICIAR SESI\u00D3N");
+		btnIniciarSesion.setBackground(new Color(255, 255, 255));
+		btnIniciarSesion.setForeground(new Color(255, 153, 51));
+		btnIniciarSesion.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
+		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Ingreso ingreso=new Ingreso();
 				frame.dispose();
 			}
 		});
-		btnNewButton.setBounds(316, 415, 227, 37);
-		frame.getContentPane().add(btnNewButton);
+		btnIniciarSesion.setBounds(316, 415, 227, 37);
+		frame.getContentPane().add(btnIniciarSesion);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(RegistroCompleto.class.getResource("/Imagen/Titulo.png")));
