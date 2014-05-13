@@ -54,6 +54,7 @@ public class Registro extends JPanel{
 	private JTextField textNombreRest;
 	private JTextField textProvinciaRest;
 	private JTextField textCodPostRest;
+	private JTextField textTelefonoRest;
 	private JTextField textPoblacionRest;
 	private JTextField textDireccionRest;
 	private JPasswordField pwdContraRest;
@@ -64,6 +65,7 @@ public class Registro extends JPanel{
 	private JLabel Flecha2;
 	private JLabel LabelNuevoRest;
 	
+
 
 	/**
 	 * Launch the application.
@@ -110,6 +112,7 @@ public class Registro extends JPanel{
 		frame.getContentPane().add(lblAdrestaurant);
 		
 		btnCliente = new JButton("CLIENTE");
+		btnCliente.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnCliente.setForeground(new Color(255, 153, 0));
 		btnCliente.setBackground(Color.WHITE);
 		btnCliente.addActionListener(new ActionListener() {
@@ -268,8 +271,9 @@ public class Registro extends JPanel{
 		frame.getContentPane().add(btnCliente);
 		
 		btnRestaurante = new JButton("RESTAURANTE");
-		btnRestaurante.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		btnRestaurante.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
+		/*btnRestaurante.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {*/
 				
 				
 				
@@ -366,6 +370,7 @@ public class Registro extends JPanel{
 				panel.add(lblNombre_1);
 				
 				btnRegRest = new JButton("RESGISTRARSE");
+				btnRegRest.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 				btnRegRest.setBackground(new Color(255, 153, 0));
 				btnRegRest.setForeground(new Color(255, 255, 255));
 				btnRegRest.addActionListener(new ActionListener() {
@@ -467,11 +472,22 @@ public class Registro extends JPanel{
 				panel_1.setBounds(34, 176, 821, 5);
 				panel.add(panel_1);
 				
+				JLabel lblTelefono = new JLabel("Tel\u00E9fono:");
+				lblTelefono.setForeground(new Color(255, 153, 51));
+				lblTelefono.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
+				lblTelefono.setBounds(434, 246, 155, 22);
+				panel.add(lblTelefono);
+				
+				textTelefonoRest = new JTextField();
+				textTelefonoRest.setColumns(10);
+				textTelefonoRest.setBounds(599, 248, 197, 22);
+				panel.add(textTelefonoRest);
+				
 				btnCliente.setEnabled(true);
 				btnRestaurante.setEnabled(false);
 				frame.repaint();
-			}
-		});
+			/*}
+		});*/
 		btnRestaurante.setForeground(new Color(255, 140, 0));
 		btnRestaurante.setBackground(new Color(255, 255, 255));
 		btnRestaurante.setBounds(428, 137, 263, 36);
@@ -493,10 +509,10 @@ public class Registro extends JPanel{
 				frame.dispose();
 			}
 		});
-		btnIniciarSesin.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		btnIniciarSesin.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnIniciarSesin.setForeground(Color.WHITE);
 		btnIniciarSesin.setBackground(new Color(255, 153, 51));
-		btnIniciarSesin.setBounds(53, 573, 119, 19);
+		btnIniciarSesin.setBounds(24, 573, 148, 19);
 		frame.getContentPane().add(btnIniciarSesin);
 		
 		JLabel lblInformacionSobreUsuarios = new JLabel("Informaci\u00F3n sobre usuarios");
@@ -620,11 +636,67 @@ public class Registro extends JPanel{
 		ArrayList <String> errorsRestaurante = new ArrayList <String>();
 		
 		//Comprobamos el número de teléfono
-		String textoIntroducido=this.textTelefono.getText();	
+		String textoIntroducido=this.textTelefonoRest.getText();	
 		Pattern pat = Pattern.compile("[0-9]{9}");
 	    Matcher mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsRestaurante.add("Error en el campo Teléfono. Introduce 9 números entre 0 y 9."); 
+	    } 
+	    
+	    //Comprobamos el nombre
+	    textoIntroducido = this.textNombreRest.getText();	
+		pat = Pattern.compile("[a-zA-Z]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsRestaurante.add("Error en el campo Nombre. Introduce sólo letras."); 
+	    } 
+	    
+	    //Comprobamos el nombre de usuario
+	    textoIntroducido = this.textNomUserRest.getText();	
+		pat = Pattern.compile("[a-zA-Z0-9]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsRestaurante.add("Error en el campo Nombre de Usuario."); 
+	    } 
+	    
+	    //Comprobamos el email
+	    textoIntroducido = this.textEmailRest.getText();	
+		pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$;");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsRestaurante.add("Error en el campo Email. Siga la estructura, ejemplo: X____@''dominio''.__"); 
+	    } 
+	    
+	    //Comprobamos la direccion
+	    textoIntroducido = this.textDireccionRest.getText();	
+		pat = Pattern.compile("[a-zA-Z0-9]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsRestaurante.add("Error en el campo Direccion. Introduce sólo letras y el numero de la puerta."); 
+	    } 
+	    
+	    //Comprobamos la Poblacion
+	    textoIntroducido = this.textPoblacionRest.getText();	
+		pat = Pattern.compile("[a-zA-Z]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsRestaurante.add("Error en el campo Poblacion. Introduce una poblacion."); 
+	    } 
+	    
+	    //Comprobamos la Provincia
+	    textoIntroducido = this.textProvinciaRest.getText();	
+		pat = Pattern.compile("[a-zA-Z]");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsRestaurante.add("Error en el campo Provincia. Introduce una provincia."); 
+	    } 
+	    
+	    //Comprobamos el codigo postal
+	    textoIntroducido = this.textCodPostRest.getText();	
+		pat = Pattern.compile("[0-9]{5}");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsRestaurante.add("Error en el campo Codigo Postal. Introduce solo cinco numeros."); 
 	    } 
 	    
 	    if(errorsRestaurante.size()>0){

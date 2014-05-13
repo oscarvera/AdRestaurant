@@ -48,6 +48,9 @@ public class Salir extends JPanel{
 		clie=c;
 		initialize();
 	}
+	public Salir() {
+		initialize();
+	}
 
 	/**
 	 * Initialize the contents of the frame.
