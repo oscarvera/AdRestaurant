@@ -227,10 +227,6 @@ public class Ingreso extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Salir salir=new Salir();
-				/*int eleccion=JOptionPane.showConfirmDialog(frame,"¿Seguro que desea salir?");
-				if(eleccion==0){
-				System.exit(0);
-				}*/
 
 			}
 		});
