@@ -1,8 +1,8 @@
 package Pantallas;
 import java.awt.Color;
-
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Dialog.ModalExclusionType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -33,6 +33,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+
 import Clases.Cliente;
 
 public class BuscarRestaurante extends JFrame{
@@ -78,8 +79,16 @@ public class BuscarRestaurante extends JFrame{
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(255, 153, 0));
+		frame.getContentPane().setForeground(Color.LIGHT_GRAY);
+		frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
+		frame.setBounds(100, 100, 895, 646);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultLookAndFeelDecorated(true);
+		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
 		
 		
@@ -127,11 +136,11 @@ public class BuscarRestaurante extends JFrame{
 			}
 		});
 		
-		JButton button = new JButton("BUSCAR");
-		button.setBounds(10, 241, 187, 43);
-		button.setForeground(new Color(255, 153, 0));
-		button.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
-		button.setBackground(Color.WHITE);
+		JButton btnBuscar = new JButton("BUSCAR");
+		btnBuscar.setBounds(10, 241, 187, 43);
+		btnBuscar.setForeground(new Color(255, 153, 0));
+		btnBuscar.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
+		btnBuscar.setBackground(Color.WHITE);
 		
 
 		
@@ -356,7 +365,7 @@ public class BuscarRestaurante extends JFrame{
 		panel_1.add(textDireccion);
 		panel_1.add(textCP);
 		panel_1.add(comboTipo);
-		panel_1.add(button);
+		panel_1.add(btnBuscar);
 		panel_1.add(btnMejorValorado);
 		panel_1.add(lblOtrasBusquedas);
 		
@@ -428,39 +437,54 @@ public class BuscarRestaurante extends JFrame{
 		lblnomUser.setForeground(Color.WHITE);
 		lblnomUser.setFont(new Font("Fira Sans OT", Font.PLAIN, 20));
 		lblnomUser.setBackground(Color.YELLOW);
-		lblnomUser.setBounds(674, 11, 128, 64);
+		lblnomUser.setBounds(553, 11, 110, 64);
 		frame.getContentPane().add(lblnomUser);
 		
-		JButton btnNewButton_1 = new JButton("Salir");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
+		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Ingreso ingreso=new Ingreso();
+				Salir salir=new Salir(clie);
 				frame.dispose();
 			}
 		});
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBackground(new Color(255, 153, 51));
-		btnNewButton_1.setBounds(802, 34, 66, 23);
-		frame.getContentPane().add(btnNewButton_1);
+		btnSalir.setForeground(new Color(255, 255, 255));
+		btnSalir.setBackground(new Color(255, 153, 51));
+		btnSalir.setBounds(823, 35, 66, 23);
+		frame.getContentPane().add(btnSalir);
 		
 		JLabel lblBuscarRestaurante = new JLabel("Buscar Restaurante");
 		lblBuscarRestaurante.setForeground(Color.WHITE);
 		lblBuscarRestaurante.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBuscarRestaurante.setBackground(Color.YELLOW);
-		lblBuscarRestaurante.setBounds(378, 11, 190, 64);
+		lblBuscarRestaurante.setBounds(392, 12, 162, 64);
 		frame.getContentPane().add(lblBuscarRestaurante);
 		
-		JButton btnNewButton = new JButton("Volver al men\u00FA principal");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnMenuPrincipal = new JButton("Volver al men\u00FA principal");
+		btnMenuPrincipal.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
+		btnMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MenuCliente menuclie=new MenuCliente(clie);
 				frame.dispose();
 			}
 		});
-		btnNewButton.setBackground(new Color(255, 153, 0));
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBounds(22, 578, 171, 23);
-		frame.getContentPane().add(btnNewButton);
+		btnMenuPrincipal.setBackground(new Color(255, 153, 0));
+		btnMenuPrincipal.setForeground(new Color(255, 255, 255));
+		btnMenuPrincipal.setBounds(22, 578, 171, 23);
+		frame.getContentPane().add(btnMenuPrincipal);
+		
+		JButton btnCerrarSesion = new JButton("Cerrar Sesi\u00F3n");
+		btnCerrarSesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
+		btnCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Ingreso ingreso=new Ingreso();
+				frame.dispose();
+			}
+		});
+		btnCerrarSesion.setForeground(Color.WHITE);
+		btnCerrarSesion.setBackground(new Color(255, 153, 51));
+		btnCerrarSesion.setBounds(685, 35, 128, 23);
+		frame.getContentPane().add(btnCerrarSesion);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);

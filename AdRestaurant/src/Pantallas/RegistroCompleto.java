@@ -24,23 +24,6 @@ import javax.swing.ImageIcon;
 public class RegistroCompleto extends JPanel{
 
 	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RegistroCompleto window = new RegistroCompleto();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
 	/**
 	 * Create the application.
 	 */
@@ -52,14 +35,17 @@ public class RegistroCompleto extends JPanel{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame();		
+		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(255, 153, 0));
 		frame.getContentPane().setForeground(Color.LIGHT_GRAY);
 		frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		frame.setBounds(100, 100, 895, 646);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultLookAndFeelDecorated(true);
+		frame.setUndecorated(true);
+		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
@@ -88,7 +74,7 @@ public class RegistroCompleto extends JPanel{
 		JButton btnNewButton = new JButton("INICIAR SESI\u00D3N");
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setForeground(new Color(255, 153, 51));
-		btnNewButton.setFont(new Font("Fira Sans OT", Font.PLAIN, 11));
+		btnNewButton.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Ingreso ingreso=new Ingreso();
