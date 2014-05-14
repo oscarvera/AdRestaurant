@@ -1,20 +1,21 @@
 package Pantallas;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Color;
-import java.awt.Font;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 
 public class ErrorRegistro extends JDialog {
 
@@ -23,22 +24,10 @@ public class ErrorRegistro extends JDialog {
 	private JLabel lblNewLabel;
 	
 	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		try {
-//			ErrorRegistro dialog = new ErrorRegistro();
-//			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//			dialog.setVisible(true);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-
-	/**
 	 * Create the dialog.
 	 */
-	public ErrorRegistro() {
+	public ErrorRegistro(ArrayList <String> err) {
+		this.errores=err;
 		setBackground(Color.GRAY);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -57,9 +46,12 @@ public class ErrorRegistro extends JDialog {
 		
 		JTextPane textoErrores = new JTextPane();
 		for(int i=0; i<errores.size();i++){
-			textoErrores.setText(errores.get(i));
+	    	System.out.println("Error: ("+errores.size()+")"+errores.get(i) );
+			textoErrores.setText(errores.get(i)+"\n");
+			contentPanel.add(new JTextField(errores.get(i),0));
 			textoErrores.nextFocus();
 		}
+		
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
