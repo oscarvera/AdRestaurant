@@ -581,7 +581,7 @@ public class Registro extends JPanel{
 	    
 		//Comprobamos el nombre
 	    textoIntroducido = this.textNomUser.getText();	
-		pat = Pattern.compile("[a-zA-Z]");
+		pat = Pattern.compile("[a-zA-Z]+");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsCliente.add("Error en el campo Nombre. Introduce sólo letras."); 
@@ -589,7 +589,7 @@ public class Registro extends JPanel{
 	    
 	    //Comprobamos el primer apellido
 	    textoIntroducido = this.textApellido1.getText();	
-		pat = Pattern.compile("[a-zA-Z]");
+		pat = Pattern.compile("[a-zA-Z]+");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsCliente.add("Error en el campo Primer Apellido. Introduce sólo letras."); 
@@ -597,7 +597,7 @@ public class Registro extends JPanel{
 	    
 	    //Comprobamos el segundo apellido
 	    textoIntroducido = this.textApellido2.getText();	
-		pat = Pattern.compile("[a-zA-Z]");
+		pat = Pattern.compile("[a-zA-Z]+");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsCliente.add("Error en el campo Segundo Apellido. Introduce sólo letras."); 
@@ -605,7 +605,7 @@ public class Registro extends JPanel{
 	    
 	    //Comprobamos el nombre de usuario
 	    textoIntroducido = this.textNomUser.getText();	
-		pat = Pattern.compile("[a-zA-Z0-9]");
+		pat = Pattern.compile("[a-zA-Z0-9]+");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsCliente.add("Error en el campo Nombre de Usuario. Introduce sólo letras o números"); 
@@ -649,7 +649,7 @@ public class Registro extends JPanel{
 	    
 	    //Comprobamos el nombre
 	    textoIntroducido = this.textNombreRest.getText();	
-		pat = Pattern.compile("[a-zA-Z]");
+		pat = Pattern.compile("[a-zA-Z]+");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsRestaurante.add("Error en el campo Nombre. Introduce sólo letras."); 
@@ -657,7 +657,7 @@ public class Registro extends JPanel{
 	    
 	    //Comprobamos el nombre de usuario
 	    textoIntroducido = this.textNomUserRest.getText();	
-		pat = Pattern.compile("[a-zA-Z0-9]");
+		pat = Pattern.compile("[a-zA-Z0-9]+");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsRestaurante.add("Error en el campo Nombre de Usuario."); 
@@ -673,7 +673,7 @@ public class Registro extends JPanel{
 	    
 	    //Comprobamos la direccion
 	    textoIntroducido = this.textDireccionRest.getText();	
-		pat = Pattern.compile("[a-zA-Z0-9]");
+		pat = Pattern.compile("[a-zA-Z0-9]+");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsRestaurante.add("Error en el campo Direccion. Introduce sólo letras y el numero de la puerta."); 
@@ -681,7 +681,7 @@ public class Registro extends JPanel{
 	    
 	    //Comprobamos la Poblacion
 	    textoIntroducido = this.textPoblacionRest.getText();	
-		pat = Pattern.compile("[a-zA-Z]");
+		pat = Pattern.compile("[a-zA-Z]+");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsRestaurante.add("Error en el campo Poblacion. Introduce una poblacion."); 
@@ -689,7 +689,7 @@ public class Registro extends JPanel{
 	    
 	    //Comprobamos la Provincia
 	    textoIntroducido = this.textProvinciaRest.getText();	
-		pat = Pattern.compile("[a-zA-Z]");
+		pat = Pattern.compile("[a-zA-Z]+");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsRestaurante.add("Error en el campo Provincia. Introduce una provincia."); 
