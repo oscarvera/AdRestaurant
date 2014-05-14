@@ -611,24 +611,18 @@ public class Registro extends JPanel{
 	    	errorsCliente.add("Error en el campo Nombre de Usuario. Introduce sólo letras o números"); 
 	    } 
 	    
-	  //Comprobamos el email
+	    //Comprobamos el email
 	    textoIntroducido = this.textEmail.getText();	
-		pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$;");
+		pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsCliente.add("Error en el campo Email. Siga la estructura, ejemplo: X____@''dominio''.__");
 	    } 
 	    
-	  //Comprobamos la contraseña
-	    textoIntroducido = this.passUser.getText();	
-		pat = Pattern.compile("(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$");
-	    mat = pat.matcher(textoIntroducido);
-	    if (!mat.matches()){
-	    	errorsCliente.add("Error en el campo Contraseña.");
-	    } 
+	    
 	    
 	    if(errorsCliente.size()>0){
-	    	JDialog aviso = new ErrorRegistro();
+	    	JDialog aviso = new ErrorRegistro(errorsCliente);
 	    	aviso.setVisible(true);
 	    }
 	    return (esCorrecto);
@@ -649,7 +643,7 @@ public class Registro extends JPanel{
 	    
 	    //Comprobamos el nombre
 	    textoIntroducido = this.textNombreRest.getText();	
-		pat = Pattern.compile("[a-zA-Z]+");
+		pat = Pattern.compile("[a-zA-Z0-9]+");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsRestaurante.add("Error en el campo Nombre. Introduce sólo letras."); 
@@ -665,7 +659,7 @@ public class Registro extends JPanel{
 	    
 	    //Comprobamos el email
 	    textoIntroducido = this.textEmailRest.getText();	
-		pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$;");
+		pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsRestaurante.add("Error en el campo Email. Siga la estructura, ejemplo: X____@''dominio''.__"); 
@@ -703,16 +697,10 @@ public class Registro extends JPanel{
 	    	errorsRestaurante.add("Error en el campo Codigo Postal. Introduce solo cinco numeros."); 
 	    } 
 	    
-	    //Comprobamos la contraseña
-	    textoIntroducido = this.pwdContraRest.getText();	
-		pat = Pattern.compile("(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$");
-	    mat = pat.matcher(textoIntroducido);
-	    if (!mat.matches()){
-	    	errorsRestaurante.add("Error en el campo contraseña."); 
-	    } 
+	    
 	    
 	    if(errorsRestaurante.size()>0){
-	    	JDialog aviso = new ErrorRegistro();
+	    	JDialog aviso = new ErrorRegistro(errorsRestaurante);
 	    	aviso.setVisible(true);
 	    }
 	    return (esCorrecto);
