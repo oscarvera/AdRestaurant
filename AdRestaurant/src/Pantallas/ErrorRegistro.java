@@ -16,13 +16,18 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.factories.FormFactory;
+import com.jgoodies.forms.layout.RowSpec;
 
 public class ErrorRegistro extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private ArrayList <String> errores;
 	private JLabel lblNewLabel;
-	
+	private JTextField txtNombre;
+	private JTextField txtTelefono;
 	/**
 	 * Create the dialog.
 	 */
@@ -48,41 +53,28 @@ public class ErrorRegistro extends JDialog {
 		for(int i=0; i<errores.size();i++){
 	    	System.out.println("Error: ("+errores.size()+")"+errores.get(i) );
 			textoErrores.setText(errores.get(i)+"\n");
-			contentPanel.add(new JTextField(errores.get(i),0));
-			textoErrores.nextFocus();
+			txtNombre = new JTextField();
+			txtNombre.setText("Nombre");
+			contentPanel.add(new JTextField(errores.get(i)), "2, 8+i*2, fill, default");
+			txtNombre.setColumns(10);
 		}
-		
-		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
-		gl_contentPanel.setHorizontalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addGap(146)
-							.addComponent(lblNewLabel))
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblPorFavorRevise))
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(textoErrores, GroupLayout.PREFERRED_SIZE, 388, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(26, Short.MAX_VALUE))
-		);
-		gl_contentPanel.setVerticalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addGap(5)
-					.addComponent(lblNewLabel)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblPorFavorRevise)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textoErrores, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(83, Short.MAX_VALUE))
-		);
-		contentPanel.setLayout(gl_contentPanel);
-		for(String st:errores){
-			
-		}
+		contentPanel.setLayout(new FormLayout(new ColumnSpec[] {
+				FormFactory.UNRELATED_GAP_COLSPEC,
+				ColumnSpec.decode("388px:grow"),},
+			new RowSpec[] {
+				FormFactory.PARAGRAPH_GAP_ROWSPEC,
+				RowSpec.decode("17px"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("15px"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("87px"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,}));
+		contentPanel.add(lblNewLabel, "2, 2, center, top");
+		contentPanel.add(lblPorFavorRevise, "2, 4, left, top");
+		contentPanel.add(textoErrores, "2, 6, fill, fill");
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(255, 255, 255));
