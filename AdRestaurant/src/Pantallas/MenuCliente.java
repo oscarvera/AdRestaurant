@@ -95,6 +95,8 @@ public class MenuCliente {
 		JButton button_1 = new JButton("New button");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				ptnReservas reser=new ptnReservas();
+				frame.dispose();
 			}
 		});
 		button_1.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/reservas.png")));
