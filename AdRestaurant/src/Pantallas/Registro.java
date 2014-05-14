@@ -620,11 +620,11 @@ public class Registro extends JPanel{
 	    } 
 	    
 	  //Comprobamos la contraseña
-	    textoIntroducido = this.textEmail.getText();	
-		pat = Pattern.compile("[a-zA-Z0-9]");
+	    textoIntroducido = this.passUser.getText();	
+		pat = Pattern.compile("(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
-	    	errorsCliente.add("Error en el campo Contraseña. Introduce solo numeros y letras.");
+	    	errorsCliente.add("Error en el campo Contraseña.");
 	    } 
 	    
 	    if(errorsCliente.size()>0){
@@ -701,6 +701,14 @@ public class Registro extends JPanel{
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsRestaurante.add("Error en el campo Codigo Postal. Introduce solo cinco numeros."); 
+	    } 
+	    
+	    //Comprobamos la contraseña
+	    textoIntroducido = this.pwdContraRest.getText();	
+		pat = Pattern.compile("(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$");
+	    mat = pat.matcher(textoIntroducido);
+	    if (!mat.matches()){
+	    	errorsRestaurante.add("Error en el campo contraseña."); 
 	    } 
 	    
 	    if(errorsRestaurante.size()>0){
