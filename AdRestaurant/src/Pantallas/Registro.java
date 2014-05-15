@@ -7,8 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -26,6 +28,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
 import javax.swing.JCheckBox;
+import javax.swing.GroupLayout.Alignment;
 
 import java.awt.Panel;
 import java.util.ArrayList;
@@ -64,24 +67,6 @@ public class Registro extends JPanel{
 	private JLabel LabelNuevoClie;
 	private JLabel Flecha2;
 	private JLabel LabelNuevoRest;
-	
-
-
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Registro window = new Registro();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 
 	/**
 	 * Create the application.
@@ -102,7 +87,9 @@ public class Registro extends JPanel{
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setUndecorated(true);
 		frame.setLocationRelativeTo(null);
+		
 		
 		JLabel lblAdrestaurant = new JLabel("AdRestaurant");
 		lblAdrestaurant.setBounds(170, 33, 563, 93);
@@ -326,6 +313,50 @@ public class Registro extends JPanel{
 				panel.add(comboTipoRest);
 				comboTipoRest.addKeyListener(keyLis);
 				
+				JPanel panel_1 = new JPanel();
+				panel_1.setBackground(Color.WHITE);
+				panel_1.setBounds(0, 0, 895, 22);
+				frame.getContentPane().add(panel_1);
+
+				JLabel cerrarImage = new JLabel("");
+				cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
+				GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+				gl_panel_1.setHorizontalGroup(
+					gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+							.addContainerGap(870, Short.MAX_VALUE)
+							.addComponent(cerrarImage)
+							.addContainerGap())
+				);
+				gl_panel_1.setVerticalGroup(
+					gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(cerrarImage, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+				);
+				cerrarImage.addMouseListener(new MouseListener() {
+
+					@Override
+					public void mouseReleased(MouseEvent arg0) {
+					}
+
+					@Override
+					public void mousePressed(MouseEvent arg0) {
+					}
+
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+					}
+
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+					}
+
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						Salir salir=new Salir();
+
+					}
+				});
+				
 				
 				
 				JLabel lblNombreUsuario = new JLabel("Nombre usuario:");
@@ -471,10 +502,10 @@ public class Registro extends JPanel{
 				lblImagen2.setBounds(577, 127, 92, 22);
 				panel.add(lblImagen2);
 				
-				Panel panel_1 = new Panel();
-				panel_1.setBackground(new Color(255, 153, 51));
-				panel_1.setBounds(34, 176, 821, 5);
-				panel.add(panel_1);
+				Panel panel_11 = new Panel();
+				panel_11.setBackground(new Color(255, 153, 51));
+				panel_11.setBounds(34, 176, 821, 5);
+				panel.add(panel_11);
 				
 				JLabel lblTelefono = new JLabel("Tel\u00E9fono:");
 				lblTelefono.setForeground(new Color(255, 153, 51));
@@ -705,5 +736,6 @@ public class Registro extends JPanel{
 	    }
 	    return (esCorrecto);
 	}
+	
 }
 	

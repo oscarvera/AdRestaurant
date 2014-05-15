@@ -64,7 +64,6 @@ public class Salir extends JPanel{
 		frame.setBounds(100, 100, 895, 646);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setDefaultLookAndFeelDecorated(true);
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
 		
@@ -97,6 +96,8 @@ public class Salir extends JPanel{
 		panel_1.setBounds(0, 0, 895, 22);
 		frame.getContentPane().add(panel_1);
 		
+		
+		
 	
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
@@ -126,8 +127,12 @@ public class Salir extends JPanel{
 		btnNo.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
 		btnNo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(clie!=null){
 				MenuCliente menucliente=new MenuCliente(clie);
 				frame.dispose();
+			}else{
+				Ingreso ingreso=new Ingreso();
+			}
 			}
 		});
 		frame.setVisible(true);
@@ -148,4 +153,5 @@ public class Salir extends JPanel{
 		
 	
 	}
+	
 }

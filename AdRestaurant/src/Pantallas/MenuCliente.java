@@ -19,6 +19,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import Clases.Cliente;
 
@@ -26,22 +28,7 @@ public class MenuCliente {
 
 	private JFrame frame;
 	Cliente clie;
-
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MenuCliente window = new MenuCliente();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
+	
 
 	/**
 	 * Create the application.
@@ -63,7 +50,6 @@ public class MenuCliente {
 		frame.setBounds(100, 100, 895, 646);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setDefaultLookAndFeelDecorated(true);
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
 		
@@ -95,7 +81,7 @@ public class MenuCliente {
 		JButton button_1 = new JButton("New button");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ptnReservas reser=new ptnReservas();
+				Reservas reser=new Reservas();
 				frame.dispose();
 			}
 		});
@@ -154,34 +140,65 @@ public class MenuCliente {
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Francois One", Font.PLAIN, 60));
 		label.setBackground(Color.WHITE);
-		label.setBounds(22, 1, 371, 74);
+		label.setBounds(0, 21, 371, 74);
 		frame.getContentPane().add(label);
 		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setForeground(Color.WHITE);
 		lblnomUser.setFont(new Font("Fira Sans OT", Font.PLAIN, 20));
 		lblnomUser.setBackground(Color.YELLOW);
-		lblnomUser.setBounds(537, 11, 128, 64);
+		lblnomUser.setBounds(502, 31, 128, 64);
 		frame.getContentPane().add(lblnomUser);
 		
-		JButton btnSalir = new JButton("Salir");
-		btnSalir.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Salir salir=new Salir(clie);
-				frame.dispose();
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(0, 0, 895, 22);
+		frame.getContentPane().add(panel_1);
+
+		JLabel cerrarImage = new JLabel("");
+		cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+					.addContainerGap(870, Short.MAX_VALUE)
+					.addComponent(cerrarImage)
+					.addContainerGap())
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addComponent(cerrarImage, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+		);
+		cerrarImage.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Salir salir=new Salir();
+
 			}
 		});
-		btnSalir.setForeground(new Color(255, 255, 255));
-		btnSalir.setBackground(new Color(255, 153, 51));
-		btnSalir.setBounds(813, 34, 66, 23);
-		frame.getContentPane().add(btnSalir);
 		
 		JLabel lblBienvenido = new JLabel("Bienvenido");
 		lblBienvenido.setForeground(Color.WHITE);
 		lblBienvenido.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBienvenido.setBackground(Color.YELLOW);
-		lblBienvenido.setBounds(413, 12, 86, 64);
+		lblBienvenido.setBounds(396, 31, 86, 64);
 		frame.getContentPane().add(lblBienvenido);
 		
 		JButton btnCerrarsesion = new JButton("Cerrar Sesi\u00F3n");
@@ -194,7 +211,7 @@ public class MenuCliente {
 		});
 		btnCerrarsesion.setForeground(Color.WHITE);
 		btnCerrarsesion.setBackground(new Color(255, 153, 51));
-		btnCerrarsesion.setBounds(675, 34, 128, 23);
+		btnCerrarsesion.setBounds(757, 31, 128, 23);
 		frame.getContentPane().add(btnCerrarsesion);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
