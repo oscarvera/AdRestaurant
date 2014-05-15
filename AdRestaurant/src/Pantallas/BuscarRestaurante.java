@@ -77,7 +77,7 @@ public class BuscarRestaurante extends JFrame{
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 86, 889, 481);
+		panel.setBounds(0, 97, 895, 488);
 		frame.getContentPane().add(panel);
 		
 		
@@ -413,65 +413,21 @@ public class BuscarRestaurante extends JFrame{
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Francois One", Font.PLAIN, 60));
 		label.setBackground(Color.WHITE);
-		label.setBounds(0, 26, 371, 74);
+		label.setBounds(24, 12, 371, 74);
 		frame.getContentPane().add(label);
 		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setForeground(Color.WHITE);
-		lblnomUser.setFont(new Font("Fira Sans OT", Font.PLAIN, 20));
+		lblnomUser.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 17));
 		lblnomUser.setBackground(Color.YELLOW);
-		lblnomUser.setBounds(545, 36, 110, 64);
+		lblnomUser.setBounds(637, 22, 110, 64);
 		frame.getContentPane().add(lblnomUser);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(0, 0, 895, 22);
-		frame.getContentPane().add(panel_1);
-
-		JLabel cerrarImage = new JLabel("");
-		cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-					.addContainerGap(870, Short.MAX_VALUE)
-					.addComponent(cerrarImage)
-					.addContainerGap())
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addComponent(cerrarImage, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
-		);
-		cerrarImage.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Salir salir=new Salir();
-
-			}
-		});
 		
 		JLabel lblBuscarRestaurante = new JLabel("Buscar Restaurante");
 		lblBuscarRestaurante.setForeground(Color.WHITE);
 		lblBuscarRestaurante.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBuscarRestaurante.setBackground(Color.YELLOW);
-		lblBuscarRestaurante.setBounds(394, 36, 162, 64);
+		lblBuscarRestaurante.setBounds(380, 22, 162, 64);
 		frame.getContentPane().add(lblBuscarRestaurante);
 		
 		JButton btnMenuPrincipal = new JButton("Volver al men\u00FA principal");
@@ -484,7 +440,7 @@ public class BuscarRestaurante extends JFrame{
 		});
 		btnMenuPrincipal.setBackground(new Color(255, 153, 0));
 		btnMenuPrincipal.setForeground(new Color(255, 255, 255));
-		btnMenuPrincipal.setBounds(22, 612, 171, 23);
+		btnMenuPrincipal.setBounds(24, 601, 171, 23);
 		frame.getContentPane().add(btnMenuPrincipal);
 		
 		JButton btnCerrarSesion = new JButton("Cerrar Sesi\u00F3n");
@@ -497,7 +453,7 @@ public class BuscarRestaurante extends JFrame{
 		});
 		btnCerrarSesion.setForeground(Color.WHITE);
 		btnCerrarSesion.setBackground(new Color(255, 153, 51));
-		btnCerrarSesion.setBounds(761, 34, 128, 23);
+		btnCerrarSesion.setBounds(757, 44, 128, 23);
 		frame.getContentPane().add(btnCerrarSesion);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

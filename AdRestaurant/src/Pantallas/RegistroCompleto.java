@@ -48,7 +48,7 @@ public class RegistroCompleto extends JPanel{
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 224, 879, 160);
+		panel.setBounds(0, 224, 895, 160);
 		frame.getContentPane().add(panel);
 		
 		JLabel lblNewLabel = new JLabel("");

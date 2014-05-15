@@ -111,7 +111,7 @@ public class Registro extends JPanel{
 				
 				panel.removeAll();
 				panel.setBackground(new Color(255, 255, 255));
-				panel.setBounds(0, 194, 889, 348);
+				panel.setBounds(0, 194, 895, 348);
 				frame.getContentPane().add(panel);
 				panel.setLayout(null);
 				
@@ -277,7 +277,7 @@ public class Registro extends JPanel{
 				
 				panel.removeAll();
 				panel.setBackground(new Color(255, 255, 255));
-				panel.setBounds(0, 194, 889, 348);
+				panel.setBounds(0, 194, 895, 348);
 				frame.getContentPane().add(panel);
 				panel.setLayout(null);
 				
@@ -312,50 +312,6 @@ public class Registro extends JPanel{
 				comboTipoRest.setBounds(219, 94, 197, 22);
 				panel.add(comboTipoRest);
 				comboTipoRest.addKeyListener(keyLis);
-				
-				JPanel panel_1 = new JPanel();
-				panel_1.setBackground(Color.WHITE);
-				panel_1.setBounds(0, 0, 895, 22);
-				frame.getContentPane().add(panel_1);
-
-				JLabel cerrarImage = new JLabel("");
-				cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
-				GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-				gl_panel_1.setHorizontalGroup(
-					gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-							.addContainerGap(870, Short.MAX_VALUE)
-							.addComponent(cerrarImage)
-							.addContainerGap())
-				);
-				gl_panel_1.setVerticalGroup(
-					gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(cerrarImage, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
-				);
-				cerrarImage.addMouseListener(new MouseListener() {
-
-					@Override
-					public void mouseReleased(MouseEvent arg0) {
-					}
-
-					@Override
-					public void mousePressed(MouseEvent arg0) {
-					}
-
-					@Override
-					public void mouseExited(MouseEvent arg0) {
-					}
-
-					@Override
-					public void mouseEntered(MouseEvent arg0) {
-					}
-
-					@Override
-					public void mouseClicked(MouseEvent arg0) {
-						Salir salir=new Salir();
-
-					}
-				});
 				
 				
 				
