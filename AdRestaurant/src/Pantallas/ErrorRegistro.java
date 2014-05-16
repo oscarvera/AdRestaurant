@@ -51,10 +51,12 @@ public class ErrorRegistro extends JDialog {
 		lblPorFavorRevise.setForeground(new Color(255, 255, 255));
 		lblPorFavorRevise.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 14));
 		
+		
 		JTextPane textoErrores = new JTextPane();
 		for(int i=0; i<mensajesErrores.size();i++){
 	    	System.out.println("Error: ("+mensajesErrores.size()+")"+mensajesErrores.get(i) );
-			textoErrores.setText(mensajesErrores.get(i)+"\n");
+			textoErrores.setText(textoErrores.getText()+mensajesErrores.get(i)+"\n");
+			
 			txtNombre = new JTextField();
 			txtNombre.setText("Nombre");
 			contentPanel.add(new JTextField(mensajesErrores.get(i)), "2, 8+i*2, fill, default");
