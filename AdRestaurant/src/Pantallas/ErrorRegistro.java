@@ -24,15 +24,17 @@ import com.jgoodies.forms.layout.RowSpec;
 public class ErrorRegistro extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private ArrayList <String> errores;
+	private ArrayList <String> mensajesErrores;
+	private ArrayList <String> camposError;
 	private JLabel lblNewLabel;
 	private JTextField txtNombre;
 	private JTextField txtTelefono;
 	/**
 	 * Create the dialog.
 	 */
-	public ErrorRegistro(ArrayList <String> err) {
-		this.errores=err;
+	public ErrorRegistro(ArrayList <String> err, ArrayList <String> campos) {
+		this.mensajesErrores=err;
+		this.camposError=campos;
 		setBackground(Color.GRAY);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -50,12 +52,12 @@ public class ErrorRegistro extends JDialog {
 		lblPorFavorRevise.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 14));
 		
 		JTextPane textoErrores = new JTextPane();
-		for(int i=0; i<errores.size();i++){
-	    	System.out.println("Error: ("+errores.size()+")"+errores.get(i) );
-			textoErrores.setText(errores.get(i)+"\n");
+		for(int i=0; i<mensajesErrores.size();i++){
+	    	System.out.println("Error: ("+mensajesErrores.size()+")"+mensajesErrores.get(i) );
+			textoErrores.setText(mensajesErrores.get(i)+"\n");
 			txtNombre = new JTextField();
 			txtNombre.setText("Nombre");
-			contentPanel.add(new JTextField(errores.get(i)), "2, 8+i*2, fill, default");
+			contentPanel.add(new JTextField(mensajesErrores.get(i)), "2, 8+i*2, fill, default");
 			txtNombre.setColumns(10);
 		}
 		contentPanel.setLayout(new FormLayout(new ColumnSpec[] {
@@ -109,10 +111,10 @@ public class ErrorRegistro extends JDialog {
 	}
 
 	public ArrayList<String> getErrores() {
-		return errores;
+		return mensajesErrores;
 	}
 
 	public void setErrores(ArrayList<String> errores) {
-		this.errores = errores;
+		this.mensajesErrores = errores;
 	}
 }

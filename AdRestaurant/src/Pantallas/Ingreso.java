@@ -132,7 +132,7 @@ public class Ingreso extends JPanel{
 		btnRegistrar.setForeground(new Color(255, 255, 255));
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Registro regcli=new Registro();
+				Registro regCli=new Registro();
 				frame.dispose();
 
 			}
