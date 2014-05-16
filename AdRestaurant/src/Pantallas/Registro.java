@@ -7,8 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -26,6 +28,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
 import javax.swing.JCheckBox;
+import javax.swing.GroupLayout.Alignment;
 
 import java.awt.Panel;
 import java.util.ArrayList;
@@ -64,24 +67,6 @@ public class Registro extends JPanel{
 	private JLabel LabelNuevoClie;
 	private JLabel Flecha2;
 	private JLabel LabelNuevoRest;
-	
-
-
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Registro window = new Registro();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 
 	/**
 	 * Create the application.
@@ -102,7 +87,9 @@ public class Registro extends JPanel{
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setUndecorated(true);
 		frame.setLocationRelativeTo(null);
+		
 		
 		JLabel lblAdrestaurant = new JLabel("AdRestaurant");
 		lblAdrestaurant.setBounds(170, 33, 563, 93);
@@ -124,7 +111,7 @@ public class Registro extends JPanel{
 				
 				panel.removeAll();
 				panel.setBackground(new Color(255, 255, 255));
-				panel.setBounds(0, 194, 889, 348);
+				panel.setBounds(0, 194, 895, 348);
 				frame.getContentPane().add(panel);
 				panel.setLayout(null);
 				
@@ -290,7 +277,7 @@ public class Registro extends JPanel{
 				
 				panel.removeAll();
 				panel.setBackground(new Color(255, 255, 255));
-				panel.setBounds(0, 194, 889, 348);
+				panel.setBounds(0, 194, 895, 348);
 				frame.getContentPane().add(panel);
 				panel.setLayout(null);
 				
@@ -471,10 +458,10 @@ public class Registro extends JPanel{
 				lblImagen2.setBounds(577, 127, 92, 22);
 				panel.add(lblImagen2);
 				
-				Panel panel_1 = new Panel();
-				panel_1.setBackground(new Color(255, 153, 51));
-				panel_1.setBounds(34, 176, 821, 5);
-				panel.add(panel_1);
+				Panel panel_11 = new Panel();
+				panel_11.setBackground(new Color(255, 153, 51));
+				panel_11.setBounds(34, 176, 821, 5);
+				panel.add(panel_11);
 				
 				JLabel lblTelefono = new JLabel("Tel\u00E9fono:");
 				lblTelefono.setForeground(new Color(255, 153, 51));
@@ -611,24 +598,18 @@ public class Registro extends JPanel{
 	    	errorsCliente.add("Error en el campo Nombre de Usuario. Introduce sólo letras o números"); 
 	    } 
 	    
-	  //Comprobamos el email
+	    //Comprobamos el email
 	    textoIntroducido = this.textEmail.getText();	
-		pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$;");
+		pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsCliente.add("Error en el campo Email. Siga la estructura, ejemplo: X____@''dominio''.__");
 	    } 
 	    
-	  //Comprobamos la contraseña
-	    textoIntroducido = this.passUser.getText();	
-		pat = Pattern.compile("(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$");
-	    mat = pat.matcher(textoIntroducido);
-	    if (!mat.matches()){
-	    	errorsCliente.add("Error en el campo Contraseña.");
-	    } 
+	    
 	    
 	    if(errorsCliente.size()>0){
-	    	JDialog aviso = new ErrorRegistro();
+	    	JDialog aviso = new ErrorRegistro(errorsCliente);
 	    	aviso.setVisible(true);
 	    }
 	    return (esCorrecto);
@@ -649,7 +630,7 @@ public class Registro extends JPanel{
 	    
 	    //Comprobamos el nombre
 	    textoIntroducido = this.textNombreRest.getText();	
-		pat = Pattern.compile("[a-zA-Z]+");
+		pat = Pattern.compile("[a-zA-Z0-9]+");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsRestaurante.add("Error en el campo Nombre. Introduce sólo letras."); 
@@ -665,7 +646,7 @@ public class Registro extends JPanel{
 	    
 	    //Comprobamos el email
 	    textoIntroducido = this.textEmailRest.getText();	
-		pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$;");
+		pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	errorsRestaurante.add("Error en el campo Email. Siga la estructura, ejemplo: X____@''dominio''.__"); 
@@ -703,19 +684,14 @@ public class Registro extends JPanel{
 	    	errorsRestaurante.add("Error en el campo Codigo Postal. Introduce solo cinco numeros."); 
 	    } 
 	    
-	    //Comprobamos la contraseña
-	    textoIntroducido = this.pwdContraRest.getText();	
-		pat = Pattern.compile("(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$");
-	    mat = pat.matcher(textoIntroducido);
-	    if (!mat.matches()){
-	    	errorsRestaurante.add("Error en el campo contraseña."); 
-	    } 
+	    
 	    
 	    if(errorsRestaurante.size()>0){
-	    	JDialog aviso = new ErrorRegistro();
+	    	JDialog aviso = new ErrorRegistro(errorsRestaurante);
 	    	aviso.setVisible(true);
 	    }
 	    return (esCorrecto);
 	}
+	
 }
 	

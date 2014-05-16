@@ -51,22 +51,6 @@ public class BuscarRestaurante extends JFrame{
 	private JButton btnXTipo;
 
 	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BuscarRestaurante window = new BuscarRestaurante();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
-	/**
 	 * Create the application.
 	 */
 	public BuscarRestaurante(Cliente clie ) {
@@ -87,14 +71,13 @@ public class BuscarRestaurante extends JFrame{
 		frame.setBounds(100, 100, 895, 646);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setDefaultLookAndFeelDecorated(true);
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
 		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 86, 889, 481);
+		panel.setBounds(0, 97, 895, 488);
 		frame.getContentPane().add(panel);
 		
 		
@@ -430,34 +413,21 @@ public class BuscarRestaurante extends JFrame{
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Francois One", Font.PLAIN, 60));
 		label.setBackground(Color.WHITE);
-		label.setBounds(22, 1, 371, 74);
+		label.setBounds(24, 12, 371, 74);
 		frame.getContentPane().add(label);
 		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setForeground(Color.WHITE);
-		lblnomUser.setFont(new Font("Fira Sans OT", Font.PLAIN, 20));
+		lblnomUser.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 17));
 		lblnomUser.setBackground(Color.YELLOW);
-		lblnomUser.setBounds(553, 11, 110, 64);
+		lblnomUser.setBounds(637, 22, 110, 64);
 		frame.getContentPane().add(lblnomUser);
-		
-		JButton btnSalir = new JButton("Salir");
-		btnSalir.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Salir salir=new Salir(clie);
-				frame.dispose();
-			}
-		});
-		btnSalir.setForeground(new Color(255, 255, 255));
-		btnSalir.setBackground(new Color(255, 153, 51));
-		btnSalir.setBounds(823, 35, 66, 23);
-		frame.getContentPane().add(btnSalir);
 		
 		JLabel lblBuscarRestaurante = new JLabel("Buscar Restaurante");
 		lblBuscarRestaurante.setForeground(Color.WHITE);
 		lblBuscarRestaurante.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBuscarRestaurante.setBackground(Color.YELLOW);
-		lblBuscarRestaurante.setBounds(392, 12, 162, 64);
+		lblBuscarRestaurante.setBounds(380, 22, 162, 64);
 		frame.getContentPane().add(lblBuscarRestaurante);
 		
 		JButton btnMenuPrincipal = new JButton("Volver al men\u00FA principal");
@@ -470,7 +440,7 @@ public class BuscarRestaurante extends JFrame{
 		});
 		btnMenuPrincipal.setBackground(new Color(255, 153, 0));
 		btnMenuPrincipal.setForeground(new Color(255, 255, 255));
-		btnMenuPrincipal.setBounds(22, 578, 171, 23);
+		btnMenuPrincipal.setBounds(24, 601, 171, 23);
 		frame.getContentPane().add(btnMenuPrincipal);
 		
 		JButton btnCerrarSesion = new JButton("Cerrar Sesi\u00F3n");
@@ -483,7 +453,7 @@ public class BuscarRestaurante extends JFrame{
 		});
 		btnCerrarSesion.setForeground(Color.WHITE);
 		btnCerrarSesion.setBackground(new Color(255, 153, 51));
-		btnCerrarSesion.setBounds(685, 35, 128, 23);
+		btnCerrarSesion.setBounds(757, 44, 128, 23);
 		frame.getContentPane().add(btnCerrarSesion);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

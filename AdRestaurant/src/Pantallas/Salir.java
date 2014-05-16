@@ -64,52 +64,16 @@ public class Salir extends JPanel{
 		frame.setBounds(100, 100, 895, 646);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setDefaultLookAndFeelDecorated(true);
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
 		
 		
-		JLabel lblSalir = new JLabel("\u00BFSeguro que deseas SALIR?");
-		lblSalir.setBounds(288, 251, 343, 64);
+		JLabel lblSalir = new JLabel("\u00BFSeguro que desea SALIR?");
+		lblSalir.setBounds(276, 291, 343, 64);
 		lblSalir.setForeground(new Color(255, 255, 255));
 		lblSalir.setBackground(new Color(255, 255, 0));
 		lblSalir.setFont(new Font("Fira Sans OT", Font.PLAIN, 26));
 		frame.getContentPane().add(lblSalir);
-		
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 514, 895, 93);
-		frame.getContentPane().add(panel);
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 895, Short.MAX_VALUE)
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
-				.addGap(0, 93, Short.MAX_VALUE)
-		);
-		panel.setLayout(gl_panel);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(0, 0, 895, 22);
-		frame.getContentPane().add(panel_1);
-		
-	
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-					.addContainerGap(870, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-		);
-	
-		panel_1.setLayout(gl_panel_1);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Salir.class.getResource("/Imagen/Titulo.png")));
@@ -119,21 +83,25 @@ public class Salir extends JPanel{
 	
 		
 		btnNo = new JButton("NO");
-		btnNo.setBounds(509, 385, 227, 37);
+		btnNo.setBounds(449, 385, 267, 53);
 		frame.getContentPane().add(btnNo);
 		btnNo.setBackground(new Color(255, 255, 255));
 		btnNo.setForeground(new Color(255, 153, 51));
 		btnNo.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
 		btnNo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(clie!=null){
 				MenuCliente menucliente=new MenuCliente(clie);
 				frame.dispose();
+			}else{
+				Ingreso ingreso=new Ingreso();
+			}
 			}
 		});
 		frame.setVisible(true);
 		
 		btnSi = new JButton("SI");
-		btnSi.setBounds(180, 385, 227, 37);
+		btnSi.setBounds(173, 385, 277, 53);
 		frame.getContentPane().add(btnSi);
 		btnSi.setBackground(new Color(255, 255, 255));
 		btnSi.setForeground(new Color(255, 153, 51));
@@ -148,4 +116,5 @@ public class Salir extends JPanel{
 		
 	
 	}
+	
 }
