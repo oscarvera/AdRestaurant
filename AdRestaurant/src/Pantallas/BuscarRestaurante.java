@@ -53,6 +53,7 @@ public class BuscarRestaurante extends JFrame{
 	/**
 	 * Create the application.
 	 */
+	//Constructor. Recibe un objeto cliente.
 	public BuscarRestaurante(Cliente clie ) {
 		this.clie=clie;
 		initialize();

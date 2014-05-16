@@ -99,12 +99,12 @@ public class Comentarios extends JFrame {
 		lblnomUser.setBounds(623, 21, 128, 64);
 		frame.getContentPane().add(lblnomUser);
 		
-		JLabel lblBuscarRestaurante = new JLabel("Tus Comentarios");
-		lblBuscarRestaurante.setForeground(Color.WHITE);
-		lblBuscarRestaurante.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
-		lblBuscarRestaurante.setBackground(Color.YELLOW);
-		lblBuscarRestaurante.setBounds(379, 21, 140, 64);
-		frame.getContentPane().add(lblBuscarRestaurante);
+		JLabel lblTusComentarios = new JLabel("Tus Comentarios");
+		lblTusComentarios.setForeground(Color.WHITE);
+		lblTusComentarios.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		lblTusComentarios.setBackground(Color.YELLOW);
+		lblTusComentarios.setBounds(379, 21, 140, 64);
+		frame.getContentPane().add(lblTusComentarios);
 		
 		JButton btnMenuPrincipal = new JButton("Volver al men\u00FA principal");
 		btnMenuPrincipal.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));

@@ -6,13 +6,15 @@ public class Comentario {
 	String usuarioComentario;
 	String hora;
 	String fechaCreacion;
+	String textComentario;
 	
 	//Comentario ya creado, recepción de datos
 	
-	public Comentario(String nomRest, String user,String fechaCrea){
+	public Comentario(String nomRest, String user,String fechaCrea,String comentario){
 		nomRest=this.nombreRestaurante;
 		user=this.usuarioComentario;
 		fechaCrea=this.fechaCreacion;
+		comentario=this.textComentario;
 		
 		//consultar hora fechaReserva verificación realizacion
 	}

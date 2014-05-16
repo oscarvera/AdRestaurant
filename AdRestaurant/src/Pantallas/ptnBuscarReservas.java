@@ -71,40 +71,6 @@ package Pantallas;
  		panel_1.setBorder(new MatteBorder(0, 0, 0, 4, (Color) new Color(255, 153, 51)));
  		panel_1.setBackground(Color.WHITE);
  		
- 		JScrollPane scrollPane = new JScrollPane();
- 		scrollPane.setBorder(null);
- 		GroupLayout gl_panel = new GroupLayout(panel);
- 		
- 		gl_panel.setHorizontalGroup(
- 			gl_panel.createParallelGroup(Alignment.LEADING)
- 				.addGroup(gl_panel.createSequentialGroup()
- 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
- 					.addPreferredGap(ComponentPlacement.UNRELATED)
- 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
- 					.addContainerGap())
- 		);
- 		gl_panel.setVerticalGroup(
- 			gl_panel.createParallelGroup(Alignment.LEADING)
- 				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
- 				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
- 					.addContainerGap()
- 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
- 					.addGap(11))
- 		);
- 		
- 		JList list = new JList();
- 		list.setBorder(null);
- 		scrollPane.setViewportView(list);
- 		list.setModel(new AbstractListModel() {
- 			String[] values = new String[] {"Aqui", "los ", "restaurantes", "listados", "todos", "y", "cada", "uno", "de", "ellos", "asdd", "asg", "asg", "asdg", "asdg", "asdg", "asdg", "asd", "gas", "dg", "asg", "asd", "g", "asd", "g", "asdg", "as", "dg", "asdg", "s", "dgas", "dg", "asdg", "as", "dg", "asd", "g", "asdg", "asdg", "as", "dg", "aqui", "acaba"};
- 			public int getSize() {
- 				return values.length;
- 			}
- 			public Object getElementAt(int index) {
- 				return values[index];
- 			}
- 		});
- 		
  		JButton btnBuscar = new JButton("BUSCAR");
  		btnBuscar.setBounds(10, 274, 187, 43);
  		btnBuscar.setForeground(new Color(255, 153, 0));
@@ -280,9 +246,67 @@ package Pantallas;
  		btnXFecha.setIcon(new ImageIcon(BuscarRestaurante.class.getResource("/Imagen/botonX.png")));
  		btnXFecha.setBorder(null);
  		btnXFecha.setBackground(Color.WHITE);
- 		btnXFecha.setBounds(175, 145, 165, 46);
+ 		btnXFecha.setBounds(175, 196, 22, 46);
  		
+ 		JScrollPane scrollPane = new JScrollPane();
  		
+ 		JPanel panel_2 = new JPanel();
+ 		panel_2.setBackground(new Color(255, 153, 51));
+ 		
+ 		JButton button = new JButton("");
+ 		button.setIcon(new ImageIcon(ptnBuscarReservas.class.getResource("/Imagen/botonX.png")));
+ 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
+ 		gl_panel_2.setHorizontalGroup(
+ 			gl_panel_2.createParallelGroup(Alignment.LEADING)
+ 				.addGroup(gl_panel_2.createSequentialGroup()
+ 					.addComponent(button, GroupLayout.PREFERRED_SIZE, 37, Short.MAX_VALUE)
+ 					.addContainerGap())
+ 		);
+ 		gl_panel_2.setVerticalGroup(
+ 			gl_panel_2.createParallelGroup(Alignment.LEADING)
+ 				.addGroup(gl_panel_2.createSequentialGroup()
+ 					.addGap(5)
+ 					.addComponent(button, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+ 					.addContainerGap(449, Short.MAX_VALUE))
+ 		);
+ 		panel_2.setLayout(gl_panel_2);
+ 		GroupLayout gl_panel = new GroupLayout(panel);
+ 		gl_panel.setHorizontalGroup(
+ 			gl_panel.createParallelGroup(Alignment.LEADING)
+ 				.addGroup(gl_panel.createSequentialGroup()
+ 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
+ 					.addGap(163)
+ 					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+ 					.addGap(426)
+ 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+ 					.addContainerGap())
+ 		);
+ 		gl_panel.setVerticalGroup(
+ 			gl_panel.createParallelGroup(Alignment.LEADING)
+ 				.addGroup(gl_panel.createSequentialGroup()
+ 					.addGap(11)
+ 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+ 					.addGap(11))
+ 				.addGroup(gl_panel.createSequentialGroup()
+ 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE)
+ 					.addContainerGap())
+ 				.addGroup(gl_panel.createSequentialGroup()
+ 					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE)
+ 					.addContainerGap())
+ 		);
+ 		
+ 		JList list = new JList();
+ 		list.setModel(new AbstractListModel() {
+ 			String[] values = new String[] {"hola", "que ", "<sdg", "ag", "dsfg", "dafg", "dfg", "dfg", "d", "fg", "dfg", "df", "gdf", "g", "dfg", "dfg", "df", "g", "ert", "er", "ter", "ter", "t", "ert", "er", "te", "rt", "er", "ter", "t", "ert", "er", "t", "er", "te", "rt", "ert", "er", "te", "rt", "er", "te", "rt", "erte", "rt", "et", "ert", "erte", "rte", "rte", "rte", "rte", "rter", "t"};
+ 			public int getSize() {
+ 				return values.length;
+ 			}
+ 			public Object getElementAt(int index) {
+ 				return values[index];
+ 			}
+ 		});
+ 		list.setBorder(null);
+ 		scrollPane.setViewportView(list);
  		panel.setLayout(gl_panel);
  		
  		JLabel label = new JLabel("AdRestaurant");
@@ -299,12 +323,12 @@ package Pantallas;
  		lblnomUser.setBounds(635, 11, 110, 64);
  		frame.getContentPane().add(lblnomUser);
  		
- 		JLabel lblBuscarRestaurante = new JLabel("Buscar Restaurante");
- 		lblBuscarRestaurante.setForeground(Color.WHITE);
- 		lblBuscarRestaurante.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
- 		lblBuscarRestaurante.setBackground(Color.YELLOW);
- 		lblBuscarRestaurante.setBounds(379, 11, 162, 64);
- 		frame.getContentPane().add(lblBuscarRestaurante);
+ 		JLabel lblBuscarReservas = new JLabel("Buscar Reservas");
+ 		lblBuscarReservas.setForeground(Color.WHITE);
+ 		lblBuscarReservas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+ 		lblBuscarReservas.setBackground(Color.YELLOW);
+ 		lblBuscarReservas.setBounds(379, 11, 162, 64);
+ 		frame.getContentPane().add(lblBuscarReservas);
  		
  		JButton btnMenuPrincipal = new JButton("Volver al men\u00FA principal");
  		btnMenuPrincipal.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
