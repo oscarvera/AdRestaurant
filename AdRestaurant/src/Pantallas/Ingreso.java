@@ -27,6 +27,7 @@ import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import Clases.Cliente;
+import javax.swing.SwingConstants;
 
 public class Ingreso extends JPanel{
 
@@ -75,21 +76,22 @@ public class Ingreso extends JPanel{
 		frame.getContentPane().setLayout(null);
 
 
-		JLabel lblBienvenid = new JLabel("BIENVENID@");
-		lblBienvenid.setBounds(380, 180, 135, 64);
+		final JLabel lblBienvenid = new JLabel("BIENVENID@!");
+		lblBienvenid.setBounds(380, 195, 170, 64);
 		lblBienvenid.setForeground(new Color(255, 255, 255));
 		lblBienvenid.setBackground(new Color(255, 255, 0));
 		lblBienvenid.setFont(new Font("Fira Sans OT", Font.PLAIN, 22));
 		frame.getContentPane().add(lblBienvenid);
 
-		JLabel lblUsuario = new JLabel("USUARIO:");
+		final JLabel lblUsuario = new JLabel("USUARIO:");
+		lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUsuario.setForeground(new Color(255, 255, 255));
 		lblUsuario.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-		lblUsuario.setBounds(237, 281, 100, 22);
+		lblUsuario.setBounds(169, 276, 160, 22);
 		frame.getContentPane().add(lblUsuario);
 
 		textLabelUser = new JTextField();
-		textLabelUser.setToolTipText("Introduzca su Nombre de Usuario");
+		textLabelUser.setToolTipText("Por Favor, introduzca su Nombre de Usuario");
 		textLabelUser.setColumns(10);
 		textLabelUser.setBounds(334, 270, 227, 37);
 		frame.getContentPane().add(textLabelUser);
@@ -114,10 +116,11 @@ public class Ingreso extends JPanel{
 		};
 		textLabelUser.addKeyListener(kl);
 
-		JLabel lblPass = new JLabel("CONTRASE\u00D1A:");
+		final JLabel lblPass = new JLabel("  CONTRASE\u00D1A:");
+		lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPass.setForeground(Color.WHITE);
 		lblPass.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-		lblPass.setBounds(219, 327, 114, 22);
+		lblPass.setBounds(107, 327, 222, 22);
 		frame.getContentPane().add(lblPass);
 
 		JPanel panel = new JPanel();
@@ -127,7 +130,7 @@ public class Ingreso extends JPanel{
 
 		btnRegistrar = new JButton("REGISTRATE");
 		btnRegistrar.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-		btnRegistrar.setToolTipText("Simple y cómodo, REGISTRATE AHORA!");
+		btnRegistrar.setToolTipText("Facil y rápido, REGISTRATE AHORA!");
 		btnRegistrar.setBackground(new Color(255, 153, 51));
 		btnRegistrar.setForeground(new Color(255, 255, 255));
 		btnRegistrar.addActionListener(new ActionListener() {
@@ -137,29 +140,30 @@ public class Ingreso extends JPanel{
 
 			}
 		});
-
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/QuieresReg.png")));
+		
+		final JLabel lblNoregistrado = new JLabel("\u00BFNo est\u00E1s Registrado?");
+		lblNoregistrado.setForeground(new Color(255,153,0));
+		lblNoregistrado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 34));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(121)
-					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(18)
+					.addGap(134)
+					.addComponent(lblNoregistrado, GroupLayout.PREFERRED_SIZE, 363, GroupLayout.PREFERRED_SIZE)
+					.addGap(64)
 					.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGap(239))
 		);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-					.addGap(18)
-					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(29)
 					.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
 					.addGap(27))
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblNoregistrado, GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		panel.setLayout(gl_panel);
 
@@ -182,7 +186,7 @@ public class Ingreso extends JPanel{
 
 
 		textLabelPass = new JPasswordField();
-		textLabelPass.setToolTipText("Introduzca su contraseña");
+		textLabelPass.setToolTipText("Por favor, introduzca su Contraseña");
 		textLabelPass.setBounds(334, 321, 227, 37);
 		frame.getContentPane().add(textLabelPass);
 
@@ -236,7 +240,273 @@ public class Ingreso extends JPanel{
 		lblNewLabel.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/Titulo.png")));
 		lblNewLabel.setBounds(107, 72, 680, 110);
 		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblIngles = new JLabel("English");
+		lblIngles.setForeground(Color.WHITE);
+		lblIngles.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
+		lblIngles.setBounds(107, 618, 80, 14);
+		frame.getContentPane().add(lblIngles);
+		
+		lblIngles.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				lblBienvenid.setText("WELCOME!");
+				lblUsuario.setText("USER:");
+				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
+				lblPass.setText("PASSWORD:");
+				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
+				textLabelUser.setToolTipText("Please, introduce your Username");
+				textLabelPass.setToolTipText("Please, introduce your Password");
+				btnIngresar.setText("SIGN IN");
+				btnRegistrar.setText("REGISTER");
+				btnRegistrar.setToolTipText("Fast and easy, REGISTER NOW!");
+				lblNoregistrado.setText("Not Registered yet?");
+				String language = new String("en");
+		          String country = new String("US");
+
+			}
+		});
+		
+		JLabel lblCastellano = new JLabel("Espa\u00F1ol");
+		lblCastellano.setForeground(Color.WHITE);
+		lblCastellano.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
+		lblCastellano.setBounds(197, 618, 80, 14);
+		frame.getContentPane().add(lblCastellano);
+		
+		lblCastellano.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				lblBienvenid.setText("BIENVENID@!");
+				lblUsuario.setText("USUARIO:");
+				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
+				lblPass.setText("CONTRASEÑA:");
+				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
+				textLabelUser.setToolTipText("Por favor, introduzca su Nombre de Usuario");
+				textLabelPass.setToolTipText("Por favor, introduzca su Contraseña");
+				btnIngresar.setText("INGRESAR");
+				btnRegistrar.setText("REGISTRATE");
+				btnRegistrar.setToolTipText("Facil y rápido, REGISTRATE AHORA!");
+				lblNoregistrado.setText("¿No estás Registrado?");
+				String language = new String("es");
+		          String country = new String("ES");
+
+			}
+		});
+		
+		JLabel lblValenciano = new JLabel("Valenci\u00E0");
+		lblValenciano.setForeground(Color.WHITE);
+		lblValenciano.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
+		lblValenciano.setBounds(287, 618, 80, 14);
+		frame.getContentPane().add(lblValenciano);
+		
+		lblValenciano.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				lblBienvenid.setText("BENVINGUT!");
+				lblUsuario.setText("USUARI:");
+				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
+				lblPass.setText("CONTRASENYA:");
+				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
+				textLabelUser.setToolTipText("Per favor, introdueixi el seu nom d'Usuari");
+				textLabelPass.setToolTipText("Per favor, introdueixi la seva Contrasenya");
+				btnIngresar.setText("INGRESSA");
+				btnRegistrar.setText("REGISTRA'T");
+				btnRegistrar.setToolTipText("Fàcil y ràpid, REGISTRA'T ARA");
+				lblNoregistrado.setText("No estás Registrat?");
+				String language = new String("ca");
+		          String country = new String("CA");
+
+			}
+		});
+		
+		JLabel lblFrances = new JLabel("Fran\u00E7ais");
+		lblFrances.setForeground(Color.WHITE);
+		lblFrances.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
+		lblFrances.setBounds(377, 618, 80, 14);
+		frame.getContentPane().add(lblFrances);
+		
+		lblFrances.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				lblBienvenid.setText("BIENVENUE!");
+				lblUsuario.setText("UTILISATEUR:");
+				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
+				lblPass.setText("MOT DE PASSE:");
+				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
+				textLabelUser.setToolTipText("S'il vous plaît, introduire votre nom d'utilisateur");
+				textLabelPass.setToolTipText("S'il vous plaît, introduisez votre mot de passe");
+				btnIngresar.setText("CONNECTER");
+				btnRegistrar.setText("INSCRIVEZ-VOUS");
+				btnRegistrar.setToolTipText("Rapide et facile, INSCRIVEZ-VOUS!");
+				lblNoregistrado.setText("Pas encore inscrit?");
+				String language = new String("fr");
+		          String country = new String("FR");
+			}
+		});
+		
+		JLabel lblAleman = new JLabel("Deutsch");
+		lblAleman.setForeground(Color.WHITE);
+		lblAleman.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
+		lblAleman.setBounds(467, 618, 80, 14);
+		frame.getContentPane().add(lblAleman);
+		
+		lblAleman.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				lblBienvenid.setText("WILLKOMMEN!");
+				lblUsuario.setText("USER:");
+				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
+				lblPass.setText("PASSWORT:");
+				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
+				textLabelUser.setToolTipText("Bitte, einführen Sie Ihren Benutzernamen");
+				textLabelPass.setToolTipText("Bitte, einführen Sie Ihr Passwort");
+				btnIngresar.setText("ANMELDEN");
+				btnRegistrar.setText("REGISTRIEREN");
+				btnRegistrar.setToolTipText("Schnell und einfach, JETZT REGISTRIEREN!");
+				lblNoregistrado.setText("Noch nicht registriert?");
+				String language = new String("de");
+		          String country = new String("DE");
+			}
+		});
+		
+		
+		
+		JLabel lblItaliano = new JLabel("Italiano");
+		lblItaliano.setForeground(Color.WHITE);
+		lblItaliano.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
+		lblItaliano.setBounds(557, 618, 80, 14);
+		frame.getContentPane().add(lblItaliano);
+		
+		lblItaliano.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				lblBienvenid.setText("BENVENUTO!");
+				lblUsuario.setText("UTENTE:");
+				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
+				lblPass.setText("CHIAVE DI IDENTIFICAZIONE:");
+				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
+				textLabelUser.setToolTipText("Per favore, introduca il suo nome utente");
+				textLabelPass.setToolTipText("Per favore introduca la sua chiave di identificazione");
+				btnIngresar.setText("REGISTRARSI");
+				btnRegistrar.setText("ISCRIVERE");
+				btnRegistrar.setToolTipText("Veloce e facile, REGISTRARE ORA!");
+				lblNoregistrado.setText("Non ancora registrato?");
+				String language = new String("it");
+		          String country = new String("IT");
+			}
+		});
+		
+		JLabel lblSueco = new JLabel("Svenska");
+		lblSueco.setForeground(Color.WHITE);
+		lblSueco.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
+		lblSueco.setBounds(647, 618, 80, 14);
+		frame.getContentPane().add(lblSueco);
 		frame.setVisible(true);
+		
+		
+		
 		textLabelPass.addKeyListener(kl);
 }
 }
