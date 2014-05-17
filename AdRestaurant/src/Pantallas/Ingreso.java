@@ -318,8 +318,8 @@ public class Ingreso extends JPanel{
 				btnRegistrar.setToolTipText("Fast and easy, REGISTER NOW!");
 				lblNoregistrado.setText("Not Registered yet?");
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				//language = "en";
-		       // country = "US";
+				language ="en";
+		        country ="US";
 
 			}
 		});
@@ -353,17 +353,17 @@ public class Ingreso extends JPanel{
 				lblBienvenid.setText("BIENVENID@!");
 				lblUsuario.setText("USUARIO:");
 				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
-				lblPass.setText("CONTRASEÑA:");
+				lblPass.setText("CONTRASE�A:");
 				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
 				textLabelUser.setToolTipText("Por favor, introduzca su Nombre de Usuario");
-				textLabelPass.setToolTipText("Por favor, introduzca su Contraseña");
+				textLabelPass.setToolTipText("Por favor, introduzca su Contrase�a");
 				btnIngresar.setText("INGRESAR");
 				btnRegistrar.setText("REGISTRATE");
-				btnRegistrar.setToolTipText("Facil y rápido, REGISTRATE AHORA!");
-				lblNoregistrado.setText("¿No estás Registrado?");
+				btnRegistrar.setToolTipText("Facil y r�pido, REGISTRATE AHORA!");
+				lblNoregistrado.setText("�No est�s Registrado?");
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				//language = "es";
-		        //country = "ES";
+				language="es";
+		        country="ES";
 
 			}
 		});
@@ -403,11 +403,11 @@ public class Ingreso extends JPanel{
 				textLabelPass.setToolTipText("Per favor, introdueixi la seva Contrasenya");
 				btnIngresar.setText("INGRESSA");
 				btnRegistrar.setText("REGISTRA'T");
-				btnRegistrar.setToolTipText("Fàcil y ràpid, REGISTRA'T ARA");
-				lblNoregistrado.setText("No estás Registrat?");
+				btnRegistrar.setToolTipText("F�cil y r�pid, REGISTRA'T ARA");
+				lblNoregistrado.setText("No est�s Registrat?");
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				//language = "ca";
-		        //country = "CA";
+				language ="ca";
+		        country = "ES";
 
 			}
 		});
@@ -443,15 +443,15 @@ public class Ingreso extends JPanel{
 				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblPass.setText("MOT DE PASSE:");
 				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
-				textLabelUser.setToolTipText("S'il vous plaît, introduire votre nom d'utilisateur");
-				textLabelPass.setToolTipText("S'il vous plaît, introduisez votre mot de passe");
+				textLabelUser.setToolTipText("S'il vous pla�t, introduire votre nom d'utilisateur");
+				textLabelPass.setToolTipText("S'il vous pla�t, introduisez votre mot de passe");
 				btnIngresar.setText("CONNECTER");
 				btnRegistrar.setText("INSCRIVEZ-VOUS");
 				btnRegistrar.setToolTipText("Rapide et facile, INSCRIVEZ-VOUS!");
 				lblNoregistrado.setText("Pas encore inscrit?");
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				//language = "fr";
-		        //country = "FR";
+				language ="fr";
+		        country = "FR";
 			}
 		});
 		
@@ -486,15 +486,15 @@ public class Ingreso extends JPanel{
 				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblPass.setText("PASSWORT:");
 				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
-				textLabelUser.setToolTipText("Bitte, einführen Sie Ihren Benutzernamen");
-				textLabelPass.setToolTipText("Bitte, einführen Sie Ihr Passwort");
+				textLabelUser.setToolTipText("Bitte, einf�hren Sie Ihren Benutzernamen");
+				textLabelPass.setToolTipText("Bitte, einf�hren Sie Ihr Passwort");
 				btnIngresar.setText("ANMELDEN");
 				btnRegistrar.setText("REGISTRIEREN");
 				btnRegistrar.setToolTipText("Schnell und einfach, JETZT REGISTRIEREN!");
 				lblNoregistrado.setText("Noch nicht registriert?");
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				//language = "de";
-		        //country = "DE";
+				language="de";
+		        country="DE";
 			}
 		});
 		
@@ -538,8 +538,8 @@ public class Ingreso extends JPanel{
 				btnRegistrar.setToolTipText("Veloce e facile, REGISTRARE ORA!");
 				lblNoregistrado.setText("Non ancora registrato?");
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				//language = "it";
-		        //country = "IT";
+				language = "it";
+		        country = "IT";
 			}
 		});
 		
@@ -550,14 +550,7 @@ public class Ingreso extends JPanel{
 		frame.getContentPane().add(lblSueco);
 		frame.setVisible(true);
 		
-		JLabel lblRuso = new JLabel("Pусский");
-		lblRuso.setForeground(Color.WHITE);
-		lblRuso.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
-		lblRuso.setBounds(737, 618, 80, 14);
-		frame.getContentPane().add(lblRuso);
-		frame.setVisible(true);
-		
-		lblRuso.addMouseListener(new MouseListener() {
+		lblSueco.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
@@ -577,27 +570,28 @@ public class Ingreso extends JPanel{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				lblBienvenid.setText("Добро пожаловать!");
-				lblUsuario.setText("USER:");
+				lblBienvenid.setText("V�LKOMMEN!");
+				lblUsuario.setText("ANV�NDARE:");
 				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
-				lblPass.setText("PASSWORD:");
+				lblPass.setText("L�SENORD:");
 				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
-				textLabelUser.setToolTipText("Пожалуйста, введите ваше имя пользователя");
-				textLabelPass.setToolTipText("Пожалуйста, введите ваш пароль");
-				btnIngresar.setText("Вход");
-				btnRegistrar.setText("Регистрация");
-				btnRegistrar.setToolTipText("Легкая и быстрая регистрация!");
-				lblNoregistrado.setText("Не зарегестрирован, пока?");
+				textLabelUser.setToolTipText("Skriv ditt anv�ndarnamn");
+				textLabelPass.setToolTipText("Skriv ditt l�senord");
+				btnIngresar.setText("LOGGA IN");
+				btnRegistrar.setText("REGISTRERA");
+				btnRegistrar.setToolTipText("Snabbt och l�tt, REGISTRERA NU!");
+				lblNoregistrado.setText("Inte registrerad �n?");
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				//language = "ru";
-		       // country = "RU";
+				language = "sv";
+		        country = "SE";
+
 			}
 		});
 				
 		textLabelPass.addKeyListener(kl);
 }
 //Getters y Setters para variables language y country
-	/*public String getlanguage() {
+	public String getlanguage() {
 		return language;
 	}
 	public String getcountry() {
@@ -609,5 +603,5 @@ public class Ingreso extends JPanel{
 	}
 	public void setcountry(String country) {
 		this.country = country;
-	}*/
+	}
 }
