@@ -46,8 +46,8 @@ public class Ingreso extends JPanel{
 	private JLabel lblPass;
 	private JLabel lblNoregistrado;
 	
-	//public static String language;
-	//public static String country;
+	public static String language;
+	public static String country;
 	//public ResourceBundle messages;
 	
 
