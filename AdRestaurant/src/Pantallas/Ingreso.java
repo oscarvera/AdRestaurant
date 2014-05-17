@@ -45,8 +45,8 @@ public class Ingreso extends JPanel{
 	private JLabel lblPass;
 	private JLabel lblNoregistrado;
 	
-	private static String language = null;
-	private static String country = null;
+	public static String language;
+	public static String country;
 	
 
 	/**
@@ -63,13 +63,10 @@ public class Ingreso extends JPanel{
 				}
 			}
 		});
-		
-		final String language;
-	    final String country;
 
-	     /* if (args.length != 2) {
-	          language = new String("de");
-	          country = new String("DE");
+	      if (args.length != 2) {
+	          language = "";
+	          country = "";
 	      } else {
 	          language = new String(args[0]);
 	          country = new String(args[1]);
@@ -86,10 +83,7 @@ public class Ingreso extends JPanel{
 	      System.out.println(messages.getString("greetings"));
 	      System.out.println(messages.getString("inquiry"));
 	      System.out.println(messages.getString("farewell"));
-	   }*/
-	    
-	    
-	}
+	   }
 
 	/**
 	 * Create the application.
@@ -320,8 +314,8 @@ public class Ingreso extends JPanel{
 				btnRegistrar.setToolTipText("Fast and easy, REGISTER NOW!");
 				lblNoregistrado.setText("Not Registered yet?");
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				String language = ("en");
-		        String country = new String("US");
+				language = "en";
+		        country = "US";
 
 			}
 		});
@@ -364,8 +358,8 @@ public class Ingreso extends JPanel{
 				btnRegistrar.setToolTipText("Facil y rápido, REGISTRATE AHORA!");
 				lblNoregistrado.setText("¿No estás Registrado?");
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				String language = new String("es");
-		        String country = new String("ES");
+				language = "es";
+		        country = "ES";
 
 			}
 		});
@@ -408,8 +402,8 @@ public class Ingreso extends JPanel{
 				btnRegistrar.setToolTipText("Fàcil y ràpid, REGISTRA'T ARA");
 				lblNoregistrado.setText("No estás Registrat?");
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				String language = new String("ca");
-		        String country = new String("CA");
+				language = "ca";
+		        country = "CA";
 
 			}
 		});
@@ -452,8 +446,8 @@ public class Ingreso extends JPanel{
 				btnRegistrar.setToolTipText("Rapide et facile, INSCRIVEZ-VOUS!");
 				lblNoregistrado.setText("Pas encore inscrit?");
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				String language = new String("fr");
-		        String country = new String("FR");
+				language = "fr";
+		        country = "FR";
 			}
 		});
 		
@@ -495,8 +489,8 @@ public class Ingreso extends JPanel{
 				btnRegistrar.setToolTipText("Schnell und einfach, JETZT REGISTRIEREN!");
 				lblNoregistrado.setText("Noch nicht registriert?");
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				String language = new String("de");
-		        String country = new String("DE");
+				language = "de";
+		        country = "DE";
 			}
 		});
 		
@@ -540,8 +534,8 @@ public class Ingreso extends JPanel{
 				btnRegistrar.setToolTipText("Veloce e facile, REGISTRARE ORA!");
 				lblNoregistrado.setText("Non ancora registrato?");
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				String language = new String("it");
-		        String country = new String("IT");
+				language = "it";
+		        country = "IT";
 			}
 		});
 		
@@ -591,11 +585,11 @@ public class Ingreso extends JPanel{
 				btnRegistrar.setToolTipText("Легкая и быстрая регистрация!");
 				lblNoregistrado.setText("Не зарегестрирован, пока?");
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				
-				String language = new String ("ru");
-		        String country = new String("RU");
+				language = "ru";
+		        country = "RU";
 			}
 		});
+		System.out.println(language);
 		
 		textLabelPass.addKeyListener(kl);
 }
