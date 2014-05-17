@@ -13,6 +13,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,15 +29,25 @@ import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import Clases.Cliente;
+
 import javax.swing.SwingConstants;
 
 public class Ingreso extends JPanel{
+
 
 	private JFrame frame;
 	private JTextField textLabelUser;
 	private JPasswordField textLabelPass;
 	private JButton btnIngresar;
 	private JButton btnRegistrar;
+	private JLabel lblBienvenid;
+	private JLabel lblUsuario;
+	private JLabel lblPass;
+	private JLabel lblNoregistrado;
+	
+	private static String language = null;
+	private static String country = null;
+	
 
 	/**
 	 * Launch the application.
@@ -51,6 +63,32 @@ public class Ingreso extends JPanel{
 				}
 			}
 		});
+		
+		final String language;
+	    final String country;
+
+	     /* if (args.length != 2) {
+	          language = new String("de");
+	          country = new String("DE");
+	      } else {
+	          language = new String(args[0]);
+	          country = new String(args[1]);
+	      }
+
+	      Locale currentLocale;
+	      ResourceBundle messages;
+
+	      currentLocale = new Locale(language, country);
+
+	      messages =
+	        ResourceBundle.getBundle("MessagesBundle",currentLocale);
+
+	      System.out.println(messages.getString("greetings"));
+	      System.out.println(messages.getString("inquiry"));
+	      System.out.println(messages.getString("farewell"));
+	   }*/
+	    
+	    
 	}
 
 	/**
@@ -130,7 +168,7 @@ public class Ingreso extends JPanel{
 
 		btnRegistrar = new JButton("REGISTRATE");
 		btnRegistrar.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-		btnRegistrar.setToolTipText("Facil y r�pido, REGISTRATE AHORA!");
+		btnRegistrar.setToolTipText("Facil y rápido, REGISTRATE AHORA!");
 		btnRegistrar.setBackground(new Color(255, 153, 51));
 		btnRegistrar.setForeground(new Color(255, 255, 255));
 		btnRegistrar.addActionListener(new ActionListener() {
@@ -142,25 +180,26 @@ public class Ingreso extends JPanel{
 		});
 		
 		final JLabel lblNoregistrado = new JLabel("\u00BFNo est\u00E1s Registrado?");
+		lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNoregistrado.setForeground(new Color(255,153,0));
 		lblNoregistrado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 34));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(134)
-					.addComponent(lblNoregistrado, GroupLayout.PREFERRED_SIZE, 363, GroupLayout.PREFERRED_SIZE)
-					.addGap(64)
+					.addContainerGap()
+					.addComponent(lblNoregistrado, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)
+					.addGap(80)
 					.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGap(239))
 		);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
+			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(29)
 					.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
 					.addGap(27))
-				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblNoregistrado, GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
 					.addContainerGap())
@@ -186,7 +225,7 @@ public class Ingreso extends JPanel{
 
 
 		textLabelPass = new JPasswordField();
-		textLabelPass.setToolTipText("Por favor, introduzca su Contrase�a");
+		textLabelPass.setToolTipText("Por favor, introduzca su Contraseña");
 		textLabelPass.setBounds(334, 321, 227, 37);
 		frame.getContentPane().add(textLabelPass);
 
@@ -241,6 +280,8 @@ public class Ingreso extends JPanel{
 		lblNewLabel.setBounds(107, 72, 680, 110);
 		frame.getContentPane().add(lblNewLabel);
 		
+
+		
 		JLabel lblIngles = new JLabel("English");
 		lblIngles.setForeground(Color.WHITE);
 		lblIngles.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
@@ -278,8 +319,9 @@ public class Ingreso extends JPanel{
 				btnRegistrar.setText("REGISTER");
 				btnRegistrar.setToolTipText("Fast and easy, REGISTER NOW!");
 				lblNoregistrado.setText("Not Registered yet?");
-				String language = new String("en");
-		          String country = new String("US");
+				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
+				String language = ("en");
+		        String country = new String("US");
 
 			}
 		});
@@ -313,16 +355,17 @@ public class Ingreso extends JPanel{
 				lblBienvenid.setText("BIENVENID@!");
 				lblUsuario.setText("USUARIO:");
 				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
-				lblPass.setText("CONTRASE�A:");
+				lblPass.setText("CONTRASEÑA:");
 				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
 				textLabelUser.setToolTipText("Por favor, introduzca su Nombre de Usuario");
-				textLabelPass.setToolTipText("Por favor, introduzca su Contrase�a");
+				textLabelPass.setToolTipText("Por favor, introduzca su Contraseña");
 				btnIngresar.setText("INGRESAR");
 				btnRegistrar.setText("REGISTRATE");
-				btnRegistrar.setToolTipText("Facil y r�pido, REGISTRATE AHORA!");
-				lblNoregistrado.setText("�No est�s Registrado?");
+				btnRegistrar.setToolTipText("Facil y rápido, REGISTRATE AHORA!");
+				lblNoregistrado.setText("¿No estás Registrado?");
+				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 				String language = new String("es");
-		          String country = new String("ES");
+		        String country = new String("ES");
 
 			}
 		});
@@ -362,10 +405,11 @@ public class Ingreso extends JPanel{
 				textLabelPass.setToolTipText("Per favor, introdueixi la seva Contrasenya");
 				btnIngresar.setText("INGRESSA");
 				btnRegistrar.setText("REGISTRA'T");
-				btnRegistrar.setToolTipText("F�cil y r�pid, REGISTRA'T ARA");
-				lblNoregistrado.setText("No est�s Registrat?");
+				btnRegistrar.setToolTipText("Fàcil y ràpid, REGISTRA'T ARA");
+				lblNoregistrado.setText("No estás Registrat?");
+				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 				String language = new String("ca");
-		          String country = new String("CA");
+		        String country = new String("CA");
 
 			}
 		});
@@ -401,14 +445,15 @@ public class Ingreso extends JPanel{
 				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblPass.setText("MOT DE PASSE:");
 				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
-				textLabelUser.setToolTipText("S'il vous pla�t, introduire votre nom d'utilisateur");
-				textLabelPass.setToolTipText("S'il vous pla�t, introduisez votre mot de passe");
+				textLabelUser.setToolTipText("S'il vous plaît, introduire votre nom d'utilisateur");
+				textLabelPass.setToolTipText("S'il vous plaît, introduisez votre mot de passe");
 				btnIngresar.setText("CONNECTER");
 				btnRegistrar.setText("INSCRIVEZ-VOUS");
 				btnRegistrar.setToolTipText("Rapide et facile, INSCRIVEZ-VOUS!");
 				lblNoregistrado.setText("Pas encore inscrit?");
+				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 				String language = new String("fr");
-		          String country = new String("FR");
+		        String country = new String("FR");
 			}
 		});
 		
@@ -443,14 +488,15 @@ public class Ingreso extends JPanel{
 				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblPass.setText("PASSWORT:");
 				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
-				textLabelUser.setToolTipText("Bitte, einf�hren Sie Ihren Benutzernamen");
-				textLabelPass.setToolTipText("Bitte, einf�hren Sie Ihr Passwort");
+				textLabelUser.setToolTipText("Bitte, einführen Sie Ihren Benutzernamen");
+				textLabelPass.setToolTipText("Bitte, einführen Sie Ihr Passwort");
 				btnIngresar.setText("ANMELDEN");
 				btnRegistrar.setText("REGISTRIEREN");
 				btnRegistrar.setToolTipText("Schnell und einfach, JETZT REGISTRIEREN!");
 				lblNoregistrado.setText("Noch nicht registriert?");
+				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 				String language = new String("de");
-		          String country = new String("DE");
+		        String country = new String("DE");
 			}
 		});
 		
@@ -493,8 +539,9 @@ public class Ingreso extends JPanel{
 				btnRegistrar.setText("ISCRIVERE");
 				btnRegistrar.setToolTipText("Veloce e facile, REGISTRARE ORA!");
 				lblNoregistrado.setText("Non ancora registrato?");
+				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 				String language = new String("it");
-		          String country = new String("IT");
+		        String country = new String("IT");
 			}
 		});
 		
@@ -505,8 +552,65 @@ public class Ingreso extends JPanel{
 		frame.getContentPane().add(lblSueco);
 		frame.setVisible(true);
 		
+		JLabel lblRuso = new JLabel("Pусский");
+		lblRuso.setForeground(Color.WHITE);
+		lblRuso.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
+		lblRuso.setBounds(737, 618, 80, 14);
+		frame.getContentPane().add(lblRuso);
+		frame.setVisible(true);
 		
+		lblRuso.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				lblBienvenid.setText("Добро пожаловать!");
+				lblUsuario.setText("USER:");
+				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
+				lblPass.setText("PASSWORD:");
+				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
+				textLabelUser.setToolTipText("Пожалуйста, введите ваше имя пользователя");
+				textLabelPass.setToolTipText("Пожалуйста, введите ваш пароль");
+				btnIngresar.setText("Вход");
+				btnRegistrar.setText("Регистрация");
+				btnRegistrar.setToolTipText("Легкая и быстрая регистрация!");
+				lblNoregistrado.setText("Не зарегестрирован, пока?");
+				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
+				
+				String language = new String ("ru");
+		        String country = new String("RU");
+			}
+		});
 		
 		textLabelPass.addKeyListener(kl);
 }
+//Getters y Setters para variables language y country
+	public String getlanguage() {
+		return language;
+	}
+	public String getcountry() {
+		return country;
+	}
+
+	public void setlanguage(String language) {
+		this.language = language;
+	}
+	public void setcountry(String country) {
+		this.country = country;
+	}
 }
