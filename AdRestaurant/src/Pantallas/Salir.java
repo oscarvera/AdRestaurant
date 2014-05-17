@@ -13,6 +13,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ResourceBundle;
+import java.util.ResourceBundle.Control;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -35,6 +37,8 @@ public class Salir extends JPanel{
 	private JButton btnSi;
 	private JButton btnNo;
 	Cliente clie;
+	ResourceBundle messages;
+	 
 
 	/**
 	 * Launch the application.
@@ -66,9 +70,11 @@ public class Salir extends JPanel{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
+		Control currentLocale = null;
+		messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
 		
 		
-		JLabel lblSalir = new JLabel("\u00BFSeguro que desea SALIR?");
+		JLabel lblSalir = new JLabel(messages.getString("\u00BFSeguro que desea SALIR?"));
 		lblSalir.setBounds(276, 291, 343, 64);
 		lblSalir.setForeground(new Color(255, 255, 255));
 		lblSalir.setBackground(new Color(255, 255, 0));
@@ -82,7 +88,7 @@ public class Salir extends JPanel{
 		
 	
 		
-		btnNo = new JButton("NO");
+		btnNo = new JButton(messages.getString("NO"));
 		btnNo.setBounds(449, 385, 267, 53);
 		frame.getContentPane().add(btnNo);
 		btnNo.setBackground(new Color(255, 255, 255));
@@ -100,7 +106,7 @@ public class Salir extends JPanel{
 		});
 		frame.setVisible(true);
 		
-		btnSi = new JButton("SI");
+		btnSi = new JButton(messages.getString("SI"));
 		btnSi.setBounds(173, 385, 277, 53);
 		frame.getContentPane().add(btnSi);
 		btnSi.setBackground(new Color(255, 255, 255));

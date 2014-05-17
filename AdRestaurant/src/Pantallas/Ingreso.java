@@ -15,6 +15,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.ResourceBundle.Control;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -47,6 +48,7 @@ public class Ingreso extends JPanel{
 	
 	public static String language;
 	public static String country;
+	public ResourceBundle messages;
 	
 
 	/**
@@ -65,8 +67,8 @@ public class Ingreso extends JPanel{
 		});
 
 	      if (args.length != 2) {
-	          language = "";
-	          country = "";
+	          language = "en";
+	          country = "US";
 	      } else {
 	          language = new String(args[0]);
 	          country = new String(args[1]);
@@ -77,8 +79,7 @@ public class Ingreso extends JPanel{
 
 	      currentLocale = new Locale(language, country);
 
-	      messages =
-	        ResourceBundle.getBundle("MessagesBundle",currentLocale);
+	      messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
 
 	      System.out.println(messages.getString("greetings"));
 	      System.out.println(messages.getString("inquiry"));
@@ -106,6 +107,8 @@ public class Ingreso extends JPanel{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
+		Control currentLocale = null;
+		messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
 
 
 		final JLabel lblBienvenid = new JLabel("BIENVENID@!");
