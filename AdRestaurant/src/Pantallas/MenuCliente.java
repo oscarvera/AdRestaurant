@@ -21,6 +21,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import Clases.Cliente;
 import Clases.Restaurante;
@@ -30,13 +32,15 @@ public class MenuCliente {
 	private JFrame frame;
 	Cliente clie;
 	Restaurante restaurante;
-	
+	static Locale currentLocale;
+    static ResourceBundle messages;
 
 	/**
 	 * Create the application.
 	 */
-	public MenuCliente(Cliente clie) {
+	public MenuCliente(Cliente clie, ResourceBundle messages) {
 		this.clie=clie;
+		this.messages=messages;
 		initialize();
 	}
 
@@ -63,7 +67,7 @@ public class MenuCliente {
 		JButton btnBuscarRestaurante = new JButton("Buscar Restaurante");
 		btnBuscarRestaurante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				BuscarRestaurante busRest=new BuscarRestaurante(clie);
+				BuscarRestaurante busRest=new BuscarRestaurante(clie, messages);
 				frame.dispose();
 			}
 		});
@@ -73,7 +77,7 @@ public class MenuCliente {
 		JButton button = new JButton("New button");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Comentarios comen=new Comentarios(clie);
+				Comentarios comen=new Comentarios(clie, messages);
 				frame.dispose();
 			}
 		});
@@ -83,7 +87,7 @@ public class MenuCliente {
 		JButton button_1 = new JButton("New button");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ptnBuscarReservas reser=new ptnBuscarReservas();
+				ptnBuscarReservas reser=new ptnBuscarReservas(messages);
 				frame.dispose();
 			}
 		});
@@ -94,7 +98,7 @@ public class MenuCliente {
 		btnPerfilCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				restaurante=new Restaurante("pass", "Foster's Hollywood" ,"Americano", 660235656, "Centro comercial Aqua", "Valencia", "Valencia", "46022", true);
-				ptnRestaurante ptnrest=new ptnRestaurante(clie, restaurante);
+				ptnRestaurante ptnrest=new ptnRestaurante(clie, restaurante, messages);
 				frame.dispose();
 			}
 		});

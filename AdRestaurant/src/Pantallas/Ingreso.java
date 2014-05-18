@@ -210,7 +210,7 @@ public class Ingreso extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				final Cliente clie;
 				clie=new Clases.Cliente(textLabelUser.getText());
-				MenuCliente menuclie=new MenuCliente(clie);
+				MenuCliente menuclie=new MenuCliente(clie, messages);
 				frame.dispose();
 
 			}

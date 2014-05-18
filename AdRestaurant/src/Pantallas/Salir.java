@@ -105,7 +105,7 @@ public class Salir extends JPanel{
 		btnNo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(clie!=null){
-				MenuCliente menucliente=new MenuCliente(clie);
+				MenuCliente menucliente=new MenuCliente(clie, messages);
 				frame.dispose();
 			}else{
 				Ingreso ingreso=new Ingreso();

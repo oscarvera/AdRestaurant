@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -29,11 +31,14 @@ public class Comentarios extends JFrame {
 	private JPanel contentPane;
 	private JFrame frame;
 	Cliente clie;
+	static Locale currentLocale;
+    static ResourceBundle messages;
 
 	/**
 	 * Create the frame.
 	 */
-	public Comentarios( final Cliente clie) {
+	public Comentarios( final Cliente clie, final ResourceBundle messages) {
+		this.messages=messages;
 		this.clie=clie;
 		frame = new JFrame();		
 		frame.setResizable(false);
@@ -99,18 +104,18 @@ public class Comentarios extends JFrame {
 		lblnomUser.setBounds(623, 21, 128, 64);
 		frame.getContentPane().add(lblnomUser);
 		
-		JLabel lblTusComentarios = new JLabel("Tus Comentarios");
+		JLabel lblTusComentarios = new JLabel(messages.getString("TusComentarios"));
 		lblTusComentarios.setForeground(Color.WHITE);
 		lblTusComentarios.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblTusComentarios.setBackground(Color.YELLOW);
 		lblTusComentarios.setBounds(379, 21, 140, 64);
 		frame.getContentPane().add(lblTusComentarios);
 		
-		JButton btnMenuPrincipal = new JButton("Volver al men\u00FA principal");
+		JButton btnMenuPrincipal = new JButton(messages.getString("VolverMenuPrincipal"));
 		btnMenuPrincipal.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MenuCliente mencli=new MenuCliente(clie);
+				MenuCliente mencli=new MenuCliente(clie, messages);
 				frame.dispose();
 			}
 		});
@@ -119,7 +124,7 @@ public class Comentarios extends JFrame {
 		btnMenuPrincipal.setBounds(10, 612, 171, 23);
 		frame.getContentPane().add(btnMenuPrincipal);
 		
-		JButton btnCerrarSesion = new JButton("Cerrar Sesi\u00F3n");
+		JButton btnCerrarSesion = new JButton(messages.getString("CerrarSesion"));
 		btnCerrarSesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

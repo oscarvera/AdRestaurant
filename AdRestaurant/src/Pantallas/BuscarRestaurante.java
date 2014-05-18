@@ -13,6 +13,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -49,12 +51,16 @@ public class BuscarRestaurante extends JFrame{
 	private JButton btnXNombre;
 	private JButton btnXCP;
 	private JButton btnXTipo;
+	
+	static Locale currentLocale;
+    static ResourceBundle messages;
 
 	/**
 	 * Create the application.
 	 */
 	//Constructor. Recibe un objeto cliente.
-	public BuscarRestaurante(Cliente clie ) {
+	public BuscarRestaurante(Cliente clie, ResourceBundle messages) {
+		this.messages=messages;
 		this.clie=clie;
 		initialize();
 	}
@@ -120,7 +126,7 @@ public class BuscarRestaurante extends JFrame{
 			}
 		});
 		
-		JButton btnBuscar = new JButton("BUSCAR");
+		JButton btnBuscar = new JButton(messages.getString("BUSCAR"));
 		btnBuscar.setBounds(10, 241, 187, 43);
 		btnBuscar.setForeground(new Color(255, 153, 0));
 		btnBuscar.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
@@ -154,8 +160,8 @@ public class BuscarRestaurante extends JFrame{
 			
 			@Override
 			public void focusLost(FocusEvent arg0) {
-				if(textNombre.getText().compareTo("Nombre")==0||textNombre.getText().isEmpty()){
-					textNombre.setText("Nombre");
+				if(textNombre.getText().compareTo(messages.getString("Nombre1"))==0||textNombre.getText().isEmpty()){
+					textNombre.setText(messages.getString("Nombre1"));
 					textNombre.setForeground(Color.LIGHT_GRAY);
 					panel_1.remove(btnXNombre);
 					panel_1.repaint();
@@ -164,7 +170,7 @@ public class BuscarRestaurante extends JFrame{
 			
 			@Override
 			public void focusGained(FocusEvent arg0) {
-				if(textNombre.getText().compareTo("Nombre")==0||textNombre.getText().isEmpty()){
+				if(textNombre.getText().compareTo(messages.getString("Nombre1"))==0||textNombre.getText().isEmpty()){
 					textNombre.setText("");
 					textNombre.setForeground(new Color(255, 153, 51));
 					}
@@ -193,8 +199,8 @@ public class BuscarRestaurante extends JFrame{
 			
 			@Override
 			public void focusLost(FocusEvent arg0) {
-				if(textDireccion.getText().compareTo("Dirección")==0||textDireccion.getText().isEmpty()){
-					textDireccion.setText("Dirección");
+				if(textDireccion.getText().compareTo(messages.getString("Direccion1"))==0||textDireccion.getText().isEmpty()){
+					textDireccion.setText(messages.getString("Direccion1"));
 					textDireccion.setForeground(Color.LIGHT_GRAY);
 					panel_1.remove(btnXDireccion);
 					panel_1.repaint();
@@ -203,7 +209,7 @@ public class BuscarRestaurante extends JFrame{
 			
 			@Override
 			public void focusGained(FocusEvent arg0) {
-				if(textDireccion.getText().compareTo("Dirección")==0||textDireccion.getText().isEmpty()){
+				if(textDireccion.getText().compareTo(messages.getString("Direccion1"))==0||textDireccion.getText().isEmpty()){
 					textDireccion.setText("");
 					textDireccion.setForeground(new Color(255, 153, 51));
 					}
@@ -232,8 +238,8 @@ public class BuscarRestaurante extends JFrame{
 					
 					@Override
 					public void focusLost(FocusEvent arg0) {
-						if(textCP.getText().compareTo("Código Postal")==0||textCP.getText().isEmpty()){
-							textCP.setText("Código Postal");
+						if(textCP.getText().compareTo(messages.getString("CP1"))==0||textCP.getText().isEmpty()){
+							textCP.setText(messages.getString("CP1"));
 							textCP.setForeground(Color.LIGHT_GRAY);
 							panel_1.remove(btnXCP);
 							panel_1.repaint();
@@ -242,7 +248,7 @@ public class BuscarRestaurante extends JFrame{
 					
 					@Override
 					public void focusGained(FocusEvent arg0) {
-						if(textCP.getText().compareTo("Código Postal")==0||textCP.getText().isEmpty()){
+						if(textCP.getText().compareTo(messages.getString("CP1"))==0||textCP.getText().isEmpty()){
 							textCP.setText("");
 							textCP.setForeground(new Color(255, 153, 51));
 							}
@@ -273,7 +279,7 @@ public class BuscarRestaurante extends JFrame{
 		textNombre = new JTextField();
 		textNombre.setBackground(new Color(255, 255, 255));
 		textNombre.setBounds(10, 28, 165, 46);
-		textNombre.setText("Nombre");
+		textNombre.setText(messages.getString("Nombre1"));
 		textNombre.setForeground(Color.LIGHT_GRAY);
 		textNombre.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		textNombre.setColumns(10);
@@ -286,7 +292,7 @@ public class BuscarRestaurante extends JFrame{
 		
 		textDireccion = new JTextField();
 		textDireccion.setBounds(10, 80, 165, 46);
-		textDireccion.setText("Direcci\u00F3n");
+		textDireccion.setText(messages.getString("Direccion1"));
 		textDireccion.setForeground(Color.LIGHT_GRAY);
 		textDireccion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		textDireccion.setColumns(10);
@@ -296,7 +302,7 @@ public class BuscarRestaurante extends JFrame{
 		
 		textCP = new JTextField();
 		textCP.setBounds(10, 132, 165, 46);
-		textCP.setText("C\u00F3digo Postal");
+		textCP.setText(messages.getString("CP1"));
 		textCP.setForeground(Color.LIGHT_GRAY);
 		textCP.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		textCP.setColumns(10);
@@ -314,13 +320,13 @@ public class BuscarRestaurante extends JFrame{
 		comboTipo.addItemListener(itemLisTipo);
 		
 		
-		JLabel lblOtrasBusquedas = new JLabel("Otras b\u00FAsquedas");
+		JLabel lblOtrasBusquedas = new JLabel(messages.getString("OtrasBusquedas"));
 		lblOtrasBusquedas.setBounds(10, 285, 190, 64);
 		lblOtrasBusquedas.setForeground(new Color(255, 153, 51));
 		lblOtrasBusquedas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblOtrasBusquedas.setBackground(Color.YELLOW);
 		
-		JButton btnMejorValorado = new JButton("Mejor Valorado");
+		JButton btnMejorValorado = new JButton(messages.getString("MejorValorado"));
 		btnMejorValorado.setBounds(20, 351, 165, 43);
 		btnMejorValorado.setForeground(new Color(255, 153, 0));
 		btnMejorValorado.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
@@ -330,7 +336,7 @@ public class BuscarRestaurante extends JFrame{
 		btnXNombre = new JButton("");
 		btnXNombre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				textNombre.setText("Nombre");
+				textNombre.setText(messages.getString("Nombre1"));
 				textNombre.setForeground(Color.LIGHT_GRAY);
 				panel_1.requestFocus();
 				panel_1.remove(btnXNombre);
@@ -353,7 +359,7 @@ public class BuscarRestaurante extends JFrame{
 		panel_1.add(btnMejorValorado);
 		panel_1.add(lblOtrasBusquedas);
 		
-		JButton btnNuevos = new JButton("Nuevos");
+		JButton btnNuevos = new JButton(messages.getString("Nuevos"));
 		btnNuevos.setForeground(new Color(255, 153, 0));
 		btnNuevos.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
 		btnNuevos.setBackground(Color.WHITE);
@@ -363,7 +369,7 @@ public class BuscarRestaurante extends JFrame{
 		btnXDireccion = new JButton("");
 		btnXDireccion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				textDireccion.setText("Dirección");
+				textDireccion.setText(messages.getString("Direccion1"));
 				textDireccion.setForeground(Color.LIGHT_GRAY);
 				panel_1.requestFocus();
 				panel_1.remove(btnXDireccion);
@@ -380,7 +386,7 @@ public class BuscarRestaurante extends JFrame{
 		btnXCP = new JButton("");
 		btnXCP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textCP.setText("Código Postal");
+				textCP.setText(messages.getString("CP1"));
 				textCP.setForeground(Color.LIGHT_GRAY);
 				panel_1.requestFocus();
 				panel_1.remove(btnXCP);
@@ -424,18 +430,18 @@ public class BuscarRestaurante extends JFrame{
 		lblnomUser.setBounds(637, 22, 110, 64);
 		frame.getContentPane().add(lblnomUser);
 		
-		JLabel lblBuscarRestaurante = new JLabel("Buscar Restaurante");
+		JLabel lblBuscarRestaurante = new JLabel(messages.getString("BuscarRestaurante"));
 		lblBuscarRestaurante.setForeground(Color.WHITE);
 		lblBuscarRestaurante.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBuscarRestaurante.setBackground(Color.YELLOW);
 		lblBuscarRestaurante.setBounds(380, 22, 162, 64);
 		frame.getContentPane().add(lblBuscarRestaurante);
 		
-		JButton btnMenuPrincipal = new JButton("Volver al men\u00FA principal");
+		JButton btnMenuPrincipal = new JButton(messages.getString("VolverMenuPrincipal"));
 		btnMenuPrincipal.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MenuCliente menuclie=new MenuCliente(clie);
+				MenuCliente menuclie=new MenuCliente(clie, messages);
 				frame.dispose();
 			}
 		});
@@ -444,7 +450,7 @@ public class BuscarRestaurante extends JFrame{
 		btnMenuPrincipal.setBounds(24, 601, 171, 23);
 		frame.getContentPane().add(btnMenuPrincipal);
 		
-		JButton btnCerrarSesion = new JButton("Cerrar Sesi\u00F3n");
+		JButton btnCerrarSesion = new JButton(messages.getString("CerrarSesion"));
 		btnCerrarSesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

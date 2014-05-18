@@ -28,6 +28,8 @@ import javax.swing.SpinnerDateModel;
 
 import java.util.Date;
 import java.util.Calendar;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.SpinnerNumberModel;
 public class ptnCrearReserva extends JFrame {
@@ -35,6 +37,8 @@ public class ptnCrearReserva extends JFrame {
 	private JFrame frame;
 	Cliente clie;
 	Restaurante rest;
+	static Locale currentLocale;
+	static ResourceBundle messages;
 	
 
 	/**
@@ -45,9 +49,10 @@ public class ptnCrearReserva extends JFrame {
 	/**
 	 * Create the frame. 
 	 */
-	public ptnCrearReserva(final Cliente clie, final Restaurante rest) {
+	public ptnCrearReserva(final Cliente clie, final Restaurante rest, final ResourceBundle messages) {
 		this.clie=clie;
 		this.rest=rest;
+		this.messages=messages;
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(255, 153, 0));
@@ -65,7 +70,7 @@ public class ptnCrearReserva extends JFrame {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblReservaEn = new JLabel("Reserva en:");
+		JLabel lblReservaEn = new JLabel(messages.getString("ReservaEn"));
 		lblReservaEn.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblReservaEn.setForeground(Color.LIGHT_GRAY);
 		lblReservaEn.setFont(new Font("Fira Sans OT", Font.PLAIN, 23));
@@ -79,7 +84,7 @@ public class ptnCrearReserva extends JFrame {
 		textRestaurante.setBounds(256, 48, 606, 41);
 		panel.add(textRestaurante);
 		
-		JLabel lblRealizada = new JLabel("Realizada por:");
+		JLabel lblRealizada = new JLabel(messages.getString("RealizadaPor"));
 		lblRealizada.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblRealizada.setForeground(Color.LIGHT_GRAY);
 		lblRealizada.setFont(new Font("Fira Sans OT", Font.PLAIN, 23));
@@ -107,14 +112,14 @@ public class ptnCrearReserva extends JFrame {
 		lblnomUser.setBounds(599, 18, 128, 64);
 		frame.getContentPane().add(lblnomUser);
 		
-		JLabel lblBienvenido = new JLabel("Nueva Reserva");
+		JLabel lblBienvenido = new JLabel(messages.getString("NuevaReserva"));
 		lblBienvenido.setForeground(Color.WHITE);
 		lblBienvenido.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBienvenido.setBackground(Color.YELLOW);
 		lblBienvenido.setBounds(384, 19, 119, 64);
 		frame.getContentPane().add(lblBienvenido);
 		
-		JButton btnCerrarsesion = new JButton("Cerrar Sesi\u00F3n");
+		JButton btnCerrarsesion = new JButton(messages.getString("CerrarSesion"));
 		btnCerrarsesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnCerrarsesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -127,10 +132,10 @@ public class ptnCrearReserva extends JFrame {
 		btnCerrarsesion.setBounds(737, 40, 128, 23);
 		frame.getContentPane().add(btnCerrarsesion);
 		
-		JButton button = new JButton("Volver al men\u00FA principal");
+		JButton button = new JButton(messages.getString("VolverMenuPrincipal"));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MenuCliente menuclie=new MenuCliente(clie);
+				MenuCliente menuclie=new MenuCliente(clie, messages);
  				frame.dispose();
 			}
 		});
@@ -146,7 +151,7 @@ public class ptnCrearReserva extends JFrame {
 		frame.getContentPane().add(panel_3);
 		panel_3.setLayout(null);
 		
-		JLabel lblPersonas = new JLabel("Personas:");
+		JLabel lblPersonas = new JLabel(messages.getString("Personas"));
 		lblPersonas.setBounds(12, 52, 218, 22);
 		lblPersonas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPersonas.setForeground(Color.LIGHT_GRAY);
@@ -162,7 +167,7 @@ public class ptnCrearReserva extends JFrame {
 		panel_1.setBounds(326, 334, 242, 202);
 		frame.getContentPane().add(panel_1);
 		
-		JLabel lblHora = new JLabel("Hora:");
+		JLabel lblHora = new JLabel(messages.getString("Hora"));
 		lblHora.setBounds(12, 56, 218, 22);
 		lblHora.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHora.setForeground(Color.LIGHT_GRAY);
@@ -189,7 +194,7 @@ public class ptnCrearReserva extends JFrame {
 		panel_2.setBounds(32, 334, 242, 202);
 		frame.getContentPane().add(panel_2);
 		
-		JLabel lblFecha = new JLabel("Fecha:");
+		JLabel lblFecha = new JLabel(messages.getString("Fecha"));
 		lblFecha.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFecha.setForeground(Color.LIGHT_GRAY);
 		lblFecha.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
@@ -230,31 +235,31 @@ public class ptnCrearReserva extends JFrame {
 		);
 		panel_2.setLayout(gl_panel_2);
 		
-		JLabel lblfecha = new JLabel("1.Fecha");
+		JLabel lblfecha = new JLabel(messages.getString("1.Fecha"));
 		lblfecha.setHorizontalAlignment(SwingConstants.CENTER);
 		lblfecha.setForeground(new Color(255, 255, 255));
 		lblfecha.setFont(new Font("Fira Sans OT", Font.PLAIN, 30));
 		lblfecha.setBounds(39, 291, 229, 36);
 		frame.getContentPane().add(lblfecha);
 		
-		JLabel lblhora = new JLabel("2.Hora");
+		JLabel lblhora = new JLabel(messages.getString("2.Hora"));
 		lblhora.setHorizontalAlignment(SwingConstants.CENTER);
 		lblhora.setForeground(Color.WHITE);
 		lblhora.setFont(new Font("Fira Sans OT", Font.PLAIN, 30));
 		lblhora.setBounds(333, 291, 229, 36);
 		frame.getContentPane().add(lblhora);
 		
-		JLabel lblpersonas = new JLabel("3.Personas");
+		JLabel lblpersonas = new JLabel(messages.getString("3.Personas"));
 		lblpersonas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblpersonas.setForeground(Color.WHITE);
 		lblpersonas.setFont(new Font("Fira Sans OT", Font.PLAIN, 30));
 		lblpersonas.setBounds(624, 291, 229, 36);
 		frame.getContentPane().add(lblpersonas);
 		
-		JButton btnNewButton = new JButton("Reservar");
+		JButton btnNewButton = new JButton(messages.getString("Reservar"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ptnReservaCompletada compl=new ptnReservaCompletada(clie);
+				ptnReservaCompletada compl=new ptnReservaCompletada(clie, messages);
 				frame.dispose();
 				//Comprobar campos
 				

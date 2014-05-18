@@ -9,6 +9,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
@@ -25,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 
 import Clases.Cliente;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -42,7 +45,11 @@ import javax.swing.border.LineBorder;
  	private JButton btnXCP;
  	private JButton btnXTipo;
  	
- public ptnBuscarReservas(){
+ 	static Locale currentLocale;
+    static ResourceBundle messages;
+ 	
+ public ptnBuscarReservas(ResourceBundle messages){
+	 this.messages=messages;
  	initialize();
  }
  	
@@ -71,7 +78,7 @@ import javax.swing.border.LineBorder;
  		panel_1.setBorder(new MatteBorder(0, 0, 0, 4, (Color) new Color(255, 153, 51)));
  		panel_1.setBackground(Color.WHITE);
  		
- 		JButton btnBuscar = new JButton("BUSCAR");
+ 		JButton btnBuscar = new JButton(messages.getString("BUSCAR"));
  		btnBuscar.setBounds(10, 274, 187, 43);
  		btnBuscar.setForeground(new Color(255, 153, 0));
  		btnBuscar.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
@@ -105,8 +112,8 @@ import javax.swing.border.LineBorder;
  			
  			@Override
  			public void focusLost(FocusEvent arg0) {
- 				if(textNombreRest.getText().compareTo("Nombre Restaurante")==0||textNombreRest.getText().isEmpty()){
- 					textNombreRest.setText("Nombre Restaurante");
+ 				if(textNombreRest.getText().compareTo((messages.getString("NombreRestaurante")))==0||textNombreRest.getText().isEmpty()){
+ 					textNombreRest.setText(messages.getString("NombreRestaurante"));
  					textNombreRest.setForeground(Color.LIGHT_GRAY);
  					panel_1.remove(btnXNombre);
  					panel_1.repaint();
@@ -145,7 +152,7 @@ import javax.swing.border.LineBorder;
  			@Override
  			public void focusLost(FocusEvent arg0) {
  				if(textFecha.getText().compareTo("Fecha")==0||textFecha.getText().isEmpty()){
- 					textFecha.setText("Fecha");
+ 					textFecha.setText(messages.getString("Fecha"));
  					textFecha.setForeground(Color.LIGHT_GRAY);
  					panel_1.remove(btnXFecha);
  					panel_1.repaint();
@@ -188,7 +195,7 @@ import javax.swing.border.LineBorder;
  		textNombreRest = new JTextField();
  		textNombreRest.setBackground(new Color(255, 255, 255));
  		textNombreRest.setBounds(10, 145, 165, 46);
- 		textNombreRest.setText("Nombre Restaurante");
+ 		textNombreRest.setText(messages.getString("NombreRestaurante"));
  		textNombreRest.setForeground(Color.LIGHT_GRAY);
  		textNombreRest.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
  		textNombreRest.setColumns(10);
@@ -201,7 +208,7 @@ import javax.swing.border.LineBorder;
  		
  		textFecha = new JTextField();
  		textFecha.setBounds(10, 197, 165, 46);
- 		textFecha.setText("Fecha");
+ 		textFecha.setText(messages.getString("Fecha"));
  		textFecha.setForeground(Color.LIGHT_GRAY);
  		textFecha.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
  		textFecha.setColumns(10);
@@ -213,7 +220,7 @@ import javax.swing.border.LineBorder;
  		btnXNombre = new JButton("");
  		btnXNombre.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent arg0) {
- 				textNombreRest.setText("Nombre");
+ 				textNombreRest.setText(messages.getString("Nombre"));
  				textNombreRest.setForeground(Color.LIGHT_GRAY);
  				panel_1.requestFocus();
  				panel_1.remove(btnXNombre);
@@ -235,7 +242,7 @@ import javax.swing.border.LineBorder;
  		btnXFecha = new JButton("");
  		btnXFecha.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent arg0) {
- 				textFecha.setText("Dirección");
+ 				textFecha.setText(messages.getString("Direccion"));
  				textFecha.setForeground(Color.LIGHT_GRAY);
  				panel_1.requestFocus();
  				panel_1.remove(btnXFecha);
@@ -298,18 +305,18 @@ import javax.swing.border.LineBorder;
  		lblnomUser.setBounds(635, 11, 110, 64);
  		frame.getContentPane().add(lblnomUser);
  		
- 		JLabel lblBuscarReservas = new JLabel("Buscar Reservas");
+ 		JLabel lblBuscarReservas = new JLabel(messages.getString("BuscarReservas"));
  		lblBuscarReservas.setForeground(Color.WHITE);
  		lblBuscarReservas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
  		lblBuscarReservas.setBackground(Color.YELLOW);
  		lblBuscarReservas.setBounds(379, 11, 162, 64);
  		frame.getContentPane().add(lblBuscarReservas);
  		
- 		JButton btnMenuPrincipal = new JButton("Volver al men\u00FA principal");
+ 		JButton btnMenuPrincipal = new JButton(messages.getString("VolverMenuPrincipal"));
  		btnMenuPrincipal.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
  		btnMenuPrincipal.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent e) {
- 				MenuCliente menuclie=new MenuCliente(clie);
+ 				MenuCliente menuclie=new MenuCliente(clie, messages);
  				frame.dispose();
  			}
  		});
@@ -318,7 +325,7 @@ import javax.swing.border.LineBorder;
  		btnMenuPrincipal.setBounds(24, 594, 171, 23);
  		frame.getContentPane().add(btnMenuPrincipal);
  		
- 		JButton btnCerrarSesion = new JButton("Cerrar Sesi\u00F3n");
+ 		JButton btnCerrarSesion = new JButton(messages.getString("CerrarSesion"));
  		btnCerrarSesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
  		btnCerrarSesion.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent arg0) {

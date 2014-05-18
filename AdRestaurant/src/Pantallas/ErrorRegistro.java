@@ -20,6 +20,8 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.RowSpec;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ErrorRegistro extends JDialog {
 
@@ -86,6 +88,10 @@ public class ErrorRegistro extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnOK = new JButton("OK");
+				btnOK.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+					}
+				});
 				btnOK.setForeground(Color.WHITE);
 				btnOK.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 				btnOK.setBackground(new Color(255, 153, 51));
@@ -93,21 +99,14 @@ public class ErrorRegistro extends JDialog {
 			}
 			{
 				JButton btnCancel = new JButton("Cancel");
+				btnCancel.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+					}
+				});
 				buttonPane.add(btnCancel);
 				btnCancel.setForeground(Color.WHITE);
 				btnCancel.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 				btnCancel.setBackground(new Color(255, 153, 51));
-			}
-			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
 			}
 		}
 	}

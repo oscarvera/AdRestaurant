@@ -4,6 +4,8 @@ import java.awt.Dialog.ModalExclusionType;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,14 +19,17 @@ import Clases.Cliente;
 
 public class ptnReservaCompletada extends JPanel{
 	Cliente clie;
+	static Locale currentLocale;
+	static ResourceBundle messages;
 	
 	private JFrame frame;
 	/**
 	 * Create the application.
 	 */
-	public ptnReservaCompletada(Cliente clie) {
-		initialize();
+	public ptnReservaCompletada(Cliente clie, ResourceBundle messages) {
+		this.messages=messages;
 		this.clie=clie;
+		initialize();
 	}
 
 	/**
@@ -48,27 +53,27 @@ public class ptnReservaCompletada extends JPanel{
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel ReservaCompleta = new JLabel("\u00A1Reserva completada!");
+		JLabel ReservaCompleta = new JLabel(messages.getString("ReservaCompletada"));
 		ReservaCompleta.setForeground(new Color(255, 153, 0));
 		ReservaCompleta.setHorizontalAlignment(SwingConstants.CENTER);
 		ReservaCompleta.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 39));
 		ReservaCompleta.setBounds(0, 45, 895, 44);
 		panel.add(ReservaCompleta);
 		
-		JLabel lblNewLabel_2 = new JLabel("Ya est\u00E1 creada. Ahora solo tienes que esperar a que el restaurante la confirme.");
+		JLabel lblNewLabel_2 = new JLabel(messages.getString("ReservaCreada"));
 		lblNewLabel_2.setForeground(new Color(255, 153, 0));
 		lblNewLabel_2.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(10, 89, 875, 28);
 		panel.add(lblNewLabel_2);
 		
-		JButton btnIniciarSesion = new JButton("Volver al menu");
+		JButton btnIniciarSesion = new JButton(messages.getString("VolverMenuPrincipal"));
 		btnIniciarSesion.setBackground(new Color(255, 255, 255));
 		btnIniciarSesion.setForeground(new Color(255, 153, 51));
 		btnIniciarSesion.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MenuCliente menu=new MenuCliente(clie);
+				MenuCliente menu=new MenuCliente(clie, messages);
 				frame.dispose();
 			}
 		});

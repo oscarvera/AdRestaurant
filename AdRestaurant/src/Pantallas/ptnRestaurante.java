@@ -5,6 +5,8 @@ import java.awt.Dialog.ModalExclusionType;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -14,8 +16,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import Clases.Cliente;
 import Clases.Restaurante;
+
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.SwingConstants;
@@ -24,6 +28,9 @@ public class ptnRestaurante extends JFrame {
 	private JFrame frame;
 	Cliente clie;
 	Restaurante rest;
+	
+	static Locale currentLocale;
+    static ResourceBundle messages;
 	
 
 	/**
@@ -34,9 +41,10 @@ public class ptnRestaurante extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ptnRestaurante(final Cliente clie, final Restaurante rest) {
+	public ptnRestaurante(final Cliente clie, final Restaurante rest,final ResourceBundle messages) {
 		this.clie=clie;
 		this.rest=rest;
+		this.messages=messages;
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(255, 153, 0));
@@ -66,7 +74,7 @@ public class ptnRestaurante extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(22, 359, 846, 164);
 		
-		JLabel lblNewLabel_1 = new JLabel("Comentarios:");
+		JLabel lblNewLabel_1 = new JLabel(messages.getString("Comentarios"));
 		lblNewLabel_1.setBounds(22, 334, 108, 19);
 		lblNewLabel_1.setForeground(new Color(255, 153, 0));
 		lblNewLabel_1.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 18));
@@ -75,10 +83,10 @@ public class ptnRestaurante extends JFrame {
 		panel_1.setBounds(386, 88, 507, 235);
 		panel_1.setBackground(new Color(255, 255, 255));
 		
-		JButton btnReservar = new JButton("Reservar");
+		JButton btnReservar = new JButton(messages.getString("Reservar"));
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ptnCrearReserva creaReser=new ptnCrearReserva(clie, rest);
+				ptnCrearReserva creaReser=new ptnCrearReserva(clie, rest, messages);
 				frame.dispose();
 			}
 		});
@@ -87,7 +95,7 @@ public class ptnRestaurante extends JFrame {
 		btnReservar.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnReservar.setBackground(null);
 		
-		JLabel lbTipo = new JLabel("Tipo:");
+		JLabel lbTipo = new JLabel(messages.getString("Tipo"));
 		lbTipo.setBounds(72, 28, 47, 22);
 		lbTipo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbTipo.setForeground(Color.LIGHT_GRAY);
@@ -98,7 +106,7 @@ public class ptnRestaurante extends JFrame {
 		textTipo.setForeground(new Color(255, 153, 0));
 		textTipo.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
 		
-		JLabel lbTelefono = new JLabel("Tel\u00E9fono:");
+		JLabel lbTelefono = new JLabel(messages.getString("Telefono"));
 		lbTelefono.setBounds(30, 95, 89, 22);
 		lbTelefono.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbTelefono.setForeground(Color.LIGHT_GRAY);
@@ -109,7 +117,7 @@ public class ptnRestaurante extends JFrame {
 		textTelefono.setForeground(new Color(255, 153, 0));
 		textTelefono.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
 		
-		JLabel lbDireccion = new JLabel("Direcci\u00F3n:");
+		JLabel lbDireccion = new JLabel(messages.getString("Direccion"));
 		lbDireccion.setBounds(23, 62, 96, 22);
 		lbDireccion.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbDireccion.setForeground(Color.LIGHT_GRAY);
@@ -120,7 +128,7 @@ public class ptnRestaurante extends JFrame {
 		textDireccion.setForeground(new Color(255, 153, 0));
 		textDireccion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
 		
-		JLabel lbPoblacion = new JLabel("Poblaci\u00F3n:");
+		JLabel lbPoblacion = new JLabel(messages.getString("Poblacion"));
 		lbPoblacion.setBounds(10, 128, 109, 22);
 		lbPoblacion.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbPoblacion.setForeground(Color.LIGHT_GRAY);
@@ -136,13 +144,13 @@ public class ptnRestaurante extends JFrame {
 		textProvincia.setForeground(new Color(255, 153, 0));
 		textProvincia.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
 		
-		JLabel lbProvincia = new JLabel("Provincia:");
+		JLabel lbProvincia = new JLabel(messages.getString("Provincia"));
 		lbProvincia.setBounds(266, 128, 109, 22);
 		lbProvincia.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbProvincia.setForeground(Color.LIGHT_GRAY);
 		lbProvincia.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 		
-		JLabel lbCP = new JLabel("C.P:");
+		JLabel lbCP = new JLabel(messages.getString("CP"));
 		lbCP.setBounds(10, 161, 109, 22);
 		lbCP.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbCP.setForeground(Color.LIGHT_GRAY);
@@ -153,18 +161,18 @@ public class ptnRestaurante extends JFrame {
 		textCP.setForeground(new Color(255, 153, 0));
 		textCP.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
 		
-		JLabel lbMinusvalidos = new JLabel("Apto minusv\u00E1lidos:");
+		JLabel lbMinusvalidos = new JLabel(messages.getString("AP"));
 		lbMinusvalidos.setBounds(10, 194, 199, 22);
 		lbMinusvalidos.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbMinusvalidos.setForeground(Color.LIGHT_GRAY);
 		lbMinusvalidos.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 		
-		JLabel textMinusvalidos= new JLabel("No disponible");
+		JLabel textMinusvalidos= new JLabel(messages.getString("NO"));
 		textMinusvalidos.setBounds(219, 192, 212, 21);
 		if(rest.getMinusvalidoApto()){
-			textMinusvalidos.setText("Si");
+			textMinusvalidos.setText(messages.getString("SI"));
 		}else{
-			textMinusvalidos.setText("No");
+			textMinusvalidos.setText(messages.getString("NO"));
 		}
 		
 		
@@ -207,14 +215,14 @@ public class ptnRestaurante extends JFrame {
 		lblnomUser.setBounds(599, 18, 128, 64);
 		frame.getContentPane().add(lblnomUser);
 		
-		JLabel lblRestaurante = new JLabel("Restaurante");
+		JLabel lblRestaurante = new JLabel(messages.getString("Restaurante"));
 		lblRestaurante.setForeground(Color.WHITE);
 		lblRestaurante.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblRestaurante.setBackground(Color.YELLOW);
 		lblRestaurante.setBounds(384, 19, 96, 64);
 		frame.getContentPane().add(lblRestaurante);
 		
-		JButton btnCerrarsesion = new JButton("Cerrar Sesi\u00F3n");
+		JButton btnCerrarsesion = new JButton(messages.getString("CerrarSesion"));
 		btnCerrarsesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnCerrarsesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -227,10 +235,10 @@ public class ptnRestaurante extends JFrame {
 		btnCerrarsesion.setBounds(737, 40, 128, 23);
 		frame.getContentPane().add(btnCerrarsesion);
 		
-		JButton button = new JButton("Volver al men\u00FA principal");
+		JButton button = new JButton(messages.getString("VolverMenuPrincipal"));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MenuCliente menuclie=new MenuCliente(clie);
+				MenuCliente menuclie=new MenuCliente(clie, messages);
  				frame.dispose();
 			}
 		});
