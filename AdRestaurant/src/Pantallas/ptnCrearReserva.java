@@ -1,0 +1,274 @@
+package Pantallas;
+
+import java.awt.Color;
+import java.awt.Dialog.ModalExclusionType;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+import Clases.Cliente;
+import Clases.Reserva;
+import Clases.Restaurante;
+
+import javax.swing.JScrollPane;
+import javax.swing.JList;
+import javax.swing.SwingConstants;
+import javax.swing.JSpinner;
+import javax.swing.JProgressBar;
+import javax.swing.SpinnerDateModel;
+
+import java.util.Date;
+import java.util.Calendar;
+
+import javax.swing.SpinnerNumberModel;
+public class ptnCrearReserva extends JFrame {
+
+	private JFrame frame;
+	Cliente clie;
+	Restaurante rest;
+	
+
+	/**
+	 * Launch the application.
+	 */
+	
+
+	/**
+	 * Create the frame. 
+	 */
+	public ptnCrearReserva(final Cliente clie, final Restaurante rest) {
+		this.clie=clie;
+		this.rest=rest;
+		frame = new JFrame();
+		frame.setResizable(false);
+		frame.getContentPane().setBackground(new Color(255, 153, 0));
+		frame.getContentPane().setForeground(Color.LIGHT_GRAY);
+		frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
+		frame.setBounds(100, 100, 895, 646);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setUndecorated(true);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 94, 895, 186);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblReservaEn = new JLabel("Reserva en:");
+		lblReservaEn.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblReservaEn.setForeground(Color.LIGHT_GRAY);
+		lblReservaEn.setFont(new Font("Fira Sans OT", Font.PLAIN, 23));
+		lblReservaEn.setBounds(10, 62, 233, 22);
+		panel.add(lblReservaEn);
+		
+		JLabel textRestaurante = new JLabel(rest.getNombre());
+		textRestaurante.setHorizontalAlignment(SwingConstants.LEFT);
+		textRestaurante.setForeground(new Color(255, 153, 0));
+		textRestaurante.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 40));
+		textRestaurante.setBounds(256, 48, 606, 41);
+		panel.add(textRestaurante);
+		
+		JLabel lblRealizada = new JLabel("Realizada por:");
+		lblRealizada.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblRealizada.setForeground(Color.LIGHT_GRAY);
+		lblRealizada.setFont(new Font("Fira Sans OT", Font.PLAIN, 23));
+		lblRealizada.setBounds(10, 114, 233, 22);
+		panel.add(lblRealizada);
+		
+		JLabel textCliente = new JLabel(clie.getNombre()+" "+clie.getPrimerApellido()+" "+clie.getSegundoApellido());
+		textCliente.setHorizontalAlignment(SwingConstants.LEFT);
+		textCliente.setForeground(new Color(255, 153, 0));
+		textCliente.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 40));
+		textCliente.setBounds(256, 100, 629, 41);
+		panel.add(textCliente);
+		
+		JLabel label = new JLabel("AdRestaurant");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Francois One", Font.PLAIN, 60));
+		label.setBackground(Color.WHITE);
+		label.setBounds(21, 9, 371, 74);
+		frame.getContentPane().add(label);
+		
+		JLabel lblnomUser = new JLabel(clie.getNombre());
+		lblnomUser.setForeground(Color.WHITE);
+		lblnomUser.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 17));
+		lblnomUser.setBackground(Color.YELLOW);
+		lblnomUser.setBounds(599, 18, 128, 64);
+		frame.getContentPane().add(lblnomUser);
+		
+		JLabel lblBienvenido = new JLabel("Nueva Reserva");
+		lblBienvenido.setForeground(Color.WHITE);
+		lblBienvenido.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		lblBienvenido.setBackground(Color.YELLOW);
+		lblBienvenido.setBounds(384, 19, 119, 64);
+		frame.getContentPane().add(lblBienvenido);
+		
+		JButton btnCerrarsesion = new JButton("Cerrar Sesi\u00F3n");
+		btnCerrarsesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
+		btnCerrarsesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Ingreso ingreso=new Ingreso();
+				frame.dispose();
+			}
+		});
+		btnCerrarsesion.setForeground(Color.WHITE);
+		btnCerrarsesion.setBackground(new Color(255, 153, 51));
+		btnCerrarsesion.setBounds(737, 40, 128, 23);
+		frame.getContentPane().add(btnCerrarsesion);
+		
+		JButton button = new JButton("Volver al men\u00FA principal");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MenuCliente menuclie=new MenuCliente(clie);
+ 				frame.dispose();
+			}
+		});
+		button.setForeground(Color.WHITE);
+		button.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
+		button.setBackground(new Color(255, 153, 0));
+		button.setBounds(39, 605, 171, 23);
+		frame.getContentPane().add(button);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(255, 255, 255));
+		panel_3.setBounds(617, 334, 242, 202);
+		frame.getContentPane().add(panel_3);
+		panel_3.setLayout(null);
+		
+		JLabel lblPersonas = new JLabel("Personas:");
+		lblPersonas.setBounds(12, 52, 218, 22);
+		lblPersonas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPersonas.setForeground(Color.LIGHT_GRAY);
+		lblPersonas.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
+		panel_3.add(lblPersonas);
+		
+		JSpinner spinner_5 = new JSpinner();
+		spinner_5.setBounds(97, 85, 47, 34);
+		panel_3.add(spinner_5);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(326, 334, 242, 202);
+		frame.getContentPane().add(panel_1);
+		
+		JLabel lblHora = new JLabel("Hora:");
+		lblHora.setBounds(12, 56, 218, 22);
+		lblHora.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHora.setForeground(Color.LIGHT_GRAY);
+		lblHora.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
+		
+		final JSpinner spinner_3 = new JSpinner();
+		spinner_3.setBounds(60, 89, 47, 34);
+		
+		final JSpinner spinner_4 = new JSpinner();
+		spinner_4.setBounds(130, 89, 47, 34);
+		panel_1.setLayout(null);
+		panel_1.add(lblHora);
+		panel_1.add(spinner_3);
+		panel_1.add(spinner_4);
+		
+		JLabel lblNewLabel = new JLabel(":");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 23));
+		lblNewLabel.setBounds(111, 89, 19, 34);
+		panel_1.add(lblNewLabel);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(255, 255, 255));
+		panel_2.setBounds(32, 334, 242, 202);
+		frame.getContentPane().add(panel_2);
+		
+		JLabel lblFecha = new JLabel("Fecha:");
+		lblFecha.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFecha.setForeground(Color.LIGHT_GRAY);
+		lblFecha.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
+		
+		JSpinner spinner = new JSpinner();
+		
+		JSpinner spinner_1 = new JSpinner();
+		
+		final JSpinner spinner_2 = new JSpinner();
+		spinner_2.setModel(new SpinnerNumberModel(new Integer(2014), null, null, new Integer(0)));
+		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
+		gl_panel_2.setHorizontalGroup(
+			gl_panel_2.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addGap(45)
+					.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(spinner_1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(spinner_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(40))
+				.addGroup(Alignment.LEADING, gl_panel_2.createSequentialGroup()
+					.addGap(12)
+					.addComponent(lblFecha, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(12, Short.MAX_VALUE))
+		);
+		gl_panel_2.setVerticalGroup(
+			gl_panel_2.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addContainerGap(54, Short.MAX_VALUE)
+					.addComponent(lblFecha)
+					.addGap(18)
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+						.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+						.addComponent(spinner_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+						.addComponent(spinner_2, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+					.addGap(74))
+		);
+		panel_2.setLayout(gl_panel_2);
+		
+		JLabel lblfecha = new JLabel("1.Fecha");
+		lblfecha.setHorizontalAlignment(SwingConstants.CENTER);
+		lblfecha.setForeground(new Color(255, 255, 255));
+		lblfecha.setFont(new Font("Fira Sans OT", Font.PLAIN, 30));
+		lblfecha.setBounds(39, 291, 229, 36);
+		frame.getContentPane().add(lblfecha);
+		
+		JLabel lblhora = new JLabel("2.Hora");
+		lblhora.setHorizontalAlignment(SwingConstants.CENTER);
+		lblhora.setForeground(Color.WHITE);
+		lblhora.setFont(new Font("Fira Sans OT", Font.PLAIN, 30));
+		lblhora.setBounds(333, 291, 229, 36);
+		frame.getContentPane().add(lblhora);
+		
+		JLabel lblpersonas = new JLabel("3.Personas");
+		lblpersonas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblpersonas.setForeground(Color.WHITE);
+		lblpersonas.setFont(new Font("Fira Sans OT", Font.PLAIN, 30));
+		lblpersonas.setBounds(624, 291, 229, 36);
+		frame.getContentPane().add(lblpersonas);
+		
+		JButton btnNewButton = new JButton("Reservar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ptnReservaCompletada compl=new ptnReservaCompletada(clie);
+				frame.dispose();
+				//Comprobar campos
+				
+				//Reserva reser= new Reserva(rest.getNombre(), clie.getNombre(), String.valueOf(spinner.getValue())+String.valueOf(spinner_1.getValue())+String.valueOf(spinner_2.getValue()), String.valueOf(spinner_3.getValue())+String.valueOf(spinner_4.getValue()), "Ahora", String.valueOf(spinner_5.getValue()));
+			}
+		});
+		btnNewButton.setForeground(new Color(255, 153, 0));
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setBounds(275, 560, 344, 36);
+		frame.getContentPane().add(btnNewButton);
+		frame.setBounds(100, 100, 895, 646);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}
+}
+

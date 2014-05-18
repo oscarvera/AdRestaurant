@@ -23,11 +23,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import Clases.Cliente;
+import Clases.Restaurante;
 
 public class MenuCliente {
 
 	private JFrame frame;
 	Cliente clie;
+	Restaurante restaurante;
 	
 
 	/**
@@ -89,6 +91,13 @@ public class MenuCliente {
 		//button_1.setIcon(new ImageIcon("C:\\Users\\dam1\\Desktop\\reservas.png"));
 		
 		JButton btnPerfilCliente = new JButton("Perfil Cliente?");
+		btnPerfilCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				restaurante=new Restaurante("pass", "Foster's Hollywood" ,"Americano", 660235656, "Centro comercial Aqua", "Valencia", "Valencia", "46022", true);
+				ptnRestaurante ptnrest=new ptnRestaurante(clie, restaurante);
+				frame.dispose();
+			}
+		});
 		
 		JLabel label_1 = new JLabel("");
 		

@@ -24,8 +24,7 @@ public class Reserva {
 	
 	//Reserva no creada. Para creacion.
 	
-	public Reserva(int codRe, String nomRest, String user, String fechaReserva, String hora, String fechaCrea, int personas){
-		this.codReserva=codRe;
+	public Reserva(String nomRest, String user, String fechaReserva, String hora, String fechaCrea, int personas){
 		this.nombreRestaurante=nomRest;
 		this.usuarioReserva=user;
 		this.fechaReserva=fechaReserva;

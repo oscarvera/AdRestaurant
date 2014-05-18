@@ -19,19 +19,19 @@ public class Restaurante {
 	
 	//Constructor para el registro de un nuevo restaurante:
 		public Restaurante(String password, String nombre, String tipo, int telefono, String direccion, 
-				String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto, BufferedImage foto1, BufferedImage foto2){
-			
-			password=this.password;
-			nombre=this.nombre;
-			tipo=this.tipo;
-			telefono=this.telefono;
-			direccion=this.direccion;
-			poblacion=this.poblacion;
-			provincia=this.provincia;
-			codigoPostal=this.codigoPostal;
-			minusvalidoApto=this.minusvalidoApto;
-			foto1=this.foto1;
-			foto2=this.foto2;
+				String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto){
+			 //BufferedImage foto1, BufferedImage foto2
+			this.password=password;
+			this.nombre=nombre;
+			this.tipo=tipo;
+			this.telefono=telefono;
+			this.direccion=direccion;
+			this.poblacion=poblacion;
+			this.provincia=provincia;
+			this.codigoPostal=codigoPostal;
+			this.minusvalidoApto=minusvalidoApto;
+			//foto1=this.foto1;
+			//foto2=this.foto2;
 		}
 		
 		//Constructor para consultar restaurantes:
@@ -116,7 +116,7 @@ public class Restaurante {
 		this.codigoPostal = codigoPostal;
 	}
 
-	public boolean isMinusvalidoApto() {
+	public boolean getMinusvalidoApto() {
 		return minusvalidoApto;
 	}
 

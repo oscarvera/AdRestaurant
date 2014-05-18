@@ -1,34 +1,34 @@
 package Pantallas;
  
  import java.awt.Color;
- import java.awt.Dialog.ModalExclusionType;
- import java.awt.Font;
- import java.awt.event.ActionEvent;
- import java.awt.event.ActionListener;
- import java.awt.event.FocusEvent;
- import java.awt.event.FocusListener;
- import java.awt.event.ItemEvent;
- import java.awt.event.ItemListener;
- import java.awt.event.KeyEvent;
- import java.awt.event.KeyListener;
- 
- import javax.swing.AbstractListModel;
- import javax.swing.DefaultComboBoxModel;
- import javax.swing.GroupLayout;
- import javax.swing.GroupLayout.Alignment;
- import javax.swing.ImageIcon;
- import javax.swing.JButton;
- import javax.swing.JComboBox;
- import javax.swing.JFrame;
- import javax.swing.JLabel;
- import javax.swing.JList;
- import javax.swing.JPanel;
- import javax.swing.JScrollPane;
- import javax.swing.JTextField;
- import javax.swing.LayoutStyle.ComponentPlacement;
- import javax.swing.border.MatteBorder;
- 
- import Clases.Cliente;
+import java.awt.Dialog.ModalExclusionType;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.AbstractListModel;
+import javax.swing.DefaultListModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.border.MatteBorder;
+
+import Clases.Cliente;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.LineBorder;
  
  public class ptnBuscarReservas extends JFrame {
  	Cliente clie=new Cliente("Prueba");
@@ -56,7 +56,7 @@ package Pantallas;
  		frame.setBounds(100, 100, 895, 646);
  		frame.setLocationRelativeTo(null);
  		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
- 		frame.setDefaultLookAndFeelDecorated(true);
+ 		
  		frame.setUndecorated(true);
  		frame.getContentPane().setLayout(null);
  		
@@ -249,63 +249,38 @@ package Pantallas;
  		btnXFecha.setBounds(175, 196, 22, 46);
  		
  		JScrollPane scrollPane = new JScrollPane();
- 		
- 		JPanel panel_2 = new JPanel();
- 		panel_2.setBackground(new Color(255, 153, 51));
- 		
- 		JButton button = new JButton("");
- 		button.setIcon(new ImageIcon(ptnBuscarReservas.class.getResource("/Imagen/botonX.png")));
- 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
- 		gl_panel_2.setHorizontalGroup(
- 			gl_panel_2.createParallelGroup(Alignment.LEADING)
- 				.addGroup(gl_panel_2.createSequentialGroup()
- 					.addComponent(button, GroupLayout.PREFERRED_SIZE, 37, Short.MAX_VALUE)
- 					.addContainerGap())
- 		);
- 		gl_panel_2.setVerticalGroup(
- 			gl_panel_2.createParallelGroup(Alignment.LEADING)
- 				.addGroup(gl_panel_2.createSequentialGroup()
- 					.addGap(5)
- 					.addComponent(button, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
- 					.addContainerGap(449, Short.MAX_VALUE))
- 		);
- 		panel_2.setLayout(gl_panel_2);
+ 		scrollPane.setBorder(null);
  		GroupLayout gl_panel = new GroupLayout(panel);
  		gl_panel.setHorizontalGroup(
  			gl_panel.createParallelGroup(Alignment.LEADING)
  				.addGroup(gl_panel.createSequentialGroup()
  					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
- 					.addGap(163)
- 					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
- 					.addGap(426)
- 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
- 					.addContainerGap())
+ 					.addPreferredGap(ComponentPlacement.RELATED)
+ 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE))
  		);
  		gl_panel.setVerticalGroup(
  			gl_panel.createParallelGroup(Alignment.LEADING)
  				.addGroup(gl_panel.createSequentialGroup()
- 					.addGap(11)
- 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
- 					.addGap(11))
- 				.addGroup(gl_panel.createSequentialGroup()
- 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE)
- 					.addContainerGap())
- 				.addGroup(gl_panel.createSequentialGroup()
- 					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE)
+ 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+ 						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+ 						.addComponent(panel_1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE))
  					.addContainerGap())
  		);
  		
+ 		DefaultListModel dlm=new DefaultListModel();
  		JList list = new JList();
- 		list.setModel(new AbstractListModel() {
- 			String[] values = new String[] {"hola", "que ", "<sdg", "ag", "dsfg", "dafg", "dfg", "dfg", "d", "fg", "dfg", "df", "gdf", "g", "dfg", "dfg", "df", "g", "ert", "er", "ter", "ter", "t", "ert", "er", "te", "rt", "er", "ter", "t", "ert", "er", "t", "er", "te", "rt", "ert", "er", "te", "rt", "er", "te", "rt", "erte", "rt", "et", "ert", "erte", "rte", "rte", "rte", "rte", "rter", "t"};
- 			public int getSize() {
- 				return values.length;
- 			}
- 			public Object getElementAt(int index) {
- 				return values[index];
- 			}
- 		});
- 		list.setBorder(null);
+ 		list.setBorder(new EmptyBorder(21, 10, 10, 10));
+ 		list.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 17));
+ 		list.setValueIsAdjusting(true);
+ 		list.setForeground(new Color(255, 153, 0));
+ 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+ 		for(int i=0;i<50;i++){
+ 			String reserva="<html>Nombre del resetaurante"+i+"<br><table cellpadding='10px'><tr><td><font color=silver>Fecha: </font></td><td><font color=silver> Hora: </font></td><td><font color=silver>Personas: </font></td><td><font color=silver>Verificado: </font></td></tr></table></html>";
+ 	 		dlm.addElement(reserva);
+ 		}
+ 		
+ 		
+ 		list.setModel(dlm);
  		scrollPane.setViewportView(list);
  		panel.setLayout(gl_panel);
  		
