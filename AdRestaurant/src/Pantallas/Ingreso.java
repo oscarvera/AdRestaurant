@@ -546,7 +546,7 @@ public class Ingreso extends JPanel{
 		JLabel lblSueco = new JLabel("Svenska");
 		lblSueco.setForeground(Color.WHITE);
 		lblSueco.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
-		lblSueco.setBounds(647, 618, 80, 14);
+		lblSueco.setBounds(649, 618, 80, 14);
 		frame.getContentPane().add(lblSueco);
 		frame.setVisible(true);
 		
@@ -584,6 +584,51 @@ public class Ingreso extends JPanel{
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 				language = "sv";
 		        country = "SE";
+
+			}
+		});
+		
+		JLabel lblPolaco = new JLabel("Polski");
+		lblPolaco.setForeground(Color.WHITE);
+		lblPolaco.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
+		lblPolaco.setBounds(739, 618, 80, 14);
+		frame.getContentPane().add(lblPolaco);
+		frame.setVisible(true);
+		
+		lblPolaco.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				lblBienvenid.setText("WITAM!");
+				lblUsuario.setText("UZYTKOWNIK:");
+				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
+				lblPass.setText("HASTO:");
+				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
+				textLabelUser.setToolTipText("Prosze, podaj swoja nazwe uzythownika");
+				textLabelPass.setToolTipText("Prosze, podaj swoje hasto");
+				btnIngresar.setText("ZALOGUJ SIE");
+				btnRegistrar.setText("ZAREJESTRUJ SIE");
+				btnRegistrar.setToolTipText("Szybko i prosto, ZAREJESTRUJ SIE TERAZ!");
+				lblNoregistrado.setText("Jeszcze nie zarejestronwany?");
+				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
+				language = "pl";
+		        country = "PL";
 
 			}
 		});
