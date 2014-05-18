@@ -4,9 +4,6 @@ import java.awt.Color;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -15,23 +12,21 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.ResourceBundle.Control;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import com.mysql.jdbc.Messages;
 
 import Clases.Cliente;
-
-import javax.swing.SwingConstants;
 
 public class Ingreso extends JPanel{
 
@@ -46,9 +41,12 @@ public class Ingreso extends JPanel{
 	private JLabel lblPass;
 	private JLabel lblNoregistrado;
 	
+	static Locale currentLocale;
+    static ResourceBundle messages;
+	
 	public static String language;
 	public static String country;
-	//public ResourceBundle messages;
+	
 	
 
 	/**
@@ -65,32 +63,32 @@ public class Ingreso extends JPanel{
 				}
 			}
 		});
-	}
+		
+		 String language;
+	      String country;
 
-	   /*   if (args.length != 2) {
-	          language = "en";
-	          country = "US";
+	      if (args.length != 2) {
+	          language = new String("en");
+	          country = new String("US");
 	      } else {
 	          language = new String(args[0]);
 	          country = new String(args[1]);
 	      }
 
-	      Locale currentLocale;
-	      ResourceBundle messages;
+	      
 
 	      currentLocale = new Locale(language, country);
 
 	      messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
+	}
 
-	      System.out.println(messages.getString("greetings"));
-	      System.out.println(messages.getString("inquiry"));
-	      System.out.println(messages.getString("farewell"));
-	   }*/
+	
 
 	/**
 	 * Create the application.
 	 */
 	public Ingreso() {
+		
 		initialize();
 	}
 
@@ -112,7 +110,7 @@ public class Ingreso extends JPanel{
 		//messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
 
 
-		final JLabel lblBienvenid = new JLabel("BIENVENID@!");
+		final JLabel lblBienvenid = new JLabel(Messages.getString("BIENVENID@"));
 		lblBienvenid.setBounds(334, 193, 227, 64);
 		lblBienvenid.setForeground(new Color(255, 255, 255));
 		lblBienvenid.setBackground(new Color(255, 255, 0));
@@ -171,7 +169,7 @@ public class Ingreso extends JPanel{
 		btnRegistrar.setForeground(new Color(255, 255, 255));
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Registro regCli=new Registro();
+				Registro regCli=new Registro(messages);
 				frame.dispose();
 
 			}
@@ -266,7 +264,7 @@ public class Ingreso extends JPanel{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Salir salir=new Salir();
+				Salir salir=new Salir(messages);
 
 			}
 		});
@@ -283,7 +281,7 @@ public class Ingreso extends JPanel{
 		JLabel lblIngles = new JLabel("English");
 		lblIngles.setForeground(Color.WHITE);
 		lblIngles.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
-		lblIngles.setBounds(107, 618, 80, 14);
+		lblIngles.setBounds(107, 606, 80, 40);
 		frame.getContentPane().add(lblIngles);
 		
 		lblIngles.addMouseListener(new MouseListener() {
@@ -320,6 +318,9 @@ public class Ingreso extends JPanel{
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 				language ="en";
 		        country ="US";
+		        currentLocale = new Locale(language, country);
+
+			    messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
 
 			}
 		});
@@ -327,7 +328,7 @@ public class Ingreso extends JPanel{
 		JLabel lblCastellano = new JLabel("Espa\u00F1ol");
 		lblCastellano.setForeground(Color.WHITE);
 		lblCastellano.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
-		lblCastellano.setBounds(197, 618, 80, 14);
+		lblCastellano.setBounds(197, 606, 80, 40);
 		frame.getContentPane().add(lblCastellano);
 		
 		lblCastellano.addMouseListener(new MouseListener() {
@@ -364,6 +365,9 @@ public class Ingreso extends JPanel{
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 				language="es";
 		        country="ES";
+		        currentLocale = new Locale(language, country);
+
+			    messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
 
 			}
 		});
@@ -371,7 +375,7 @@ public class Ingreso extends JPanel{
 		JLabel lblValenciano = new JLabel("Valenci\u00E0");
 		lblValenciano.setForeground(Color.WHITE);
 		lblValenciano.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
-		lblValenciano.setBounds(287, 618, 80, 14);
+		lblValenciano.setBounds(287, 606, 80, 40);
 		frame.getContentPane().add(lblValenciano);
 		
 		lblValenciano.addMouseListener(new MouseListener() {
@@ -408,6 +412,9 @@ public class Ingreso extends JPanel{
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 				language ="ca";
 		        country = "ES";
+		        currentLocale = new Locale(language, country);
+
+			    messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
 
 			}
 		});
@@ -415,7 +422,7 @@ public class Ingreso extends JPanel{
 		JLabel lblFrances = new JLabel("Fran\u00E7ais");
 		lblFrances.setForeground(Color.WHITE);
 		lblFrances.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
-		lblFrances.setBounds(377, 618, 80, 14);
+		lblFrances.setBounds(377, 606, 80, 40);
 		frame.getContentPane().add(lblFrances);
 		
 		lblFrances.addMouseListener(new MouseListener() {
@@ -452,13 +459,16 @@ public class Ingreso extends JPanel{
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 				language ="fr";
 		        country = "FR";
+		        currentLocale = new Locale(language, country);
+
+			    messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
 			}
 		});
 		
 		JLabel lblAleman = new JLabel("Deutsch");
 		lblAleman.setForeground(Color.WHITE);
 		lblAleman.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
-		lblAleman.setBounds(467, 618, 80, 14);
+		lblAleman.setBounds(467, 606, 80, 40);
 		frame.getContentPane().add(lblAleman);
 		
 		lblAleman.addMouseListener(new MouseListener() {
@@ -495,6 +505,9 @@ public class Ingreso extends JPanel{
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 				language="de";
 		        country="DE";
+		        currentLocale = new Locale(language, country);
+
+			    messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
 			}
 		});
 		
@@ -503,7 +516,7 @@ public class Ingreso extends JPanel{
 		JLabel lblItaliano = new JLabel("Italiano");
 		lblItaliano.setForeground(Color.WHITE);
 		lblItaliano.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
-		lblItaliano.setBounds(557, 618, 80, 14);
+		lblItaliano.setBounds(557, 606, 80, 40);
 		frame.getContentPane().add(lblItaliano);
 		
 		lblItaliano.addMouseListener(new MouseListener() {
@@ -540,13 +553,17 @@ public class Ingreso extends JPanel{
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 				language = "it";
 		        country = "IT";
+		        
+		        currentLocale = new Locale(language, country);
+
+			    messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
 			}
 		});
 		
 		JLabel lblSueco = new JLabel("Svenska");
 		lblSueco.setForeground(Color.WHITE);
 		lblSueco.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
-		lblSueco.setBounds(649, 618, 80, 14);
+		lblSueco.setBounds(649, 606, 80, 40);
 		frame.getContentPane().add(lblSueco);
 		frame.setVisible(true);
 		
@@ -584,6 +601,10 @@ public class Ingreso extends JPanel{
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 				language = "sv";
 		        country = "SE";
+		        
+		        currentLocale = new Locale(language, country);
+
+			    messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
 
 			}
 		});
@@ -591,7 +612,7 @@ public class Ingreso extends JPanel{
 		JLabel lblPolaco = new JLabel("Polski");
 		lblPolaco.setForeground(Color.WHITE);
 		lblPolaco.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
-		lblPolaco.setBounds(739, 618, 80, 14);
+		lblPolaco.setBounds(739, 606, 80, 40);
 		frame.getContentPane().add(lblPolaco);
 		frame.setVisible(true);
 		
@@ -629,13 +650,17 @@ public class Ingreso extends JPanel{
 				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 				language = "pl";
 		        country = "PL";
+		        
+		        currentLocale = new Locale(language, country);
+
+			    messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
 
 			}
 		});
 				
 		textLabelPass.addKeyListener(kl);
 }
-//Getters y Setters para variables language y country
+/*//Getters y Setters para variables language y country
 	public String getlanguage() {
 		return language;
 	}
@@ -648,5 +673,5 @@ public class Ingreso extends JPanel{
 	}
 	public void setcountry(String country) {
 		this.country = country;
-	}
+	}*/
 }

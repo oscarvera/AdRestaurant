@@ -32,6 +32,8 @@ import javax.swing.GroupLayout.Alignment;
 
 import java.awt.Panel;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -66,11 +68,15 @@ public class Registro extends JPanel{
 	private JLabel LabelNuevoClie;
 	private JLabel Flecha2;
 	private JLabel LabelNuevoRest;
+	
+	static Locale currentLocale;
+    static ResourceBundle messages;
 
 	/**
 	 * Create the application.
 	 */
-	public Registro() {
+	public Registro(ResourceBundle messages) {
+		this.messages=messages;
 		initialize();
 	}
 
@@ -122,7 +128,7 @@ public class Registro extends JPanel{
 					
 					@Override
 					public void keyReleased(KeyEvent e) {
-						if(!textNombre.getText().isEmpty()&&!textApellido1.getText().isEmpty()&&!textApellido2.getText().isEmpty()&&!textNomUser.getText().isEmpty()&&!textEmail.getText().isEmpty()&&!(passUser.getPassword().length==0)&&!textTelefono.getText().isEmpty()){
+						if(!textNombre.getText().isEmpty()&&!textApellido1.getText().isEmpty()&&!textNomUser.getText().isEmpty()&&!textEmail.getText().isEmpty()&&!(passUser.getPassword().length==0)&&!textTelefono.getText().isEmpty()){
 							btnRegistrarse.setEnabled(true);
 						}else{
 							btnRegistrarse.setEnabled(false);
@@ -588,7 +594,7 @@ public class Registro extends JPanel{
 	    	JDialog aviso = new ErrorRegistro(mensajesError, componentesError);
 	    	aviso.setVisible(true);
 	    }else{
-			RegistroCompleto regCom=new RegistroCompleto();
+			RegistroCompleto regCom=new RegistroCompleto(messages);
 			frame.setEnabled(false);
 			//frame.dispose();
 		}
@@ -679,7 +685,7 @@ public class Registro extends JPanel{
 	    	JDialog aviso = new ErrorRegistro(mensajesError, componentesError);
 	    	aviso.setVisible(true);
 	    }else{
-			RegistroCompleto regCom=new RegistroCompleto();
+			RegistroCompleto regCom=new RegistroCompleto(messages);
 			frame.setEnabled(false);
 			//frame.dispose();
 		}
