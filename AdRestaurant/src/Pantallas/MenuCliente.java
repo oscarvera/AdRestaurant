@@ -179,6 +179,7 @@ public class MenuCliente {
 		frame.getContentPane().add(lblBienvenido);
 		
 		JButton btnCerrarsesion = new JButton("Cerrar Sesi\u00F3n");
+		btnCerrarsesion.setFocusable(false);
 		btnCerrarsesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnCerrarsesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

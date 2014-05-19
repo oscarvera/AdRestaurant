@@ -79,6 +79,7 @@ import javax.swing.border.LineBorder;
  		panel_1.setBackground(Color.WHITE);
  		
  		JButton btnBuscar = new JButton(messages.getString("BUSCAR"));
+ 		btnBuscar.setFocusable(false);
  		btnBuscar.setBounds(10, 274, 187, 43);
  		btnBuscar.setForeground(new Color(255, 153, 0));
  		btnBuscar.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
@@ -306,6 +307,7 @@ import javax.swing.border.LineBorder;
  		frame.getContentPane().add(lblBuscarReservas);
  		
  		JButton btnMenuPrincipal = new JButton(messages.getString("VolverMenuPrincipal"));
+ 		btnMenuPrincipal.setFocusable(false);
  		btnMenuPrincipal.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
  		btnMenuPrincipal.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent e) {
@@ -319,6 +321,7 @@ import javax.swing.border.LineBorder;
  		frame.getContentPane().add(btnMenuPrincipal);
  		
  		JButton btnCerrarSesion = new JButton(messages.getString("CerrarSesion"));
+ 		btnCerrarSesion.setFocusable(false);
  		btnCerrarSesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
  		btnCerrarSesion.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent arg0) {

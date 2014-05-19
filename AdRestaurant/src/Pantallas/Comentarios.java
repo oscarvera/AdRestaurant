@@ -99,6 +99,7 @@ public class Comentarios extends JFrame {
 		frame.getContentPane().add(lblTusComentarios);
 		
 		JButton btnMenuPrincipal = new JButton(messages.getString("VolverMenuPrincipal"));
+		btnMenuPrincipal.setFocusable(false);
 		btnMenuPrincipal.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -112,6 +113,7 @@ public class Comentarios extends JFrame {
 		frame.getContentPane().add(btnMenuPrincipal);
 		
 		JButton btnCerrarSesion = new JButton(messages.getString("CerrarSesion"));
+		btnCerrarSesion.setFocusable(false);
 		btnCerrarSesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

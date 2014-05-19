@@ -84,6 +84,7 @@ public class ptnRestaurante extends JFrame {
 		panel_1.setBackground(new Color(255, 255, 255));
 		
 		JButton btnReservar = new JButton(messages.getString("Reservar"));
+		btnReservar.setFocusable(false);
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ptnCrearReserva creaReser=new ptnCrearReserva(clie, rest, messages);
@@ -216,6 +217,7 @@ public class ptnRestaurante extends JFrame {
 		frame.getContentPane().add(lblRestaurante);
 		
 		JButton btnCerrarsesion = new JButton(messages.getString("CerrarSesion"));
+		btnCerrarsesion.setFocusable(false);
 		btnCerrarsesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnCerrarsesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -229,6 +231,7 @@ public class ptnRestaurante extends JFrame {
 		frame.getContentPane().add(btnCerrarsesion);
 		
 		JButton button = new JButton(messages.getString("VolverMenuPrincipal"));
+		button.setFocusable(false);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MenuCliente menuclie=new MenuCliente(clie, messages);

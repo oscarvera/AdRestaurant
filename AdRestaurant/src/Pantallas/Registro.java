@@ -413,7 +413,7 @@ public class Registro extends JPanel{
 				};
 				
 				comboTipoRest = new JComboBox();
-				comboTipoRest.setModel(new DefaultComboBoxModel(new String[] {"Elige un tipo", "Chino", "Japon\u00E9s", "Mexicano", "Italiano", "Espa\u00F1ol", "Alem\u00E1n", "Estadounidense"}));
+				comboTipoRest.setModel(new DefaultComboBoxModel(new String[] {messages.getString("Tipo1"),messages.getString("Chino"),messages.getString("Japones"), messages.getString("Mexicano"), messages.getString("Italiano"),messages.getString("Español"),messages.getString("Aleman"), messages.getString("Americano")}));
 				comboTipoRest.setBounds(219, 94, 197, 22);
 				panel.add(comboTipoRest);
 				comboTipoRest.addKeyListener(keyLis);

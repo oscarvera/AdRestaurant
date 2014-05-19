@@ -54,6 +54,7 @@ public class RegistroCompleto extends JPanel{
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnIniciarSesion = new JButton(messages.getString("IS"));
+		btnIniciarSesion.setFocusable(false);
 		btnIniciarSesion.setBackground(new Color(255, 255, 255));
 		btnIniciarSesion.setForeground(new Color(255, 153, 51));
 		btnIniciarSesion.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));

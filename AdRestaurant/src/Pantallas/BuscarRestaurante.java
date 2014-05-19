@@ -132,6 +132,7 @@ public class BuscarRestaurante extends JFrame{
 		});
 		
 		JButton btnBuscar = new JButton(messages.getString("BUSCAR"));
+		btnBuscar.setFocusable(false);
 		btnBuscar.setBounds(10, 241, 187, 43);
 		btnBuscar.setForeground(new Color(255, 153, 0));
 		btnBuscar.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
@@ -316,7 +317,7 @@ public class BuscarRestaurante extends JFrame{
 		textCP.setBorder(null);
 		
 		comboTipo = new JComboBox();
-		comboTipo.setModel(new DefaultComboBoxModel(new String[] {"Tipo", "Chino", "Japon\u00E9s", "Mexicano", "Italiano", "Espa\u00F1ol", "Alem\u00E1n", "Estadounidense"}));
+		comboTipo.setModel(new DefaultComboBoxModel(new String[] {messages.getString("Tipo1"),messages.getString("Chino"),messages.getString("Japones"), messages.getString("Mexicano"), messages.getString("Italiano"),messages.getString("Español"),messages.getString("Aleman"), messages.getString("Americano")}));
 		comboTipo.setBounds(10, 184, 165, 46);
 		comboTipo.setForeground(Color.LIGHT_GRAY);
 		comboTipo.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
@@ -332,6 +333,7 @@ public class BuscarRestaurante extends JFrame{
 		lblOtrasBusquedas.setBackground(Color.YELLOW);
 		
 		JButton btnMejorValorado = new JButton(messages.getString("MejorValorado"));
+		btnMejorValorado.setFocusable(false);
 		btnMejorValorado.setBounds(20, 351, 165, 43);
 		btnMejorValorado.setForeground(new Color(255, 153, 0));
 		btnMejorValorado.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
@@ -365,6 +367,7 @@ public class BuscarRestaurante extends JFrame{
 		panel_1.add(lblOtrasBusquedas);
 		
 		JButton btnNuevos = new JButton(messages.getString("Nuevos"));
+		btnNuevos.setFocusable(false);
 		btnNuevos.setForeground(new Color(255, 153, 0));
 		btnNuevos.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
 		btnNuevos.setBackground(Color.WHITE);
@@ -436,6 +439,7 @@ public class BuscarRestaurante extends JFrame{
 		frame.getContentPane().add(lblBuscarRestaurante);
 		
 		JButton btnMenuPrincipal = new JButton(messages.getString("VolverMenuPrincipal"));
+		btnMenuPrincipal.setFocusable(false);
 		btnMenuPrincipal.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -449,6 +453,7 @@ public class BuscarRestaurante extends JFrame{
 		frame.getContentPane().add(btnMenuPrincipal);
 		
 		JButton btnCerrarSesion = new JButton(messages.getString("CerrarSesion"));
+		btnCerrarSesion.setFocusable(false);
 		btnCerrarSesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
