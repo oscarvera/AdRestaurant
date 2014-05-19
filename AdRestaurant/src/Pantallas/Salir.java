@@ -106,12 +106,12 @@ public class Salir extends JPanel{
 		btnNo.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
 		btnNo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(clie!=null){
-				MenuCliente menucliente=new MenuCliente(clie, messages);
+				//if(clie!=null){
+				//MenuCliente menucliente=new MenuCliente(clie, messages);
 				frame.dispose();
-			}else{
-				Ingreso ingreso=new Ingreso();
-			}
+			//}else{
+				//Ingreso ingreso=new Ingreso();
+			//}
 			}
 		});
 		frame.setVisible(true);

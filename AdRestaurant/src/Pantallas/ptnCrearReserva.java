@@ -140,14 +140,14 @@ public class ptnCrearReserva extends JFrame {
 		lblnomUser.setForeground(Color.WHITE);
 		lblnomUser.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 17));
 		lblnomUser.setBackground(Color.YELLOW);
-		lblnomUser.setBounds(498, 33, 229, 64);
+		lblnomUser.setBounds(498, 23, 229, 74);
 		frame.getContentPane().add(lblnomUser);
 		
 		JLabel lblBienvenido = new JLabel(messages.getString("NuevaReserva"));
 		lblBienvenido.setForeground(Color.WHITE);
 		lblBienvenido.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBienvenido.setBackground(Color.YELLOW);
-		lblBienvenido.setBounds(394, 33, 119, 64);
+		lblBienvenido.setBounds(379, 23, 119, 74);
 		frame.getContentPane().add(lblBienvenido);
 		
 		JButton btnCerrarsesion = new JButton(messages.getString("CerrarSesion"));
@@ -161,7 +161,7 @@ public class ptnCrearReserva extends JFrame {
 		});
 		btnCerrarsesion.setForeground(Color.WHITE);
 		btnCerrarsesion.setBackground(new Color(255, 153, 51));
-		btnCerrarsesion.setBounds(757, 55, 128, 23);
+		btnCerrarsesion.setBounds(757, 50, 128, 23);
 		frame.getContentPane().add(btnCerrarsesion);
 		
 		JButton btnMenuPrincipal = new JButton(messages.getString("VolverMenuPrincipal"));
@@ -307,7 +307,7 @@ public class ptnCrearReserva extends JFrame {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ptnCrearReserva.class.getResource("/Imagen/TituloPEQUE.png")));
-		label.setBounds(-12, 33, 393, 64);
+		label.setBounds(-12, 23, 393, 74);
 		frame.getContentPane().add(label);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

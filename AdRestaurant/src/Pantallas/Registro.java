@@ -729,6 +729,28 @@ public class Registro extends JPanel{
 				textTelefonoRest.setBounds(599, 248, 197, 22);
 				panel.add(textTelefonoRest);
 				textTelefonoRest.setBorder(borde);
+				
+				JButton btnImagen1 = new JButton("Imagen1");
+				btnImagen1.setForeground(Color.WHITE);
+				btnImagen1.setBackground(new Color(255, 153, 0));
+				btnImagen1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						//Boton imagen1
+					}
+				});
+				btnImagen1.setBounds(431, 128, 111, 23);
+				panel.add(btnImagen1);
+				
+				JButton btnImagen2 = new JButton("Imagen2");
+				btnImagen2.setForeground(new Color(255, 255, 255));
+				btnImagen2.setBackground(new Color(255, 153, 0));
+				btnImagen2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						//Boton Imagen 2
+					}
+				});
+				btnImagen2.setBounds(685, 127, 111, 23);
+				panel.add(btnImagen2);
 				textTelefonoRest.addFocusListener(new FocusListener(){
 					
 					@Override

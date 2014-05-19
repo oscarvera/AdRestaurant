@@ -240,17 +240,18 @@ public class ptnRestaurante extends JFrame {
 		panel.add(lblNewLabel);
 		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
+		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblnomUser.setForeground(Color.WHITE);
 		lblnomUser.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 17));
 		lblnomUser.setBackground(Color.YELLOW);
-		lblnomUser.setBounds(599, 18, 128, 64);
+		lblnomUser.setBounds(486, 19, 241, 79);
 		frame.getContentPane().add(lblnomUser);
 		
 		JLabel lblRestaurante = new JLabel(messages.getString("Restaurante"));
 		lblRestaurante.setForeground(Color.WHITE);
 		lblRestaurante.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblRestaurante.setBackground(Color.YELLOW);
-		lblRestaurante.setBounds(384, 19, 96, 64);
+		lblRestaurante.setBounds(380, 18, 96, 80);
 		frame.getContentPane().add(lblRestaurante);
 		
 		JButton btnCerrarsesion = new JButton(messages.getString("CerrarSesion"));
@@ -264,7 +265,7 @@ public class ptnRestaurante extends JFrame {
 		});
 		btnCerrarsesion.setForeground(Color.WHITE);
 		btnCerrarsesion.setBackground(new Color(255, 153, 51));
-		btnCerrarsesion.setBounds(737, 40, 128, 23);
+		btnCerrarsesion.setBounds(736, 48, 128, 23);
 		frame.getContentPane().add(btnCerrarsesion);
 		
 		JButton button = new JButton(messages.getString("VolverMenuPrincipal"));
@@ -283,7 +284,7 @@ public class ptnRestaurante extends JFrame {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ptnRestaurante.class.getResource("/Imagen/TituloPEQUE.png")));
-		label.setBounds(-12, 18, 393, 64);
+		label.setBounds(-11, 19, 393, 79);
 		frame.getContentPane().add(label);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
