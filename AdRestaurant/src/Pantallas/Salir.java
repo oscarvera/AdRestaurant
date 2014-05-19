@@ -97,6 +97,7 @@ public class Salir extends JPanel{
 	
 		
 		btnNo = new JButton(messages.getString("NO"));
+		btnNo.setFocusable(false);
 		btnNo.setBounds(449, 385, 267, 53);
 		frame.getContentPane().add(btnNo);
 		btnNo.setBackground(new Color(255, 255, 255));
@@ -115,6 +116,7 @@ public class Salir extends JPanel{
 		frame.setVisible(true);
 		
 		btnSi = new JButton(messages.getString("SI"));
+		btnSi.setFocusable(false);
 		btnSi.setBounds(173, 385, 277, 53);
 		frame.getContentPane().add(btnSi);
 		btnSi.setBackground(new Color(255, 255, 255));
