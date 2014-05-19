@@ -81,6 +81,11 @@ public class BuscarRestaurante extends JFrame{
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
 		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(BuscarRestaurante.class.getResource("/Imagen/TituloPEQUE.png")));
+		label.setBounds(-13, 22, 393, 64);
+		frame.getContentPane().add(label);
+		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
@@ -415,13 +420,6 @@ public class BuscarRestaurante extends JFrame{
 		btnXTipo.setBounds(175, 184, 22, 46);
 		
 		panel.setLayout(gl_panel);
-		
-		JLabel label = new JLabel("AdRestaurant");
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Francois One", Font.PLAIN, 60));
-		label.setBackground(Color.WHITE);
-		label.setBounds(24, 12, 371, 74);
-		frame.getContentPane().add(label);
 		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setForeground(Color.WHITE);

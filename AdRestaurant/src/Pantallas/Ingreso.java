@@ -68,8 +68,8 @@ public class Ingreso extends JPanel{
 	      String country;
 
 	      if (args.length != 2) {
-	          language = new String("en");
-	          country = new String("US");
+	          language = new String("es");
+	          country = new String("ES");
 	      } else {
 	          language = new String(args[0]);
 	          country = new String(args[1]);

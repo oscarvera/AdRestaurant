@@ -65,6 +65,7 @@ public class MenuCliente {
 		frame.getContentPane().add(panel);
 		
 		JButton btnBuscarRestaurante = new JButton("Buscar Restaurante");
+		btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1ES.png")));
 		btnBuscarRestaurante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				BuscarRestaurante busRest=new BuscarRestaurante(clie, messages);
@@ -72,7 +73,7 @@ public class MenuCliente {
 			}
 		});
 		
-		btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1.png")));
+		
 		
 		JButton button = new JButton("New button");
 		button.addActionListener(new ActionListener() {
@@ -81,7 +82,7 @@ public class MenuCliente {
 				frame.dispose();
 			}
 		});
-		button.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/ComentsBoton.png")));
+		
 		//button.setIcon(new ImageIcon("C:\\Users\\dam1\\Desktop\\boton2.png"));
 		
 		JButton button_1 = new JButton("New button");
@@ -91,7 +92,7 @@ public class MenuCliente {
 				frame.dispose();
 			}
 		});
-		button_1.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/reservas.png")));
+		
 		//button_1.setIcon(new ImageIcon("C:\\Users\\dam1\\Desktop\\reservas.png"));
 		
 		JButton btnPerfilCliente = new JButton("Perfil Cliente?");
@@ -149,12 +150,19 @@ public class MenuCliente {
 		);
 		panel.setLayout(gl_panel);
 		
-		JLabel label = new JLabel("AdRestaurant");
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Francois One", Font.PLAIN, 60));
-		label.setBackground(Color.WHITE);
-		label.setBounds(21, 9, 371, 74);
-		frame.getContentPane().add(label);
+		if(messages.getLocale().getLanguage().equals("es")){
+			btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1ES.png")));
+			button.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/ComentsBoton.png")));
+			button_1.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasES.png")));
+		}else if (messages.getLocale().getLanguage().equals("en")) {
+			btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1EN.png")));
+			button.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonComentariosEN.png")));
+			button_1.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasEN.png")));
+		}else if (messages.getLocale().getLanguage().equals("ca")) {
+			btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1CA.png")));
+			button.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonComentariosCA.png")));
+			button_1.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasCA.png")));
+		}
 		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setForeground(Color.WHITE);
@@ -167,7 +175,7 @@ public class MenuCliente {
 		lblBienvenido.setForeground(Color.WHITE);
 		lblBienvenido.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBienvenido.setBackground(Color.YELLOW);
-		lblBienvenido.setBounds(384, 19, 86, 64);
+		lblBienvenido.setBounds(379, 19, 86, 64);
 		frame.getContentPane().add(lblBienvenido);
 		
 		JButton btnCerrarsesion = new JButton("Cerrar Sesi\u00F3n");
@@ -182,6 +190,11 @@ public class MenuCliente {
 		btnCerrarsesion.setBackground(new Color(255, 153, 51));
 		btnCerrarsesion.setBounds(737, 40, 128, 23);
 		frame.getContentPane().add(btnCerrarsesion);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/TituloPEQUE.png")));
+		lblNewLabel.setBounds(-11, 19, 393, 64);
+		frame.getContentPane().add(lblNewLabel);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);

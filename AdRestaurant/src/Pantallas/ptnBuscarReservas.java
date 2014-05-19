@@ -291,13 +291,6 @@ import javax.swing.border.LineBorder;
  		scrollPane.setViewportView(list);
  		panel.setLayout(gl_panel);
  		
- 		JLabel label = new JLabel("AdRestaurant");
- 		label.setForeground(Color.WHITE);
- 		label.setFont(new Font("Francois One", Font.PLAIN, 60));
- 		label.setBackground(Color.WHITE);
- 		label.setBounds(22, 1, 371, 74);
- 		frame.getContentPane().add(label);
- 		
  		JLabel lblnomUser = new JLabel(clie.getNombre());
  		lblnomUser.setForeground(Color.WHITE);
  		lblnomUser.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 17));
@@ -337,6 +330,11 @@ import javax.swing.border.LineBorder;
  		btnCerrarSesion.setBackground(new Color(255, 153, 51));
  		btnCerrarSesion.setBounds(745, 33, 128, 23);
  		frame.getContentPane().add(btnCerrarSesion);
+ 		
+ 		JLabel label = new JLabel("");
+ 		label.setIcon(new ImageIcon(ptnBuscarReservas.class.getResource("/Imagen/TituloPEQUE.png")));
+ 		label.setBounds(-12, 11, 393, 64);
+ 		frame.getContentPane().add(label);
  		frame.setBounds(100, 100, 895, 646);
  		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  		frame.setLocationRelativeTo(null);

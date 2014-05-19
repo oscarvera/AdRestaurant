@@ -57,9 +57,6 @@ public class Comentarios extends JFrame {
 		panel.setBounds(0, 86, 895, 481);
 		frame.getContentPane().add(panel);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 153, 0));
-		
 		JList list = new JList();
 		list.setModel(new AbstractListModel() {
 			String[] values = new String[] {"Aqui", "los ", "restaurantes", "listados", "todos", "y", "cada", "uno", "de", "ellos"};
@@ -73,29 +70,19 @@ public class Comentarios extends JFrame {
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-					.addGap(18)
-					.addComponent(list, GroupLayout.PREFERRED_SIZE, 711, GroupLayout.PREFERRED_SIZE)
+				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+					.addContainerGap(23, Short.MAX_VALUE)
+					.addComponent(list, GroupLayout.PREFERRED_SIZE, 846, GroupLayout.PREFERRED_SIZE)
 					.addGap(26))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(21)
 					.addComponent(list, GroupLayout.PREFERRED_SIZE, 439, GroupLayout.PREFERRED_SIZE)
-					.addGap(21))
+					.addContainerGap(21, Short.MAX_VALUE))
 		);
-		panel_1.setLayout(null);
 		panel.setLayout(gl_panel);
-		
-		JLabel label = new JLabel("AdRestaurant");
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Francois One", Font.PLAIN, 60));
-		label.setBackground(Color.WHITE);
-		label.setBounds(31, 11, 371, 74);
-		frame.getContentPane().add(label);
 		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setForeground(Color.WHITE);
@@ -136,6 +123,11 @@ public class Comentarios extends JFrame {
 		btnCerrarSesion.setBackground(new Color(255, 153, 51));
 		btnCerrarSesion.setBounds(744, 43, 128, 23);
 		frame.getContentPane().add(btnCerrarSesion);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(Comentarios.class.getResource("/Imagen/TituloPEQUE.png")));
+		label.setBounds(-13, 11, 393, 74);
+		frame.getContentPane().add(label);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);

@@ -201,13 +201,6 @@ public class ptnRestaurante extends JFrame {
 		panel.add(scrollPane);
 		panel.add(lblNewLabel);
 		
-		JLabel label = new JLabel("AdRestaurant");
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Francois One", Font.PLAIN, 60));
-		label.setBackground(Color.WHITE);
-		label.setBounds(21, 9, 371, 74);
-		frame.getContentPane().add(label);
-		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setForeground(Color.WHITE);
 		lblnomUser.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 17));
@@ -247,6 +240,11 @@ public class ptnRestaurante extends JFrame {
 		button.setBackground(new Color(255, 153, 0));
 		button.setBounds(31, 623, 171, 23);
 		frame.getContentPane().add(button);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ptnRestaurante.class.getResource("/Imagen/TituloPEQUE.png")));
+		label.setBounds(-12, 18, 393, 64);
+		frame.getContentPane().add(label);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);

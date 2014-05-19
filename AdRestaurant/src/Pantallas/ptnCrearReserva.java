@@ -98,13 +98,6 @@ public class ptnCrearReserva extends JFrame {
 		textCliente.setBounds(256, 100, 629, 41);
 		panel.add(textCliente);
 		
-		JLabel label = new JLabel("AdRestaurant");
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Francois One", Font.PLAIN, 60));
-		label.setBackground(Color.WHITE);
-		label.setBounds(21, 9, 371, 74);
-		frame.getContentPane().add(label);
-		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setForeground(Color.WHITE);
 		lblnomUser.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 17));
@@ -270,6 +263,11 @@ public class ptnCrearReserva extends JFrame {
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setBounds(275, 560, 344, 36);
 		frame.getContentPane().add(btnNewButton);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ptnCrearReserva.class.getResource("/Imagen/TituloPEQUE.png")));
+		label.setBounds(-11, 18, 393, 64);
+		frame.getContentPane().add(label);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
