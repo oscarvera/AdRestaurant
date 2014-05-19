@@ -22,21 +22,23 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.RowSpec;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class ErrorRegistro extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private ArrayList <String> mensajesErrores;
-	private ArrayList <String> camposError;
 	private JLabel lblNewLabel;
 	private JTextField txtNombre;
 	private JTextField txtTelefono;
+	private Registro registro;
+	
 	/**
 	 * Create the dialog.
 	 */
-	public ErrorRegistro(ArrayList <String> err, ArrayList <String> campos) {
+	public ErrorRegistro(ArrayList <String> err, Registro reg) {
 		this.mensajesErrores=err;
-		this.camposError=campos;
+		this.registro = reg;
 		setBackground(Color.GRAY);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -46,15 +48,20 @@ public class ErrorRegistro extends JDialog {
 		{
 			lblNewLabel = new JLabel("Error en Registro");
 			lblNewLabel.setForeground(new Color(255, 255, 255));
-			lblNewLabel.setFont(new Font("Fira Sans OT", Font.PLAIN, 16));
+			lblNewLabel.setFont(new Font("Fira Sans OT", Font.BOLD, 14));
 		}
 		
 		JLabel lblPorFavorRevise = new JLabel("Por favor, revise los siguientes errores:");
+		lblPorFavorRevise.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPorFavorRevise.setForeground(new Color(255, 255, 255));
-		lblPorFavorRevise.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 14));
+		lblPorFavorRevise.setFont(new Font("Fira Sans OT Light", Font.BOLD, 14));
 		
 		
 		JTextPane textoErrores = new JTextPane();
+		textoErrores.setForeground(new Color(255, 255, 255));
+		textoErrores.setEditable(false);
+		textoErrores.setBackground(new Color(255, 153, 0));
+		textoErrores.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		for(int i=0; i<mensajesErrores.size();i++){
 	    	System.out.println("Error: ("+mensajesErrores.size()+")"+mensajesErrores.get(i) );
 			textoErrores.setText(textoErrores.getText()+mensajesErrores.get(i)+"\n");
@@ -80,7 +87,7 @@ public class ErrorRegistro extends JDialog {
 				FormFactory.DEFAULT_ROWSPEC,}));
 		contentPanel.add(lblNewLabel, "2, 2, center, top");
 		contentPanel.add(lblPorFavorRevise, "2, 4, left, top");
-		contentPanel.add(textoErrores, "2, 6, fill, fill");
+		contentPanel.add(textoErrores, "2, 6, 1, 5, fill, fill");
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(255, 255, 255));
@@ -90,6 +97,7 @@ public class ErrorRegistro extends JDialog {
 				JButton btnOK = new JButton("OK");
 				btnOK.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						activarRegistro();
 					}
 				});
 				btnOK.setForeground(Color.WHITE);
@@ -97,17 +105,17 @@ public class ErrorRegistro extends JDialog {
 				btnOK.setBackground(new Color(255, 153, 51));
 				buttonPane.add(btnOK);
 			}
-			{
-				JButton btnCancel = new JButton("Cancel");
-				btnCancel.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-					}
-				});
-				buttonPane.add(btnCancel);
-				btnCancel.setForeground(Color.WHITE);
-				btnCancel.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-				btnCancel.setBackground(new Color(255, 153, 51));
-			}
+//			{
+//				JButton btnCancel = new JButton("Cancel");
+//				btnCancel.addActionListener(new ActionListener() {
+//					public void actionPerformed(ActionEvent arg0) {
+//					}
+//				});
+//				buttonPane.add(btnCancel);
+//				btnCancel.setForeground(Color.WHITE);
+//				btnCancel.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
+//				btnCancel.setBackground(new Color(255, 153, 51));
+//			}
 		}
 	}
 
@@ -117,5 +125,10 @@ public class ErrorRegistro extends JDialog {
 
 	public void setErrores(ArrayList<String> errores) {
 		this.mensajesErrores = errores;
+	}
+	
+	public void activarRegistro(){
+		this.registro.activaRegistro();
+		this.dispose();
 	}
 }

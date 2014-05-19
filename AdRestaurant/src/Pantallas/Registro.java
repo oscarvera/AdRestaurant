@@ -5,10 +5,13 @@ import java.awt.Dialog.ModalExclusionType;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -36,7 +39,9 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 public class Registro extends JPanel{
 
@@ -52,7 +57,10 @@ public class Registro extends JPanel{
 	private JButton btnRestaurante;
 	private JTextField textTelefono;
 	JPanel panel = new JPanel();
-
+	private Registro registro;
+	private Border borde;
+	private FocusListener focus;
+	
 	private JButton btnRegRest;
 	private JTextField textNomUserRest;
 	private JTextField textEmailRest;
@@ -78,8 +86,22 @@ public class Registro extends JPanel{
 	 * Create the application.
 	 */
 	public Registro(ResourceBundle messages) {
+		this.registro=this;
 		this.messages=messages;
 		initialize();
+		this.borde=BorderFactory.createLineBorder(new Color(255, 134, 0));
+//		this.focus=new FocusListener() {
+//			
+//			@Override
+//			public void focusLost(FocusEvent arg0) {
+//
+//			}
+//			
+//			@Override
+//			public void focusGained(FocusEvent arg0) {
+//				textTelefono.setBorder(borde);
+//			}
+//		};
 	}
 
 	/**
@@ -125,7 +147,7 @@ public class Registro extends JPanel{
 					
 					@Override
 					public void keyTyped(KeyEvent e) {
-						// TODO Auto-generated method stub			
+						
 					}
 					
 					@Override
@@ -154,6 +176,21 @@ public class Registro extends JPanel{
 				textNomUser.setBounds(423, 145, 197, 22);
 				panel.add(textNomUser);
 				textNomUser.addKeyListener(keyLis);
+				textNomUser.setBorder(borde);
+				textNomUser.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						textNomUser.setBorder(borde);
+						textNomUser.setText("");
+					}
+				});
+				
 				
 				JLabel lblContrasea = new JLabel(messages.getString("Pass"));
 				lblContrasea.setForeground(new Color(255, 153, 51));
@@ -172,12 +209,40 @@ public class Registro extends JPanel{
 				textEmail.setBounds(423, 211, 197, 22);
 				panel.add(textEmail);
 				textEmail.addKeyListener(keyLis);
+				textEmail.setBorder(borde);
+				textEmail.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						textEmail.setBorder(borde);
+						textEmail.setText("");
+					}
+				});
 				
 				textNombre = new JTextField();
 				textNombre.setColumns(10);
 				textNombre.setBounds(423, 46, 197, 22);
 				panel.add(textNombre);
 				textNombre.addKeyListener(keyLis);
+				textNombre.setBorder(borde);
+				textNombre.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						textNombre.setBorder(borde);
+						textNombre.setText("");
+					}
+				});
 				
 				JLabel lblNombre = new JLabel(messages.getString("Nombre"));
 				lblNombre.setForeground(new Color(255, 153, 0));
@@ -190,6 +255,20 @@ public class Registro extends JPanel{
 				textApellido1.setBounds(423, 79, 197, 22);
 				panel.add(textApellido1);
 				textApellido1.addKeyListener(keyLis);
+				textApellido1.setBorder(borde);
+				textApellido1.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						textApellido1.setBorder(borde);
+						textApellido1.setText("");
+					}
+				});
 				
 				JLabel lblPrimerApellido = new JLabel(messages.getString("PA"));
 				lblPrimerApellido.setForeground(new Color(255, 153, 51));
@@ -202,6 +281,20 @@ public class Registro extends JPanel{
 				textApellido2.setBounds(423, 112, 197, 22);
 				panel.add(textApellido2);
 				textApellido2.addKeyListener(keyLis);
+				textApellido2.setBorder(borde);
+				textApellido2.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						textApellido2.setBorder(borde);
+						textApellido2.setText("");
+					}
+				});
 				
 				JLabel lblSegundoApellido = new JLabel(messages.getString("SA"));
 				lblSegundoApellido.setForeground(new Color(255, 153, 0));
@@ -229,10 +322,24 @@ public class Registro extends JPanel{
 				passUser = new JPasswordField();
 				passUser.setBounds(423, 178, 197, 22);
 				panel.add(passUser);
+				passUser.setBorder(borde);
+				passUser.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						passUser.setBorder(borde);
+						passUser.setText("");
+					}
+				});
 				
 				JLabel lblTelfono = new JLabel(messages.getString("Telefono"));
 				lblTelfono.setForeground(new Color(255, 153, 0));
-				lblTelfono.setFont(new Font("Dialog", Font.BOLD, 18));
+				lblTelfono.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
 				lblTelfono.setBounds(258, 244, 104, 22);
 				panel.add(lblTelfono);
 				
@@ -241,7 +348,21 @@ public class Registro extends JPanel{
 				panel.add(textTelefono);
 				textTelefono.setColumns(10);
 				textTelefono.addKeyListener(keyLis);
-				btnCliente.setEnabled(false);
+				textTelefono.setBorder(borde);
+				textTelefono.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						textTelefono.setBorder(borde);
+						textTelefono.setText("");
+					}
+				});
+	
 				
 				btnCliente.setEnabled(false);
 				btnRestaurante.setEnabled(true);
@@ -294,6 +415,7 @@ public class Registro extends JPanel{
 				comboTipoRest.setBounds(219, 94, 197, 22);
 				panel.add(comboTipoRest);
 				comboTipoRest.addKeyListener(keyLis);
+				comboTipoRest.setBorder(borde);
 						
 				JLabel lblNombreUsuario = new JLabel(messages.getString("NU"));
 				lblNombreUsuario.setForeground(new Color(255, 153, 51));
@@ -306,6 +428,20 @@ public class Registro extends JPanel{
 				textNomUserRest.setBounds(219, 213, 197, 22);
 				panel.add(textNomUserRest);
 				textNomUserRest.addKeyListener(keyLis);
+				textNomUserRest.setBorder(borde);
+				textNomUserRest.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						textNomUserRest.setBorder(borde);
+						textNomUserRest.setText("");
+					}
+				});
 				
 				JLabel lblContrasea = new JLabel(messages.getString("Pass"));
 				lblContrasea.setForeground(new Color(255, 153, 51));
@@ -324,12 +460,40 @@ public class Registro extends JPanel{
 				textEmailRest.setBounds(219, 246, 197, 22);
 				panel.add(textEmailRest);
 				textEmailRest.addKeyListener(keyLis);
+				textEmailRest.setBorder(borde);
+				textEmailRest.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						textEmailRest.setBorder(borde);
+						textEmailRest.setText("");
+					}
+				});
 				
 				textNombreRest = new JTextField();
 				textNombreRest.setColumns(10);
 				textNombreRest.setBounds(219, 28, 197, 22);
 				panel.add(textNombreRest);
 				textNombreRest.addKeyListener(keyLis);
+				textNombreRest.setBorder(borde);
+				textNombreRest.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						textNombreRest.setBorder(borde);
+						textNombreRest.setText("");
+					}
+				});
 				
 				JLabel lblNombre_1 = new JLabel(messages.getString("Nombre"));
 				lblNombre_1.setForeground(new Color(255, 153, 0));
@@ -361,6 +525,20 @@ public class Registro extends JPanel{
 				textProvinciaRest.setBounds(641, 61, 197, 22);
 				panel.add(textProvinciaRest);
 				textProvinciaRest.addKeyListener(keyLis);
+				textProvinciaRest.setBorder(borde);
+				textProvinciaRest.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						textProvinciaRest.setBorder(borde);
+						textProvinciaRest.setText("");
+					}
+				});
 				
 				JLabel lblPais = new JLabel(messages.getString("CP"));
 				lblPais.setForeground(new Color(255, 153, 51));
@@ -373,6 +551,20 @@ public class Registro extends JPanel{
 				textCodPostRest.setBounds(641, 94, 197, 22);
 				panel.add(textCodPostRest);
 				textCodPostRest.addKeyListener(keyLis);
+				textCodPostRest.setBorder(borde);
+				textCodPostRest.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						textCodPostRest.setBorder(borde);
+						textCodPostRest.setText("");
+					}
+				});
 				
 				JLabel lblPoblacion = new JLabel(messages.getString("Poblacion"));
 				lblPoblacion.setForeground(new Color(255, 153, 0));
@@ -385,12 +577,40 @@ public class Registro extends JPanel{
 				textPoblacionRest.setBounds(641, 28, 197, 22);
 				panel.add(textPoblacionRest);
 				textPoblacionRest.addKeyListener(keyLis);
+				textPoblacionRest.setBorder(borde);
+				textPoblacionRest.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						textPoblacionRest.setBorder(borde);
+						textPoblacionRest.setText("");
+					}
+				});
 				
 				textDireccionRest = new JTextField();
 				textDireccionRest.setColumns(10);
 				textDireccionRest.setBounds(219, 61, 197, 22);
 				panel.add(textDireccionRest);
 				textDireccionRest.addKeyListener(keyLis);
+				textDireccionRest.setBorder(borde);
+				textDireccionRest.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						textDireccionRest.setBorder(borde);
+						textDireccionRest.setText("");
+					}
+				});
 				
 				JLabel lblDireccin = new JLabel(messages.getString("Direccion"));
 				lblDireccin.setForeground(new Color(255, 153, 51));
@@ -408,6 +628,20 @@ public class Registro extends JPanel{
 				pwdContraRest.setBounds(599, 213, 197, 20);
 				panel.add(pwdContraRest);
 				pwdContraRest.addKeyListener(keyLis);
+				pwdContraRest.setBorder(borde);
+				pwdContraRest.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						pwdContraRest.setBorder(borde);
+						pwdContraRest.setText("");
+					}
+				});
 				
 				
 				
@@ -449,6 +683,20 @@ public class Registro extends JPanel{
 				textTelefonoRest.setColumns(10);
 				textTelefonoRest.setBounds(599, 248, 197, 22);
 				panel.add(textTelefonoRest);
+				textTelefonoRest.setBorder(borde);
+				textTelefonoRest.addFocusListener(new FocusListener(){
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+		
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						textTelefonoRest.setBorder(borde);
+						textTelefonoRest.setText("");
+					}
+				});
 				
 				btnCliente.setEnabled(true);
 				btnRestaurante.setEnabled(false);
@@ -539,7 +787,6 @@ public class Registro extends JPanel{
 	 */
 	public void comprobarDatosCliente(){
 		ArrayList <String> mensajesError = new ArrayList <String>();
-		ArrayList <String> componentesError = new ArrayList <String>();
 		
 		//Comprobamos el número de teléfono
 		String textoIntroducido=this.textTelefono.getText();	
@@ -547,7 +794,7 @@ public class Registro extends JPanel{
 	    Matcher mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("ErrorTELF"));
-	    	componentesError.add("textTelefono");
+	    	this.textTelefono.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 	    } 
 	    
 		//Comprobamos el nombre
@@ -556,7 +803,7 @@ public class Registro extends JPanel{
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("ErrorNOMBRE"));
-	    	componentesError.add("textNombre");
+	    	this.textNombre.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 	    } 
 	    
 	    //Comprobamos el primer apellido
@@ -565,7 +812,7 @@ public class Registro extends JPanel{
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("Error1APELLIDO"));
-	    	componentesError.add("textApellido1");
+	    	this.textApellido1.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 	    } 
 	    
 	    //Comprobamos el segundo apellido
@@ -574,7 +821,7 @@ public class Registro extends JPanel{
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("Error2APELLIDO"));
-	    	componentesError.add("textApellido2");
+	    	this.textApellido2.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 	    } 
 	    
 	    //Comprobamos el nombre de usuario
@@ -583,7 +830,7 @@ public class Registro extends JPanel{
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("ErrorNOMBREUSUARIO")); 
-	    	componentesError.add("textNomUser");
+	    	this.textNomUser.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 	    } 
 	    
 	    //Comprobamos el email
@@ -592,16 +839,16 @@ public class Registro extends JPanel{
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("ErrorEMAIL")); 
-	    	componentesError.add("textEmail");
+	    	this.textEmail.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 	    } 
 	    
 	    //Si hay errores, abre la pantalla ErrorRegistro y le pasa el array de errores. Si está correcto
 	    if(mensajesError.size()>0){
-	    	JDialog aviso = new ErrorRegistro(mensajesError, componentesError);
+	    	JDialog aviso = new ErrorRegistro(mensajesError, this.registro);
 	    	aviso.setVisible(true);
+	    	frame.setEnabled(false);
 	    }else{
 			RegistroCompleto regCom=new RegistroCompleto(messages);
-			frame.setEnabled(false);
 			//frame.dispose();
 		}
 	}
@@ -612,7 +859,6 @@ public class Registro extends JPanel{
 	 */	
 	public void comprobarDatosRestaurante(){
 		ArrayList <String> mensajesError = new ArrayList <String>();
-		ArrayList <String> componentesError = new ArrayList <String>();
 		
 		//Comprobamos el número de teléfono
 		String textoIntroducido=this.textTelefonoRest.getText();	
@@ -620,7 +866,7 @@ public class Registro extends JPanel{
 	    Matcher mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("ErrorTELF")); 
-	    	componentesError.add("textTelefonoRest");
+	    	this.textTelefonoRest.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 	    } 
 	    
 	    //Comprobamos el nombre
@@ -629,7 +875,7 @@ public class Registro extends JPanel{
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("ErrorNOMBRE")); 
-	    	componentesError.add("textNombreRest");
+	    	this.textNombreRest.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 	    } 
 	    
 	    //Comprobamos el nombre de usuario
@@ -638,7 +884,7 @@ public class Registro extends JPanel{
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("ErrorNOMBREUSUARIO")); 
-	    	componentesError.add("textNomUserRest");
+	    	this.textNomUserRest.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 	    } 
 	    
 	    //Comprobamos el email
@@ -647,7 +893,7 @@ public class Registro extends JPanel{
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("ErrorEMAIL")); 
-	    	componentesError.add("textEmailRest");
+	    	this.textEmailRest.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 	    } 
 	    
 	    //Comprobamos la direccion
@@ -656,7 +902,7 @@ public class Registro extends JPanel{
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("ErrorDIRECCION")); 
-	    	componentesError.add("textDireccionRest");
+	    	this.textDireccionRest.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 	    } 
 	    
 	    //Comprobamos la Poblacion
@@ -665,7 +911,7 @@ public class Registro extends JPanel{
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("ErrorPOBLACION")); 
-	    	componentesError.add("textPoblacionRest");
+	    	this.textPoblacionRest.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 	    } 
 	    
 	    //Comprobamos la Provincia
@@ -674,7 +920,7 @@ public class Registro extends JPanel{
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("ErrorPROVINCIA")); 
-	    	componentesError.add("textProvinciaRest");
+	    	this.textProvinciaRest.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 	    } 
 	    
 	    //Comprobamos el codigo postal
@@ -683,19 +929,25 @@ public class Registro extends JPanel{
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("ErrorCP")); 
-	    	componentesError.add("textCodPostRest");
+	    	this.textCodPostRest.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 	    } 
 	    
 	    //Si hay errores, abre la pantalla ErrorRegistro y le pasa el array de errores.
 	    if(mensajesError.size()>0){
-	    	JDialog aviso = new ErrorRegistro(mensajesError, componentesError);
+	    	JDialog aviso = new ErrorRegistro(mensajesError, this.registro);
 	    	aviso.setVisible(true);
+	    	frame.setEnabled(false);
 	    }else{
 			RegistroCompleto regCom=new RegistroCompleto(messages);
-			frame.setEnabled(false);
 			//frame.dispose();
 		}
 	}
 	
+	/**
+	 * Activa la pantalla registro de nuevo, después de leer los mensajes de error.
+	 */
+	public void activaRegistro(){
+		frame.setEnabled(true);
+	}
 }
 	
