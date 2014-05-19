@@ -372,13 +372,13 @@ public class Ingreso extends JPanel{
 			}
 		});
 		
-		JLabel lblValenciano = new JLabel("Valenci\u00E0");
-		lblValenciano.setForeground(Color.WHITE);
-		lblValenciano.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
-		lblValenciano.setBounds(287, 606, 80, 40);
-		frame.getContentPane().add(lblValenciano);
+		JLabel lblCatalan = new JLabel("Catalán");
+		lblCatalan.setForeground(Color.WHITE);
+		lblCatalan.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
+		lblCatalan.setBounds(287, 606, 80, 40);
+		frame.getContentPane().add(lblCatalan);
 		
-		lblValenciano.addMouseListener(new MouseListener() {
+		lblCatalan.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
