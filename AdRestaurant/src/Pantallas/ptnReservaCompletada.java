@@ -68,6 +68,7 @@ public class ptnReservaCompletada extends JPanel{
 		panel.add(lblNewLabel_2);
 		
 		JButton btnIniciarSesion = new JButton(messages.getString("VolverMenuPrincipal"));
+		btnIniciarSesion.setFocusable(false);
 		btnIniciarSesion.setBackground(new Color(255, 255, 255));
 		btnIniciarSesion.setForeground(new Color(255, 153, 51));
 		btnIniciarSesion.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));

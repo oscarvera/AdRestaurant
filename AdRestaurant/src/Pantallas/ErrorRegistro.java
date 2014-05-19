@@ -95,6 +95,7 @@ public class ErrorRegistro extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnOK = new JButton("OK");
+				btnOK.setFocusable(false);
 				btnOK.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						activarRegistro();
@@ -105,17 +106,6 @@ public class ErrorRegistro extends JDialog {
 				btnOK.setBackground(new Color(255, 153, 51));
 				buttonPane.add(btnOK);
 			}
-//			{
-//				JButton btnCancel = new JButton("Cancel");
-//				btnCancel.addActionListener(new ActionListener() {
-//					public void actionPerformed(ActionEvent arg0) {
-//					}
-//				});
-//				buttonPane.add(btnCancel);
-//				btnCancel.setForeground(Color.WHITE);
-//				btnCancel.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-//				btnCancel.setBackground(new Color(255, 153, 51));
-//			}
 		}
 	}
 

@@ -113,6 +113,7 @@ public class ptnCrearReserva extends JFrame {
 		frame.getContentPane().add(lblBienvenido);
 		
 		JButton btnCerrarsesion = new JButton(messages.getString("CerrarSesion"));
+		btnCerrarsesion.setFocusable(false);
 		btnCerrarsesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnCerrarsesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -125,18 +126,19 @@ public class ptnCrearReserva extends JFrame {
 		btnCerrarsesion.setBounds(737, 40, 128, 23);
 		frame.getContentPane().add(btnCerrarsesion);
 		
-		JButton button = new JButton(messages.getString("VolverMenuPrincipal"));
-		button.addActionListener(new ActionListener() {
+		JButton btnMenuPrincipal = new JButton(messages.getString("VolverMenuPrincipal"));
+		btnMenuPrincipal.setFocusable(false);
+		btnMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MenuCliente menuclie=new MenuCliente(clie, messages);
  				frame.dispose();
 			}
 		});
-		button.setForeground(Color.WHITE);
-		button.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-		button.setBackground(new Color(255, 153, 0));
-		button.setBounds(39, 605, 171, 23);
-		frame.getContentPane().add(button);
+		btnMenuPrincipal.setForeground(Color.WHITE);
+		btnMenuPrincipal.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
+		btnMenuPrincipal.setBackground(new Color(255, 153, 0));
+		btnMenuPrincipal.setBounds(39, 605, 171, 23);
+		frame.getContentPane().add(btnMenuPrincipal);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(255, 255, 255));
@@ -249,8 +251,9 @@ public class ptnCrearReserva extends JFrame {
 		lblpersonas.setBounds(624, 291, 229, 36);
 		frame.getContentPane().add(lblpersonas);
 		
-		JButton btnNewButton = new JButton(messages.getString("Reservar"));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnReservar = new JButton(messages.getString("Reservar"));
+		btnReservar.setFocusable(false);
+		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ptnReservaCompletada compl=new ptnReservaCompletada(clie, messages);
 				frame.dispose();
@@ -259,10 +262,10 @@ public class ptnCrearReserva extends JFrame {
 				//Reserva reser= new Reserva(rest.getNombre(), clie.getNombre(), String.valueOf(spinner.getValue())+String.valueOf(spinner_1.getValue())+String.valueOf(spinner_2.getValue()), String.valueOf(spinner_3.getValue())+String.valueOf(spinner_4.getValue()), "Ahora", String.valueOf(spinner_5.getValue()));
 			}
 		});
-		btnNewButton.setForeground(new Color(255, 153, 0));
-		btnNewButton.setBackground(new Color(255, 255, 255));
-		btnNewButton.setBounds(275, 560, 344, 36);
-		frame.getContentPane().add(btnNewButton);
+		btnReservar.setForeground(new Color(255, 153, 0));
+		btnReservar.setBackground(new Color(255, 255, 255));
+		btnReservar.setBounds(275, 560, 344, 36);
+		frame.getContentPane().add(btnReservar);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ptnCrearReserva.class.getResource("/Imagen/TituloPEQUE.png")));

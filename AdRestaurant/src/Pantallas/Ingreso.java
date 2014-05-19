@@ -164,7 +164,7 @@ public class Ingreso extends JPanel{
 
 		btnRegistrar = new JButton("REGISTRATE");
 		btnRegistrar.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-		btnRegistrar.setToolTipText("Facil y r√°pido, REGISTRATE AHORA!");
+		btnRegistrar.setToolTipText("Facil y r·pido, REGISTRATE AHORA!");
 		btnRegistrar.setBackground(new Color(255, 153, 51));
 		btnRegistrar.setForeground(new Color(255, 255, 255));
 		btnRegistrar.addActionListener(new ActionListener() {
@@ -221,7 +221,7 @@ public class Ingreso extends JPanel{
 
 
 		textLabelPass = new JPasswordField();
-		textLabelPass.setToolTipText("Por favor, introduzca su Contrase√±a");
+		textLabelPass.setToolTipText("Por favor, introduzca su ContraseÒa");
 		textLabelPass.setBounds(334, 321, 227, 37);
 		frame.getContentPane().add(textLabelPass);
 
@@ -372,13 +372,13 @@ public class Ingreso extends JPanel{
 			}
 		});
 		
-		JLabel lblValenciano = new JLabel("Valenci\u00E0");
-		lblValenciano.setForeground(Color.WHITE);
-		lblValenciano.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
-		lblValenciano.setBounds(287, 606, 80, 40);
-		frame.getContentPane().add(lblValenciano);
+		JLabel lblCatalan = new JLabel("Catal·n");
+		lblCatalan.setForeground(Color.WHITE);
+		lblCatalan.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
+		lblCatalan.setBounds(287, 606, 80, 40);
+		frame.getContentPane().add(lblCatalan);
 		
-		lblValenciano.addMouseListener(new MouseListener() {
+		lblCatalan.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseReleased(MouseEvent arg0) {

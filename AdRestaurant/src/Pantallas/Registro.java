@@ -168,9 +168,10 @@ public class Registro extends JPanel{
 				};
 				
 				JLabel lblNombreUsuario = new JLabel(messages.getString("NU"));
+				lblNombreUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblNombreUsuario.setForeground(new Color(255, 153, 51));
 				lblNombreUsuario.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblNombreUsuario.setBounds(258, 145, 155, 22);
+				lblNombreUsuario.setBounds(98, 145, 320, 22);
 				panel.add(lblNombreUsuario);
 				
 				textNomUser = new JTextField();
@@ -195,15 +196,17 @@ public class Registro extends JPanel{
 				
 				
 				JLabel lblContrasea = new JLabel(messages.getString("Pass"));
+				lblContrasea.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblContrasea.setForeground(new Color(255, 153, 51));
 				lblContrasea.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblContrasea.setBounds(258, 178, 155, 22);
+				lblContrasea.setBounds(98, 178, 320, 22);
 				panel.add(lblContrasea);
 				
 				JLabel lblEmail = new JLabel(messages.getString("Email"));
+				lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblEmail.setForeground(new Color(255, 153, 0));
 				lblEmail.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblEmail.setBounds(258, 211, 155, 22);
+				lblEmail.setBounds(98, 211, 320, 22);
 				panel.add(lblEmail);
 				
 				textEmail = new JTextField();
@@ -247,9 +250,10 @@ public class Registro extends JPanel{
 				});
 				
 				JLabel lblNombre = new JLabel(messages.getString("Nombre"));
+				lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblNombre.setForeground(new Color(255, 153, 0));
 				lblNombre.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblNombre.setBounds(258, 46, 155, 22);
+				lblNombre.setBounds(98, 46, 320, 22);
 				panel.add(lblNombre);
 				
 				textApellido1 = new JTextField();
@@ -273,9 +277,10 @@ public class Registro extends JPanel{
 				});
 				
 				JLabel lblPrimerApellido = new JLabel(messages.getString("PA"));
+				lblPrimerApellido.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblPrimerApellido.setForeground(new Color(255, 153, 51));
 				lblPrimerApellido.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblPrimerApellido.setBounds(258, 79, 155, 22);
+				lblPrimerApellido.setBounds(98, 79, 320, 22);
 				panel.add(lblPrimerApellido);
 				
 				textApellido2 = new JTextField();
@@ -299,9 +304,10 @@ public class Registro extends JPanel{
 				});
 				
 				JLabel lblSegundoApellido = new JLabel(messages.getString("SA"));
+				lblSegundoApellido.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblSegundoApellido.setForeground(new Color(255, 153, 0));
 				lblSegundoApellido.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblSegundoApellido.setBounds(258, 112, 169, 22);
+				lblSegundoApellido.setBounds(98, 112, 320, 22);
 				panel.add(lblSegundoApellido);
 				
 				/**
@@ -340,9 +346,10 @@ public class Registro extends JPanel{
 				});
 				
 				JLabel lblTelfono = new JLabel(messages.getString("Telefono"));
+				lblTelfono.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblTelfono.setForeground(new Color(255, 153, 0));
 				lblTelfono.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblTelfono.setBounds(258, 244, 104, 22);
+				lblTelfono.setBounds(98, 244, 320, 22);
 				panel.add(lblTelfono);
 				
 				textTelefono = new JTextField();
@@ -413,16 +420,17 @@ public class Registro extends JPanel{
 				};
 				
 				comboTipoRest = new JComboBox();
-				comboTipoRest.setModel(new DefaultComboBoxModel(new String[] {"Elige un tipo", "Chino", "Japon\u00E9s", "Mexicano", "Italiano", "Espa\u00F1ol", "Alem\u00E1n", "Estadounidense"}));
+				comboTipoRest.setModel(new DefaultComboBoxModel(new String[] {messages.getString("Tipo1"),messages.getString("Chino"),messages.getString("Japones"), messages.getString("Mexicano"), messages.getString("Italiano"),messages.getString("Español"),messages.getString("Aleman"), messages.getString("Americano")}));
 				comboTipoRest.setBounds(219, 94, 197, 22);
 				panel.add(comboTipoRest);
 				comboTipoRest.addKeyListener(keyLis);
 				comboTipoRest.setBorder(borde);
 						
 				JLabel lblNombreUsuario = new JLabel(messages.getString("NU"));
+				lblNombreUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblNombreUsuario.setForeground(new Color(255, 153, 51));
 				lblNombreUsuario.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblNombreUsuario.setBounds(54, 213, 155, 22);
+				lblNombreUsuario.setBounds(0, 212, 213, 22);
 				panel.add(lblNombreUsuario);
 					
 				textNomUserRest = new JTextField();
@@ -446,15 +454,17 @@ public class Registro extends JPanel{
 				});
 				
 				JLabel lblContrasea = new JLabel(messages.getString("Pass"));
+				lblContrasea.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblContrasea.setForeground(new Color(255, 153, 51));
 				lblContrasea.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblContrasea.setBounds(434, 213, 155, 22);
+				lblContrasea.setBounds(361, 212, 220, 22);
 				panel.add(lblContrasea);
 				
 				JLabel lblEmail = new JLabel(messages.getString("Email"));
+				lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblEmail.setForeground(new Color(255, 153, 0));
 				lblEmail.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblEmail.setBounds(54, 246, 155, 22);
+				lblEmail.setBounds(0, 246, 213, 22);
 				panel.add(lblEmail);
 				
 				textEmailRest = new JTextField();
@@ -498,9 +508,10 @@ public class Registro extends JPanel{
 				});
 				
 				JLabel lblNombre_1 = new JLabel(messages.getString("Nombre"));
+				lblNombre_1.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblNombre_1.setForeground(new Color(255, 153, 0));
 				lblNombre_1.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblNombre_1.setBounds(54, 27, 155, 22);
+				lblNombre_1.setBounds(0, 27, 213, 22);
 				panel.add(lblNombre_1);
 				
 				btnRegRest = new JButton(messages.getString("REGISTRARSE"));
@@ -517,9 +528,10 @@ public class Registro extends JPanel{
 				panel.add(btnRegRest);
 				
 				JLabel lblProvincia = new JLabel(messages.getString("Provincia"));
+				lblProvincia.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblProvincia.setForeground(new Color(255, 153, 51));
 				lblProvincia.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblProvincia.setBounds(476, 60, 155, 22);
+				lblProvincia.setBounds(431, 60, 200, 22);
 				panel.add(lblProvincia);
 				
 				textProvinciaRest = new JTextField();
@@ -543,9 +555,10 @@ public class Registro extends JPanel{
 				});
 				
 				JLabel lblPais = new JLabel(messages.getString("CP"));
+				lblPais.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblPais.setForeground(new Color(255, 153, 51));
 				lblPais.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblPais.setBounds(476, 93, 155, 22);
+				lblPais.setBounds(431, 93, 200, 22);
 				panel.add(lblPais);
 				
 				textCodPostRest = new JTextField();
@@ -569,9 +582,10 @@ public class Registro extends JPanel{
 				});
 				
 				JLabel lblPoblacion = new JLabel(messages.getString("Poblacion"));
+				lblPoblacion.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblPoblacion.setForeground(new Color(255, 153, 0));
 				lblPoblacion.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblPoblacion.setBounds(476, 27, 155, 22);
+				lblPoblacion.setBounds(431, 27, 200, 22);
 				panel.add(lblPoblacion);
 				
 				textPoblacionRest = new JTextField();
@@ -615,15 +629,17 @@ public class Registro extends JPanel{
 				});
 				
 				JLabel lblDireccin = new JLabel(messages.getString("Direccion"));
+				lblDireccin.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblDireccin.setForeground(new Color(255, 153, 51));
 				lblDireccin.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblDireccin.setBounds(54, 60, 155, 22);
+				lblDireccin.setBounds(0, 60, 213, 22);
 				panel.add(lblDireccin);
 				
 				JLabel lblTipo = new JLabel (messages.getString("Tipo"));
+				lblTipo.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblTipo.setForeground(new Color(255, 153, 0));
 				lblTipo.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblTipo.setBounds(54, 94, 169, 22);
+				lblTipo.setBounds(0, 93, 213, 22);
 				panel.add(lblTipo);
 				
 				pwdContraRest = new JPasswordField();
@@ -648,9 +664,10 @@ public class Registro extends JPanel{
 				
 				
 				JLabel lblAptoParaliticos = new JLabel(messages.getString("AP"));
+				lblAptoParaliticos.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblAptoParaliticos.setForeground(new Color(255, 153, 0));
 				lblAptoParaliticos.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblAptoParaliticos.setBounds(54, 127, 155, 22);
+				lblAptoParaliticos.setBounds(0, 127, 213, 22);
 				panel.add(lblAptoParaliticos);
 				
 				JCheckBox chckbxNewCheckBox = new JCheckBox("");
@@ -676,9 +693,10 @@ public class Registro extends JPanel{
 				panel.add(panel_11);
 				
 				JLabel lblTelefono = new JLabel(messages.getString("Telefono"));
+				lblTelefono.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblTelefono.setForeground(new Color(255, 153, 51));
 				lblTelefono.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-				lblTelefono.setBounds(434, 246, 155, 22);
+				lblTelefono.setBounds(361, 246, 220, 22);
 				panel.add(lblTelefono);
 				
 				textTelefonoRest = new JTextField();
