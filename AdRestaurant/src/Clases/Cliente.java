@@ -7,15 +7,14 @@ public class Cliente {
 	int codigoCliente;
 	String usuario;
 	String contraseña;
-	int telefono;
+	String telefono;
 	String email;
 	
 	public Cliente(String nombre){
 		this.nombre=nombre;
 	}
 	
-	public Cliente(String nombre, String primerApellido, String segundoApellido,
-			int codigoCliente, String usuario, String contraseña, int telefono, String email){
+	public Cliente(String nombre, String primerApellido, String segundoApellido, String usuario, char[] contraseña, String telefono, String email){
 		
 	}
 	
@@ -47,11 +46,11 @@ public class Cliente {
 		this.contraseña = contraseña;
 	}
 
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 

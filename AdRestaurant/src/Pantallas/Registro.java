@@ -43,6 +43,8 @@ import java.util.regex.Pattern;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import Clases.Cliente;
+
 public class Registro extends JPanel{
 
 	private JFrame frame;
@@ -849,6 +851,8 @@ public class Registro extends JPanel{
 	    	frame.setEnabled(false);
 	    }else{
 			RegistroCompleto regCom=new RegistroCompleto(messages);
+			Cliente c = new Cliente(this.textNombre.getText(), this.textApellido1.getText(), this.textApellido2.getText(), 
+					this.textNomUser.getText(), this.passUser.getPassword(), this.textTelefono.getText(), this.textEmail.getText());
 			//frame.dispose();
 		}
 	}

@@ -98,7 +98,7 @@ public class MenuCliente {
 		JButton btnPerfilCliente = new JButton("Perfil Cliente?");
 		btnPerfilCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				restaurante=new Restaurante("pass", "Foster's Hollywood" ,"Americano", 660235656, "Centro comercial Aqua", "Valencia", "Valencia", "46022", true);
+				restaurante=new Restaurante("pass", "Foster's Hollywood" ,"Americano", "660235656", "Centro comercial Aqua", "Valencia", "Valencia", "46022", true);
 				ptnRestaurante ptnrest=new ptnRestaurante(clie, restaurante, messages);
 				frame.dispose();
 			}

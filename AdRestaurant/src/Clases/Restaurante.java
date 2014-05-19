@@ -8,7 +8,7 @@ public class Restaurante {
 	String password;
 	String nombre;
 	String tipo;
-	int telefono;
+	String telefono;
 	String direccion;
 	String poblacion;
 	String provincia;
@@ -18,13 +18,13 @@ public class Restaurante {
 	BufferedImage foto2;
 	
 	//Constructor para el registro de un nuevo restaurante:
-		public Restaurante(String password, String nombre, String tipo, int telefono, String direccion, 
+		public Restaurante(String password, String nombre, String tipo, String telf, String direccion, 
 				String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto){
 			 //BufferedImage foto1, BufferedImage foto2
 			this.password=password;
 			this.nombre=nombre;
 			this.tipo=tipo;
-			this.telefono=telefono;
+			this.telefono=telf;
 			this.direccion=direccion;
 			this.poblacion=poblacion;
 			this.provincia=provincia;
@@ -76,11 +76,11 @@ public class Restaurante {
 		this.tipo = tipo;
 	}
 
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
