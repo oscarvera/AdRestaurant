@@ -5,6 +5,8 @@ import java.awt.Dialog.ModalExclusionType;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -39,7 +41,7 @@ public class ptnRestaurante extends JFrame {
 	
 
 	/**
-	 * Create the frame.
+	 *  Create the frame.
 	 */
 	public ptnRestaurante(final Cliente clie, final Restaurante rest,final ResourceBundle messages) {
 		this.clie=clie;
@@ -61,6 +63,41 @@ public class ptnRestaurante extends JFrame {
 		panel.setBounds(0, 94, 895, 529);
 		frame.getContentPane().add(panel);
 		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(0, 0, 895, 22);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+
+		JLabel cerrarImage = new JLabel("");
+		cerrarImage.setBounds(870, 0, 25, 22);
+		cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
+		panel_1.add(cerrarImage);
+		cerrarImage.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Salir salir=new Salir(messages);
+
+			}
+		});
+		
 		JLabel lblNewLabel = new JLabel(rest.getNombre());
 		lblNewLabel.setBounds(42, 29, 724, 41);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -79,9 +116,9 @@ public class ptnRestaurante extends JFrame {
 		lblNewLabel_1.setForeground(new Color(255, 153, 0));
 		lblNewLabel_1.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 18));
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(386, 88, 507, 235);
-		panel_1.setBackground(new Color(255, 255, 255));
+		JPanel panel_11 = new JPanel();
+		panel_11.setBounds(386, 88, 507, 235);
+		panel_11.setBackground(new Color(255, 255, 255));
 		
 		JButton btnReservar = new JButton(messages.getString("Reservar"));
 		btnReservar.setFocusable(false);
@@ -179,25 +216,25 @@ public class ptnRestaurante extends JFrame {
 		
 		textMinusvalidos.setForeground(new Color(255, 153, 0));
 		textMinusvalidos.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
-		panel_1.setLayout(null);
-		panel_1.add(lbTipo);
-		panel_1.add(textTipo);
-		panel_1.add(lbTelefono);
-		panel_1.add(textTelefono);
-		panel_1.add(lbPoblacion);
-		panel_1.add(textPoblacion);
-		panel_1.add(lbDireccion);
-		panel_1.add(textDireccion);
-		panel_1.add(lbProvincia);
-		panel_1.add(textProvincia);
-		panel_1.add(lbCP);
-		panel_1.add(textCP);
-		panel_1.add(lbMinusvalidos);
-		panel_1.add(textMinusvalidos);
+		panel_11.setLayout(null);
+		panel_11.add(lbTipo);
+		panel_11.add(textTipo);
+		panel_11.add(lbTelefono);
+		panel_11.add(textTelefono);
+		panel_11.add(lbPoblacion);
+		panel_11.add(textPoblacion);
+		panel_11.add(lbDireccion);
+		panel_11.add(textDireccion);
+		panel_11.add(lbProvincia);
+		panel_11.add(textProvincia);
+		panel_11.add(lbCP);
+		panel_11.add(textCP);
+		panel_11.add(lbMinusvalidos);
+		panel_11.add(textMinusvalidos);
 		panel.setLayout(null);
 		panel.add(btnReservar);
 		panel.add(lblImagen);
-		panel.add(panel_1);
+		panel.add(panel_11);
 		panel.add(lblNewLabel_1);
 		panel.add(scrollPane);
 		panel.add(lblNewLabel);

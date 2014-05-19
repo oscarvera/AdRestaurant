@@ -47,6 +47,7 @@ import Clases.Cliente;
 
 public class Registro extends JPanel{
 
+	
 	private JFrame frame;
 	private JTextField textNomUser;
 	private JTextField textEmail;
@@ -92,18 +93,6 @@ public class Registro extends JPanel{
 		this.messages=messages;
 		initialize();
 		this.borde=BorderFactory.createLineBorder(new Color(255, 134, 0));
-//		this.focus=new FocusListener() {
-//			
-//			@Override
-//			public void focusLost(FocusEvent arg0) {
-//
-//			}
-//			
-//			@Override
-//			public void focusGained(FocusEvent arg0) {
-//				textTelefono.setBorder(borde);
-//			}
-//		};
 	}
 
 	/**
@@ -121,8 +110,44 @@ public class Registro extends JPanel{
 		frame.setUndecorated(true);
 		frame.setLocationRelativeTo(null);
 		
-		JLabel lblAdrestaurant = new JLabel("AdRestaurant");
-		lblAdrestaurant.setBounds(170, 33, 563, 93);
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(0, 0, 895, 22);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+
+		JLabel cerrarImage = new JLabel("");
+		cerrarImage.setBounds(870, 0, 25, 22);
+		cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
+		panel_1.add(cerrarImage);
+		cerrarImage.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Salir salir=new Salir(messages);
+
+			}
+		});
+		
+		JLabel lblAdrestaurant = new JLabel("");
+		lblAdrestaurant.setIcon(new ImageIcon(Registro.class.getResource("/Imagen/Titulo.png")));
+		lblAdrestaurant.setBounds(86, 33, 684, 93);
 		lblAdrestaurant.setForeground(new Color(255, 255, 255));
 		lblAdrestaurant.setBackground(new Color(255, 255, 255));
 		lblAdrestaurant.setFont(new Font("Francois One", Font.PLAIN, 90));
@@ -864,7 +889,7 @@ public class Registro extends JPanel{
 	    
 	    //Si hay errores, abre la pantalla ErrorRegistro y le pasa el array de errores. Si está correcto
 	    if(mensajesError.size()>0){
-	    	JDialog aviso = new ErrorRegistro(mensajesError, this.registro);
+	    	JDialog aviso = new ErrorRegistro(mensajesError, this.registro, messages);
 	    	aviso.setVisible(true);
 	    	frame.setEnabled(false);
 	    }else{
@@ -956,7 +981,7 @@ public class Registro extends JPanel{
 	    
 	    //Si hay errores, abre la pantalla ErrorRegistro y le pasa el array de errores.
 	    if(mensajesError.size()>0){
-	    	JDialog aviso = new ErrorRegistro(mensajesError, this.registro);
+	    	JDialog aviso = new ErrorRegistro(mensajesError, this.registro, messages);
 	    	aviso.setVisible(true);
 	    	frame.setEnabled(false);
 	    }else{

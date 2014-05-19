@@ -1,4 +1,4 @@
-package Pantallas;
+ package Pantallas;
  
  import java.awt.Color;
 import java.awt.Dialog.ModalExclusionType;
@@ -9,6 +9,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -32,9 +34,10 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
+import javax.swing.SwingConstants;
  
  public class ptnBuscarReservas extends JFrame {
- 	Cliente clie=new Cliente("Prueba");
+ 	Cliente clie;
  	private JFrame frame;
  	private JTextField textNombreRest;
  	private JTextField textFecha;
@@ -48,11 +51,12 @@ import javax.swing.border.LineBorder;
  	static Locale currentLocale;
     static ResourceBundle messages;
  	
- public ptnBuscarReservas(ResourceBundle messages){
+ public ptnBuscarReservas(Cliente clie,ResourceBundle messages){
+	 this.clie=clie;
 	 this.messages=messages;
  	initialize();
  }
- 	
+ 	 
  private void initialize() {
  		frame = new JFrame();
  		frame.getContentPane().setLayout(null);
@@ -77,6 +81,41 @@ import javax.swing.border.LineBorder;
  		panel_1 = new JPanel();
  		panel_1.setBorder(new MatteBorder(0, 0, 0, 4, (Color) new Color(255, 153, 51)));
  		panel_1.setBackground(Color.WHITE);
+ 		
+ 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.WHITE);
+		panel_2.setBounds(0, 0, 895, 22);
+		frame.getContentPane().add(panel_2);
+		panel_2.setLayout(null);
+
+		JLabel cerrarImage = new JLabel("");
+		cerrarImage.setBounds(870, 0, 25, 22);
+		cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
+		panel_2.add(cerrarImage);
+		cerrarImage.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Salir salir=new Salir(messages);
+
+			}
+		});
  		
  		JButton btnBuscar = new JButton(messages.getString("BUSCAR"));
  		btnBuscar.setFocusable(false);
@@ -293,17 +332,18 @@ import javax.swing.border.LineBorder;
  		panel.setLayout(gl_panel);
  		
  		JLabel lblnomUser = new JLabel(clie.getNombre());
+ 		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);
  		lblnomUser.setForeground(Color.WHITE);
  		lblnomUser.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 17));
  		lblnomUser.setBackground(Color.YELLOW);
- 		lblnomUser.setBounds(635, 11, 110, 64);
+ 		lblnomUser.setBounds(501, 23, 246, 64);
  		frame.getContentPane().add(lblnomUser);
  		
  		JLabel lblBuscarReservas = new JLabel(messages.getString("BuscarReservas"));
  		lblBuscarReservas.setForeground(Color.WHITE);
  		lblBuscarReservas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
  		lblBuscarReservas.setBackground(Color.YELLOW);
- 		lblBuscarReservas.setBounds(379, 11, 162, 64);
+ 		lblBuscarReservas.setBounds(381, 23, 162, 64);
  		frame.getContentPane().add(lblBuscarReservas);
  		
  		JButton btnMenuPrincipal = new JButton(messages.getString("VolverMenuPrincipal"));
@@ -331,12 +371,12 @@ import javax.swing.border.LineBorder;
  		});
  		btnCerrarSesion.setForeground(Color.WHITE);
  		btnCerrarSesion.setBackground(new Color(255, 153, 51));
- 		btnCerrarSesion.setBounds(745, 33, 128, 23);
+ 		btnCerrarSesion.setBounds(757, 45, 128, 23);
  		frame.getContentPane().add(btnCerrarSesion);
  		
  		JLabel label = new JLabel("");
  		label.setIcon(new ImageIcon(ptnBuscarReservas.class.getResource("/Imagen/TituloPEQUE.png")));
- 		label.setBounds(-12, 11, 393, 64);
+ 		label.setBounds(-11, 23, 393, 64);
  		frame.getContentPane().add(label);
  		frame.setBounds(100, 100, 895, 646);
  		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -8,6 +8,8 @@ import java.awt.Insets;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -39,7 +41,7 @@ public class RegistroCompleto extends JPanel{
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 *  Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		frame = new JFrame();		
@@ -71,6 +73,41 @@ public class RegistroCompleto extends JPanel{
 		lblNewLabel_1.setIcon(new ImageIcon(RegistroCompleto.class.getResource("/Imagen/Titulo.png")));
 		lblNewLabel_1.setBounds(90, 65, 699, 97);
 		frame.getContentPane().add(lblNewLabel_1);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(0, 0, 895, 22);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+
+		JLabel cerrarImage = new JLabel("");
+		cerrarImage.setBounds(872, 0, 23, 22);
+		cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
+		panel_1.add(cerrarImage);
+		cerrarImage.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Salir salir=new Salir(messages);
+
+			}
+		});
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);

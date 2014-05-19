@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -16,12 +18,15 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.RowSpec;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.SwingConstants;
 
 public class ErrorRegistro extends JDialog {
@@ -33,10 +38,13 @@ public class ErrorRegistro extends JDialog {
 	private JTextField txtTelefono;
 	private Registro registro;
 	
+	static Locale currentLocale;
+    static ResourceBundle messages;
+	
 	/**
-	 * Create the dialog.
+	 *  Create the dialog.
 	 */
-	public ErrorRegistro(ArrayList <String> err, Registro reg) {
+	public ErrorRegistro(ArrayList <String> err, Registro reg, ResourceBundle messages) {
 		this.mensajesErrores=err;
 		this.registro = reg;
 		setBackground(Color.GRAY);
@@ -46,12 +54,12 @@ public class ErrorRegistro extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
-			lblNewLabel = new JLabel("Error en Registro");
+			lblNewLabel = new JLabel(messages.getString("ErrorenReg"));
 			lblNewLabel.setForeground(new Color(255, 255, 255));
 			lblNewLabel.setFont(new Font("Fira Sans OT", Font.BOLD, 14));
 		}
 		
-		JLabel lblPorFavorRevise = new JLabel("Por favor, revise los siguientes errores:");
+		JLabel lblPorFavorRevise = new JLabel(messages.getString("ReviseErrores"));
 		lblPorFavorRevise.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPorFavorRevise.setForeground(new Color(255, 255, 255));
 		lblPorFavorRevise.setFont(new Font("Fira Sans OT Light", Font.BOLD, 14));

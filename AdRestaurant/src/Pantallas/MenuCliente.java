@@ -26,6 +26,7 @@ import java.util.ResourceBundle;
 
 import Clases.Cliente;
 import Clases.Restaurante;
+import javax.swing.SwingConstants;
 
 public class MenuCliente {
 
@@ -36,7 +37,7 @@ public class MenuCliente {
     static ResourceBundle messages;
 
 	/**
-	 * Create the application.
+	 *  Create the application.
 	 */
 	public MenuCliente(Cliente clie, ResourceBundle messages) {
 		this.clie=clie;
@@ -64,6 +65,41 @@ public class MenuCliente {
 		panel.setBounds(0, 94, 895, 481);
 		frame.getContentPane().add(panel);
 		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(0, 0, 895, 22);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+
+		JLabel cerrarImage = new JLabel("");
+		cerrarImage.setBounds(870, 0, 25, 22);
+		cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
+		panel_1.add(cerrarImage);
+		cerrarImage.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Salir salir=new Salir(messages);
+
+			}
+		});
+		
 		JButton btnBuscarRestaurante = new JButton("Buscar Restaurante");
 		btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1ES.png")));
 		btnBuscarRestaurante.addActionListener(new ActionListener() {
@@ -88,7 +124,7 @@ public class MenuCliente {
 		JButton button_1 = new JButton("New button");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ptnBuscarReservas reser=new ptnBuscarReservas(messages);
+				ptnBuscarReservas reser=new ptnBuscarReservas(clie,messages);
 				frame.dispose();
 			}
 		});
@@ -165,17 +201,18 @@ public class MenuCliente {
 		}
 		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
+		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblnomUser.setForeground(Color.WHITE);
 		lblnomUser.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 17));
 		lblnomUser.setBackground(Color.YELLOW);
-		lblnomUser.setBounds(599, 18, 128, 64);
+		lblnomUser.setBounds(500, 33, 239, 64);
 		frame.getContentPane().add(lblnomUser);
 		
 		JLabel lblBienvenido = new JLabel("Bienvenido");
 		lblBienvenido.setForeground(Color.WHITE);
 		lblBienvenido.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBienvenido.setBackground(Color.YELLOW);
-		lblBienvenido.setBounds(379, 19, 86, 64);
+		lblBienvenido.setBounds(379, 33, 86, 64);
 		frame.getContentPane().add(lblBienvenido);
 		
 		JButton btnCerrarsesion = new JButton("Cerrar Sesi\u00F3n");
@@ -189,12 +226,12 @@ public class MenuCliente {
 		});
 		btnCerrarsesion.setForeground(Color.WHITE);
 		btnCerrarsesion.setBackground(new Color(255, 153, 51));
-		btnCerrarsesion.setBounds(737, 40, 128, 23);
+		btnCerrarsesion.setBounds(757, 55, 128, 23);
 		frame.getContentPane().add(btnCerrarsesion);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/TituloPEQUE.png")));
-		lblNewLabel.setBounds(-11, 19, 393, 64);
+		lblNewLabel.setBounds(-18, 33, 393, 64);
 		frame.getContentPane().add(lblNewLabel);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -45,7 +45,8 @@ public class Salir extends JPanel{
 	 
 
 	/**
-	 * Launch the application.
+	 *  
+	 *  Launch the application.
 	 */
 
 

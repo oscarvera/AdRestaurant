@@ -37,6 +37,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
 import Clases.Cliente;
+import javax.swing.SwingConstants;
 
 public class BuscarRestaurante extends JFrame{
 	Cliente clie;
@@ -58,7 +59,7 @@ public class BuscarRestaurante extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	//Constructor. Recibe un objeto cliente.
+	 //Constructor. Recibe un objeto cliente.
 	public BuscarRestaurante(Cliente clie, ResourceBundle messages) {
 		this.messages=messages;
 		this.clie=clie;
@@ -83,7 +84,7 @@ public class BuscarRestaurante extends JFrame{
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(BuscarRestaurante.class.getResource("/Imagen/TituloPEQUE.png")));
-		label.setBounds(-13, 22, 393, 64);
+		label.setBounds(-14, 32, 393, 64);
 		frame.getContentPane().add(label);
 		
 		
@@ -91,6 +92,41 @@ public class BuscarRestaurante extends JFrame{
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 97, 895, 488);
 		frame.getContentPane().add(panel);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.WHITE);
+		panel_2.setBounds(0, 0, 895, 22);
+		frame.getContentPane().add(panel_2);
+		panel_2.setLayout(null);
+
+		JLabel cerrarImage = new JLabel("");
+		cerrarImage.setBounds(870, 0, 25, 22);
+		cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
+		panel_2.add(cerrarImage);
+		cerrarImage.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Salir salir=new Salir(messages);
+
+			}
+		});
 		
 		
 		panel_1 = new JPanel();
@@ -425,17 +461,18 @@ public class BuscarRestaurante extends JFrame{
 		panel.setLayout(gl_panel);
 		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
+		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblnomUser.setForeground(Color.WHITE);
 		lblnomUser.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 17));
 		lblnomUser.setBackground(Color.YELLOW);
-		lblnomUser.setBounds(637, 22, 110, 64);
+		lblnomUser.setBounds(500, 32, 248, 64);
 		frame.getContentPane().add(lblnomUser);
 		
 		JLabel lblBuscarRestaurante = new JLabel(messages.getString("BuscarRestaurante"));
 		lblBuscarRestaurante.setForeground(Color.WHITE);
 		lblBuscarRestaurante.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBuscarRestaurante.setBackground(Color.YELLOW);
-		lblBuscarRestaurante.setBounds(380, 22, 162, 64);
+		lblBuscarRestaurante.setBounds(389, 32, 162, 64);
 		frame.getContentPane().add(lblBuscarRestaurante);
 		
 		JButton btnMenuPrincipal = new JButton(messages.getString("VolverMenuPrincipal"));
@@ -463,7 +500,7 @@ public class BuscarRestaurante extends JFrame{
 		});
 		btnCerrarSesion.setForeground(Color.WHITE);
 		btnCerrarSesion.setBackground(new Color(255, 153, 51));
-		btnCerrarSesion.setBounds(757, 44, 128, 23);
+		btnCerrarSesion.setBounds(758, 54, 128, 23);
 		frame.getContentPane().add(btnCerrarSesion);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -25,6 +25,7 @@ import javax.swing.JList;
 import javax.swing.AbstractListModel;
 
 import Clases.Cliente;
+import javax.swing.SwingConstants;
 
 public class Comentarios extends JFrame {
 
@@ -35,7 +36,7 @@ public class Comentarios extends JFrame {
     static ResourceBundle messages;
 
 	/**
-	 * Create the frame.
+	 *  Create the frame.
 	 */
 	public Comentarios( final Cliente clie, final ResourceBundle messages) {
 		this.messages=messages;
@@ -56,6 +57,41 @@ public class Comentarios extends JFrame {
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 86, 895, 481);
 		frame.getContentPane().add(panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(0, 0, 895, 22);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+
+		JLabel cerrarImage = new JLabel("");
+		cerrarImage.setBounds(870, 0, 25, 22);
+		cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
+		panel_1.add(cerrarImage);
+		cerrarImage.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Salir salir=new Salir(messages);
+
+			}
+		});
 		
 		JList list = new JList();
 		list.setModel(new AbstractListModel() {
@@ -85,10 +121,11 @@ public class Comentarios extends JFrame {
 		panel.setLayout(gl_panel);
 		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
+		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblnomUser.setForeground(Color.WHITE);
 		lblnomUser.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 17));
 		lblnomUser.setBackground(Color.YELLOW);
-		lblnomUser.setBounds(623, 21, 128, 64);
+		lblnomUser.setBounds(489, 21, 245, 64);
 		frame.getContentPane().add(lblnomUser);
 		
 		JLabel lblTusComentarios = new JLabel(messages.getString("TusComentarios"));
@@ -128,7 +165,7 @@ public class Comentarios extends JFrame {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(Comentarios.class.getResource("/Imagen/TituloPEQUE.png")));
-		label.setBounds(-13, 11, 393, 74);
+		label.setBounds(-24, 21, 393, 74);
 		frame.getContentPane().add(label);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
