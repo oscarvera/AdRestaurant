@@ -164,7 +164,7 @@ public class Ingreso extends JPanel{
 
 		btnRegistrar = new JButton("REGISTRATE");
 		btnRegistrar.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-		btnRegistrar.setToolTipText("Facil y r√°pido, REGISTRATE AHORA!");
+		btnRegistrar.setToolTipText("Facil y r·pido, REGISTRATE AHORA!");
 		btnRegistrar.setBackground(new Color(255, 153, 51));
 		btnRegistrar.setForeground(new Color(255, 255, 255));
 		btnRegistrar.addActionListener(new ActionListener() {
@@ -221,7 +221,7 @@ public class Ingreso extends JPanel{
 
 
 		textLabelPass = new JPasswordField();
-		textLabelPass.setToolTipText("Por favor, introduzca su Contrase√±a");
+		textLabelPass.setToolTipText("Por favor, introduzca su ContraseÒa");
 		textLabelPass.setBounds(334, 321, 227, 37);
 		frame.getContentPane().add(textLabelPass);
 
