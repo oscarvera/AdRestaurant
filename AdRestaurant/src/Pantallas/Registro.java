@@ -18,8 +18,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -34,6 +36,7 @@ import javax.swing.JCheckBox;
 import javax.swing.GroupLayout.Alignment;
 
 import java.awt.Panel;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -42,6 +45,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Clases.Cliente;
 
@@ -75,6 +79,8 @@ public class Registro extends JPanel{
 	private JTextField textDireccionRest;
 	private JPasswordField pwdContraRest;
 	private JComboBox comboTipoRest;
+	private JButton btnSeleccionarImagen1;
+	private JButton btnSeleccionarImagen2;
 	
 	private JLabel Flecha1;
 	private JLabel Flecha2;
@@ -734,8 +740,17 @@ public class Registro extends JPanel{
 				btnImagen1.setForeground(Color.WHITE);
 				btnImagen1.setBackground(new Color(255, 153, 0));
 				btnImagen1.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						//Boton imagen1
+					public void actionPerformed(ActionEvent e) {
+						JFileChooser chooser = new JFileChooser();
+						FileNameExtensionFilter filtroImagen=new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
+					    chooser.setFileFilter(filtroImagen);
+						int returnVal = chooser.showOpenDialog(null);
+						File file1 = null;
+						if(returnVal == JFileChooser.APPROVE_OPTION) {
+						file1 = chooser.getSelectedFile(); // ruta de la primera foto
+						btnSeleccionarImagen1.setText("Cambiar Imagen");
+						JOptionPane.showMessageDialog(null, "Imagen Guardada","Mensaje" , JOptionPane.PLAIN_MESSAGE);
+						}
 					}
 				});
 				btnImagen1.setBounds(431, 128, 111, 23);
@@ -746,7 +761,16 @@ public class Registro extends JPanel{
 				btnImagen2.setBackground(new Color(255, 153, 0));
 				btnImagen2.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//Boton Imagen 2
+						JFileChooser chooser = new JFileChooser();
+						FileNameExtensionFilter filtroImagen=new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
+					    chooser.setFileFilter(filtroImagen);
+						int returnVal = chooser.showOpenDialog(null);
+						File file2 = null;
+						if(returnVal == JFileChooser.APPROVE_OPTION) {
+						file2 = chooser.getSelectedFile(); // ruta de la segunda foto
+						btnSeleccionarImagen2.setText("Cambiar Imagen");
+						JOptionPane.showMessageDialog(null, "Imagen Guardada","Mensaje" , JOptionPane.PLAIN_MESSAGE);
+						}
 					}
 				});
 				btnImagen2.setBounds(685, 127, 111, 23);
