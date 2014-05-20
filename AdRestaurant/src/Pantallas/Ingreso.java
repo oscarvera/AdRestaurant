@@ -25,7 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Clases.Cliente;
-
+import BBDD.Consulta;
 import com.mysql.jdbc.Messages;
 
 public class Ingreso extends JPanel{
@@ -208,11 +208,12 @@ public class Ingreso extends JPanel{
 		btnIngresar.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-		
-			final Cliente clie;
-			clie=new Clases.Cliente(textLabelUser.getText());
-			MenuCliente menuclie=new MenuCliente(clie, messages);
-			frame.dispose();
+				Consulta consulta = new Consulta();
+				consulta.loginCliente(textLabelUser.getText(), textLabelPass.getPassword());
+				final Cliente clie;
+				clie=new Clases.Cliente(textLabelUser.getText());
+				MenuCliente menuclie=new MenuCliente(clie, messages);
+				frame.dispose();
 
 			}
 		});

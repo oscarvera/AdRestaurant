@@ -10,18 +10,18 @@ import java.sql.Statement;
 import Pantallas.ErrorRegistro;
 
 public class Consulta {
-	
+
 	PreparedStatement stmt;
 	Connection conexion;
 	String consulta;
 	ResultSet resultadoConsulta;
 	int resultadoActualizacionBD;
-	
+
 	public Consulta(){
 		conectar();
 		prepararConsulta();
 	}	
-	
+
 	/**
 	 * Conecta con el driver JDBC.
 	 */
@@ -32,13 +32,13 @@ public class Consulta {
 		}catch(ClassNotFoundException cnfe){
 			cnfe.printStackTrace();
 		}
-				
+
 		//Abrimos una conexión
 		this.conexion=null;
 		try {
 			String user = "root";
-			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "serphp");
-			
+			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "tonphp");
+
 			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
 			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
 			this.conexion.setAutoCommit(true);
@@ -46,18 +46,18 @@ public class Consulta {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Inicializa las variables necesarias para una nueva consulta.
 	 */
 	public void prepararConsulta(){ 
 		//Inicializamos la variable que contendrá el resultado
 		this.resultadoConsulta=null;
-	
+
 		//Inicializamos el PreparedStatement para manejar la consulta (mejor que el Statement normal)
 		this.stmt=null;
 	}
-	
+
 	/**
 	 * Añade un cliente a la base de datos. Recibe los parámetros de una instancia/objeto Cliente.
 	 */
@@ -68,7 +68,7 @@ public class Consulta {
 		try{
 			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
 			this.stmt = conexion.prepareStatement(this.consulta);
-			
+
 			//Asignamos los campos del cliente a insertar con los campos a rellenar en las tablas (los "?").
 			stmt.setString(1, nombre);
 			stmt.setString(2, primerApellido);
@@ -82,34 +82,53 @@ public class Consulta {
 			resultadoActualizacionBD = stmt.executeUpdate();
 			//Comprobar que se ha actualizado algún registro con un mensaje.
 			System.out.println("Se han actualizado "+resultadoActualizacionBD+" registros.");
-			
+
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
 	}
-	
-	
-	public void loginCliente(String user, String contraseña){
+
+
+	public void loginCliente(String user, char[] contraseña){
 		//Primero se comprueba el usuario.
-		this.consulta = "SELECT usuario FROM Cientes WHERE usuario LIKE ?";
+		this.consulta = "SELECT usuario FROM Clientes WHERE usuario=?";
 		try{
 			this.stmt = conexion.prepareStatement(this.consulta);
 			this.stmt.setString(1, user);
 			resultadoConsulta = stmt.executeQuery();
-			System.out.println(resultadoConsulta);
+			if (resultadoConsulta.next()){
+				//Cuando el usuario es correcto comprobamos la contraseña.
+				this.consulta = "SELECT contraseña FROM Clientes WHERE contraseña=?";
+				this.stmt = conexion.prepareStatement(this.consulta);
+				this.stmt.setString(1, String.copyValueOf(contraseña));
+				resultadoConsulta = stmt.executeQuery();
+				if(resultadoConsulta.next()){
+					//Si la contraseña también es correcta, selecciona todos los datos del usuario y crea una instancia
+					//de Cliente con ellos.
+					this.consulta = "SELECT * FROM Clientes WHERE usuario="+user;
+					this.stmt = conexion.prepareStatement(this.consulta);
+					resultadoConsulta = stmt.executeQuery();
+					
+				}else{
+					new ErrorRegistro("La contraseña es incorrecta");
+				}
+			}
+			else {
+				new ErrorRegistro("El usuario no existe");
+			}
 		}catch(SQLException e){
 			e.printStackTrace();
-			new ErrorRegistro("El usuario no existe");
 		}
-		
-//		//Comprobamos la contraseña.
-//		this.consulta = "SELECT contraseña FROM Cientes";
-//		try{
-//			this.stmt = conexion.prepareStatement(this.consulta);
-//			resultadoConsulta = stmt.executeQuery();
-//		}catch(SQLException e){
-//			e.printStackTrace();
-//			new ErrorRegistro("El usuario no existe");
-//		}
+
+
+		//		//Comprobamos la contraseña.
+		//		this.consulta = "SELECT contraseña FROM Cientes";
+		//		try{
+		//			this.stmt = conexion.prepareStatement(this.consulta);
+		//			resultadoConsulta = stmt.executeQuery();
+		//		}catch(SQLException e){
+		//			e.printStackTrace();
+		//			new ErrorRegistro("El usuario no existe");
+		//		}
 	}
 }

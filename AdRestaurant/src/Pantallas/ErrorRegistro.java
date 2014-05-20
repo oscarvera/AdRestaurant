@@ -42,7 +42,7 @@ public class ErrorRegistro extends JDialog {
     static ResourceBundle messages;
 	
 	/**
-	 *  Create the dialog.
+	 *  Constructor para errores de Registro.
 	 */
 	public ErrorRegistro(ArrayList <String> err, Registro reg, ResourceBundle messages) {
 		this.mensajesErrores=err;
@@ -118,7 +118,7 @@ public class ErrorRegistro extends JDialog {
 	}
 
 	/**
-	 * Constructor para el error en el Login. Recibe un String y los mensajes de localización.
+	 * Constructor para el error en el Login. Recibe un String.
 	 * @param err
 	 */
 	public ErrorRegistro(String err){

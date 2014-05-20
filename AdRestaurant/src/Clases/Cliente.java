@@ -9,23 +9,23 @@ import java.sql.SQLException;
 import BBDD.Consulta;
 
 public class Cliente {
-	String nombre;
-	String primerApellido;
-	String segundoApellido;
-	int codigoCliente;
-	String usuario;
-	char[] contraseña;
-	String telefono;
-	String email;
-	PreparedStatement stmt;
-	Connection conexion;
-	String consulta;
-	ResultSet resultadoConsulta;
-	int resultadoActualizacionBD;
+	private String nombre;
+	private String primerApellido;
+	private String segundoApellido;
+	private int codigoCliente;
+	private String usuario;
+	private char[] contraseña;
+	private String telefono;
+	private String email;
+	private PreparedStatement stmt;
+	private Connection conexion;
+	private String consulta;
+	private ResultSet resultadoConsulta;
+	private int resultadoActualizacionBD;
+	private Consulta cons;
 	
 	public Cliente(String nombre){
 		this.nombre=nombre;
-		conectar();
 	}
 	
 	public Cliente(String nombre, String primerApellido, String segundoApellido, String usuario, char[] contraseña, String telefono, String email){
@@ -36,14 +36,7 @@ public class Cliente {
 		this.contraseña=contraseña;
 		this.telefono=telefono;
 		this.email=email;
-		conectar();
-		prepararConsulta();
-		insertarCliente();
-	}
-	
-	public Cliente(String usuario, String contraseña){
-		conectar();
-		prepararConsulta();
+		this.cons = new Consulta();
 	}
 
 	public String getNombre() {
@@ -102,36 +95,41 @@ public class Cliente {
 		this.segundoApellido = segundoApellido;
 	}
 	
-	public void conectar(){
-		//Cargamos el driver
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-		}catch(ClassNotFoundException cnfe){
-			cnfe.printStackTrace();
-		}
-				
-		//Abrimos una conexión
-		this.conexion=null;
-		try {
-			String user = "root";
-			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "serphp");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void prepararConsulta(){ 
-		//Inicializamos la variable que contendrá el resultado
-		this.resultadoConsulta=null;
-	
-		//Inicializamos el PreparedStatement para manejar la consulta (mejor que el Statement normal)
-		this.stmt=null;
-	}
-	
+	/**
+	 * Inserta un nuevo cliente en la BD a traves de Consulta.
+	 */
 	public void insertarCliente(){
 		Consulta c = new Consulta();
 		c.insertarCliente(nombre, primerApellido, segundoApellido, usuario, email, telefono, contraseña);
 	}
+	
+//	public void conectar(){
+//		//Cargamos el driver
+//		try{
+//			Class.forName("com.mysql.jdbc.Driver");
+//		}catch(ClassNotFoundException cnfe){
+//			cnfe.printStackTrace();
+//		}
+//				
+//		//Abrimos una conexión
+//		this.conexion=null;
+//		try {
+//			String user = "root";
+//			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "serphp");
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	
+//	public void prepararConsulta(){ 
+//		//Inicializamos la variable que contendrá el resultado
+//		this.resultadoConsulta=null;
+//	
+//		//Inicializamos el PreparedStatement para manejar la consulta (mejor que el Statement normal)
+//		this.stmt=null;
+//	}
+//	
+
 	
 //	public void insertarCliente(){
 //		//Escribimos la consulta SQL en la variable consulta
