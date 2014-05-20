@@ -6,18 +6,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ResourceBundle;
 
 import Pantallas.ErrorRegistro;
 
 public class Consulta {
 
+	ResourceBundle messages;
 	PreparedStatement stmt;
 	Connection conexion;
 	String consulta;
 	ResultSet resultadoConsulta;
 	int resultadoActualizacionBD;
 
-	public Consulta(){
+	public Consulta(ResourceBundle messages){
+		this.messages=messages;
 		conectar();
 		prepararConsulta();
 	}	
@@ -58,38 +61,38 @@ public class Consulta {
 		this.stmt=null;
 	}
 
-	/**
-	 * Añade un cliente a la base de datos. Recibe los parámetros de una instancia/objeto Cliente.
-	 */
-	public void insertarCliente(String nombre, String primerApellido, String segundoApellido, String usuario, String email, String telefono, char[] contraseña){
-		//Escribimos la consulta SQL en la variable consulta
-		this.consulta = "INSERT INTO Clientes (Nombre, primerApellido, segundoApellido, usuario, email, telefono, contraseña)"
-				+ " VALUES (?,?,?,?,?,?,?);";
-		try{
-			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
-			this.stmt = conexion.prepareStatement(this.consulta);
+//	/**
+//	 * Añade un cliente a la base de datos. Recibe los parámetros de una instancia/objeto Cliente.
+//	 */
+//	public void insertarCliente(String nombre, String primerApellido, String segundoApellido, String usuario, String email, String telefono, char[] contraseña){
+//		//Escribimos la consulta SQL en la variable consulta
+//		this.consulta = "INSERT INTO Clientes (Nombre, primerApellido, segundoApellido, usuario, email, telefono, contraseña)"
+//				+ " VALUES (?,?,?,?,?,?,?);";
+//		try{
+//			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
+//			this.stmt = conexion.prepareStatement(this.consulta);
+//
+//			//Asignamos los campos del cliente a insertar con los campos a rellenar en las tablas (los "?").
+//			stmt.setString(1, nombre);
+//			stmt.setString(2, primerApellido);
+//			stmt.setString(3, segundoApellido);
+//			stmt.setString(4, usuario);
+//			stmt.setString(5, email);
+//			stmt.setInt(6, Integer.valueOf(telefono));
+//			stmt.setString(7, String.copyValueOf(contraseña));			
+//
+//			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
+//			resultadoActualizacionBD = stmt.executeUpdate();
+//			//Comprobar que se ha actualizado algún registro con un mensaje.
+//			System.out.println("Se han actualizado "+resultadoActualizacionBD+" registros.");
+//
+//		}catch(SQLException e){
+//			e.printStackTrace();
+//		}
+//	}
 
-			//Asignamos los campos del cliente a insertar con los campos a rellenar en las tablas (los "?").
-			stmt.setString(1, nombre);
-			stmt.setString(2, primerApellido);
-			stmt.setString(3, segundoApellido);
-			stmt.setString(4, usuario);
-			stmt.setString(5, email);
-			stmt.setInt(6, Integer.valueOf(telefono));
-			stmt.setString(7, String.copyValueOf(contraseña));			
 
-			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
-			resultadoActualizacionBD = stmt.executeUpdate();
-			//Comprobar que se ha actualizado algún registro con un mensaje.
-			System.out.println("Se han actualizado "+resultadoActualizacionBD+" registros.");
-
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-	}
-
-
-	public void loginCliente(String user, char[] contraseña){
+	public boolean loginCliente(String user, char[] contraseña){
 		//Primero se comprueba el usuario.
 		this.consulta = "SELECT usuario FROM Clientes WHERE usuario=?";
 		try{
@@ -98,26 +101,25 @@ public class Consulta {
 			resultadoConsulta = stmt.executeQuery();
 			if (resultadoConsulta.next()){
 				//Cuando el usuario es correcto comprobamos la contraseña.
-				this.consulta = "SELECT contraseña FROM Clientes WHERE contraseña=?";
+				this.consulta = "SELECT contraseña FROM Clientes WHERE contraseña=? AND usuario=?";
 				this.stmt = conexion.prepareStatement(this.consulta);
 				this.stmt.setString(1, String.copyValueOf(contraseña));
+				this.stmt.setString(2, user);
 				resultadoConsulta = stmt.executeQuery();
 				if(resultadoConsulta.next()){
-					//Si la contraseña también es correcta, selecciona todos los datos del usuario y crea una instancia
-					//de Cliente con ellos.
-					this.consulta = "SELECT * FROM Clientes WHERE usuario="+user;
-					this.stmt = conexion.prepareStatement(this.consulta);
-					resultadoConsulta = stmt.executeQuery();
-					
+					return true;
 				}else{
-					new ErrorRegistro("La contraseña es incorrecta");
+					new ErrorRegistro("La contraseña es incorrecta",this.messages);
+					return false;
 				}
 			}
 			else {
-				new ErrorRegistro("El usuario no existe");
+				new ErrorRegistro("El usuario no existe",this.messages);
+				return false;
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
+			return false;
 		}
 
 

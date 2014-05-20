@@ -208,13 +208,14 @@ public class Ingreso extends JPanel{
 		btnIngresar.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Consulta consulta = new Consulta();
-				consulta.loginCliente(textLabelUser.getText(), textLabelPass.getPassword());
-				final Cliente clie;
-				clie=new Clases.Cliente(textLabelUser.getText());
-				MenuCliente menuclie=new MenuCliente(clie, messages);
-				frame.dispose();
-
+				//Pasamos el usuario y la contraseña a Consulta para que los compruebe
+				Consulta consulta = new Consulta(messages);
+				if(consulta.loginCliente(textLabelUser.getText(), textLabelPass.getPassword())){
+					Cliente clie;
+					clie=new Clases.Cliente(textLabelUser.getText());
+					MenuCliente menuclie=new MenuCliente(clie, messages);
+					frame.dispose();
+				}		
 			}
 		});
 		btnIngresar.setBounds(334, 374, 227, 37);

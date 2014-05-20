@@ -121,7 +121,8 @@ public class ErrorRegistro extends JDialog {
 	 * Constructor para el error en el Login. Recibe un String.
 	 * @param err
 	 */
-	public ErrorRegistro(String err){
+	public ErrorRegistro(String err,ResourceBundle messages){
+		this.messages=messages;
 		this.errorLogin=err;
 		setBackground(Color.GRAY);
 		setBounds(100, 100, 450, 300);
@@ -140,21 +141,12 @@ public class ErrorRegistro extends JDialog {
 		lblPorFavorRevise.setForeground(new Color(255, 255, 255));
 		lblPorFavorRevise.setFont(new Font("Fira Sans OT Light", Font.BOLD, 14));
 		
-		
 		JTextPane textoErrores = new JTextPane();
 		textoErrores.setForeground(new Color(255, 255, 255));
 		textoErrores.setEditable(false);
 		textoErrores.setBackground(new Color(255, 153, 0));
 		textoErrores.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-		for(int i=0; i<mensajesErrores.size();i++){
-	    	System.out.println("Error: ("+mensajesErrores.size()+")"+mensajesErrores.get(i) );
-			textoErrores.setText(textoErrores.getText()+mensajesErrores.get(i)+"\n");
-			
-			txtNombre = new JTextField();
-			txtNombre.setText("Nombre");
-			contentPanel.add(new JTextField(mensajesErrores.get(i)), "2, 8+i*2, fill, default");
-			txtNombre.setColumns(10);
-		}
+		textoErrores.setText(errorLogin);
 		contentPanel.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.UNRELATED_GAP_COLSPEC,
 				ColumnSpec.decode("388px:grow"),},
@@ -191,6 +183,7 @@ public class ErrorRegistro extends JDialog {
 				buttonPane.add(btnOK);
 			}
 		}
+		contentPanel.setVisible(true);
 	}
 	
 	public ArrayList<String> getErrores() {
