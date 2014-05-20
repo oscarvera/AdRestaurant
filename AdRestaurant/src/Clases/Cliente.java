@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import BaseDatos.Consulta;
+
 public class Cliente {
 	String nombre;
 	String primerApellido;
@@ -42,6 +44,7 @@ public class Cliente {
 	
 	public Cliente(String usuario, String contraseña){
 		conectar();
+		prepararConsulta();
 	}
 
 	public String getNombre() {
@@ -127,36 +130,41 @@ public class Cliente {
 	}
 	
 	public void insertarCliente(){
-		//Escribimos la consulta SQL en la variable consulta
-		this.consulta = "INSERT INTO Clientes (Nombre, primerApellido, segundoApellido, usuario, email, telefono, contraseña)"
-				+ " VALUES (?,?,?,?,?,?,?);";
-		try{
-			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
-			this.stmt = conexion.prepareStatement(this.consulta);
-			
-			//Asignamos los campos del cliente a insertar con los campos a rellenar en las tablas (los "?").
-			stmt.setString(1, this.nombre);
-			stmt.setString(2, this.primerApellido);
-			stmt.setString(3, this.segundoApellido);
-			stmt.setString(4, this.usuario);
-			stmt.setString(5, this.email);
-			stmt.setInt(6, Integer.valueOf(this.telefono));
-			//En contraseña hay que pasarlo a String y borrar el contenido de la variable de clase por seguridad.
-			stmt.setString(7, String.copyValueOf(this.contraseña));
-			for(int i=0; i<contraseña.length; i++){
-				this.contraseña[i]=0;
-			}
-			
-			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
-			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
-			conexion.setAutoCommit(true);
-			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
-			resultadoActualizacionBD = stmt.executeUpdate();
-			System.out.println("Se han actualizado "+resultadoActualizacionBD+" registros.");
-			
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
+		Consulta c = new Consulta();
+		c.insertarCliente(nombre, primerApellido, segundoApellido, usuario, email, telefono, contraseña);
 	}
+	
+//	public void insertarCliente(){
+//		//Escribimos la consulta SQL en la variable consulta
+//		this.consulta = "INSERT INTO Clientes (Nombre, primerApellido, segundoApellido, usuario, email, telefono, contraseña)"
+//				+ " VALUES (?,?,?,?,?,?,?);";
+//		try{
+//			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
+//			this.stmt = conexion.prepareStatement(this.consulta);
+//			
+//			//Asignamos los campos del cliente a insertar con los campos a rellenar en las tablas (los "?").
+//			stmt.setString(1, this.nombre);
+//			stmt.setString(2, this.primerApellido);
+//			stmt.setString(3, this.segundoApellido);
+//			stmt.setString(4, this.usuario);
+//			stmt.setString(5, this.email);
+//			stmt.setInt(6, Integer.valueOf(this.telefono));
+//			//En contraseña hay que pasarlo a String y borrar el contenido de la variable de clase por seguridad.
+//			stmt.setString(7, String.copyValueOf(this.contraseña));
+//			for(int i=0; i<contraseña.length; i++){
+//				this.contraseña[i]=0;
+//			}
+//			
+//			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
+//			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
+//			conexion.setAutoCommit(true);
+//			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
+//			resultadoActualizacionBD = stmt.executeUpdate();
+//			System.out.println("Se han actualizado "+resultadoActualizacionBD+" registros.");
+//			
+//		}catch(SQLException e){
+//			e.printStackTrace();
+//		}
+//	}
 }
 

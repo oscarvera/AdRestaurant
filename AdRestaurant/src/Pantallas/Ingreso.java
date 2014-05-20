@@ -26,6 +26,7 @@ import javax.swing.SwingConstants;
 
 import com.mysql.jdbc.Messages;
 
+import BaseDatos.Consulta;
 import Clases.Cliente;
 
 public class Ingreso extends JPanel{
@@ -208,10 +209,11 @@ public class Ingreso extends JPanel{
 		btnIngresar.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				final Cliente clie;
-				clie=new Clases.Cliente(textLabelUser.getText());
-				MenuCliente menuclie=new MenuCliente(clie, messages);
-				frame.dispose();
+		
+			final Cliente clie;
+			clie=new Clases.Cliente(textLabelUser.getText());
+			MenuCliente menuclie=new MenuCliente(clie, messages);
+			frame.dispose();
 
 			}
 		});
