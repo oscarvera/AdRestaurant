@@ -79,9 +79,9 @@ public class Registro extends JPanel{
 	private JTextField textDireccionRest;
 	private JPasswordField pwdContraRest;
 	private JComboBox comboTipoRest;
-	private JButton btnSeleccionarImagen1;
-	private JButton btnSeleccionarImagen2;
-	
+	JButton btnImagen2;
+	JButton btnImagen1;
+	File file2;
 	private JLabel Flecha1;
 	private JLabel Flecha2;
 	
@@ -437,7 +437,7 @@ public class Registro extends JPanel{
 					
 					@Override
 					public void keyReleased(KeyEvent e) {
-						if(!textNombreRest.getText().isEmpty()&&!textCodPostRest.getText().isEmpty()&&!textDireccionRest.getText().isEmpty()&&!textEmailRest.getText().isEmpty()&&!textNombreRest.getText().isEmpty()&&!(pwdContraRest.getPassword().length==0)&&!textNomUserRest.getText().isEmpty()&&!textPoblacionRest.getText().isEmpty()&&!textProvinciaRest.getText().isEmpty()&&(comboTipoRest.getSelectedIndex()!=0)){
+						if(!textNombreRest.getText().isEmpty()&&!textCodPostRest.getText().isEmpty()&&!textDireccionRest.getText().isEmpty()&&!textEmailRest.getText().isEmpty()&&!textNombreRest.getText().isEmpty()&&!(pwdContraRest.getPassword().length==0)&&!textNomUserRest.getText().isEmpty()&&!textPoblacionRest.getText().isEmpty()&&!textProvinciaRest.getText().isEmpty()&&(comboTipoRest.getSelectedIndex()!=0)&&btnImagen1.getText()=="Cambiar Imagen"){
 							 btnRegRest.setEnabled(true);
 						}else{
 							 btnRegRest.setEnabled(false);
@@ -736,8 +736,28 @@ public class Registro extends JPanel{
 				panel.add(textTelefonoRest);
 				textTelefonoRest.setBorder(borde);
 				
-				JButton btnImagen1 = new JButton("Imagen1");
+				btnImagen1 = new JButton("Imagen1");
 				btnImagen1.setForeground(Color.WHITE);
+				btnImagen1.addKeyListener(keyLis);
+				FocusListener flImagen=new FocusListener() {
+					
+					@Override
+					public void focusLost(FocusEvent arg0) {
+						if(!textNombreRest.getText().isEmpty()&&!textCodPostRest.getText().isEmpty()&&!textDireccionRest.getText().isEmpty()&&!textEmailRest.getText().isEmpty()&&!textNombreRest.getText().isEmpty()&&!(pwdContraRest.getPassword().length==0)&&!textNomUserRest.getText().isEmpty()&&!textPoblacionRest.getText().isEmpty()&&!textProvinciaRest.getText().isEmpty()&&(comboTipoRest.getSelectedIndex()!=0)&&btnImagen1.getText()=="Cambiar Imagen"){
+							 btnRegRest.setEnabled(true);
+						}else{
+							 btnRegRest.setEnabled(false);
+						}					
+						
+					}
+					
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+				};
+				btnImagen1.addFocusListener(flImagen);
 				btnImagen1.setBackground(new Color(255, 153, 0));
 				btnImagen1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -748,15 +768,15 @@ public class Registro extends JPanel{
 						File file1 = null;
 						if(returnVal == JFileChooser.APPROVE_OPTION) {
 						file1 = chooser.getSelectedFile(); // ruta de la primera foto
-						btnSeleccionarImagen1.setText("Cambiar Imagen");
+						btnImagen1.setText("Cambiar Imagen");
 						JOptionPane.showMessageDialog(null, "Imagen Guardada","Mensaje" , JOptionPane.PLAIN_MESSAGE);
 						}
 					}
 				});
-				btnImagen1.setBounds(431, 128, 111, 23);
+				btnImagen1.setBounds(420, 127, 136, 23);
 				panel.add(btnImagen1);
 				
-				JButton btnImagen2 = new JButton("Imagen2");
+				btnImagen2 = new JButton("Imagen2");
 				btnImagen2.setForeground(new Color(255, 255, 255));
 				btnImagen2.setBackground(new Color(255, 153, 0));
 				btnImagen2.addActionListener(new ActionListener() {
@@ -765,16 +785,17 @@ public class Registro extends JPanel{
 						FileNameExtensionFilter filtroImagen=new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
 					    chooser.setFileFilter(filtroImagen);
 						int returnVal = chooser.showOpenDialog(null);
-						File file2 = null;
+						file2 = null;
 						if(returnVal == JFileChooser.APPROVE_OPTION) {
 						file2 = chooser.getSelectedFile(); // ruta de la segunda foto
-						btnSeleccionarImagen2.setText("Cambiar Imagen");
+						btnImagen2.setText("Cambiar Imagen");
 						JOptionPane.showMessageDialog(null, "Imagen Guardada","Mensaje" , JOptionPane.PLAIN_MESSAGE);
 						}
 					}
 				});
-				btnImagen2.setBounds(685, 127, 111, 23);
+				btnImagen2.setBounds(679, 128, 143, 23);
 				panel.add(btnImagen2);
+				btnImagen2.addKeyListener(keyLis);
 				textTelefonoRest.addFocusListener(new FocusListener(){
 					
 					@Override
