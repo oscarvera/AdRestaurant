@@ -128,18 +128,25 @@ public class Cliente {
 	
 	public void insertarCliente(){
 		//Escribimos la consulta SQL en la variable consulta
-		this.consulta = "INSERT INTO Clientes (Nombre, primerApellido, segundoApellido, usuario, email, telefono)"
-				+ " VALUES (?,?,?,?,?,?);";
+		this.consulta = "INSERT INTO Clientes (Nombre, primerApellido, segundoApellido, usuario, email, telefono, contraseña)"
+				+ " VALUES (?,?,?,?,?,?,?);";
 		try{
 			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
 			this.stmt = conexion.prepareStatement(this.consulta);
+			
 			//Asignamos los campos del cliente a insertar con los campos a rellenar en las tablas (los "?").
 			stmt.setString(1, this.nombre);
 			stmt.setString(2, this.primerApellido);
 			stmt.setString(3, this.segundoApellido);
 			stmt.setString(4, this.usuario);
 			stmt.setString(5, this.email);
-			stmt.setString(6, this.telefono);
+			stmt.setInt(6, Integer.valueOf(this.telefono));
+			//En contraseña hay que pasarlo a String y borrar el contenido de la variable de clase por seguridad.
+			stmt.setString(7, String.copyValueOf(this.contraseña));
+			for(int i=0; i<contraseña.length; i++){
+				this.contraseña[i]=0;
+			}
+			
 			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
 			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
 			conexion.setAutoCommit(true);
@@ -151,55 +158,5 @@ public class Cliente {
 			e.printStackTrace();
 		}
 	}
-				
-//				try {
-//					
-//					int souMinim=1000;
-//					 this.consulta1 = "UPDATE PERSONAL set esueldo=25002 where dept='PHIL'";
-//					 this.consulta2 = "SELECT enombre,esueldo FROM PERSONAL where esueldo>=?";
-//					
-//					stmt = connexio.createStatement();
-//					// OPCIO2: Amb un PreparedStatement
-//					   stmt2 = connexio.prepareStatement(consulta2);
-//					   stmt2.setInt(1, souMinim);
-//					
-//					   //OPCIO2: Executem la consulta
-//					   ResultSet r=stmt2.executeQuery();
-//					   if(r!=null){
-//						   System.out.println("AMB UN PREPARED STATEMENT");
-//							while(r.next()){
-//								//System.out.println(resultatConsulta.getString(1));
-//								System.out.print(r.getString(1));
-//								System.out.println("\t"+r.getString(2));
-//								//System.out.println("\t"+resultatConsulta.getString("cargo"));
-//							}
-//						} 
-//				}				   			   
-//					//Executem la consulta
-//					connexio.setAutoCommit(false);
-//					int regModif=stmt.executeUpdate(consulta1);
-//					System.out.println("S'han actualitzat "+regModif+" registres.");
-//					//connexio.commit();
-//					connexio.rollback();
-//					//A partir d'ací obtindré els resultats de la consulta
-//					/*if(resultatConsulta!=null){
-//						System.out.println("AMB UN STATEMENT");
-//						while(resultatConsulta.next()){
-//							//System.out.println(resultatConsulta.getString(1));
-//							System.out.print(resultatConsulta.getString("Enombre"));
-//							System.out.println("\t"+resultatConsulta.getString("Esueldo"));
-//							//System.out.println("\t"+resultatConsulta.getString("cargo"));
-//						}
-//					}
-//					*/
-//					
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				// Tanquem la connexió
-//				
-//			}
-
-	}
+}
 
