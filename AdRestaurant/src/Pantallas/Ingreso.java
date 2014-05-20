@@ -24,10 +24,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import com.mysql.jdbc.Messages;
-
-import BaseDatos.Consulta;
 import Clases.Cliente;
+
+import com.mysql.jdbc.Messages;
 
 public class Ingreso extends JPanel{
 
