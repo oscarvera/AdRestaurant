@@ -18,6 +18,7 @@ public class Consulta {
 	String consulta;
 	ResultSet resultadoConsulta;
 	int resultadoActualizacionBD;
+	ErrorRegistro err;
 
 	public Consulta(ResourceBundle messages){
 		this.messages=messages;
@@ -109,20 +110,23 @@ public class Consulta {
 				if(resultadoConsulta.next()){
 					return true;
 				}else{
-					new ErrorRegistro("La contraseña es incorrecta",this.messages);
+					err=new ErrorRegistro("La contraseña es incorrecta",this.messages);
 					return false;
 				}
 			}
 			else {
-				new ErrorRegistro("El usuario no existe",this.messages);
+				err=new ErrorRegistro("El usuario no existe",this.messages);
 				return false;
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
+			System.out.println("Hola");
 			return false;
+			
+			
 		}
 
-
+		
 		//		//Comprobamos la contraseña.
 		//		this.consulta = "SELECT contraseña FROM Cientes";
 		//		try{
@@ -132,5 +136,9 @@ public class Consulta {
 		//			e.printStackTrace();
 		//			new ErrorRegistro("El usuario no existe");
 		//		}
+	}
+	public ErrorRegistro error(){
+		return err;
+		
 	}
 }

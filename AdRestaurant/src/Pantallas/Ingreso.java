@@ -215,7 +215,10 @@ public class Ingreso extends JPanel{
 					clie=new Clases.Cliente(textLabelUser.getText());
 					MenuCliente menuclie=new MenuCliente(clie, messages);
 					frame.dispose();
-				}		
+				}else{
+					ErrorRegistro err=consulta.error();
+					err.setVisible(true);
+				}
 			}
 		});
 		btnIngresar.setBounds(334, 374, 227, 37);

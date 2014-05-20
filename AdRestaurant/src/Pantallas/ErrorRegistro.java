@@ -174,7 +174,7 @@ public class ErrorRegistro extends JDialog {
 				btnOK.setFocusable(false);
 				btnOK.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						activarRegistro();
+						cierraVentana();
 					}
 				});
 				btnOK.setForeground(Color.WHITE);
@@ -196,6 +196,10 @@ public class ErrorRegistro extends JDialog {
 	
 	public void activarRegistro(){
 		this.registro.activaRegistro();
+		this.dispose();
+	}
+	
+	public void cierraVentana(){
 		this.dispose();
 	}
 }

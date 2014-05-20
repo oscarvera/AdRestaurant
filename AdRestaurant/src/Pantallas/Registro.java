@@ -963,8 +963,7 @@ public class Registro extends JPanel{
 			RegistroCompleto regCom=new RegistroCompleto(messages);
 			Cliente c = new Cliente(this.textNombre.getText(), this.textApellido1.getText(), this.textApellido2.getText(), 
 					this.textNomUser.getText(), this.passUser.getPassword(), this.textTelefono.getText(), this.textEmail.getText());
-			c.insertarCliente();
-			//frame.dispose();
+			frame.dispose();
 		}
 	}
 	
