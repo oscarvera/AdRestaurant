@@ -13,14 +13,14 @@ public class Cliente {
 	String segundoApellido;
 	int codigoCliente;
 	String usuario;
-	String contraseña;
+	char[] contraseña;
 	String telefono;
 	String email;
-	Statement stmt;
-	Statement stmt2;
-	Connection connexio;
-	String consulta1;
-	String consulta2;
+	PreparedStatement stmt;
+	Connection conexion;
+	String consulta;
+	ResultSet resultadoConsulta;
+	int resultadoActualizacionBD;
 	
 	public Cliente(String nombre){
 		this.nombre=nombre;
@@ -28,7 +28,16 @@ public class Cliente {
 	}
 	
 	public Cliente(String nombre, String primerApellido, String segundoApellido, String usuario, char[] contraseña, String telefono, String email){
+		this.nombre=nombre;
+		this.primerApellido=primerApellido;
+		this.segundoApellido=segundoApellido;
+		this.usuario=usuario;
+		this.contraseña=contraseña;
+		this.telefono=telefono;
+		this.email=email;
 		conectar();
+		prepararConsulta();
+		insertarCliente();
 	}
 	
 	public Cliente(String usuario, String contraseña){
@@ -51,11 +60,11 @@ public class Cliente {
 		this.codigoCliente = codigoCliente;
 	}
 
-	public String getContraseña() {
+	public char[] getContraseña() {
 		return contraseña;
 	}
 
-	public void setContraseña(String contraseña) {
+	public void setContraseña(char[] contraseña) {
 		this.contraseña = contraseña;
 	}
 
@@ -92,34 +101,55 @@ public class Cliente {
 	}
 	
 	public void conectar(){
-		// Carreguem el Driver
-				try{
-					Class.forName("com.mysql.jdbc.Driver");
-				}catch(ClassNotFoundException cnfe){
-					cnfe.printStackTrace();
-				}
+		//Cargamos el driver
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+		}catch(ClassNotFoundException cnfe){
+			cnfe.printStackTrace();
+		}
 				
-				//Obrim una connexio
-				this.connexio=null;
-				try {
-					String user = "root";
-					connexio = DriverManager.getConnection("jdbc:mysql://127.0.0.1/educa", user, "tonphp");
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+		//Abrimos una conexión
+		this.conexion=null;
+		try {
+			String user = "root";
+			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "serphp");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void prepararConsulta(){ 
-		
-		//Creem un Statement per poder fer consultes
-		ResultSet resultatConsulta=null;
-				
-		//OPCIO 2: Amb un PreparedStatement
-		PreparedStatement stmt2;
-		//this.stmt = connexio.createStatement();
-		
-		// OPCIO2: Amb un PreparedStatement
-		//this.stmt2 = connexio.prepareStatement();
+		//Inicializamos la variable que contendrá el resultado
+		this.resultadoConsulta=null;
+	
+		//Inicializamos el PreparedStatement para manejar la consulta (mejor que el Statement normal)
+		this.stmt=null;
+	}
+	
+	public void insertarCliente(){
+		//Escribimos la consulta SQL en la variable consulta
+		this.consulta = "INSERT INTO Clientes (Nombre, primerApellido, segundoApellido, usuario, email, telefono)"
+				+ " VALUES (?,?,?,?,?,?);";
+		try{
+			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
+			this.stmt = conexion.prepareStatement(this.consulta);
+			//Asignamos los campos del cliente a insertar con los campos a rellenar en las tablas (los "?").
+			stmt.setString(1, this.nombre);
+			stmt.setString(2, this.primerApellido);
+			stmt.setString(3, this.segundoApellido);
+			stmt.setString(4, this.usuario);
+			stmt.setString(5, this.email);
+			stmt.setString(6, this.telefono);
+			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
+			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
+			conexion.setAutoCommit(true);
+			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
+			resultadoActualizacionBD = stmt.executeUpdate();
+			System.out.println("Se han actualizado "+resultadoActualizacionBD+" registros.");
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
 	}
 				
 //				try {
@@ -171,5 +201,5 @@ public class Cliente {
 //				
 //			}
 
-		}
+	}
 
