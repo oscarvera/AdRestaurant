@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 public class Comentario {
 	
-	String nombreRestaurante;
-	String usuarioComentario;
+	Restaurante rest;
+	Cliente user;
 	String hora;
 	String fechaCreacion;
 	String textComentario;
@@ -22,54 +22,31 @@ public class Comentario {
 	
 	//Comentario ya creado, recepción de datos
 	
-	public Comentario(String nomRest, String user,String fechaCrea,String comentario){
-		nomRest=this.nombreRestaurante;
-		user=this.usuarioComentario;
+	/*public Comentario(String nomRest, String user,String fechaCrea,String comentario){
+		nomRest=this.rest;
+		user=this.user;
 		fechaCrea=this.fechaCreacion;
 		comentario=this.textComentario;
 		
 		//consultar hora fechaReserva verificación realizacion
-	}
+	}*/
 	
 	//Reserva no creada. Para creacion.
 	
-	public Comentario(String nomRest, String user, String fechaReserva, String hora, String fechaCrea, int personas){
-		nomRest=this.nombreRestaurante;
-		user=this.usuarioComentario;
+	public Comentario(Restaurante nomRest, Cliente user, String fechaReserva, String hora, String fechaCrea, int personas){
+		nomRest=this.rest;
+		user=this.user;
 		hora=this.hora;
 		fechaCrea=this.fechaCreacion;
 		
 		//Creacion de la consulta 
+		
+		this.conectar();
+		this.prepararConsulta();
+		this.insertarComentario();
 	}
 	
-	public void recibirReserva(){
-		this.consulta = "SELECT * FROM reserva WHERE Codigo_Restaurante=? AND Codigo_Cliente=? AND fechaReserva=?;";
-		try {
-			this.stmt = conexion.prepareStatement(this.consulta);
-			this.stmt.setInt(1, rest.getCodigoRestaurante());
-			this.stmt.setInt(2, usuarioReserva.getCodigoCliente());
-			this.stmt.setString(3, this.fechaCreacion);
-			resultadoConsulta = stmt.executeQuery();					
-			while(resultadoConsulta.next()==true){
-				this.hora=String.valueOf(resultadoConsulta.getInt("hora"));
-				this.fechaReserva=resultadoConsulta.getString("fechaReserva");
-				this.personas=resultadoConsulta.getInt("personas");
-				if(resultadoConsulta.getInt("verificacion")==1){
-					this.verificacion=true;
-				}else{
-					this.verificacion=false;
-				}
-				if(resultadoConsulta.getInt("realizacion")==1){
-					this.verificacion=true;
-				}else{
-					this.verificacion=false;
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-	}
+	
 	
 	public void conectar(){
 		//Cargamos el driver
@@ -85,7 +62,7 @@ public class Comentario {
 			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
 			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
 			String user = "root";
-			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "baloncesto");
+			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "tonphp");
 			conexion.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -101,23 +78,20 @@ public class Comentario {
 	}
 	
 	
-	public void insertarReserva(){
+	public void insertarComentario(){
 		//Escribimos la consulta SQL en la variable consulta
-		this.consulta = "INSERT INTO reserva (Codigo_Restaurante, Codigo_Cliente, fechaReserva, hora, fechaCreacion, personas, verificacion,realizacion)"
-				+ " VALUES (?,?,?,?,?,?,?,?);";
+		this.consulta = "INSERT INTO reserva (Codigo_Restaurante, Codigo_Cliente, hora, fechaCreacion,txtComentario)"
+				+ " VALUES (?,?,?,?,?);";
 		try{
 			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
 			this.stmt = conexion.prepareStatement(this.consulta);
 			
 			//Asignamos los campos de la reserva a insertar con los campos a rellenar en las tablas (los "?").
 			stmt.setInt(1, rest.getCodigoRestaurante());
-			stmt.setInt(2, usuarioReserva.getCodigoCliente());
-			stmt.setString(3, this.fechaReserva);
-			stmt.setString(4, this.hora);
-			stmt.setString(5, this.fechaCreacion);
-			stmt.setInt(6, this.personas);
-			stmt.setInt(7, 0);
-			stmt.setInt(8, 0);
+			stmt.setInt(2, user.getCodigoCliente());
+			stmt.setString(3, this.hora);
+			stmt.setString(4, this.fechaCreacion);
+			stmt.setString(5, this.textComentario);
 			
 			
 			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
@@ -131,33 +105,13 @@ public class Comentario {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//GETTERS
 	
-	public String getNomRest(){
-		return this.nombreRestaurante;
+	public Restaurante getNomRest(){
+		return this.rest;
 	}
-	public String getUsuario(){
-		return this.usuarioComentario;
+	public Cliente getUsuario(){
+		return this.user;
 	}
 	public String getHora(){
 		return this.hora;
@@ -167,12 +121,12 @@ public class Comentario {
 	}
 	//SETTERS CON ACTUALIZACION
 	
-	public void setNomRest(String nomRest){
-		this.nombreRestaurante=nomRest;
+	public void setNomRest(Restaurante nomRest){
+		this.rest=nomRest;
 		this.actualizacionComentario();
 	}
-	public void setUsuario(String user){
-		this.usuarioComentario=user;
+	public void setUsuario(Cliente user){
+		this.user=user;
 		this.actualizacionComentario();
 	}
 	public void setHora( String horaReser){
