@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -19,12 +22,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import BBDD.Consulta;
 import Clases.Cliente;
 import Clases.Restaurante;
 
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.SwingConstants;
+
+import com.mysql.jdbc.Connection;
 public class ptnRestaurante extends JFrame {
 
 	private JFrame frame;
@@ -113,7 +119,7 @@ public class ptnRestaurante extends JFrame {
 		scrollPane.setBounds(22, 359, 846, 164);
 		
 		JLabel lblNewLabel_1 = new JLabel(messages.getString("Comentarios"));
-		lblNewLabel_1.setBounds(22, 334, 108, 19);
+		lblNewLabel_1.setBounds(22, 334, 128, 19);
 		lblNewLabel_1.setForeground(new Color(255, 153, 0));
 		lblNewLabel_1.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 18));
 		
@@ -121,7 +127,7 @@ public class ptnRestaurante extends JFrame {
 		panel_11.setBounds(386, 88, 507, 235);
 		panel_11.setBackground(new Color(255, 255, 255));
 		
-		if(clie!=null){
+		/*if(clie!=null){*/
 		btnReservar = new JButton(messages.getString("Reservar"));
 		btnReservar.setFocusable(false);
 		btnReservar.addActionListener(new ActionListener() {
@@ -133,10 +139,10 @@ public class ptnRestaurante extends JFrame {
 		btnReservar.setBounds(745, 29, 108, 36);
 		btnReservar.setForeground(new Color(255, 153, 0));
 		btnReservar.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-		btnReservar.setBackground(null);}
+		btnReservar.setBackground(null);//}
 		
 		JLabel lbTipo = new JLabel(messages.getString("Tipo"));
-		lbTipo.setBounds(72, 28, 47, 22);
+		lbTipo.setBounds(30, 28, 89, 22);
 		lbTipo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbTipo.setForeground(Color.LIGHT_GRAY);
 		lbTipo.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
@@ -241,6 +247,57 @@ public class ptnRestaurante extends JFrame {
 		panel.add(scrollPane);
 		panel.add(lblNewLabel);
 		
+		Connection conexion = null;
+		Consulta consul=new Consulta(messages);
+		String consulta;
+		PreparedStatement stmt;
+		ResultSet resultadoConsulta;
+		boolean tiene;
+		int siNo=0;
+		boolean tieneReserva=false;
+		//Primero se comprueba el usuario.
+				consulta = "SELECT realizacion FROM reserva WHERE Codigo_Cliente=? AND Codigo_Restaurante=?";
+				try{
+					stmt = conexion.prepareStatement(consulta);
+					stmt.setInt(1, clie.getCodigoCliente());
+					stmt.setInt(2, rest.getCodigoRestaurante());
+					resultadoConsulta = stmt.executeQuery();
+					while(resultadoConsulta.next()){
+						int siNO=resultadoConsulta.getInt("reserva");
+						if(tieneReserva==false){
+							if(siNo==1){
+								tiene=true;
+							}
+						}
+					}
+					
+					
+				}catch(SQLException e){
+					e.printStackTrace();
+					System.out.println("Hola");
+					
+					
+		
+		
+		JButton btnNuevoComentario = new JButton("Nuevo Comentario");
+		btnNuevoComentario.addActionListener(new ActionListener() {
+			
+			//AQQQQUIIIIII
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				ptnCrearComentario nuevoComent=new ptnCrearComentario(clie, rest, messages);
+			}
+		});
+		btnNuevoComentario.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 11));
+		btnNuevoComentario.setForeground(new Color(255, 153, 0));
+		btnNuevoComentario.setBounds(160, 334, 150, 19);
+		panel.add(btnNuevoComentario);
+		if(tieneReserva==false){
+			btnNuevoComentario.setEnabled(false);
+		}
+		btnNuevoComentario.setBackground(null);
+		
 		if(clie!=null){
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -305,4 +362,6 @@ public class ptnRestaurante extends JFrame {
 		frame.setVisible(true);
 	
 	}
+	}
 }
+
