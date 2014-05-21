@@ -30,6 +30,7 @@ public class ptnRestaurante extends JFrame {
 	private JFrame frame;
 	Cliente clie;
 	Restaurante rest;
+	JButton btnReservar;
 	
 	static Locale currentLocale;
     static ResourceBundle messages;
@@ -120,7 +121,8 @@ public class ptnRestaurante extends JFrame {
 		panel_11.setBounds(386, 88, 507, 235);
 		panel_11.setBackground(new Color(255, 255, 255));
 		
-		JButton btnReservar = new JButton(messages.getString("Reservar"));
+		if(clie!=null){
+		btnReservar = new JButton(messages.getString("Reservar"));
 		btnReservar.setFocusable(false);
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -131,7 +133,7 @@ public class ptnRestaurante extends JFrame {
 		btnReservar.setBounds(745, 29, 108, 36);
 		btnReservar.setForeground(new Color(255, 153, 0));
 		btnReservar.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-		btnReservar.setBackground(null);
+		btnReservar.setBackground(null);}
 		
 		JLabel lbTipo = new JLabel(messages.getString("Tipo"));
 		lbTipo.setBounds(72, 28, 47, 22);
@@ -239,6 +241,7 @@ public class ptnRestaurante extends JFrame {
 		panel.add(scrollPane);
 		panel.add(lblNewLabel);
 		
+		if(clie!=null){
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblnomUser.setForeground(Color.WHITE);
@@ -246,6 +249,16 @@ public class ptnRestaurante extends JFrame {
 		lblnomUser.setBackground(Color.YELLOW);
 		lblnomUser.setBounds(486, 19, 241, 79);
 		frame.getContentPane().add(lblnomUser);
+		}else{
+			JLabel lblnomUser = new JLabel(rest.getNombre());
+			lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);
+			lblnomUser.setForeground(Color.WHITE);
+			lblnomUser.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 17));
+			lblnomUser.setBackground(Color.YELLOW);
+			lblnomUser.setBounds(486, 19, 241, 79);
+			frame.getContentPane().add(lblnomUser);
+			
+		}
 		
 		JLabel lblRestaurante = new JLabel(messages.getString("Restaurante"));
 		lblRestaurante.setForeground(Color.WHITE);

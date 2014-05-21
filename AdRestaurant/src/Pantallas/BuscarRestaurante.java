@@ -47,6 +47,7 @@ public class BuscarRestaurante extends JFrame{
 	private JTextField textDireccion;
 	JPanel panel_1;
 	JComboBox comboTipo;
+	private String consulta;
 	
 	private JButton btnXDireccion;
 	private JButton btnXNombre;
@@ -154,6 +155,9 @@ public class BuscarRestaurante extends JFrame{
 					.addGap(11))
 		);
 		
+		/**
+		 * Crea la lista de restaurantes a partir de un array de Strings.
+		 */
 		JList list = new JList();
 		list.setBorder(null);
 		scrollPane.setViewportView(list);
@@ -507,4 +511,40 @@ public class BuscarRestaurante extends JFrame{
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+	
+	/**
+	 * Modifica una consulta según los filtros establecidos
+	 */
+	public void estableceConsulta(){
+		//Contamos el número de filtos activados para la búsqueda.
+		int numeroConsultas=0;
+		if(this.textDireccion.getText().isEmpty()==false){
+			numeroConsultas++;
+		}
+		if(this.textCP.getText().isEmpty()==false){
+			numeroConsultas++;
+		}
+		if(this.textNombre.getText().isEmpty()==false){
+			numeroConsultas++;
+		}
+		if(this.comboTipo.getSelectedIndex()==-1){
+			numeroConsultas++;
+		}
+		
+		//Construimos el String para la consulta
+		
+//		this.consulta = "SELECT * FROM Restaurante WHERE ";
+//		if(this.textDireccion.getText().isEmpty()==false){
+//			this.consulta = this.consulta+"Direccion LIKE '%"+this.textDireccion+"%'";
+//		}
+//		if(this.textCP.getText().isEmpty()==false&&this.textDireccion.getText().isEmpty()==false){
+//			this.consulta = this.consulta+" AND WHERE CP="+this.textCP.getText();
+//		}else if(this.textCP.getText().isEmpty()==false){
+//			this.consulta = this.consulta+"CP="+this.textCP.getText();
+//		}
+//		if(this.textCP.getText().isEmpty()==false&&this.textDireccion.getText().isEmpty()==false&&this.textNombre.getText().isEmpty()==false){
+//			this.consulta = this.consulta+" AND WHERE NombreRestaurante="+this.textNombre.getText();
+//		}else if()
+	}
+	
 }

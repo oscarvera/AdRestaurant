@@ -9,23 +9,25 @@ import java.sql.SQLException;
 import BBDD.Consulta;
 
 public class Cliente {
-	String nombre;
-	String primerApellido;
-	String segundoApellido;
-	int codigoCliente;
-	String usuario;
-	char[] contraseña;
-	String telefono;
-	String email;
-	PreparedStatement stmt;
-	Connection conexion;
-	String consulta;
-	ResultSet resultadoConsulta;
-	int resultadoActualizacionBD;
+	private String nombre;
+	private String primerApellido;
+	private String segundoApellido;
+	private int codigoCliente;
+	private String usuario;
+	private char[] contraseña;
+	private String telefono;
+	private String email;
+	private PreparedStatement stmt;
+	private Connection conexion;
+	private String consulta;
+	private ResultSet resultadoConsulta;
+	private int resultadoActualizacionBD;
 	
-	public Cliente(String nombre){
-		this.nombre=nombre;
+	public Cliente(String usua){
+		this.usuario=usua;
 		conectar();
+		prepararConsulta();
+		loginCliente();
 	}
 	
 	public Cliente(String nombre, String primerApellido, String segundoApellido, String usuario, char[] contraseña, String telefono, String email){
@@ -39,11 +41,6 @@ public class Cliente {
 		conectar();
 		prepararConsulta();
 		insertarCliente();
-	}
-	
-	public Cliente(String usuario, String contraseña){
-		conectar();
-		prepararConsulta();
 	}
 
 	public String getNombre() {
@@ -102,6 +99,31 @@ public class Cliente {
 		this.segundoApellido = segundoApellido;
 	}
 	
+	/**
+	 * Si la contraseña también es correcta, selecciona todos los datos del usuario y crea una instancia de Cliente con ellos.
+	 */
+	public void loginCliente(){
+		this.consulta = "SELECT * FROM Clientes WHERE usuario=?;";
+		try {
+			this.stmt = conexion.prepareStatement(this.consulta);
+			this.stmt.setString(1, this.usuario);
+			resultadoConsulta = stmt.executeQuery();					
+			while(resultadoConsulta.next()==true){
+				this.nombre=resultadoConsulta.getString("nombre");
+				this.primerApellido=resultadoConsulta.getString("primerApellido");
+				this.segundoApellido=resultadoConsulta.getString("segundoApellido");
+				this.telefono=resultadoConsulta.getString("telefono");
+				this.email=resultadoConsulta.getString("email");
+				this.usuario=resultadoConsulta.getString("usuario");
+				this.codigoCliente=resultadoConsulta.getInt("codigoCliente");
+				this.contraseña=resultadoConsulta.getString("contraseña").toCharArray();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public void conectar(){
 		//Cargamos el driver
 		try{
@@ -113,8 +135,11 @@ public class Cliente {
 		//Abrimos una conexión
 		this.conexion=null;
 		try {
+			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
+			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
 			String user = "root";
-			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "serphp");
+			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "tonphp");
+			conexion.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -129,41 +154,33 @@ public class Cliente {
 	}
 	
 	public void insertarCliente(){
-		Consulta c = new Consulta();
-		c.insertarCliente(nombre, primerApellido, segundoApellido, usuario, email, telefono, contraseña);
+		//Escribimos la consulta SQL en la variable consulta
+		this.consulta = "INSERT INTO Clientes (Nombre, primerApellido, segundoApellido, usuario, email, telefono, contraseña)"
+				+ " VALUES (?,?,?,?,?,?,?);";
+		try{
+			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
+			this.stmt = conexion.prepareStatement(this.consulta);
+			
+			//Asignamos los campos del cliente a insertar con los campos a rellenar en las tablas (los "?").
+			stmt.setString(1, this.nombre);
+			stmt.setString(2, this.primerApellido);
+			stmt.setString(3, this.segundoApellido);
+			stmt.setString(4, this.usuario);
+			stmt.setString(5, this.email);
+			stmt.setInt(6, Integer.valueOf(this.telefono));
+			//En contraseña hay que pasarlo a String y borrar el contenido de la variable de clase por seguridad.
+			stmt.setString(7, String.copyValueOf(this.contraseña));
+			for(int i=0; i<contraseña.length; i++){
+				this.contraseña[i]=0;
+			}
+			
+			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
+			resultadoActualizacionBD = stmt.executeUpdate();
+			System.out.println("Se han actualizado "+resultadoActualizacionBD+" registros.");
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
 	}
-	
-//	public void insertarCliente(){
-//		//Escribimos la consulta SQL en la variable consulta
-//		this.consulta = "INSERT INTO Clientes (Nombre, primerApellido, segundoApellido, usuario, email, telefono, contraseña)"
-//				+ " VALUES (?,?,?,?,?,?,?);";
-//		try{
-//			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
-//			this.stmt = conexion.prepareStatement(this.consulta);
-//			
-//			//Asignamos los campos del cliente a insertar con los campos a rellenar en las tablas (los "?").
-//			stmt.setString(1, this.nombre);
-//			stmt.setString(2, this.primerApellido);
-//			stmt.setString(3, this.segundoApellido);
-//			stmt.setString(4, this.usuario);
-//			stmt.setString(5, this.email);
-//			stmt.setInt(6, Integer.valueOf(this.telefono));
-//			//En contraseña hay que pasarlo a String y borrar el contenido de la variable de clase por seguridad.
-//			stmt.setString(7, String.copyValueOf(this.contraseña));
-//			for(int i=0; i<contraseña.length; i++){
-//				this.contraseña[i]=0;
-//			}
-//			
-//			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
-//			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
-//			conexion.setAutoCommit(true);
-//			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
-//			resultadoActualizacionBD = stmt.executeUpdate();
-//			System.out.println("Se han actualizado "+resultadoActualizacionBD+" registros.");
-//			
-//		}catch(SQLException e){
-//			e.printStackTrace();
-//		}
-//	}
 }
 
