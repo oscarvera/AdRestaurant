@@ -120,6 +120,7 @@ public class ErrorRegistro extends JDialog {
 	/**
 	 * Constructor para el error en el Login. Recibe un String.
 	 * @param err
+	 * @wbp.parser.constructor
 	 */
 	public ErrorRegistro(String err,ResourceBundle messages){
 		this.messages=messages;

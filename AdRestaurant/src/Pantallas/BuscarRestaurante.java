@@ -517,34 +517,45 @@ public class BuscarRestaurante extends JFrame{
 	 */
 	public void estableceConsulta(){
 		//Contamos el número de filtos activados para la búsqueda.
-		int numeroConsultas=0;
-		if(this.textDireccion.getText().isEmpty()==false){
-			numeroConsultas++;
+		boolean primeraConsulta=true;
+		this.consulta = "SELECT nombre, direccion, poblacion, tipo FROM Restaurante WHERE ";
+		if(this.textDireccion.getText().isEmpty()&&this.textCP.getText().isEmpty()
+			&&this.textNombre.getText().isEmpty()&&this.comboTipo.getSelectedIndex()==-1){
+				this.consulta = "SELECT nombre, direccion, poblacion, tipo FROM Restaurante;";
+		}else{
+			if(this.textDireccion.getText().isEmpty()==false){
+				if(primeraConsulta=true){
+					this.consulta = this.consulta+"Direccion LIKE '%"+this.textDireccion+"%'";
+					primeraConsulta=false;
+				}
+			}
+			if(this.textCP.getText().isEmpty()==false){
+				if(primeraConsulta=true){
+					this.consulta = this.consulta+"CP="+this.textCP.getText();
+					primeraConsulta=false;
+				}else{
+					this.consulta = this.consulta+"AND WHERE CP="+this.textCP.getText();
+				}
+			}
+			if(this.textNombre.getText().isEmpty()==false){
+				if(primeraConsulta=true){
+					this.consulta = this.consulta+"NombreRestaurante="+this.textNombre.getText();
+					primeraConsulta=false;
+				}else{
+					this.consulta = this.consulta+" AND WHERE NombreRestaurante="+this.textNombre.getText();
+				}
+			}
+			if(this.comboTipo.getSelectedIndex()!=-1){
+				if(primeraConsulta=true){
+					String tipo = (String)this.comboTipo.getSelectedItem();
+					this.consulta = this.consulta+"tipoRestaurante="+tipo;
+					primeraConsulta=false;
+				}else{
+					String tipo = (String)this.comboTipo.getSelectedItem();
+					this.consulta = this.consulta+" AND WHERE tipoRestaurante="+tipo;
+				}		
+			}
+			this.consulta=this.consulta+";";
 		}
-		if(this.textCP.getText().isEmpty()==false){
-			numeroConsultas++;
-		}
-		if(this.textNombre.getText().isEmpty()==false){
-			numeroConsultas++;
-		}
-		if(this.comboTipo.getSelectedIndex()==-1){
-			numeroConsultas++;
-		}
-		
-		//Construimos el String para la consulta
-		
-//		this.consulta = "SELECT * FROM Restaurante WHERE ";
-//		if(this.textDireccion.getText().isEmpty()==false){
-//			this.consulta = this.consulta+"Direccion LIKE '%"+this.textDireccion+"%'";
-//		}
-//		if(this.textCP.getText().isEmpty()==false&&this.textDireccion.getText().isEmpty()==false){
-//			this.consulta = this.consulta+" AND WHERE CP="+this.textCP.getText();
-//		}else if(this.textCP.getText().isEmpty()==false){
-//			this.consulta = this.consulta+"CP="+this.textCP.getText();
-//		}
-//		if(this.textCP.getText().isEmpty()==false&&this.textDireccion.getText().isEmpty()==false&&this.textNombre.getText().isEmpty()==false){
-//			this.consulta = this.consulta+" AND WHERE NombreRestaurante="+this.textNombre.getText();
-//		}else if()
-	}
-	
+	}		
 }
