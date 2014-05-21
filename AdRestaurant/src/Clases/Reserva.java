@@ -31,6 +31,9 @@ public class Reserva {
 		this.usuarioReserva=user;
 		this.fechaCreacion=fechaCrea;
 		
+		this.conectar();
+		this.prepararConsulta();
+		this.recibirReserva();
 		//consultar hora fechaReserva verificación realizacion
 	}
 	
@@ -47,6 +50,11 @@ public class Reserva {
 		this.realizacion=false;
 		
 		//creacion de la consulta
+		
+
+		this.conectar();
+		this.prepararConsulta();
+		this.insertarReserva();
 	}
 	
 	public void recibirReserva(){
@@ -92,7 +100,7 @@ public class Reserva {
 			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
 			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
 			String user = "root";
-			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "baloncesto");
+			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "tonphp");
 			conexion.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -108,7 +116,7 @@ public class Reserva {
 	}
 	
 	
-	public void insertarCliente(){
+	public void insertarReserva(){
 		//Escribimos la consulta SQL en la variable consulta
 		this.consulta = "INSERT INTO reserva (Codigo_Restaurante, Codigo_Cliente, fechaReserva, hora, fechaCreacion, personas, verificacion,realizacion)"
 				+ " VALUES (?,?,?,?,?,?,?,?);";
@@ -116,7 +124,7 @@ public class Reserva {
 			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
 			this.stmt = conexion.prepareStatement(this.consulta);
 			
-			//Asignamos los campos del cliente a insertar con los campos a rellenar en las tablas (los "?").
+			//Asignamos los campos de la reserva a insertar con los campos a rellenar en las tablas (los "?").
 			stmt.setInt(1, rest.getCodigoRestaurante());
 			stmt.setInt(2, usuarioReserva.getCodigoCliente());
 			stmt.setString(3, this.fechaReserva);
