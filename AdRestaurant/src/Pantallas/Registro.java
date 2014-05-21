@@ -215,7 +215,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						textNomUser.setBorder(borde);
-						textNomUser.setText("");
+						
 					}
 				});
 				
@@ -250,7 +250,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						textEmail.setBorder(borde);
-						textEmail.setText("");
+						
 					}
 				});
 				
@@ -270,7 +270,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						textNombre.setBorder(borde);
-						textNombre.setText("");
+						
 					}
 				});
 				
@@ -297,7 +297,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						textApellido1.setBorder(borde);
-						textApellido1.setText("");
+						
 					}
 				});
 				
@@ -324,7 +324,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						textApellido2.setBorder(borde);
-						textApellido2.setText("");
+						
 					}
 				});
 				
@@ -366,7 +366,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						passUser.setBorder(borde);
-						passUser.setText("");
+						
 					}
 				});
 				
@@ -393,7 +393,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						textTelefono.setBorder(borde);
-						textTelefono.setText("");
+						
 					}
 				});
 	
@@ -474,7 +474,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						textNomUserRest.setBorder(borde);
-						textNomUserRest.setText("");
+						
 					}
 				});
 				
@@ -508,7 +508,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						textEmailRest.setBorder(borde);
-						textEmailRest.setText("");
+						
 					}
 				});
 				
@@ -528,7 +528,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						textNombreRest.setBorder(borde);
-						textNombreRest.setText("");
+						
 					}
 				});
 				
@@ -575,7 +575,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						textProvinciaRest.setBorder(borde);
-						textProvinciaRest.setText("");
+						
 					}
 				});
 				
@@ -602,7 +602,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						textCodPostRest.setBorder(borde);
-						textCodPostRest.setText("");
+						
 					}
 				});
 				
@@ -629,7 +629,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						textPoblacionRest.setBorder(borde);
-						textPoblacionRest.setText("");
+						
 					}
 				});
 				
@@ -649,7 +649,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						textDireccionRest.setBorder(borde);
-						textDireccionRest.setText("");
+						
 					}
 				});
 				
@@ -682,7 +682,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						pwdContraRest.setBorder(borde);
-						pwdContraRest.setText("");
+						
 					}
 				});
 				
@@ -761,7 +761,7 @@ public class Registro extends JPanel{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						textTelefonoRest.setBorder(borde);
-						textTelefonoRest.setText("");
+						
 					}
 				});
 				
