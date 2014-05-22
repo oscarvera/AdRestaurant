@@ -45,9 +45,7 @@ public class Ingreso extends JPanel{
     static ResourceBundle messages;
 	
 	public static String language;
-	public static String country;
-	
-	
+	public static String country;	
 
 	/**
 	 *  Launch the application.

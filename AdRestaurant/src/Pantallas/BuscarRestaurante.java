@@ -13,6 +13,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -36,8 +41,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
+import BBDD.Consulta;
 import Clases.Cliente;
+
 import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
 
 public class BuscarRestaurante extends JFrame{
 	Cliente clie;
@@ -45,14 +53,17 @@ public class BuscarRestaurante extends JFrame{
 	private JTextField textCP;
 	private JTextField textNombre;
 	private JTextField textDireccion;
-	JPanel panel_1;
-	JComboBox comboTipo;
+	private JPanel panel_1;
+	private JComboBox comboTipo;
 	private String consulta;
+	private ResultSet resultadoConsulta;
 	
 	private JButton btnXDireccion;
 	private JButton btnXNombre;
 	private JButton btnXCP;
 	private JButton btnXTipo;
+	private PreparedStatement stmt;
+	private Connection conexion;
 	
 	static Locale currentLocale;
     static ResourceBundle messages;
@@ -172,6 +183,12 @@ public class BuscarRestaurante extends JFrame{
 		});
 		
 		JButton btnBuscar = new JButton(messages.getString("BUSCAR"));
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				realizaBusqueda();
+			}
+		});
 		btnBuscar.setFocusable(false);
 		btnBuscar.setBounds(10, 241, 187, 43);
 		btnBuscar.setForeground(new Color(255, 153, 0));
@@ -513,33 +530,33 @@ public class BuscarRestaurante extends JFrame{
 	}
 	
 	/**
-	 * Modifica una consulta según los filtros establecidos
+	 * Modifica una consulta según los filtros establecidos.
 	 */
 	public void estableceConsulta(){
 		//Contamos el número de filtos activados para la búsqueda.
 		boolean primeraConsulta=true;
-		this.consulta = "SELECT nombre, direccion, poblacion, tipo FROM Restaurante WHERE ";
+		this.consulta = "SELECT nombre, direccion, poblacion, tipo FROM Restaurante";
 		if(this.textDireccion.getText().isEmpty()&&this.textCP.getText().isEmpty()
 			&&this.textNombre.getText().isEmpty()&&this.comboTipo.getSelectedIndex()==-1){
 				this.consulta = "SELECT nombre, direccion, poblacion, tipo FROM Restaurante;";
 		}else{
 			if(this.textDireccion.getText().isEmpty()==false){
 				if(primeraConsulta=true){
-					this.consulta = this.consulta+"Direccion LIKE '%"+this.textDireccion+"%'";
+					this.consulta = this.consulta+" WHERE Direccion LIKE '%"+this.textDireccion+"%'";
 					primeraConsulta=false;
 				}
 			}
 			if(this.textCP.getText().isEmpty()==false){
 				if(primeraConsulta=true){
-					this.consulta = this.consulta+"CP="+this.textCP.getText();
+					this.consulta = this.consulta+" WHERE CP="+this.textCP.getText();
 					primeraConsulta=false;
 				}else{
-					this.consulta = this.consulta+"AND WHERE CP="+this.textCP.getText();
+					this.consulta = this.consulta+" AND WHERE CP="+this.textCP.getText();
 				}
 			}
 			if(this.textNombre.getText().isEmpty()==false){
 				if(primeraConsulta=true){
-					this.consulta = this.consulta+"NombreRestaurante="+this.textNombre.getText();
+					this.consulta = this.consulta+" WHERE NombreRestaurante="+this.textNombre.getText();
 					primeraConsulta=false;
 				}else{
 					this.consulta = this.consulta+" AND WHERE NombreRestaurante="+this.textNombre.getText();
@@ -548,14 +565,59 @@ public class BuscarRestaurante extends JFrame{
 			if(this.comboTipo.getSelectedIndex()!=-1){
 				if(primeraConsulta=true){
 					String tipo = (String)this.comboTipo.getSelectedItem();
-					this.consulta = this.consulta+"tipoRestaurante="+tipo;
+					this.consulta = this.consulta+" WHERE tipoRestaurante="+tipo;
 					primeraConsulta=false;
 				}else{
 					String tipo = (String)this.comboTipo.getSelectedItem();
 					this.consulta = this.consulta+" AND WHERE tipoRestaurante="+tipo;
 				}		
 			}
-			this.consulta=this.consulta+";";
 		}
-	}		
+		this.consulta=this.consulta+";";
+	}
+	
+	public void conectar(){
+		//Cargamos el driver
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+		}catch(ClassNotFoundException cnfe){
+			cnfe.printStackTrace();
+		}
+
+		//Abrimos una conexión
+		this.conexion=null;
+		try {
+			String user = "adrestaurant";
+			this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143:3306/adrestaurant", user, "adrestaurant");
+
+			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
+			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
+			this.conexion.setAutoCommit(true);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Realiza la búsqueda, cuenta resultados y los guarda en el array de Strings de la lista.
+	 */
+	public void realizaBusqueda(){
+		System.out.println(this.consulta);
+		int numeroResultados=0;
+		conectar();
+		estableceConsulta();
+		try {
+			this.stmt = conexion.prepareStatement(this.consulta);
+			this.resultadoConsulta = stmt.executeQuery();
+			while(resultadoConsulta.next()){
+				numeroResultados++;
+				int contador=0;
+				System.out.println(resultadoConsulta.getString(contador)+"/n");
+				contador++;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
