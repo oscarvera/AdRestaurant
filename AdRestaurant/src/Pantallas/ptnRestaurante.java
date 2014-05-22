@@ -41,6 +41,7 @@ public class ptnRestaurante extends JFrame {
 	static Locale currentLocale;
     static ResourceBundle messages;
 	
+    Connection conexion = null;
 
 	/**
 	 * Launch the application.
@@ -247,16 +248,16 @@ public class ptnRestaurante extends JFrame {
 		panel.add(scrollPane);
 		panel.add(lblNewLabel);
 		
-		Connection conexion = null;
+		
 		Consulta consul=new Consulta(messages);
-		String consulta;
+		conexion=(Connection) consul.getConexion();
+		String consulta= "SELECT realizacion FROM reserva WHERE Codigo_Cliente=? AND Codigo_Restaurante=?";
 		PreparedStatement stmt;
 		ResultSet resultadoConsulta;
 		boolean tiene;
 		int siNo=0;
 		boolean tieneReserva=false;
 		//Primero se comprueba el usuario.
-				consulta = "SELECT realizacion FROM reserva WHERE Codigo_Cliente=? AND Codigo_Restaurante=?";
 				try{
 					stmt = conexion.prepareStatement(consulta);
 					stmt.setInt(1, clie.getCodigoCliente());
@@ -275,6 +276,7 @@ public class ptnRestaurante extends JFrame {
 				}catch(SQLException e){
 					e.printStackTrace();
 					System.out.println("Hola");
+				}
 					
 					
 		
@@ -362,6 +364,6 @@ public class ptnRestaurante extends JFrame {
 		frame.setVisible(true);
 	
 	}
-	}
 }
+
 

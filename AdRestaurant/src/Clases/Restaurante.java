@@ -32,7 +32,7 @@ public class Restaurante {
 	
 	//Constructor para el registro de un nuevo restaurante:
 		public Restaurante(char[] contraseña, String nombre, String tipo, String telf, String direccion, 
-				String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto){
+				String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto,String nombreUsuario){
 			 //BufferedImage foto1, BufferedImage foto2
 			this.contraseña=contraseña;
 			this.nombre=nombre;
@@ -43,6 +43,7 @@ public class Restaurante {
 			this.provincia=provincia;
 			this.codigoPostal=codigoPostal;
 			this.minusvalidoApto=minusvalidoApto;
+			this.nombreUsuario=nombreUsuario;
 			//foto1=this.foto1;
 			//foto2=this.foto2;
 			conectar();
@@ -212,8 +213,8 @@ public class Restaurante {
 				try {
 					//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
 					//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
-					String user = "root";
-					this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/adrestaurant", user, "tonphp");
+					String user = "adrestaurant";
+					this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143/adrestaurant", user, "adrestaurant");
 					conexion.setAutoCommit(true);
 				} catch (SQLException e) {
 					e.printStackTrace();
