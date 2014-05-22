@@ -12,13 +12,13 @@ import Pantallas.ErrorRegistro;
 
 public class Consulta {
 
-	ResourceBundle messages;
-	PreparedStatement stmt;
-	Connection conexion;
-	String consulta;
-	ResultSet resultadoConsulta;
+	private ResourceBundle messages;
+	private PreparedStatement stmt;
+	private Connection conexion;
+	private String consulta;
+	private ResultSet resultadoConsulta;
 	int resultadoActualizacionBD;
-	ErrorRegistro err;
+	private ErrorRegistro err;
 
 	public Consulta(ResourceBundle messages){
 		this.messages=messages;
@@ -40,8 +40,8 @@ public class Consulta {
 		//Abrimos una conexión
 		this.conexion=null;
 		try {
-			String user = "root";
-			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "tonphp");
+			String user = "adrestaurant";
+			this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143:3306/adrestaurant", user, "adrestaurant");
 
 			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
 			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
@@ -51,28 +51,6 @@ public class Consulta {
 		}
 	}
 	
-	public Connection getConectar(){
-		//Cargamos el driver
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-		}catch(ClassNotFoundException cnfe){
-			cnfe.printStackTrace();
-		}
-
-		//Abrimos una conexión
-		this.conexion=null;
-		try {
-			String user = "root";
-			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "tonphp");
-
-			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
-			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
-			this.conexion.setAutoCommit(true);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return this.conexion;
-	}
 
 	/**
 	 * Inicializa las variables necesarias para una nueva consulta.
@@ -162,6 +140,13 @@ public class Consulta {
 	}
 	public ErrorRegistro error(){
 		return err;
-		
+	}
+
+	public Connection getConexion() {
+		return conexion;
+	}
+
+	public void setConexion(Connection conexion) {
+		this.conexion = conexion;
 	}
 }

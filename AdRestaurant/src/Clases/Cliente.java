@@ -137,9 +137,9 @@ public class Cliente {
 		try {
 			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
 			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
-			String user = "root";
-			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "tonphp");
-			conexion.setAutoCommit(true);
+			String user = "adrestaurant";
+			this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143:3306/adrestaurant", user, "adrestaurant");
+			this.conexion.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -159,7 +159,7 @@ public class Cliente {
 				+ " VALUES (?,?,?,?,?,?,?);";
 		try{
 			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
-			this.stmt = conexion.prepareStatement(this.consulta);
+			this.stmt = this.conexion.prepareStatement(this.consulta);
 			
 			//Asignamos los campos del cliente a insertar con los campos a rellenar en las tablas (los "?").
 			stmt.setString(1, this.nombre);
