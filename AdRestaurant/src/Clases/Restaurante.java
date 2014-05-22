@@ -135,7 +135,7 @@ public class Restaurante {
 				this.codigoPostal = codigoPostal;
 			}
 
-			public boolean isMinusvalidoApto() {
+			public boolean getMinusvalidoApto() {
 				return minusvalidoApto;
 			}
 
