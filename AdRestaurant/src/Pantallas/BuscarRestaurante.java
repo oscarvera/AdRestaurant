@@ -535,45 +535,45 @@ public class BuscarRestaurante extends JFrame{
 	public void estableceConsulta(){
 		//Contamos el número de filtos activados para la búsqueda.
 		boolean primeraConsulta=true;
-		this.consulta = "SELECT nombre, direccion, poblacion, tipo FROM Restaurante";
-		if(this.textDireccion.getText().isEmpty()&&this.textCP.getText().isEmpty()
-			&&this.textNombre.getText().isEmpty()&&this.comboTipo.getSelectedIndex()==-1){
-				this.consulta = "SELECT nombre, direccion, poblacion, tipo FROM Restaurante;";
+		this.consulta = "SELECT nombre, direccion, poblacion, tipo FROM Restaurantes";
+		if(this.textDireccion.getText().compareTo("Dirección")==0&&this.textCP.getText().compareTo("Codigo Postal")==0
+			&&this.textNombre.getText().compareTo("Nombre")==0&&this.comboTipo.getSelectedIndex()==0){
+				this.consulta = "SELECT nombre, direccion, poblacion, tipo FROM Restaurantes";
 		}else{
-			if(this.textDireccion.getText().isEmpty()==false){
+			if(this.textDireccion.getText().compareTo("Dirección")!=0){
 				if(primeraConsulta=true){
-					this.consulta = this.consulta+" WHERE Direccion LIKE '%"+this.textDireccion+"%'";
+					this.consulta = this.consulta+" WHERE Direccion LIKE '%"+this.textDireccion.getText()+"%'";
 					primeraConsulta=false;
 				}
 			}
-			if(this.textCP.getText().isEmpty()==false){
+			if(this.textCP.getText().compareTo("Codigo Postal")!=0){
 				if(primeraConsulta=true){
-					this.consulta = this.consulta+" WHERE CP="+this.textCP.getText();
-					primeraConsulta=false;
-				}else{
-					this.consulta = this.consulta+" AND WHERE CP="+this.textCP.getText();
-				}
-			}
-			if(this.textNombre.getText().isEmpty()==false){
-				if(primeraConsulta=true){
-					this.consulta = this.consulta+" WHERE NombreRestaurante="+this.textNombre.getText();
+					this.consulta = this.consulta+" WHERE codigoPostal='"+this.textCP.getText()+"'";
 					primeraConsulta=false;
 				}else{
-					this.consulta = this.consulta+" AND WHERE NombreRestaurante="+this.textNombre.getText();
+					this.consulta = this.consulta+" AND WHERE CP='"+this.textCP.getText()+"'";
 				}
 			}
-			if(this.comboTipo.getSelectedIndex()!=-1){
+			if(this.textNombre.getText().compareTo("Nombre")!=0){
+				if(primeraConsulta=true){
+					this.consulta = this.consulta+" WHERE Nombre='"+this.textNombre.getText()+"'";
+					primeraConsulta=false;
+				}else{
+					this.consulta = this.consulta+" AND WHERE Nombre='"+this.textNombre.getText()+"'";
+				}
+			}
+			if(this.comboTipo.getSelectedIndex()!=0){
 				if(primeraConsulta=true){
 					String tipo = (String)this.comboTipo.getSelectedItem();
-					this.consulta = this.consulta+" WHERE tipoRestaurante="+tipo;
+					this.consulta = this.consulta+" WHERE tipo='"+tipo+"'";
 					primeraConsulta=false;
 				}else{
 					String tipo = (String)this.comboTipo.getSelectedItem();
-					this.consulta = this.consulta+" AND WHERE tipoRestaurante="+tipo;
+					this.consulta = this.consulta+" AND WHERE tipo='"+tipo+"'";
 				}		
 			}
 		}
-		this.consulta=this.consulta+";";
+		this.consulta = this.consulta+";";
 	}
 	
 	public void conectar(){
@@ -608,15 +608,15 @@ public class BuscarRestaurante extends JFrame{
 		estableceConsulta();
 		try {
 			this.stmt = conexion.prepareStatement(this.consulta);
-			this.resultadoConsulta = stmt.executeQuery();
+			this.resultadoConsulta = this.stmt.executeQuery();
 			while(resultadoConsulta.next()){
 				numeroResultados++;
-				int contador=0;
-				System.out.println(resultadoConsulta.getString(contador)+"/n");
+				int contador=1;
+				System.out.println(resultadoConsulta.getString(contador)+"\n");
 				contador++;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println(this.consulta);
 			e.printStackTrace();
 		}
 	}
