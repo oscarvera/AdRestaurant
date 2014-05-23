@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -31,6 +32,9 @@ import javax.swing.JList;
 import javax.swing.SwingConstants;
 
 import com.mysql.jdbc.Connection;
+
+import javax.swing.ListSelectionModel;
+import javax.swing.AbstractListModel;
 public class ptnRestaurante extends JFrame {
 
 	private JFrame frame;
@@ -50,8 +54,9 @@ public class ptnRestaurante extends JFrame {
 
 	/**
 	 *  Create the frame.
+	 * @throws SQLException 
 	 */
-	public ptnRestaurante(final Cliente clie, final Restaurante rest,final ResourceBundle messages) {
+	public ptnRestaurante(final Cliente clie, final Restaurante rest,final ResourceBundle messages) throws SQLException {
 		this.clie=clie;
 		this.rest=rest;
 		this.messages=messages;
@@ -249,6 +254,7 @@ public class ptnRestaurante extends JFrame {
 		panel.add(lblNewLabel);
 		
 		
+		
 		Consulta consul=new Consulta(messages);
 		conexion=(Connection) consul.getConexion();
 		String consulta= "SELECT realizacion FROM reserva WHERE Codigo_Cliente=? AND Codigo_Restaurante=?";
@@ -284,7 +290,6 @@ public class ptnRestaurante extends JFrame {
 		JButton btnNuevoComentario = new JButton("Nuevo Comentario");
 		btnNuevoComentario.addActionListener(new ActionListener() {
 			
-			//AQQQQUIIIIII
 			public void actionPerformed(ActionEvent arg0) {
 				
 				
@@ -300,6 +305,26 @@ public class ptnRestaurante extends JFrame {
 		}
 		btnNuevoComentario.setBackground(null);
 		
+		DefaultListModel dlm=new DefaultListModel();
+		JList list = new JList();
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrollPane.setViewportView(list);
+		//LISTAR COMENTARIOS
+		consulta= "SELECT cli.usuario, c.fechaCreacion, c.txtComentario FROM comentarios c INNER JOIN clientes cli on cli.codigoCliente=c.Codigo_Restaurante WHERE Codigo_Restaurante=?";
+		stmt = conexion.prepareStatement(consulta);
+		stmt.setInt(1, rest.getCodigoRestaurante());
+		resultadoConsulta = stmt.executeQuery();
+		String usuario;
+		String fechacreacion;
+		String text;
+		while(resultadoConsulta.next()){
+			usuario=resultadoConsulta.getString("usuario");
+			fechacreacion=resultadoConsulta.getString("fechaCreacion");
+			text=resultadoConsulta.getString("txtComentario");
+ 			String reserva="<html>"+usuario+"        "+fechacreacion+"<br><font color=silver>"+text+"</font></html>";
+ 	 		dlm.addElement(reserva);
+ 		}
+		list.setModel(dlm);
 		if(clie!=null){
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);

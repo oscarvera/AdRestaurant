@@ -21,11 +21,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 import Clases.Cliente;
 import Clases.Restaurante;
+
 import javax.swing.SwingConstants;
 
 public class MenuCliente {
@@ -135,7 +137,12 @@ public class MenuCliente {
 		btnPerfilCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				restaurante=new Restaurante("pass".toCharArray(), "Foster's Hollywood" ,"Americano", "660235656", "Centro comercial Aqua", "Valencia", "Valencia", "46022", true,"fostervalencia");
-				ptnRestaurante ptnrest=new ptnRestaurante(clie, restaurante, messages);
+				try {
+					ptnRestaurante ptnrest=new ptnRestaurante(clie, restaurante, messages);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				frame.dispose();
 			}
 		});
