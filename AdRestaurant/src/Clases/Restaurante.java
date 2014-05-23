@@ -55,12 +55,12 @@ public class Restaurante {
 			public Restaurante(String nombre, String tipo,  
 					String poblacion){
 			
-				nombre=this.nombre;
-				tipo=this.tipo;
-				poblacion=this.poblacion;
+				this.nombre=nombre;
+				this.tipo=tipo;
+				this.poblacion=poblacion;
 				conectar();
 				prepararConsulta();
-				insertarRestaurante();
+				loginRestaurante();
 				
 			}
 
@@ -172,10 +172,11 @@ public class Restaurante {
 			 * Si la contraseña también es correcta, selecciona todos los datos del usuario y crea una instancia de Restaurante con ellos.
 			 */
 			public void loginRestaurante(){
-				this.consulta = "SELECT * FROM restaurantes WHERE nombreUsuario=?;";
+				this.consulta = "SELECT * FROM restaurantes WHERE Nombre=?;";
 				try {
 					this.stmt = conexion.prepareStatement(this.consulta);
-					this.stmt.setString(1, this.nombreUsuario);
+					this.stmt.setString(1, this.nombre);
+					System.out.println(""+this.nombre);
 					resultadoConsulta = stmt.executeQuery();					
 					while(resultadoConsulta.next()==true){
 						
@@ -194,9 +195,11 @@ public class Restaurante {
 						this.contraseña=resultadoConsulta.getString("contraseña").toCharArray();
 					
 					}
+					
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
+				
 				
 			}
 			

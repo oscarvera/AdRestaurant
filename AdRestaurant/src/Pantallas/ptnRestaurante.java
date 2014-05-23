@@ -259,27 +259,29 @@ public class ptnRestaurante extends JFrame {
 		conexion=(Connection) consul.getConexion();
 		String consulta= "SELECT realizacion FROM reserva WHERE Codigo_Cliente=? AND Codigo_Restaurante=?";
 		PreparedStatement stmt;
-		ResultSet resultadoConsulta;
-		boolean tiene;
-		int siNo=0;
+		//Dos consultas. Comentarios y boton comentarios
+		ResultSet resultadoConsulta1;
+		ResultSet resultadoConsulta2;
 		boolean tieneReserva=false;
-		//Primero se comprueba el usuario.
+		int siNo=0;
+		boolean hayComentarios=false;
 				try{
 					stmt = conexion.prepareStatement(consulta);
 					stmt.setInt(1, clie.getCodigoCliente());
 					stmt.setInt(2, rest.getCodigoRestaurante());
-					resultadoConsulta = stmt.executeQuery();
-					while(resultadoConsulta.next()){
-						int siNO=resultadoConsulta.getInt("reserva");
-						if(tieneReserva==false){
-							if(siNo==1){
-								tiene=true;
-							}
+					resultadoConsulta2 = stmt.executeQuery();
+					while(resultadoConsulta2.next()){
+						siNo=resultadoConsulta2.getInt("realizacion");
+						System.out.println(""+siNo);
+						if(siNo==1){
+							tieneReserva=true;
+							System.out.println(""+tieneReserva);
+						}
 						}
 					}
 					
 					
-				}catch(SQLException e){
+				catch(SQLException e){
 					e.printStackTrace();
 					System.out.println("Hola");
 				}
@@ -307,27 +309,32 @@ public class ptnRestaurante extends JFrame {
 		
 		DefaultListModel dlm=new DefaultListModel();
 		JList list = new JList();
+		list.setFont(new Font("Fira Sans OT", Font.PLAIN, 11));
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(list);
 		//LISTAR COMENTARIOS
 		consulta= "SELECT cli.usuario, c.fechaCreacion, c.txtComentario FROM comentarios c INNER JOIN clientes cli on cli.codigoCliente=c.Codigo_Restaurante WHERE Codigo_Restaurante=?";
 		stmt = conexion.prepareStatement(consulta);
 		stmt.setInt(1, rest.getCodigoRestaurante());
-		resultadoConsulta = stmt.executeQuery();
+		resultadoConsulta1 = stmt.executeQuery();
 		String usuario;
 		String fechacreacion;
 		String text;
-		tieneReserva=false;
-		while(resultadoConsulta.next()){
-			usuario=resultadoConsulta.getString("usuario");
-			fechacreacion=resultadoConsulta.getString("fechaCreacion");
-			text=resultadoConsulta.getString("txtComentario");
- 			String reserva="<html>"+usuario+"        "+fechacreacion+"<br><font color=silver>"+text+"</font></html>";
+		hayComentarios=false;
+		while(resultadoConsulta1.next()){
+			usuario=resultadoConsulta1.getString("usuario");
+			if(resultadoConsulta1.getInt("fechaCreacion")!=0000-00-00){
+				fechacreacion=resultadoConsulta1.getString("fechaCreacion");
+			}else{
+				fechacreacion="null";
+			}
+			text=resultadoConsulta1.getString("txtComentario");
+ 			String reserva="<html><div width=600px><font color=silver size=6>"+usuario+"        "+fechacreacion+"</font><br><font size=4>"+text+"</font><br><hr></html>";
  	 		dlm.addElement(reserva);
- 	 		tieneReserva=true;
+ 	 		hayComentarios=true;
  	 		
  		}
-		if(tieneReserva==false){
+		if(hayComentarios==false){
 			String reserva="<html>No hay comentarios en este restaurante<br><font color=silver>Te proponemos ir al restaurante, probarlo y opinar sobre él</font></html>";
 			dlm.addElement(reserva);
 		}

@@ -191,9 +191,9 @@ public class ptnCrearReserva extends JFrame {
 		lblPersonas.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 		panel_3.add(lblPersonas);
 		
-		JSpinner spinner_5 = new JSpinner();
-		spinner_5.setBounds(97, 85, 47, 34);
-		panel_3.add(spinner_5);
+		JSpinner Personas = new JSpinner();
+		Personas.setBounds(97, 85, 47, 34);
+		panel_3.add(Personas);
 		
 		JPanel panel_11 = new JPanel();
 		panel_11.setBackground(new Color(255, 255, 255));
@@ -206,15 +206,15 @@ public class ptnCrearReserva extends JFrame {
 		lblHora.setForeground(Color.LIGHT_GRAY);
 		lblHora.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 		
-		final JSpinner spinner_3 = new JSpinner();
-		spinner_3.setBounds(60, 89, 47, 34);
+		final JSpinner Hora_hora = new JSpinner();
+		Hora_hora.setBounds(60, 89, 47, 34);
 		
-		final JSpinner spinner_4 = new JSpinner();
-		spinner_4.setBounds(130, 89, 47, 34);
+		final JSpinner Hora_minutos = new JSpinner();
+		Hora_minutos.setBounds(130, 89, 47, 34);
 		panel_11.setLayout(null);
 		panel_11.add(lblHora);
-		panel_11.add(spinner_3);
-		panel_11.add(spinner_4);
+		panel_11.add(Hora_hora);
+		panel_11.add(Hora_minutos);
 		
 		JLabel lblNewLabel = new JLabel(":");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -232,22 +232,22 @@ public class ptnCrearReserva extends JFrame {
 		lblFecha.setForeground(Color.LIGHT_GRAY);
 		lblFecha.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 		
-		JSpinner spinner = new JSpinner();
+		JSpinner Fecha_dia = new JSpinner();
 		
-		JSpinner spinner_1 = new JSpinner();
+		JSpinner Fecha_mes = new JSpinner();
 		
-		final JSpinner spinner_2 = new JSpinner();
-		spinner_2.setModel(new SpinnerNumberModel(new Integer(2014), null, null, new Integer(0)));
+		final JSpinner Fecha_año = new JSpinner();
+		Fecha_año.setModel(new SpinnerNumberModel(new Integer(2014), null, null, new Integer(0)));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_2.createSequentialGroup()
 					.addGap(45)
-					.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+					.addComponent(Fecha_dia, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(spinner_1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+					.addComponent(Fecha_mes, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(spinner_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(Fecha_año, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(40))
 				.addGroup(Alignment.LEADING, gl_panel_2.createSequentialGroup()
 					.addGap(12)
@@ -261,9 +261,9 @@ public class ptnCrearReserva extends JFrame {
 					.addComponent(lblFecha)
 					.addGap(18)
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-						.addComponent(spinner_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-						.addComponent(spinner_2, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+						.addComponent(Fecha_dia, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Fecha_mes, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Fecha_año, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
 					.addGap(74))
 		);
 		panel_2.setLayout(gl_panel_2);
@@ -293,6 +293,11 @@ public class ptnCrearReserva extends JFrame {
 		btnReservar.setFocusable(false);
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
+				
 				ptnReservaCompletada compl=new ptnReservaCompletada(clie, messages);
 				frame.dispose();
 				//Comprobar campos

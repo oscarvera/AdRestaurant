@@ -136,13 +136,15 @@ public class MenuCliente {
 		JButton btnPerfilCliente = new JButton("Perfil Cliente?");
 		btnPerfilCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				restaurante=new Restaurante("pass".toCharArray(), "Foster's Hollywood" ,"Americano", "660235656", "Centro comercial Aqua", "Valencia", "Valencia", "46022", true,"fostervalencia");
+				restaurante=new Restaurante("Foster's Hollywood" ,"Americano","Valencia");
+			
 				try {
 					ptnRestaurante ptnrest=new ptnRestaurante(clie, restaurante, messages);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
 				frame.dispose();
 			}
 		});
