@@ -1,8 +1,7 @@
 package Pantallas;
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.Dialog.ModalExclusionType;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -11,6 +10,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
@@ -18,36 +18,28 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JList;
-import javax.swing.AbstractListModel;
-import javax.swing.JToolBar;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
-import BBDD.Consulta;
 import Clases.Cliente;
-
-import javax.swing.SwingConstants;
-
-import java.awt.event.MouseAdapter;
-import javax.swing.ListSelectionModel;
 
 public class BuscarRestaurante extends JFrame{
 	Cliente clie;
@@ -71,6 +63,9 @@ public class BuscarRestaurante extends JFrame{
 	
 	static Locale currentLocale;
     static ResourceBundle messages;
+    
+    private JList<InfoRestaurante> lista_restaurantes;
+    private DefaultListModel<InfoRestaurante> modelo_lista_restaurantes;
 
 	/**
 	 * Create the application.
@@ -94,7 +89,7 @@ public class BuscarRestaurante extends JFrame{
 		frame.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
 		
@@ -149,8 +144,8 @@ public class BuscarRestaurante extends JFrame{
 		panel_1.setBorder(new MatteBorder(0, 0, 0, 4, (Color) new Color(255, 153, 51)));
 		panel_1.setBackground(Color.WHITE);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBorder(null);
+		JScrollPane scroll_lista_restaurantes = new JScrollPane();
+		scroll_lista_restaurantes.setBorder(null);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		
 		gl_panel.setHorizontalGroup(
@@ -158,7 +153,7 @@ public class BuscarRestaurante extends JFrame{
 				.addGroup(gl_panel.createSequentialGroup()
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+					.addComponent(scroll_lista_restaurantes, GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
@@ -166,31 +161,21 @@ public class BuscarRestaurante extends JFrame{
 				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
 				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+					.addComponent(scroll_lista_restaurantes, GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
 					.addGap(11))
 		);
-		
-		/**
-		 * Crea la lista de restaurantes a partir de un array de Strings.
-		 */
-		JList list = new JList();
-		list.setBorder(null);
-		scrollPane.setViewportView(list);
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Aqui", "los ", "restaurantes", "listados", "todos", "y", "cada", "uno", "de", "ellos", "asdd", "asg", "asg", "asdg", "asdg", "asdg", "asdg", "asd", "gas", "dg", "asg", "asd", "g", "asd", "g", "asdg", "as", "dg", "asdg", "s", "dgas", "dg", "asdg", "as", "dg", "asd", "g", "asdg", "asdg", "as", "dg", "aqui", "acaba"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
+		modelo_lista_restaurantes = new DefaultListModel<InfoRestaurante>();
+		lista_restaurantes = new JList<InfoRestaurante>(modelo_lista_restaurantes);
+		//lista_restaurantes.setCellRenderer(new CellRenderer());
+		scroll_lista_restaurantes.setViewportView(lista_restaurantes);
 		
 		JButton btnBuscar = new JButton(messages.getString("BUSCAR"));
 		btnBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				realizaBusqueda();
+				//prueba();
+				lista_restaurantes.setListData(realizaBusqueda());
+				
 			}
 		});
 		btnBuscar.setFocusable(false);
@@ -591,8 +576,8 @@ public class BuscarRestaurante extends JFrame{
 		//Abrimos una conexión
 		this.conexion=null;
 		try {
-			String user = "adrestaurant";
-			this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143:3306/adrestaurant", user, "adrestaurant");
+			String user = "root";
+			this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/adrestaurant", user, "tonphp");
 
 			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
 			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
@@ -605,7 +590,8 @@ public class BuscarRestaurante extends JFrame{
 	/**
 	 * Realiza la búsqueda, cuenta resultados y los guarda en el array de Strings de la lista.
 	 */
-	public void realizaBusqueda(){
+	public InfoRestaurante[] realizaBusqueda(){
+		ArrayList <InfoRestaurante> llistat=null;
 		System.out.println(this.consulta);
 		this.numeroResultados=0;
 		conectar();
@@ -619,14 +605,25 @@ public class BuscarRestaurante extends JFrame{
 				System.out.println(resultadoConsulta.getString("Direccion")+"\n");
 				System.out.println(resultadoConsulta.getString("Poblacion")+"\n");
 				System.out.println(resultadoConsulta.getString("Tipo")+"\n");
+				llistat.add(new InfoRestaurante(resultadoConsulta.getString("Nombre"),resultadoConsulta.getString("Tipo"),resultadoConsulta.getString("Direccion"),resultadoConsulta.getString("Poblacion")));
+				System.out.println(resultadoConsulta.getString("Nombre")+" - "+resultadoConsulta.getString("Tipo")+
+						" - "+resultadoConsulta.getString("Direccion")+" - "+resultadoConsulta.getString("Poblacion"));
 				arrayResultados[numeroResultados]=resultadoConsulta.getString("Nombre")+" - "+resultadoConsulta.getString("Tipo")+
 						" - "+resultadoConsulta.getString("Direccion")+" - "+resultadoConsulta.getString("Poblacion");
 				numeroResultados++;
+				
 			}
 		} catch (SQLException e) {
-			System.out.println(this.consulta);
+			System.out.println("Consulta:"+this.consulta);
 			e.printStackTrace();
 		}
-		
+		return (InfoRestaurante[]) llistat.toArray();
 	}
+	
+	public void prueba(){
+		modelo_lista_restaurantes.addElement(new InfoRestaurante("hola", "que", "tal", "estas"));
+		modelo_lista_restaurantes.addElement(new InfoRestaurante("holasda", "qasdaue", "taasdadl", "estadasas"));
+	}
+
+
 }

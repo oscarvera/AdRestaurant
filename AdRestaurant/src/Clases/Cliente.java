@@ -137,8 +137,8 @@ public class Cliente {
 		try {
 			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
 			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
-			String user = "adrestaurant";
-			this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143:3306/adrestaurant", user, "adrestaurant");
+			String user = "root";
+			this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/adrestaurant", user, "tonphp");
 			this.conexion.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
