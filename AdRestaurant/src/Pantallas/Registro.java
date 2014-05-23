@@ -911,7 +911,7 @@ public class Registro extends JPanel{
 	    
 		//Comprobamos el nombre
 	    textoIntroducido = this.textNombre.getText();	
-		pat = Pattern.compile("[a-zA-Z]+");
+		pat = Pattern.compile("{space}[a-zA-Z]+");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("ErrorNOMBRE"));
@@ -1012,7 +1012,7 @@ public class Registro extends JPanel{
 	    
 	    //Comprobamos la direccion
 	    textoIntroducido = this.textDireccionRest.getText();	
-		pat = Pattern.compile("[a-zA-Z0-9]+");
+		pat = Pattern.compile("{space}[a-zA-Z0-9]+");
 	    mat = pat.matcher(textoIntroducido);
 	    if (!mat.matches()){
 	    	mensajesError.add(messages.getString("ErrorDIRECCION")); 
