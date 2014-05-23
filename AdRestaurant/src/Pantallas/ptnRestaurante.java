@@ -317,13 +317,20 @@ public class ptnRestaurante extends JFrame {
 		String usuario;
 		String fechacreacion;
 		String text;
+		tieneReserva=false;
 		while(resultadoConsulta.next()){
 			usuario=resultadoConsulta.getString("usuario");
 			fechacreacion=resultadoConsulta.getString("fechaCreacion");
 			text=resultadoConsulta.getString("txtComentario");
  			String reserva="<html>"+usuario+"        "+fechacreacion+"<br><font color=silver>"+text+"</font></html>";
  	 		dlm.addElement(reserva);
+ 	 		tieneReserva=true;
+ 	 		
  		}
+		if(tieneReserva==false){
+			String reserva="<html>No hay comentarios en este restaurante<br><font color=silver>Te proponemos ir al restaurante, probarlo y opinar sobre él</font></html>";
+			dlm.addElement(reserva);
+		}
 		list.setModel(dlm);
 		if(clie!=null){
 		JLabel lblnomUser = new JLabel(clie.getNombre());
