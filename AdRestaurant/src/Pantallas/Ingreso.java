@@ -208,14 +208,19 @@ public class Ingreso extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				//Pasamos el usuario y la contraseña a Consulta para que los compruebe
 				Consulta consulta = new Consulta(messages);
-				if(consulta.loginCliente(textLabelUser.getText(), textLabelPass.getPassword())){
+				if(consulta.loginCliente(textLabelUser.getText(), textLabelPass.getPassword())&&(consulta.esRestaurante()==false)){
 					Cliente clie;
 					clie=new Clases.Cliente(textLabelUser.getText());
 					MenuCliente menuclie=new MenuCliente(clie, messages);
 					frame.dispose();
 				}else{
-					ErrorRegistro err=consulta.error();
-					err.setVisible(true);
+					if(consulta.esRestaurante()){
+						//MENU RESTAURAMTE
+					}else{
+						ErrorRegistro err=consulta.error();
+						err.setVisible(true);
+					}
+
 				}
 			}
 		});
