@@ -45,7 +45,9 @@ import BBDD.Consulta;
 import Clases.Cliente;
 
 import javax.swing.SwingConstants;
+
 import java.awt.event.MouseAdapter;
+import javax.swing.ListSelectionModel;
 
 public class BuscarRestaurante extends JFrame{
 	Cliente clie;
@@ -57,6 +59,7 @@ public class BuscarRestaurante extends JFrame{
 	private JComboBox comboTipo;
 	private String consulta;
 	private ResultSet resultadoConsulta;
+	private String[] arrayResultados;
 	
 	private JButton btnXDireccion;
 	private JButton btnXNombre;
@@ -64,6 +67,7 @@ public class BuscarRestaurante extends JFrame{
 	private JButton btnXTipo;
 	private PreparedStatement stmt;
 	private Connection conexion;
+	private int numeroResultados;
 	
 	static Locale currentLocale;
     static ResourceBundle messages;
@@ -349,10 +353,7 @@ public class BuscarRestaurante extends JFrame{
 		textNombre.addFocusListener(focusNombre);
 		textNombre.addKeyListener(keylisNombre);
 		textNombre.setBorder(null);
-		
-		
-		
-		
+	
 		textDireccion = new JTextField();
 		textDireccion.setBounds(10, 80, 165, 46);
 		textDireccion.setText(messages.getString("Direccion1"));
@@ -576,6 +577,9 @@ public class BuscarRestaurante extends JFrame{
 		this.consulta = this.consulta+";";
 	}
 	
+	/**
+	 * Realiza la conexión con la BD
+	 */
 	public void conectar(){
 		//Cargamos el driver
 		try{
@@ -603,21 +607,26 @@ public class BuscarRestaurante extends JFrame{
 	 */
 	public void realizaBusqueda(){
 		System.out.println(this.consulta);
-		int numeroResultados=0;
+		this.numeroResultados=0;
 		conectar();
 		estableceConsulta();
+		this.arrayResultados = new String[numeroResultados];
 		try {
 			this.stmt = conexion.prepareStatement(this.consulta);
 			this.resultadoConsulta = this.stmt.executeQuery();
 			while(resultadoConsulta.next()){
+				System.out.println(resultadoConsulta.getString("Nombre")+"\n");
+				System.out.println(resultadoConsulta.getString("Direccion")+"\n");
+				System.out.println(resultadoConsulta.getString("Poblacion")+"\n");
+				System.out.println(resultadoConsulta.getString("Tipo")+"\n");
+				arrayResultados[numeroResultados]=resultadoConsulta.getString("Nombre")+" - "+resultadoConsulta.getString("Tipo")+
+						" - "+resultadoConsulta.getString("Direccion")+" - "+resultadoConsulta.getString("Poblacion");
 				numeroResultados++;
-				int contador=1;
-				System.out.println(resultadoConsulta.getString(contador)+"\n");
-				contador++;
 			}
 		} catch (SQLException e) {
 			System.out.println(this.consulta);
 			e.printStackTrace();
 		}
+		
 	}
 }
