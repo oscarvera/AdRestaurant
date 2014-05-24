@@ -40,6 +40,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
 import Clases.Cliente;
+import java.awt.event.ContainerAdapter;
+import java.awt.event.ContainerEvent;
 
 public class BuscarRestaurante extends JFrame{
 	Cliente clie;
@@ -185,12 +187,6 @@ public class BuscarRestaurante extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				realizaBusqueda();
-				lista_restaurantes.setVisible(true);
-				//lista_restaurantes.repaint();
-				//lista_restaurantes.ensureIndexIsVisible(1);
-				//lista_restaurantes.list();
-				//lista_restaurantes.doLayout();
-				//lista_restaurantes.setListData(realizaBusqueda());
 			}
 		});
 		btnBuscar.setFocusable(false);
@@ -204,6 +200,17 @@ public class BuscarRestaurante extends JFrame{
 		
 		
 		//KEYLIST Y FOCUS LISTENERS DE LOS CAMPOS
+		
+		//LISTA
+		
+		this.lista_restaurantes.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		        JList list = (JList)evt.getSource();
+		        if (evt.getClickCount() == 2) {
+		            InfoRestaurante restauranteSeleccionado = (InfoRestaurante) list.getSelectedValue();
+		        }    
+		    }
+		});
 		
 		//NOMBRE
 		
@@ -602,40 +609,20 @@ public class BuscarRestaurante extends JFrame{
 	}
 	
 	/**
-	 * Realiza la búsqueda, cuenta resultados y los guarda en el array de Strings de la lista.
+	 * Realiza la búsqueda, cuenta resultados y los muestra en la lista.
 	 */
 	public void realizaBusqueda(){
-		System.out.println(this.consulta);
-		this.numeroResultados=0;
 		conectar();
 		estableceConsulta();
-		this.arrayResultados = new String[numeroResultados];
 		try {
 			this.stmt = conexion.prepareStatement(this.consulta);
 			this.resultadoConsulta = this.stmt.executeQuery();
 			while(resultadoConsulta.next()){
-//				System.out.println(resultadoConsulta.getString("Nombre")+"\n");
-//				System.out.println(resultadoConsulta.getString("Direccion")+"\n");
-//				System.out.println(resultadoConsulta.getString("Poblacion")+"\n");
-//				System.out.println(resultadoConsulta.getString("Tipo")+"\n");
-				//llistat.add(new InfoRestaurante(resultadoConsulta.getString("Nombre"),resultadoConsulta.getString("Tipo"),resultadoConsulta.getString("Direccion"),resultadoConsulta.getString("Poblacion")));
 				modelo_lista_restaurantes.addElement(new InfoRestaurante(resultadoConsulta.getString("Nombre"),resultadoConsulta.getString("Tipo"),resultadoConsulta.getString("Direccion"),resultadoConsulta.getString("Poblacion")));
 			}
 		} catch (SQLException e) {
 			System.out.println("Consulta:"+this.consulta);
 			e.printStackTrace();
 		}
-	}
-	
-	/**
-	 * Muestra los resultados del modelo de lista en la lista creada dentro del control deslizante.
-	 */
-	public void muestraResultados(){
-		
-	}
-	
-	public void prueba(){
-		modelo_lista_restaurantes.addElement(new InfoRestaurante("hola", "que", "tal", "estas"));
-		modelo_lista_restaurantes.addElement(new InfoRestaurante("holasda", "qasdaue", "taasdadl", "estadasas"));
 	}
 }

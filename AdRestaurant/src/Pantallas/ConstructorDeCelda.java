@@ -16,10 +16,13 @@ public class ConstructorDeCelda implements ListCellRenderer<Object>{
             boolean cellHasFocus) {
 
 		Component component = (Component)value;
+		InfoRestaurante comp =(InfoRestaurante)component;
 		if (isSelected){
-			component.setBackground(Color.RED);
+			component.setBackground(new Color(255, 153, 0));
+			comp.fondoBlanco();
 		}else {
-			component.setBackground(Color.BLUE);
+			component.setBackground(new Color(255, 255, 255));
+			comp.fondoNaranja();
 		}
 		return component;
 	}
