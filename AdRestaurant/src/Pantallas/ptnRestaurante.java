@@ -35,6 +35,7 @@ import com.mysql.jdbc.Connection;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.AbstractListModel;
+import javax.swing.border.EmptyBorder;
 public class ptnRestaurante extends JFrame {
 
 	private JFrame frame;
@@ -55,6 +56,7 @@ public class ptnRestaurante extends JFrame {
 	/**
 	 *  Create the frame.
 	 * @throws SQLException 
+	 * @wbp.parser.constructor
 	 */
     
     /*Constructor desde menu cliente*/
@@ -280,7 +282,7 @@ public class ptnRestaurante extends JFrame {
 		boolean hayComentarios;
 		//Dos consultas. Comentarios y boton comentarios
 		if(clie!=null){
-			boolean tieneReserva=false;
+			boolean puedeComentar=false;
 			int siNo=0;
 			hayComentarios=false;
 				try{
@@ -289,11 +291,24 @@ public class ptnRestaurante extends JFrame {
 					stmt.setInt(2, rest.getCodigoRestaurante());
 					resultadoConsulta2 = stmt.executeQuery();
 					while(resultadoConsulta2.next()){
+						
+						
 						siNo=resultadoConsulta2.getInt("realizacion");
 						System.out.println(""+siNo);
 						if(siNo==1){
-							tieneReserva=true;
-							System.out.println(""+tieneReserva);
+							consulta= "SELECT Codigo_Cliente FROM comentarios WHERE Codigo_Cliente=? AND Codigo_Restaurante=?";
+							stmt = conexion.prepareStatement(consulta);
+							stmt.setInt(1, clie.getCodigoCliente());
+							stmt.setInt(2, rest.getCodigoRestaurante());
+							resultadoConsulta2 = stmt.executeQuery();
+							if(resultadoConsulta2.next()){
+								puedeComentar=false;
+							}else{
+								puedeComentar=true;
+								System.out.println(""+puedeComentar);
+							}
+							
+							
 						}
 						}
 					}
@@ -311,13 +326,14 @@ public class ptnRestaurante extends JFrame {
 				
 				
 				ptnCrearComentario nuevoComent=new ptnCrearComentario(clie, rest, messages);
+				frame.dispose();
 			}
 		});
 		btnNuevoComentario.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 11));
 		btnNuevoComentario.setForeground(new Color(255, 153, 0));
 		btnNuevoComentario.setBounds(160, 334, 150, 19);
 		panel.add(btnNuevoComentario);
-		if(tieneReserva==false){
+		if(puedeComentar==false){
 			btnNuevoComentario.setEnabled(false);
 		}
 		btnNuevoComentario.setBackground(null);
@@ -326,11 +342,12 @@ public class ptnRestaurante extends JFrame {
 		
 		DefaultListModel dlm=new DefaultListModel();
 		JList list = new JList();
+		list.setBorder(new EmptyBorder(3, 3, 3, 3));
 		list.setFont(new Font("Fira Sans OT", Font.PLAIN, 11));
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(list);
 		//LISTAR COMENTARIOS
-		consulta= "SELECT cli.usuario, c.fechaCreacion, c.txtComentario FROM comentarios c INNER JOIN clientes cli on cli.codigoCliente=c.Codigo_Restaurante WHERE Codigo_Restaurante=?";
+		consulta= "SELECT cli.usuario, c.fechaCreacion, c.txtComentario FROM comentarios c INNER JOIN clientes cli on cli.codigoCliente=c.Codigo_Cliente WHERE Codigo_Restaurante=?";
 		try {
 			stmt = conexion.prepareStatement(consulta);
 			stmt.setInt(1, rest.getCodigoRestaurante());
@@ -353,7 +370,7 @@ public class ptnRestaurante extends JFrame {
 					fechacreacion="null";
 				}
 				text=resultadoConsulta1.getString("txtComentario");
-				String reserva="<html><div width=600px><font color=silver size=6>"+usuario+"        "+fechacreacion+"</font><br><font size=4>"+text+"</font><br><hr></html>";
+				String reserva="<html><div width=600px><font color=silver size=5>"+usuario+" </font>     <font color=silver size=3>  "+fechacreacion+"</font><br><font size=4>"+text+"</font><br></html>";
 				dlm.addElement(reserva);
 				hayComentarios=true;
 				

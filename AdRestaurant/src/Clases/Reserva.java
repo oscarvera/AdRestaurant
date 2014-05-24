@@ -118,7 +118,7 @@ public class Reserva {
 	public void insertarReserva(){
 		//Escribimos la consulta SQL en la variable consulta
 		this.consulta = "INSERT INTO reserva (Codigo_Restaurante, Codigo_Cliente, fechaReserva, hora, fechaCreacion, personas, verificacion,realizacion)"
-				+ " VALUES (?,?,?,?,CURRENT_TIMESTAMP,?,?,?);";
+				+ " VALUES (?,?,?,?,CURDATE(),?,?,?);";
 		try{
 			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
 			this.stmt = conexion.prepareStatement(this.consulta);
