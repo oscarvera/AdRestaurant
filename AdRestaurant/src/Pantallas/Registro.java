@@ -48,6 +48,7 @@ import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Clases.Cliente;
+import Clases.Restaurante;
 
 public class Registro extends JPanel{
 
@@ -82,6 +83,9 @@ public class Registro extends JPanel{
 	JButton btnImagen2;
 	JButton btnImagen1;
 	File file2;
+	private JCheckBox aptoMinus;
+	private boolean aptoMinusvalido;
+	
 	private JLabel Flecha1;
 	private JLabel Flecha2;
 	
@@ -693,18 +697,24 @@ public class Registro extends JPanel{
 				});
 				
 				
-				
+				//Etiqueta de la opcion "apto minusvalidos"
 				JLabel lblAptoParaliticos = new JLabel(messages.getString("AP"));
 				lblAptoParaliticos.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblAptoParaliticos.setForeground(new Color(255, 153, 0));
 				lblAptoParaliticos.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
 				lblAptoParaliticos.setBounds(0, 127, 213, 22);
 				panel.add(lblAptoParaliticos);
-				
-				JCheckBox chckbxNewCheckBox = new JCheckBox("");
-				chckbxNewCheckBox.setBackground(Color.WHITE);
-				chckbxNewCheckBox.setBounds(219, 126, 27, 23);
-				panel.add(chckbxNewCheckBox);
+				//Checkbox de la opción apto minusvalidos
+				//Devuelve true o false (1 ó 0).
+				aptoMinus = new JCheckBox("");
+				aptoMinus.setBackground(Color.WHITE);
+				aptoMinus.setBounds(219, 126, 27, 23);
+				if(aptoMinus.isSelected()==true){
+					aptoMinusvalido=true;				
+				}else{
+					aptoMinusvalido=false;	
+				}
+				panel.add(aptoMinus);
 				
 				JLabel lblImagen1 = new JLabel(messages.getString("IMG1"));
 				lblImagen1.setForeground(new Color(255, 153, 51));
@@ -1053,7 +1063,8 @@ public class Registro extends JPanel{
 	    	frame.setEnabled(false);
 	    }else{
 			RegistroCompleto regCom=new RegistroCompleto(messages);
-			//frame.dispose();
+			Restaurante r = new Restaurante(this.textNomUserRest.getText(),this.pwdContraRest.getPassword(),this.textNombreRest.getText(),this.comboTipoRest.getSelectedItem().toString(),this.textTelefonoRest.getText(),this.textDireccionRest.getText(),this.textPoblacionRest.getText(), this.textProvinciaRest.getText(),this.textCodPostRest.getText(),aptoMinusvalido);
+			frame.dispose();
 		}
 	}
 	

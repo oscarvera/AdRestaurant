@@ -31,9 +31,10 @@ public class Restaurante {
 	private int resultadoActualizacionBD;
 	
 	//Constructor para el registro de un nuevo restaurante:
-		public Restaurante(char[] contraseña, String nombre, String tipo, String telf, String direccion, 
-				String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto,String nombreUsuario){
+		public Restaurante(String nombreUsuario, char[] contraseña, String nombre, String tipo, String telf, String direccion, 
+				String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto){
 			 //BufferedImage foto1, BufferedImage foto2
+			this.nombreUsuario=nombreUsuario;
 			this.contraseña=contraseña;
 			this.nombre=nombre;
 			this.tipo=tipo;
@@ -43,7 +44,6 @@ public class Restaurante {
 			this.provincia=provincia;
 			this.codigoPostal=codigoPostal;
 			this.minusvalidoApto=minusvalidoApto;
-			this.nombreUsuario=nombreUsuario;
 			//foto1=this.foto1;
 			//foto2=this.foto2;
 			conectar();
