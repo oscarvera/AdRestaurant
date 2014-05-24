@@ -52,6 +52,8 @@ public class Restaurante {
 		}
 		
 		//Constructor para consultar restaurantes:
+		
+			//Constructor desde lista
 			public Restaurante(String nombre, String tipo,  
 					String poblacion){
 			
@@ -64,6 +66,7 @@ public class Restaurante {
 				
 			}
 			
+			//Constructor desde ingreso
 			public Restaurante(String nombreUsuario){
 				this.nombreUsuario=nombreUsuario;
 				conectar();

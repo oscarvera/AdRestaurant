@@ -64,12 +64,8 @@ public class ptnMenuRestaurante extends JFrame {
 		JButton btnNewButton_1 = new JButton("Perfil");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					ptnRestaurante ptnrest=new ptnRestaurante(null, rest, messages);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				ptnRestaurante ptnrest=new ptnRestaurante(rest, messages);
+				frame.dispose();
 			}
 		});
 		btnNewButton_1.setBounds(182, 68, 232, 345);
@@ -79,6 +75,7 @@ public class ptnMenuRestaurante extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ptnBuscarReservas reser=new ptnBuscarReservas(null, messages);
+				frame.dispose();
 			}
 		});
 		button.setBounds(487, 68, 232, 345);

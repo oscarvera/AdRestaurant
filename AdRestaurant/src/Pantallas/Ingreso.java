@@ -106,6 +106,7 @@ public class Ingreso extends JPanel{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
+		frame.setVisible(true);
 		//Control currentLocale = null;
 		//messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
 
@@ -221,6 +222,7 @@ public class Ingreso extends JPanel{
 						Restaurante rest=new Restaurante(textLabelUser.getText());
 						System.out.println(""+rest.getNombre());
 						ptnMenuRestaurante menuRest=new ptnMenuRestaurante(rest, messages);
+						frame.dispose();
 					}/*else{
 						ErrorRegistro err=consulta.error();
 						err.setVisible(true);

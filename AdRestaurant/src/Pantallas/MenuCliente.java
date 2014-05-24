@@ -138,12 +138,7 @@ public class MenuCliente {
 			public void actionPerformed(ActionEvent e) {
 				restaurante=new Restaurante("Foster's Hollywood" ,"Americano","Valencia");
 			
-				try {
-					ptnRestaurante ptnrest=new ptnRestaurante(clie, restaurante, messages);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				ptnRestaurante ptnrest=new ptnRestaurante(clie, restaurante, messages);
 				
 				frame.dispose();
 			}

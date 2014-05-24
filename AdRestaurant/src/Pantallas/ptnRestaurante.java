@@ -56,10 +56,24 @@ public class ptnRestaurante extends JFrame {
 	 *  Create the frame.
 	 * @throws SQLException 
 	 */
-	public ptnRestaurante(final Cliente clie, final Restaurante rest,final ResourceBundle messages) throws SQLException {
+    
+    /*Constructor desde menu cliente*/
+	public ptnRestaurante(final Cliente clie, final Restaurante rest,final ResourceBundle messages){
 		this.clie=clie;
 		this.rest=rest;
 		this.messages=messages;
+		iniciar();
+		
+	}
+	/*Constructor desde menu restaurante*/
+	public ptnRestaurante(final Restaurante rest,final ResourceBundle messages) {
+		this.rest=rest;
+		this.messages=messages;
+		iniciar();
+		
+	}
+	
+	public void iniciar(){
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(255, 153, 0));
@@ -133,7 +147,7 @@ public class ptnRestaurante extends JFrame {
 		panel_11.setBounds(386, 88, 507, 235);
 		panel_11.setBackground(new Color(255, 255, 255));
 		
-		/*if(clie!=null){*/
+		if(clie!=null){
 		btnReservar = new JButton(messages.getString("Reservar"));
 		btnReservar.setFocusable(false);
 		btnReservar.addActionListener(new ActionListener() {
@@ -145,7 +159,9 @@ public class ptnRestaurante extends JFrame {
 		btnReservar.setBounds(745, 29, 108, 36);
 		btnReservar.setForeground(new Color(255, 153, 0));
 		btnReservar.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-		btnReservar.setBackground(null);//}
+		btnReservar.setBackground(null);
+		panel.add(btnReservar);
+		}
 		
 		JLabel lbTipo = new JLabel(messages.getString("Tipo"));
 		lbTipo.setBounds(30, 28, 89, 22);
@@ -246,7 +262,7 @@ public class ptnRestaurante extends JFrame {
 		panel_11.add(lbMinusvalidos);
 		panel_11.add(textMinusvalidos);
 		panel.setLayout(null);
-		panel.add(btnReservar);
+		
 		panel.add(lblImagen);
 		panel.add(panel_11);
 		panel.add(lblNewLabel_1);
@@ -259,12 +275,14 @@ public class ptnRestaurante extends JFrame {
 		conexion=(Connection) consul.getConexion();
 		String consulta= "SELECT realizacion FROM reserva WHERE Codigo_Cliente=? AND Codigo_Restaurante=?";
 		PreparedStatement stmt;
-		//Dos consultas. Comentarios y boton comentarios
-		ResultSet resultadoConsulta1;
+		ResultSet resultadoConsulta1 = null;
 		ResultSet resultadoConsulta2;
-		boolean tieneReserva=false;
-		int siNo=0;
-		boolean hayComentarios=false;
+		boolean hayComentarios;
+		//Dos consultas. Comentarios y boton comentarios
+		if(clie!=null){
+			boolean tieneReserva=false;
+			int siNo=0;
+			hayComentarios=false;
 				try{
 					stmt = conexion.prepareStatement(consulta);
 					stmt.setInt(1, clie.getCodigoCliente());
@@ -285,10 +303,7 @@ public class ptnRestaurante extends JFrame {
 					e.printStackTrace();
 					System.out.println("Hola");
 				}
-					
-					
-		
-		
+				
 		JButton btnNuevoComentario = new JButton("Nuevo Comentario");
 		btnNuevoComentario.addActionListener(new ActionListener() {
 			
@@ -306,6 +321,8 @@ public class ptnRestaurante extends JFrame {
 			btnNuevoComentario.setEnabled(false);
 		}
 		btnNuevoComentario.setBackground(null);
+		}
+		
 		
 		DefaultListModel dlm=new DefaultListModel();
 		JList list = new JList();
@@ -314,26 +331,37 @@ public class ptnRestaurante extends JFrame {
 		scrollPane.setViewportView(list);
 		//LISTAR COMENTARIOS
 		consulta= "SELECT cli.usuario, c.fechaCreacion, c.txtComentario FROM comentarios c INNER JOIN clientes cli on cli.codigoCliente=c.Codigo_Restaurante WHERE Codigo_Restaurante=?";
-		stmt = conexion.prepareStatement(consulta);
-		stmt.setInt(1, rest.getCodigoRestaurante());
-		resultadoConsulta1 = stmt.executeQuery();
+		try {
+			stmt = conexion.prepareStatement(consulta);
+			stmt.setInt(1, rest.getCodigoRestaurante());
+			resultadoConsulta1 = stmt.executeQuery();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		String usuario;
 		String fechacreacion;
 		String text;
 		hayComentarios=false;
-		while(resultadoConsulta1.next()){
-			usuario=resultadoConsulta1.getString("usuario");
-			if(resultadoConsulta1.getInt("fechaCreacion")!=0000-00-00){
-				fechacreacion=resultadoConsulta1.getString("fechaCreacion");
-			}else{
-				fechacreacion="null";
+		try {
+			while(resultadoConsulta1.next()){
+				usuario=resultadoConsulta1.getString("usuario");
+				if(resultadoConsulta1.getInt("fechaCreacion")!=0000-00-00){
+					fechacreacion=resultadoConsulta1.getString("fechaCreacion");
+				}else{
+					fechacreacion="null";
+				}
+				text=resultadoConsulta1.getString("txtComentario");
+				String reserva="<html><div width=600px><font color=silver size=6>"+usuario+"        "+fechacreacion+"</font><br><font size=4>"+text+"</font><br><hr></html>";
+				dlm.addElement(reserva);
+				hayComentarios=true;
+				
 			}
-			text=resultadoConsulta1.getString("txtComentario");
- 			String reserva="<html><div width=600px><font color=silver size=6>"+usuario+"        "+fechacreacion+"</font><br><font size=4>"+text+"</font><br><hr></html>";
- 	 		dlm.addElement(reserva);
- 	 		hayComentarios=true;
- 	 		
- 		}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if(hayComentarios==false){
 			String reserva="<html>No hay comentarios en este restaurante<br><font color=silver>Te proponemos ir al restaurante, probarlo y opinar sobre él</font></html>";
 			dlm.addElement(reserva);
@@ -370,7 +398,7 @@ public class ptnRestaurante extends JFrame {
 		btnCerrarsesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnCerrarsesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Ingreso ingreso=new Ingreso();
+				Ingreso ingre=new Ingreso();
 				frame.dispose();
 			}
 		});
@@ -379,12 +407,18 @@ public class ptnRestaurante extends JFrame {
 		btnCerrarsesion.setBounds(736, 48, 128, 23);
 		frame.getContentPane().add(btnCerrarsesion);
 		
+		
 		JButton button = new JButton(messages.getString("VolverMenuPrincipal"));
 		button.setFocusable(false);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(clie!=null){
 				MenuCliente menuclie=new MenuCliente(clie, messages);
  				frame.dispose();
+ 				}else{
+ 					ptnMenuRestaurante menurest=new ptnMenuRestaurante(rest, messages);
+ 				}
+				
 			}
 		});
 		button.setForeground(Color.WHITE);
@@ -392,6 +426,7 @@ public class ptnRestaurante extends JFrame {
 		button.setBackground(new Color(255, 153, 0));
 		button.setBounds(31, 623, 171, 23);
 		frame.getContentPane().add(button);
+		
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ptnRestaurante.class.getResource("/Imagen/TituloPEQUE.png")));
