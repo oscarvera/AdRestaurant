@@ -64,8 +64,13 @@ public class BuscarRestaurante extends JFrame{
 	static Locale currentLocale;
     static ResourceBundle messages;
     
-    private JList<InfoRestaurante> lista_restaurantes;
-    private DefaultListModel<InfoRestaurante> modelo_lista_restaurantes;
+    /**
+     * Variables para la lista de búsqueda
+     */
+    private DefaultListModel<InfoRestaurante> modelo_lista_restaurantes = new DefaultListModel<InfoRestaurante>();
+    private JList<InfoRestaurante> lista_restaurantes = new JList<InfoRestaurante>(modelo_lista_restaurantes);
+    private ConstructorDeCelda celda = new ConstructorDeCelda();
+    
 
 	/**
 	 * Create the application.
@@ -144,7 +149,10 @@ public class BuscarRestaurante extends JFrame{
 		panel_1.setBorder(new MatteBorder(0, 0, 0, 4, (Color) new Color(255, 153, 51)));
 		panel_1.setBackground(Color.WHITE);
 		
-		JScrollPane scroll_lista_restaurantes = new JScrollPane();
+		/**
+		 * Panel deslizante de la busqueda, con layout.
+		 */
+		JScrollPane scroll_lista_restaurantes = new JScrollPane(lista_restaurantes);
 		scroll_lista_restaurantes.setBorder(null);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		
@@ -164,18 +172,25 @@ public class BuscarRestaurante extends JFrame{
 					.addComponent(scroll_lista_restaurantes, GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
 					.addGap(11))
 		);
-		modelo_lista_restaurantes = new DefaultListModel<InfoRestaurante>();
-		lista_restaurantes = new JList<InfoRestaurante>(modelo_lista_restaurantes);
-		//lista_restaurantes.setCellRenderer(new CellRenderer());
+		
+		/**
+		 * La lista de restaurantes encontrados.
+		 */
+		lista_restaurantes.setCellRenderer(celda);
+		lista_restaurantes.setFocusable(false);		
 		scroll_lista_restaurantes.setViewportView(lista_restaurantes);
 		
 		JButton btnBuscar = new JButton(messages.getString("BUSCAR"));
 		btnBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				//prueba();
-				lista_restaurantes.setListData(realizaBusqueda());
-				
+				realizaBusqueda();
+				lista_restaurantes.setVisible(true);
+				//lista_restaurantes.repaint();
+				//lista_restaurantes.ensureIndexIsVisible(1);
+				//lista_restaurantes.list();
+				//lista_restaurantes.doLayout();
+				//lista_restaurantes.setListData(realizaBusqueda());
 			}
 		});
 		btnBuscar.setFocusable(false);
@@ -589,8 +604,7 @@ public class BuscarRestaurante extends JFrame{
 	/**
 	 * Realiza la búsqueda, cuenta resultados y los guarda en el array de Strings de la lista.
 	 */
-	public InfoRestaurante[] realizaBusqueda(){
-		ArrayList <InfoRestaurante> llistat=null;
+	public void realizaBusqueda(){
 		System.out.println(this.consulta);
 		this.numeroResultados=0;
 		conectar();
@@ -600,29 +614,28 @@ public class BuscarRestaurante extends JFrame{
 			this.stmt = conexion.prepareStatement(this.consulta);
 			this.resultadoConsulta = this.stmt.executeQuery();
 			while(resultadoConsulta.next()){
-				System.out.println(resultadoConsulta.getString("Nombre")+"\n");
-				System.out.println(resultadoConsulta.getString("Direccion")+"\n");
-				System.out.println(resultadoConsulta.getString("Poblacion")+"\n");
-				System.out.println(resultadoConsulta.getString("Tipo")+"\n");
-				llistat.add(new InfoRestaurante(resultadoConsulta.getString("Nombre"),resultadoConsulta.getString("Tipo"),resultadoConsulta.getString("Direccion"),resultadoConsulta.getString("Poblacion")));
-				System.out.println(resultadoConsulta.getString("Nombre")+" - "+resultadoConsulta.getString("Tipo")+
-						" - "+resultadoConsulta.getString("Direccion")+" - "+resultadoConsulta.getString("Poblacion"));
-				arrayResultados[numeroResultados]=resultadoConsulta.getString("Nombre")+" - "+resultadoConsulta.getString("Tipo")+
-						" - "+resultadoConsulta.getString("Direccion")+" - "+resultadoConsulta.getString("Poblacion");
-				numeroResultados++;
-				
+//				System.out.println(resultadoConsulta.getString("Nombre")+"\n");
+//				System.out.println(resultadoConsulta.getString("Direccion")+"\n");
+//				System.out.println(resultadoConsulta.getString("Poblacion")+"\n");
+//				System.out.println(resultadoConsulta.getString("Tipo")+"\n");
+				//llistat.add(new InfoRestaurante(resultadoConsulta.getString("Nombre"),resultadoConsulta.getString("Tipo"),resultadoConsulta.getString("Direccion"),resultadoConsulta.getString("Poblacion")));
+				modelo_lista_restaurantes.addElement(new InfoRestaurante(resultadoConsulta.getString("Nombre"),resultadoConsulta.getString("Tipo"),resultadoConsulta.getString("Direccion"),resultadoConsulta.getString("Poblacion")));
 			}
 		} catch (SQLException e) {
 			System.out.println("Consulta:"+this.consulta);
 			e.printStackTrace();
 		}
-		return (InfoRestaurante[]) llistat.toArray();
+	}
+	
+	/**
+	 * Muestra los resultados del modelo de lista en la lista creada dentro del control deslizante.
+	 */
+	public void muestraResultados(){
+		
 	}
 	
 	public void prueba(){
 		modelo_lista_restaurantes.addElement(new InfoRestaurante("hola", "que", "tal", "estas"));
 		modelo_lista_restaurantes.addElement(new InfoRestaurante("holasda", "qasdaue", "taasdadl", "estadasas"));
 	}
-
-
 }
