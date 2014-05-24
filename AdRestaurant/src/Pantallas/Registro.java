@@ -865,16 +865,16 @@ public class Registro extends JPanel{
 
 		//Comprobamos el nombre
 		textoIntroducido = this.textNombre.getText();	
-		pat = Pattern.compile("[a-zA-Z]+");
+		pat = Pattern.compile("^\\p{L}+[\\p{L}\\p{Z}\\p{P}]{0,}");
 		mat = pat.matcher(textoIntroducido);
 		if (!mat.matches()){
 			mensajesError.add(messages.getString("ErrorNOMBRE"));
 			this.textNombre.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
-		} 
+		}
 
 		//Comprobamos el primer apellido
 		textoIntroducido = this.textApellido1.getText();	
-		pat = Pattern.compile("[a-zA-Z]+");
+		pat = Pattern.compile("^\\p{L}+[\\p{L}\\p{Z}\\p{P}]{0,}");
 		mat = pat.matcher(textoIntroducido);
 		if (!mat.matches()){
 			mensajesError.add(messages.getString("Error1APELLIDO"));
@@ -883,7 +883,7 @@ public class Registro extends JPanel{
 
 		//Comprobamos el segundo apellido
 		textoIntroducido = this.textApellido2.getText();	
-		pat = Pattern.compile("[a-zA-Z]+");
+		pat = Pattern.compile("^\\p{L}+[\\p{L}\\p{Z}\\p{P}]{0,}");
 		mat = pat.matcher(textoIntroducido);
 		if (!mat.matches()){
 			mensajesError.add(messages.getString("Error2APELLIDO"));
