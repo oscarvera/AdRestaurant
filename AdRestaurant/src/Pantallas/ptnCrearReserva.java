@@ -191,7 +191,8 @@ public class ptnCrearReserva extends JFrame {
 		lblPersonas.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 		panel_3.add(lblPersonas);
 		
-		JSpinner Personas = new JSpinner();
+		final JSpinner Personas = new JSpinner();
+		Personas.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		Personas.setBounds(97, 85, 47, 34);
 		panel_3.add(Personas);
 		
@@ -207,9 +208,11 @@ public class ptnCrearReserva extends JFrame {
 		lblHora.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 		
 		final JSpinner Hora_hora = new JSpinner();
+		Hora_hora.setModel(new SpinnerNumberModel(new Byte((byte) 0), null, new Byte((byte) 23), new Byte((byte) 1)));
 		Hora_hora.setBounds(60, 89, 47, 34);
 		
 		final JSpinner Hora_minutos = new JSpinner();
+		Hora_minutos.setModel(new SpinnerNumberModel(new Byte((byte) 0), null, new Byte((byte) 55), new Byte((byte) 5)));
 		Hora_minutos.setBounds(130, 89, 47, 34);
 		panel_11.setLayout(null);
 		panel_11.add(lblHora);
@@ -232,24 +235,26 @@ public class ptnCrearReserva extends JFrame {
 		lblFecha.setForeground(Color.LIGHT_GRAY);
 		lblFecha.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 		
-		JSpinner Fecha_dia = new JSpinner();
+		final JSpinner Fecha_dia = new JSpinner();
+		Fecha_dia.setModel(new SpinnerNumberModel(new Byte((byte) 1), new Byte((byte) 1), new Byte((byte) 31), new Byte((byte) 1)));
 		
-		JSpinner Fecha_mes = new JSpinner();
+		final JSpinner Fecha_mes = new JSpinner();
+		Fecha_mes.setModel(new SpinnerNumberModel(new Byte((byte) 1), new Byte((byte) 1), new Byte((byte) 12), new Byte((byte) 1)));
 		
-		final JSpinner Fecha_año = new JSpinner();
-		Fecha_año.setModel(new SpinnerNumberModel(new Integer(2014), null, null, new Integer(0)));
+		final JSpinner Feha_Año = new JSpinner();
+		Feha_Año.setModel(new SpinnerNumberModel(new Integer(2014), new Integer(2014), null, new Integer(1)));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.TRAILING)
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup()
 					.addGap(45)
 					.addComponent(Fecha_dia, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addComponent(Fecha_mes, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(Fecha_año, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(40))
-				.addGroup(Alignment.LEADING, gl_panel_2.createSequentialGroup()
+					.addComponent(Feha_Año, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(28))
+				.addGroup(gl_panel_2.createSequentialGroup()
 					.addGap(12)
 					.addComponent(lblFecha, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(12, Short.MAX_VALUE))
@@ -259,11 +264,15 @@ public class ptnCrearReserva extends JFrame {
 				.addGroup(gl_panel_2.createSequentialGroup()
 					.addContainerGap(54, Short.MAX_VALUE)
 					.addComponent(lblFecha)
-					.addGap(18)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(Fecha_dia, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-						.addComponent(Fecha_mes, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-						.addComponent(Fecha_año, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_2.createSequentialGroup()
+							.addGap(18)
+							.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+								.addComponent(Fecha_dia, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+								.addComponent(Fecha_mes, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_panel_2.createSequentialGroup()
+							.addGap(18)
+							.addComponent(Feha_Año, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)))
 					.addGap(74))
 		);
 		panel_2.setLayout(gl_panel_2);
@@ -293,12 +302,12 @@ public class ptnCrearReserva extends JFrame {
 		btnReservar.setFocusable(false);
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-				
-				
-				ptnReservaCompletada compl=new ptnReservaCompletada(clie, messages);
+				String fechaReserva=""+Feha_Año.getValue()+"-"+Fecha_mes.getValue()+"-"+Fecha_dia.getValue();
+				String hora=""+Hora_hora.getValue()+":"+Hora_minutos.getValue()+":00";
+				int personas=(Integer) Personas.getValue();
+				System.out.println(""+Personas.getValue());
+				Reserva reserva=new Reserva(rest, clie, fechaReserva, hora, personas);
+				ptnReservaCompletada compl=new ptnReservaCompletada(clie, rest, messages);
 				frame.dispose();
 				//Comprobar campos
 				

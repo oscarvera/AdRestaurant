@@ -39,12 +39,11 @@ public class Reserva {
 	
 	//Reserva no creada. Para creacion.
 	
-	public Reserva(Restaurante nomRest, Cliente user, String fechaReserva, String hora, String fechaCrea, int personas){
-		this.rest=nomRest;
+	public Reserva(Restaurante Rest, Cliente user, String fechaReserva, String hora, int personas){
+		this.rest=Rest;
 		this.usuarioReserva=user;
 		this.fechaReserva=fechaReserva;
 		this.hora=hora;
-		this.fechaCreacion=fechaCrea;
 		this.personas=personas;
 		this.verificacion=false;
 		this.realizacion=false;
@@ -99,8 +98,8 @@ public class Reserva {
 		try {
 			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
 			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
-			String user = "root";
-			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "tonphp");
+			String user = "adrestaurant";
+			this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143/adrestaurant", user, "adrestaurant");
 			conexion.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -119,7 +118,7 @@ public class Reserva {
 	public void insertarReserva(){
 		//Escribimos la consulta SQL en la variable consulta
 		this.consulta = "INSERT INTO reserva (Codigo_Restaurante, Codigo_Cliente, fechaReserva, hora, fechaCreacion, personas, verificacion,realizacion)"
-				+ " VALUES (?,?,?,?,?,?,?,?);";
+				+ " VALUES (?,?,?,?,CURRENT_TIMESTAMP,?,?,?);";
 		try{
 			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
 			this.stmt = conexion.prepareStatement(this.consulta);
@@ -129,10 +128,10 @@ public class Reserva {
 			stmt.setInt(2, usuarioReserva.getCodigoCliente());
 			stmt.setString(3, this.fechaReserva);
 			stmt.setString(4, this.hora);
-			stmt.setString(5, this.fechaCreacion);
-			stmt.setInt(6, this.personas);
+			
+			stmt.setInt(5, this.personas);
+			stmt.setInt(6, 0);
 			stmt.setInt(7, 0);
-			stmt.setInt(8, 0);
 			
 			
 			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).

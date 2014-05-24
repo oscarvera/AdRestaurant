@@ -19,10 +19,12 @@ import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 
 import Clases.Cliente;
+import Clases.Restaurante;
 
 
 public class ptnReservaCompletada extends JPanel{
 	Cliente clie;
+	Restaurante rest;
 	static Locale currentLocale;
 	static ResourceBundle messages;
 	
@@ -30,8 +32,9 @@ public class ptnReservaCompletada extends JPanel{
 	/**
 	 * Create the application.
 	 */
-	public ptnReservaCompletada(Cliente clie, ResourceBundle messages) {
+	public ptnReservaCompletada(Cliente clie, Restaurante rest, ResourceBundle messages) {
 		this.messages=messages;
+		this.rest=rest;
 		this.clie=clie;
 		initialize();
 	}
@@ -113,7 +116,7 @@ public class ptnReservaCompletada extends JPanel{
 		btnIniciarSesion.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MenuCliente menu=new MenuCliente(clie, messages);
+				ptnRestaurante resta=new ptnRestaurante(clie, rest, messages);
 				frame.dispose();
 			}
 		});
