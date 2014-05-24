@@ -41,10 +41,10 @@ public class Ingreso extends JPanel{
 	private JLabel lblUsuario;
 	private JLabel lblPass;
 	private JLabel lblNoregistrado;
-	
+
 	static Locale currentLocale;
-    static ResourceBundle messages;
-	
+	static ResourceBundle messages;
+
 	public static String language;
 	public static String country;	
 
@@ -62,7 +62,7 @@ public class Ingreso extends JPanel{
 				}
 			}
 		});
-		
+
 		if (args.length != 2) {
 			language = new String("es");
 			country = new String("ES");
@@ -75,12 +75,19 @@ public class Ingreso extends JPanel{
 		messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
 	}
 
-	
+
 
 	/**
 	 * Create the application.
 	 */
 	public Ingreso() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	public void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(255, 153, 0));
@@ -95,7 +102,7 @@ public class Ingreso extends JPanel{
 		botonesIngreso();
 		lblIdiomas();
 	}
-	
+
 	/**
 	 * Todos los botones de la pantalla Ingreso
 	 */
@@ -128,9 +135,9 @@ public class Ingreso extends JPanel{
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(!textLabelUser.getText().isEmpty()&&!textLabelPass.getText().isEmpty()){
-				btnIngresar.setEnabled(true);
-			}else{
-				btnIngresar.setEnabled(false);
+					btnIngresar.setEnabled(true);
+				}else{
+					btnIngresar.setEnabled(false);
 				}
 			}
 
@@ -164,32 +171,32 @@ public class Ingreso extends JPanel{
 
 			}
 		});
-		
+
 		lblNoregistrado = new JLabel(messages.getString("NOREG"));
 		lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNoregistrado.setForeground(new Color(255,153,0));
 		lblNoregistrado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 34));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+				gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNoregistrado, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)
-					.addGap(80)
-					.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(239))
-		);
+						.addContainerGap()
+						.addComponent(lblNoregistrado, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)
+						.addGap(80)
+						.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGap(239))
+				);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+				gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(29)
-					.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-					.addGap(27))
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNoregistrado, GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-					.addContainerGap())
-		);
+						.addGap(29)
+						.addComponent(btnRegistrar, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+						.addGap(27))
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(lblNoregistrado, GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+								.addContainerGap())
+				);
 		panel.setLayout(gl_panel);
 
 		btnIngresar = new JButton("INGRESAR");
@@ -230,7 +237,7 @@ public class Ingreso extends JPanel{
 		textLabelPass.setBounds(334, 321, 227, 37);
 		frame.getContentPane().add(textLabelPass);
 		textLabelPass.addKeyListener(kl);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(0, 0, 895, 22);
@@ -240,15 +247,15 @@ public class Ingreso extends JPanel{
 		cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
+				gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
-					.addContainerGap(870, Short.MAX_VALUE)
-					.addComponent(cerrarImage, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-		);
+						.addContainerGap(870, Short.MAX_VALUE)
+						.addComponent(cerrarImage, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+				);
 		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addComponent(cerrarImage, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
-		);
+				);
 		cerrarImage.addMouseListener(new MouseListener() {
 
 			@Override
@@ -281,7 +288,7 @@ public class Ingreso extends JPanel{
 		lblNewLabel.setBounds(107, 72, 680, 110);
 		frame.getContentPane().add(lblNewLabel);
 	}
-	
+
 	/**
 	 * All lblIdiomas to be able to change language with ResourceBundle messages
 	 */
@@ -479,8 +486,8 @@ public class Ingreso extends JPanel{
 				actualizarIdioma(messages);
 			}
 		});
-}
-	
+	}
+
 	/**
 	 * A separate method to refresh and set the lbls of Ingreso in the correct language
 	 */

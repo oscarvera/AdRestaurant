@@ -39,16 +39,9 @@ public class Salir extends JPanel{
 	private JButton btnSi;
 	private JButton btnNo;
 	Cliente clie;
-		
+
 	static Locale currentLocale;
-   static ResourceBundle messages;
-	 
-
-	/**
-	 *  
-	 *  Launch the application.
-	 */
-
+	static ResourceBundle messages;
 
 	/**
 	 * Create the application.
@@ -80,8 +73,14 @@ public class Salir extends JPanel{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
-		
-		
+		botonesSalir();
+	}
+
+
+	/**
+	 * Todos los botones de la pantalla Salir
+	 */
+	public void botonesSalir(){		
 		JLabel lblSalir = new JLabel(messages.getString("Seguro?"));
 		lblSalir.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSalir.setBounds(107, 291, 680, 64);
@@ -89,14 +88,12 @@ public class Salir extends JPanel{
 		lblSalir.setBackground(new Color(255, 255, 0));
 		lblSalir.setFont(new Font("Fira Sans OT", Font.PLAIN, 26));
 		frame.getContentPane().add(lblSalir);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Salir.class.getResource("/Imagen/Titulo.png")));
 		lblNewLabel.setBounds(107, 72, 680, 110);
 		frame.getContentPane().add(lblNewLabel);
-		
-	
-		
+
 		btnNo = new JButton(messages.getString("NO"));
 		btnNo.setFocusable(false);
 		btnNo.setBounds(449, 385, 267, 53);
@@ -109,13 +106,13 @@ public class Salir extends JPanel{
 				//if(clie!=null){
 				//MenuCliente menucliente=new MenuCliente(clie, messages);
 				frame.dispose();
-			//}else{
+				//}else{
 				//Ingreso ingreso=new Ingreso();
-			//}
+				//}
 			}
 		});
 		frame.setVisible(true);
-		
+
 		btnSi = new JButton(messages.getString("SI"));
 		btnSi.setFocusable(false);
 		btnSi.setBounds(173, 385, 277, 53);
@@ -126,12 +123,8 @@ public class Salir extends JPanel{
 		btnSi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
-				
 			}
 		});
 		frame.setVisible(true);
-		
-	
 	}
-	
 }
