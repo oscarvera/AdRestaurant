@@ -123,7 +123,7 @@ public class Registro extends JPanel{
 		botonX();
 	}
 	/**
-	 * Botón X para Salir de la aplicación con pequeño JPanel Blanco
+	 *Botón X para Salir de la aplicación con pequeño JPanel Blanco
 	 */
 	public void botonX(){
 		JPanel panel_1 = new JPanel();
