@@ -36,9 +36,10 @@ public class ptnMenuRestaurante extends JFrame {
 	 * Create the frame.
 	 */
 	public ptnMenuRestaurante(Restaurante rest,ResourceBundle messages){
-		initialize();
+		
 		this.rest=rest;
 		this.messages=messages;
+		initialize();
 	
 	}
 	

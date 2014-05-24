@@ -67,9 +67,9 @@ public class Consulta {
 //	/**
 //	 * Añade un cliente a la base de datos. Recibe los parámetros de una instancia/objeto Cliente.
 //	 */
-//	public void insertarCliente(String nombre, String primerApellido, String segundoApellido, String usuario, String email, String telefono, char[] contrasena){
+//	public void insertarCliente(String nombre, String primerApellido, String segundoApellido, String usuario, String email, String telefono, char[] contraseña){
 //		//Escribimos la consulta SQL en la variable consulta
-//		this.consulta = "INSERT INTO Clientes (Nombre, primerApellido, segundoApellido, usuario, email, telefono, contrasena)"
+//		this.consulta = "INSERT INTO Clientes (Nombre, primerApellido, segundoApellido, usuario, email, telefono, contraseña)"
 //				+ " VALUES (?,?,?,?,?,?,?);";
 //		try{
 //			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
@@ -82,7 +82,7 @@ public class Consulta {
 //			stmt.setString(4, usuario);
 //			stmt.setString(5, email);
 //			stmt.setInt(6, Integer.valueOf(telefono));
-//			stmt.setString(7, String.copyValueOf(contrasena));			
+//			stmt.setString(7, String.copyValueOf(contraseña));			
 //
 //			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
 //			resultadoActualizacionBD = stmt.executeUpdate();
@@ -99,40 +99,45 @@ public class Consulta {
 	}
 	
 
-	public boolean loginCliente(String user, char[] contrasena){
+	public boolean loginCliente(String user, char[] contraseña){
 		//Primero se comprueba el usuario.
-		this.consulta = "SELECT usuario FROM Clientes WHERE usuario=?";
+		
 		try{
+			this.consulta = "SELECT usuario FROM Clientes WHERE usuario=?";
 			this.stmt = conexion.prepareStatement(this.consulta);
 			this.stmt.setString(1, user);
 			resultadoConsulta = stmt.executeQuery();
 			if (resultadoConsulta.next()){
-				//Cuando el usuario es correcto comprobamos la contrasena.
-				this.consulta = "SELECT contrasena FROM Clientes WHERE contrasena=? AND usuario=?";
+				//Cuando el usuario es correcto comprobamos la contraseña.
+				this.consulta = "SELECT contraseña FROM Clientes WHERE contraseña=? AND usuario=?";
 				this.stmt = conexion.prepareStatement(this.consulta);
-				this.stmt.setString(1, String.copyValueOf(contrasena));
+				this.stmt.setString(1, String.copyValueOf(contraseña));
 				this.stmt.setString(2, user);
 				resultadoConsulta = stmt.executeQuery();
 				if(resultadoConsulta.next()){
+					System.out.println("no estoy en restaurante");
+					err=new ErrorRegistro("La contraseña es incorrecta",this.messages);
 					return true;
-				}else{
-					this.consulta = "SELECT usuario FROM Restaurantes WHERE usuario=? AND contrasena=?";
+				}
+			}else{
+					
+					this.consulta = "SELECT nombreUsuario FROM Restaurantes WHERE nombreUsuario=? AND contraseña=?";
 					this.stmt = conexion.prepareStatement(this.consulta);
-					this.stmt.setString(2, String.copyValueOf(contrasena));
+					this.stmt.setString(2, String.copyValueOf(contraseña));
 					this.stmt.setString(1, user);
 					resultadoConsulta = stmt.executeQuery();
+					System.out.println("Estoy en restaurante");
 					if(resultadoConsulta.next()){
 						esRest=true;
 						return true;
 						
 					}else{
+						System.out.println("Creo ventana");
+						err=new ErrorRegistro("El usuario o contraseña incorrecto",this.messages);
+						err.setVisible(true);
 						return false;
 					}
-				}
-			}
-			else {
-				err=new ErrorRegistro("El usuario o contraseña incorrecto",this.messages);
-				return false;
+				
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -141,10 +146,11 @@ public class Consulta {
 			
 			
 		}
+		return false;
 
 		
-		//		//Comprobamos la contrasena.
-		//		this.consulta = "SELECT contrasena FROM Cientes";
+		//		//Comprobamos la contraseña.
+		//		this.consulta = "SELECT contraseña FROM Cientes";
 		//		try{
 		//			this.stmt = conexion.prepareStatement(this.consulta);
 		//			resultadoConsulta = stmt.executeQuery();

@@ -25,7 +25,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Clases.Cliente;
+import Clases.Restaurante;
 import BBDD.Consulta;
+
 import com.mysql.jdbc.Messages;
 
 public class Ingreso extends JPanel{
@@ -214,12 +216,15 @@ public class Ingreso extends JPanel{
 					MenuCliente menuclie=new MenuCliente(clie, messages);
 					frame.dispose();
 				}else{
+					System.out.println(""+consulta.esRestaurante());
 					if(consulta.esRestaurante()){
-						//MENU RESTAURAMTE
-					}else{
+						Restaurante rest=new Restaurante(textLabelUser.getText());
+						System.out.println(""+rest.getNombre());
+						ptnMenuRestaurante menuRest=new ptnMenuRestaurante(rest, messages);
+					}/*else{
 						ErrorRegistro err=consulta.error();
 						err.setVisible(true);
-					}
+					}*/
 
 				}
 			}
