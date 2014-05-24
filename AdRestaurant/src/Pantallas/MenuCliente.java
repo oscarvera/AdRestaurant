@@ -61,12 +61,10 @@ public class MenuCliente {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 94, 895, 481);
-		frame.getContentPane().add(panel);
-		
+		botonX();
+		botonesMenuCliente();
+	}
+	public void botonX(){
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(0, 0, 895, 22);
@@ -101,6 +99,15 @@ public class MenuCliente {
 
 			}
 		});
+	}
+		
+		public void botonesMenuCliente(){
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 94, 895, 481);
+		frame.getContentPane().add(panel);
+		
+		
 		
 		JButton btnBuscarRestaurante = new JButton("Buscar Restaurante");
 		btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1ES.png")));
