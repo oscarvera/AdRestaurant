@@ -146,7 +146,13 @@ public class MenuCliente {
 		
 		JLabel label_1 = new JLabel("");
 		
-		JButton btnBoton = new JButton("Boton2");
+		JButton btnBoton = new JButton("Perfil");
+		btnBoton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ptnPerfilCliente perfil=new ptnPerfilCliente(clie, messages);
+				frame.dispose();
+			}
+		});
 		
 		JButton button_2 = new JButton("Boton2");
 		GroupLayout gl_panel = new GroupLayout(panel);

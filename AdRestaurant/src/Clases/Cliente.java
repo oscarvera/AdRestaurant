@@ -99,6 +99,9 @@ public class Cliente {
 		this.segundoApellido = segundoApellido;
 	}
 	
+	public String getUsuario(){
+		return this.usuario;
+	}
 	/**
 	 * Si la contraseña también es correcta, selecciona todos los datos del usuario y crea una instancia de Cliente con ellos.
 	 */
@@ -181,6 +184,10 @@ public class Cliente {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
+	}
+	
+	public void actualizar(){
+		loginCliente();
 	}
 }
 

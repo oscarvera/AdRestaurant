@@ -93,7 +93,7 @@ public class Consulta {
 //			e.printStackTrace();
 //		}
 //	}
-
+ /*Envia si es un restaurante o no*/
 	public boolean esRestaurante(){
 		return esRest;
 	}

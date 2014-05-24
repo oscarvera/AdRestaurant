@@ -166,7 +166,7 @@ public class ptnRestaurante extends JFrame {
 		}
 		
 		JLabel lbTipo = new JLabel(messages.getString("Tipo"));
-		lbTipo.setBounds(30, 28, 89, 22);
+		lbTipo.setBounds(10, 28, 109, 22);
 		lbTipo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbTipo.setForeground(Color.LIGHT_GRAY);
 		lbTipo.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
@@ -177,7 +177,7 @@ public class ptnRestaurante extends JFrame {
 		textTipo.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
 		
 		JLabel lbTelefono = new JLabel(messages.getString("Telefono"));
-		lbTelefono.setBounds(30, 95, 89, 22);
+		lbTelefono.setBounds(10, 95, 109, 22);
 		lbTelefono.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbTelefono.setForeground(Color.LIGHT_GRAY);
 		lbTelefono.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
@@ -188,7 +188,7 @@ public class ptnRestaurante extends JFrame {
 		textTelefono.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
 		
 		JLabel lbDireccion = new JLabel(messages.getString("Direccion"));
-		lbDireccion.setBounds(23, 62, 96, 22);
+		lbDireccion.setBounds(10, 62, 109, 22);
 		lbDireccion.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbDireccion.setForeground(Color.LIGHT_GRAY);
 		lbDireccion.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
@@ -215,7 +215,7 @@ public class ptnRestaurante extends JFrame {
 		textProvincia.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
 		
 		JLabel lbProvincia = new JLabel(messages.getString("Provincia"));
-		lbProvincia.setBounds(266, 128, 109, 22);
+		lbProvincia.setBounds(258, 128, 117, 22);
 		lbProvincia.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbProvincia.setForeground(Color.LIGHT_GRAY);
 		lbProvincia.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
