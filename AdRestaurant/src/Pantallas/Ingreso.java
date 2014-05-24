@@ -32,7 +32,6 @@ import com.mysql.jdbc.Messages;
 
 public class Ingreso extends JPanel{
 
-
 	private JFrame frame;
 	private JTextField textLabelUser;
 	private JPasswordField textLabelPass;
@@ -64,22 +63,16 @@ public class Ingreso extends JPanel{
 			}
 		});
 		
-		 String language;
-	      String country;
+		if (args.length != 2) {
+			language = new String("es");
+			country = new String("ES");
+		} else {
+			language = new String(args[0]);
+			country = new String(args[1]);
+		}
 
-	      if (args.length != 2) {
-	          language = new String("es");
-	          country = new String("ES");
-	      } else {
-	          language = new String(args[0]);
-	          country = new String(args[1]);
-	      }
-
-	      
-
-	      currentLocale = new Locale(language, country);
-
-	      messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
+		currentLocale = new Locale(language, country);
+		messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
 	}
 
 	
@@ -88,14 +81,6 @@ public class Ingreso extends JPanel{
 	 * Create the application.
 	 */
 	public Ingreso() {
-		
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	public void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(255, 153, 0));
@@ -107,18 +92,22 @@ public class Ingreso extends JPanel{
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
-		//Control currentLocale = null;
-		//messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
-
-
-		final JLabel lblBienvenid = new JLabel("BIENVENID@");
+		botonesIngreso();
+		lblIdiomas();
+	}
+	
+	/**
+	 * Todos los botones de la pantalla Ingreso
+	 */
+	public void botonesIngreso(){
+		lblBienvenid = new JLabel(messages.getString("WLCOME"));
 		lblBienvenid.setBounds(334, 193, 227, 64);
 		lblBienvenid.setForeground(new Color(255, 255, 255));
 		lblBienvenid.setBackground(new Color(255, 255, 0));
 		lblBienvenid.setFont(new Font("Fira Sans OT", Font.PLAIN, 22));
 		frame.getContentPane().add(lblBienvenid);
 
-		final JLabel lblUsuario = new JLabel("USUARIO:");
+		lblUsuario = new JLabel(messages.getString("USER"));
 		lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUsuario.setForeground(new Color(255, 255, 255));
 		lblUsuario.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
@@ -126,7 +115,7 @@ public class Ingreso extends JPanel{
 		frame.getContentPane().add(lblUsuario);
 
 		textLabelUser = new JTextField();
-		textLabelUser.setToolTipText("Por Favor, introduzca su Nombre de Usuario");
+		textLabelUser.setToolTipText(messages.getString("introduzcausuario"));
 		textLabelUser.setColumns(10);
 		textLabelUser.setBounds(334, 270, 227, 37);
 		frame.getContentPane().add(textLabelUser);
@@ -151,7 +140,7 @@ public class Ingreso extends JPanel{
 		};
 		textLabelUser.addKeyListener(kl);
 
-		final JLabel lblPass = new JLabel("  CONTRASE\u00D1A:");
+		lblPass = new JLabel(messages.getString("Pass1"));
 		lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPass.setForeground(Color.WHITE);
 		lblPass.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
@@ -163,9 +152,9 @@ public class Ingreso extends JPanel{
 		panel.setBounds(0, 514, 895, 93);
 		frame.getContentPane().add(panel);
 
-		btnRegistrar = new JButton("REGISTRATE");
+		btnRegistrar = new JButton(messages.getString("Registrate"));
 		btnRegistrar.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-		btnRegistrar.setToolTipText("Facil y rápido, REGISTRATE AHORA!");
+		btnRegistrar.setToolTipText(messages.getString("fastandeasy"));
 		btnRegistrar.setBackground(new Color(255, 153, 51));
 		btnRegistrar.setForeground(new Color(255, 255, 255));
 		btnRegistrar.addActionListener(new ActionListener() {
@@ -176,7 +165,7 @@ public class Ingreso extends JPanel{
 			}
 		});
 		
-		final JLabel lblNoregistrado = new JLabel("\u00BFNo est\u00E1s Registrado?");
+		lblNoregistrado = new JLabel(messages.getString("NOREG"));
 		lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNoregistrado.setForeground(new Color(255,153,0));
 		lblNoregistrado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 34));
@@ -237,10 +226,11 @@ public class Ingreso extends JPanel{
 
 
 		textLabelPass = new JPasswordField();
-		textLabelPass.setToolTipText("Por favor, introduzca su Contraseña");
+		textLabelPass.setToolTipText(messages.getString("introduzcacontra"));
 		textLabelPass.setBounds(334, 321, 227, 37);
 		frame.getContentPane().add(textLabelPass);
-
+		textLabelPass.addKeyListener(kl);
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(0, 0, 895, 22);
@@ -290,15 +280,18 @@ public class Ingreso extends JPanel{
 		lblNewLabel.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/Titulo.png")));
 		lblNewLabel.setBounds(107, 72, 680, 110);
 		frame.getContentPane().add(lblNewLabel);
-		
-
-		
+	}
+	
+	/**
+	 * All lblIdiomas to be able to change language with ResourceBundle messages
+	 */
+	public void lblIdiomas(){
 		JLabel lblIngles = new JLabel("English");
 		lblIngles.setForeground(Color.WHITE);
 		lblIngles.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
 		lblIngles.setBounds(107, 606, 80, 40);
 		frame.getContentPane().add(lblIngles);
-		
+
 		lblIngles.addMouseListener(new MouseListener() {
 
 			@Override
@@ -319,33 +312,19 @@ public class Ingreso extends JPanel{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				lblBienvenid.setText("WELCOME!");
-				lblUsuario.setText("USER:");
-				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
-				lblPass.setText("PASSWORD:");
-				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
-				textLabelUser.setToolTipText("Please, introduce your Username");
-				textLabelPass.setToolTipText("Please, introduce your Password");
-				btnIngresar.setText("SIGN IN");
-				btnRegistrar.setText("REGISTER");
-				btnRegistrar.setToolTipText("Fast and easy, REGISTER NOW!");
-				lblNoregistrado.setText("Not Registered yet?");
-				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				language ="en";
-		        country ="US";
-		        currentLocale = new Locale(language, country);
-
-			    messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
+				currentLocale = new Locale("en_US");
+				messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
+				actualizarIdioma(messages);
 
 			}
 		});
-		
+
 		JLabel lblCastellano = new JLabel("Espa\u00F1ol");
 		lblCastellano.setForeground(Color.WHITE);
 		lblCastellano.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
 		lblCastellano.setBounds(197, 606, 80, 40);
 		frame.getContentPane().add(lblCastellano);
-		
+
 		lblCastellano.addMouseListener(new MouseListener() {
 
 			@Override
@@ -366,33 +345,19 @@ public class Ingreso extends JPanel{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				lblBienvenid.setText("BIENVENID@!");
-				lblUsuario.setText("USUARIO:");
-				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
-				lblPass.setText("CONTRASEÑA:");
-				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
-				textLabelUser.setToolTipText("Por favor, introduzca su Nombre de Usuario");
-				textLabelPass.setToolTipText("Por favor, introduzca su Contraseña");
-				btnIngresar.setText("INGRESAR");
-				btnRegistrar.setText("REGISTRATE");
-				btnRegistrar.setToolTipText("Facil y rápido, REGISTRATE AHORA!");
-				lblNoregistrado.setText("¿No estás Registrado?");
-				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				language="es";
-		        country="ES";
-		        currentLocale = new Locale(language, country);
-
-			    messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
+				currentLocale = new Locale("es_ES");
+				messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
+				actualizarIdioma(messages);
 
 			}
 		});
-		
+
 		JLabel lblCatalan = new JLabel("Catalán");
 		lblCatalan.setForeground(Color.WHITE);
 		lblCatalan.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
 		lblCatalan.setBounds(287, 606, 80, 40);
 		frame.getContentPane().add(lblCatalan);
-		
+
 		lblCatalan.addMouseListener(new MouseListener() {
 
 			@Override
@@ -413,33 +378,19 @@ public class Ingreso extends JPanel{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				lblBienvenid.setText("BENVINGUT!");
-				lblUsuario.setText("USUARI:");
-				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
-				lblPass.setText("CONTRASENYA:");
-				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
-				textLabelUser.setToolTipText("Per favor, introdueixi el seu nom d'Usuari");
-				textLabelPass.setToolTipText("Per favor, introdueixi la seva Contrasenya");
-				btnIngresar.setText("INGRESSA");
-				btnRegistrar.setText("REGISTRA'T");
-				btnRegistrar.setToolTipText("Fàcil y ràpid, REGISTRA'T ARA");
-				lblNoregistrado.setText("No estás Registrat?");
-				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				language ="ca";
-		        country = "ES";
-		        currentLocale = new Locale(language, country);
-
-			    messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
+				currentLocale = new Locale("ca_ES");
+				messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
+				actualizarIdioma(messages);
 
 			}
 		});
-		
+
 		JLabel lblFrances = new JLabel("Fran\u00E7ais");
 		lblFrances.setForeground(Color.WHITE);
 		lblFrances.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
 		lblFrances.setBounds(377, 606, 80, 40);
 		frame.getContentPane().add(lblFrances);
-		
+
 		lblFrances.addMouseListener(new MouseListener() {
 
 			@Override
@@ -460,32 +411,18 @@ public class Ingreso extends JPanel{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				lblBienvenid.setText("BIENVENUE!");
-				lblUsuario.setText("UTILISATEUR:");
-				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
-				lblPass.setText("MOT DE PASSE:");
-				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
-				textLabelUser.setToolTipText("S'il vous plaît, introduire votre nom d'utilisateur");
-				textLabelPass.setToolTipText("S'il vous plaît, introduisez votre mot de passe");
-				btnIngresar.setText("CONNECTER");
-				btnRegistrar.setText("INSCRIVEZ-VOUS");
-				btnRegistrar.setToolTipText("Rapide et facile, INSCRIVEZ-VOUS!");
-				lblNoregistrado.setText("Pas encore inscrit?");
-				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				language ="fr";
-		        country = "FR";
-		        currentLocale = new Locale(language, country);
-
-			    messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
+				currentLocale = new Locale("fr_FR");
+				messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
+				actualizarIdioma(messages);
 			}
 		});
-		
+
 		JLabel lblAleman = new JLabel("Deutsch");
 		lblAleman.setForeground(Color.WHITE);
 		lblAleman.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
 		lblAleman.setBounds(467, 606, 80, 40);
 		frame.getContentPane().add(lblAleman);
-		
+
 		lblAleman.addMouseListener(new MouseListener() {
 
 			@Override
@@ -506,34 +443,17 @@ public class Ingreso extends JPanel{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				lblBienvenid.setText("WILLKOMMEN!");
-				lblUsuario.setText("USER:");
-				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
-				lblPass.setText("PASSWORT:");
-				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
-				textLabelUser.setToolTipText("Bitte, einführen Sie Ihren Benutzernamen");
-				textLabelPass.setToolTipText("Bitte, einführen Sie Ihr Passwort");
-				btnIngresar.setText("ANMELDEN");
-				btnRegistrar.setText("REGISTRIEREN");
-				btnRegistrar.setToolTipText("Schnell und einfach, JETZT REGISTRIEREN!");
-				lblNoregistrado.setText("Noch nicht registriert?");
-				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				language="de";
-		        country="DE";
-		        currentLocale = new Locale(language, country);
-
-			    messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
+				currentLocale = new Locale("de_DE");
+				messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
+				actualizarIdioma(messages);
 			}
 		});
-		
-		
-		
 		JLabel lblItaliano = new JLabel("Italiano");
 		lblItaliano.setForeground(Color.WHITE);
 		lblItaliano.setFont(new Font("Fira Sans OT", Font.BOLD, 13));
 		lblItaliano.setBounds(557, 606, 80, 40);
 		frame.getContentPane().add(lblItaliano);
-		
+
 		lblItaliano.addMouseListener(new MouseListener() {
 
 			@Override
@@ -554,27 +474,25 @@ public class Ingreso extends JPanel{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				lblBienvenid.setText("BENVENUTO!");
-				lblUsuario.setText("UTENTE:");
-				lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
-				lblPass.setText("CHIAVE DI IDENTIFICAZIONE:");
-				lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
-				textLabelUser.setToolTipText("Per favore, introduca il suo nome utente");
-				textLabelPass.setToolTipText("Per favore introduca la sua chiave di identificazione");
-				btnIngresar.setText("REGISTRARSI");
-				btnRegistrar.setText("ISCRIVERE");
-				btnRegistrar.setToolTipText("Veloce e facile, REGISTRARE ORA!");
-				lblNoregistrado.setText("Non ancora registrato?");
-				lblNoregistrado.setHorizontalAlignment(SwingConstants.RIGHT);
-				language = "it";
-		        country = "IT";
-		        
-		        currentLocale = new Locale(language, country);
-
-			    messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
+				currentLocale = new Locale("it_IT");
+				messages = ResourceBundle.getBundle("MessagesBundle",currentLocale);
+				actualizarIdioma(messages);
 			}
 		});
-				
-		textLabelPass.addKeyListener(kl);
 }
+	
+	/**
+	 * A separate method to refresh and set the lbls of Ingreso in the correct language
+	 */
+	public void actualizarIdioma(ResourceBundle messages){
+		lblBienvenid.setText(messages.getString("WLCOME"));
+		lblUsuario.setText(messages.getString("USER"));
+		lblPass.setText(messages.getString("Pass1"));
+		textLabelUser.setToolTipText(messages.getString("introduzcausuario"));
+		textLabelPass.setToolTipText(messages.getString("introduzcacontra"));
+		btnIngresar.setText(messages.getString("Ingresar"));
+		btnRegistrar.setText(messages.getString("Registrate"));
+		btnRegistrar.setToolTipText(messages.getString("fastandeasy"));
+		lblNoregistrado.setText(messages.getString("NOREG"));
+	}
 }
