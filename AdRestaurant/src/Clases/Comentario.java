@@ -12,7 +12,7 @@ public class Comentario {
 	Cliente user;
 	String hora;
 	String fechaCreacion;
-	String textComentario;
+	String txtComentario;
 	
 	private PreparedStatement stmt;
 	private Connection conexion;
@@ -22,22 +22,21 @@ public class Comentario {
 	
 	//Comentario ya creado, recepción de datos
 	
-	/*public Comentario(String nomRest, String user,String fechaCrea,String comentario){
-		nomRest=this.rest;
+	/*public Comentario(String rest, String user,String fechaCrea,String comentario){
+		rest=this.rest;
 		user=this.user;
 		fechaCrea=this.fechaCreacion;
-		comentario=this.textComentario;
+		comentario=this.txtComentario;
 		
 		//consultar hora fechaReserva verificación realizacion
 	}*/
 	
 	//Reserva no creada. Para creacion.
 	
-	public Comentario(Restaurante nomRest, Cliente user, String fechaReserva, String hora, String fechaCrea, int personas){
-		nomRest=this.rest;
-		user=this.user;
-		hora=this.hora;
-		fechaCrea=this.fechaCreacion;
+	public Comentario(Restaurante rest, Cliente user, String comentari){
+		this.rest=rest;
+		this.user=user;
+		this.txtComentario=comentari;
 		
 		//Creacion de la consulta 
 		
@@ -61,8 +60,8 @@ public class Comentario {
 		try {
 			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
 			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
-			String user = "root";
-			this.conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/addrestaurant", user, "tonphp");
+			String user = "adrestaurant";
+			this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143/adrestaurant", user, "adrestaurant");
 			conexion.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -80,8 +79,8 @@ public class Comentario {
 	
 	public void insertarComentario(){
 		//Escribimos la consulta SQL en la variable consulta
-		this.consulta = "INSERT INTO reserva (Codigo_Restaurante, Codigo_Cliente, hora, fechaCreacion,txtComentario)"
-				+ " VALUES (?,?,?,?,?);";
+		this.consulta = "INSERT INTO comentarios (Codigo_Restaurante, Codigo_Cliente, hora, fechaCreacion,txtComentario)"
+				+ " VALUES (?,?,CURTIME(),CURDATE(),?);";
 		try{
 			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
 			this.stmt = conexion.prepareStatement(this.consulta);
@@ -89,9 +88,7 @@ public class Comentario {
 			//Asignamos los campos de la reserva a insertar con los campos a rellenar en las tablas (los "?").
 			stmt.setInt(1, rest.getCodigoRestaurante());
 			stmt.setInt(2, user.getCodigoCliente());
-			stmt.setString(3, this.hora);
-			stmt.setString(4, this.fechaCreacion);
-			stmt.setString(5, this.textComentario);
+			stmt.setString(3, this.txtComentario);
 			
 			
 			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
@@ -107,7 +104,7 @@ public class Comentario {
 	
 	//GETTERS
 	
-	public Restaurante getNomRest(){
+	public Restaurante getrest(){
 		return this.rest;
 	}
 	public Cliente getUsuario(){
@@ -121,8 +118,8 @@ public class Comentario {
 	}
 	//SETTERS CON ACTUALIZACION
 	
-	public void setNomRest(Restaurante nomRest){
-		this.rest=nomRest;
+	public void setrest(Restaurante rest){
+		this.rest=rest;
 		this.actualizacionComentario();
 	}
 	public void setUsuario(Cliente user){

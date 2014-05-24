@@ -147,8 +147,8 @@ public class ptnCrearComentario extends JFrame {
 		scrollPane.setBounds(48, 195, 789, 188);
 		panel.add(scrollPane);
 		
-		JTextArea textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
+		final JTextArea textComentario = new JTextArea();
+		scrollPane.setViewportView(textComentario);
 		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -197,7 +197,8 @@ public class ptnCrearComentario extends JFrame {
 		btnReservar.setFocusable(false);
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Comentario comentario=new Comentario(rest, clie, fechaReserva, hora, fechaCrea, personas)
+				Comentario comentario=new Comentario(rest, clie,textComentario.getText());
+				ptnComentarioCompletado comple=new ptnComentarioCompletado(clie, rest, messages);
 				frame.dispose();
 				//Comprobar campos
 				
