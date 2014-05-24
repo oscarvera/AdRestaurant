@@ -32,7 +32,7 @@ import com.mysql.jdbc.Messages;
 
 public class Ingreso extends JPanel{
 
-	private JFrame frame;
+	private static JFrame frame;
 	private JTextField textLabelUser;
 	private JPasswordField textLabelPass;
 	private JButton btnIngresar;
@@ -101,6 +101,7 @@ public class Ingreso extends JPanel{
 		frame.setVisible(true);
 		botonesIngreso();
 		lblIdiomas();
+		botonX();
 	}
 
 	/**
@@ -238,14 +239,25 @@ public class Ingreso extends JPanel{
 		frame.getContentPane().add(textLabelPass);
 		textLabelPass.addKeyListener(kl);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(0, 0, 895, 22);
-		frame.getContentPane().add(panel_1);
+
+
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/Titulo.png")));
+		lblNewLabel.setBounds(107, 72, 680, 110);
+		frame.getContentPane().add(lblNewLabel);
+	}
+	/**
+	 * Botón X para Salir de la aplicación con pequeño JPanel Blanco
+	 */
+	public void botonX(){
+		JPanel panel_111 = new JPanel();
+		panel_111.setBackground(Color.WHITE);
+		panel_111.setBounds(0, 0, 895, 22);
+		frame.getContentPane().add(panel_111);
 
 		JLabel cerrarImage = new JLabel("");
 		cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		GroupLayout gl_panel_1 = new GroupLayout(panel_111);
 		gl_panel_1.setHorizontalGroup(
 				gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
@@ -281,12 +293,8 @@ public class Ingreso extends JPanel{
 			}
 		});
 
-		panel_1.setLayout(gl_panel_1);
-
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/Titulo.png")));
-		lblNewLabel.setBounds(107, 72, 680, 110);
-		frame.getContentPane().add(lblNewLabel);
+		panel_111.setLayout(gl_panel_1);
+		panel_111.setVisible(true);
 	}
 
 	/**
