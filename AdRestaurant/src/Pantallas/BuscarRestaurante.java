@@ -157,6 +157,7 @@ public class BuscarRestaurante extends JFrame{
 		/**
 		 * Panel deslizante de la busqueda, con layout.
 		 */
+		lista_restaurantes.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 11));
 		JScrollPane scroll_lista_restaurantes = new JScrollPane(lista_restaurantes);
 		scroll_lista_restaurantes.setBorder(null);
 		GroupLayout gl_panel = new GroupLayout(panel);
