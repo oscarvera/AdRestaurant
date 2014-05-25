@@ -138,80 +138,65 @@ public class MenuCliente {
 			}
 		});
 		
-		//button_1.setIcon(new ImageIcon("C:\\Users\\dam1\\Desktop\\reservas.png"));
-		
-		JButton btnPerfilCliente = new JButton("Perfil Cliente?");
-//		btnPerfilCliente.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				restaurante=new Restaurante("Foster's Hollywood" ,"Americano","Valencia");
-//			
-//				ptnRestaurante ptnrest=new ptnRestaurante(clie, restaurante, messages);
-//				
-//				frame.dispose();
-//			}
-//		});
-		
 		JLabel label_1 = new JLabel("");
 		
-		JButton btnBoton = new JButton("Perfil");
-		btnBoton.addActionListener(new ActionListener() {
+		JButton btnPerfil = new JButton("");
+		btnPerfil.setBackground(Color.WHITE);
+		btnPerfil.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/perfil.png")));
+		btnPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ptnPerfilCliente perfil=new ptnPerfilCliente(clie, messages);
 				frame.dispose();
 			}
 		});
-		
-		JButton button_2 = new JButton("Boton2");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(label_1)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(89)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(button, 0, 0, Short.MAX_VALUE)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(btnPerfilCliente, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnBoton, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(button_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 474, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE)))))
-					.addContainerGap(89, Short.MAX_VALUE))
+							.addGap(99)
+							.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 464, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)))
+					.addGap(101))
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addGap(91)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnPerfil, GroupLayout.PREFERRED_SIZE, 702, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button, GroupLayout.PREFERRED_SIZE, 711, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(93, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(22)
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 185, Short.MAX_VALUE)
-						.addComponent(button_1, 0, 0, Short.MAX_VALUE))
+						.addComponent(button_1, 0, 0, Short.MAX_VALUE)
+						.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 190, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(button_2, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-						.addComponent(btnBoton, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-						.addComponent(btnPerfilCliente, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-						.addComponent(label_1))
+						.addComponent(label_1)
+						.addComponent(btnPerfil, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(button, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-					.addGap(27))
+					.addGap(22))
 		);
 		panel.setLayout(gl_panel);
 		
 		if(messages.getLocale().getLanguage().equals("es")){
+			btnPerfil.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/1perfilES.png")));
 			btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1ES.png")));
 			button.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/ComentsBoton.png")));
 			button_1.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasES.png")));
 		}else if (messages.getLocale().getLanguage().equals("en")) {
+			btnPerfil.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/1perfilEN.png")));
 			btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1EN.png")));
 			button.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonComentariosEN.png")));
 			button_1.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasEN.png")));
 		}else if (messages.getLocale().getLanguage().equals("ca")) {
+			btnPerfil.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/1perfilCA.png")));
 			btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1CA.png")));
 			button.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonComentariosCA.png")));
 			button_1.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasCA.png")));
