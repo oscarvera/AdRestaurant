@@ -40,6 +40,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
 import Clases.Cliente;
+import Clases.Restaurante;
+
 import java.awt.event.ContainerAdapter;
 import java.awt.event.ContainerEvent;
 
@@ -62,6 +64,7 @@ public class BuscarRestaurante extends JFrame{
 	private PreparedStatement stmt;
 	private Connection conexion;
 	private int numeroResultados;
+	private Restaurante restauranteSeleccionado;
 	
 	static Locale currentLocale;
     static ResourceBundle messages;
@@ -207,7 +210,11 @@ public class BuscarRestaurante extends JFrame{
 		    public void mouseClicked(MouseEvent evt) {
 		        JList list = (JList)evt.getSource();
 		        if (evt.getClickCount() == 2) {
-		            InfoRestaurante restauranteSeleccionado = (InfoRestaurante) list.getSelectedValue();
+		            InfoRestaurante restauranteSelec = (InfoRestaurante) list.getSelectedValue();
+		            restauranteSeleccionado = new Restaurante(restauranteSelec.getCodigo());
+		            ptnRestaurante datosRestaurante = new ptnRestaurante(restauranteSeleccionado, messages);
+		            datosRestaurante.setFrameBusqueda(frame);
+		            frame.setEnabled(false);
 		        }    
 		    }
 		});
@@ -534,8 +541,6 @@ public class BuscarRestaurante extends JFrame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-		
-		realizaBusqueda();
 	}
 	
 	/**
@@ -544,7 +549,7 @@ public class BuscarRestaurante extends JFrame{
 	public void estableceConsulta(){
 		//Contamos el número de filtos activados para la búsqueda.
 		boolean primeraConsulta=true;
-		this.consulta = "SELECT nombre, direccion, poblacion, tipo FROM Restaurantes";
+		this.consulta = "SELECT nombre, direccion, poblacion, tipo, codigoRestaurante FROM Restaurantes";
 		if(!this.textDireccion.getText().equals("Dirección")||!this.textCP.getText().equals("Codigo Postal")
 			||!this.textNombre.getText().equals("Nombre")||this.comboTipo.getSelectedIndex()!=0){
 				this.consulta = consulta+" WHERE";
@@ -622,7 +627,7 @@ public class BuscarRestaurante extends JFrame{
 			this.resultadoConsulta = this.stmt.executeQuery();
 			modelo_lista_restaurantes.clear();
 			while(resultadoConsulta.next()){
-				modelo_lista_restaurantes.addElement(new InfoRestaurante(resultadoConsulta.getString("Nombre"),resultadoConsulta.getString("Tipo"),resultadoConsulta.getString("Direccion"),resultadoConsulta.getString("Poblacion")));
+				modelo_lista_restaurantes.addElement(new InfoRestaurante(resultadoConsulta.getString("Nombre"),resultadoConsulta.getString("Tipo"),resultadoConsulta.getString("Direccion"),resultadoConsulta.getString("Poblacion"), resultadoConsulta.getInt("codigoRestaurante")));
 			}
 			
 		} catch (SQLException e) {

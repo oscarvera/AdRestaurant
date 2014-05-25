@@ -64,36 +64,10 @@ public class Consulta {
 		this.stmt=null;
 	}
 
-//	/**
-//	 * Añade un cliente a la base de datos. Recibe los parámetros de una instancia/objeto Cliente.
-//	 */
-//	public void insertarCliente(String nombre, String primerApellido, String segundoApellido, String usuario, String email, String telefono, char[] contraseña){
-//		//Escribimos la consulta SQL en la variable consulta
-//		this.consulta = "INSERT INTO Clientes (Nombre, primerApellido, segundoApellido, usuario, email, telefono, contraseña)"
-//				+ " VALUES (?,?,?,?,?,?,?);";
-//		try{
-//			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
-//			this.stmt = conexion.prepareStatement(this.consulta);
-//
-//			//Asignamos los campos del cliente a insertar con los campos a rellenar en las tablas (los "?").
-//			stmt.setString(1, nombre);
-//			stmt.setString(2, primerApellido);
-//			stmt.setString(3, segundoApellido);
-//			stmt.setString(4, usuario);
-//			stmt.setString(5, email);
-//			stmt.setInt(6, Integer.valueOf(telefono));
-//			stmt.setString(7, String.copyValueOf(contraseña));			
-//
-//			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
-//			resultadoActualizacionBD = stmt.executeUpdate();
-//			//Comprobar que se ha actualizado algún registro con un mensaje.
-//			System.out.println("Se han actualizado "+resultadoActualizacionBD+" registros.");
-//
-//		}catch(SQLException e){
-//			e.printStackTrace();
-//		}
-//	}
- /*Envia si es un restaurante o no*/
+	/**
+	 * Envia si es un restaurante o no.
+	 * @return
+	 */
 	public boolean esRestaurante(){
 		return esRest;
 	}
@@ -134,15 +108,12 @@ public class Consulta {
 						err=new ErrorRegistro("El usuario o contraseña incorrecto",this.messages);
 						err.setVisible(true);
 						return false;
-					}
-				
+					}		
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
 			System.out.println("Hola");
-			return false;
-			
-			
+			return false;			
 		}
 		return false;
 

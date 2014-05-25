@@ -42,7 +42,7 @@ public class ptnRestaurante extends JFrame {
 	Cliente clie;
 	Restaurante rest;
 	JButton btnReservar;
-	
+	private JFrame frameBusqueda;
 	static Locale currentLocale;
     static ResourceBundle messages;
 	
@@ -59,20 +59,28 @@ public class ptnRestaurante extends JFrame {
 	 * @wbp.parser.constructor
 	 */
     
-    /*Constructor desde menu cliente*/
+    /**
+     * Constructor desde menu cliente
+     * @param clie
+     * @param rest
+     * @param messages
+     */
 	public ptnRestaurante(final Cliente clie, final Restaurante rest,final ResourceBundle messages){
 		this.clie=clie;
 		this.rest=rest;
 		this.messages=messages;
 		iniciar();
-		
 	}
-	/*Constructor desde menu restaurante*/
+	/**
+	 * Constructor desde menu restaurante o desde lista
+	 * @param rest
+	 * @param messages
+	 * @wbp.parser.constructor
+	 */
 	public ptnRestaurante(final Restaurante rest,final ResourceBundle messages) {
 		this.rest=rest;
 		this.messages=messages;
-		iniciar();
-		
+		iniciar();	
 	}
 	
 	public void iniciar(){
@@ -449,11 +457,26 @@ public class ptnRestaurante extends JFrame {
 		label.setIcon(new ImageIcon(ptnRestaurante.class.getResource("/Imagen/TituloPEQUE.png")));
 		label.setBounds(-11, 19, 393, 79);
 		frame.getContentPane().add(label);
+		
+		JButton btnVolverBusqueda = new JButton("Volver a la b\u00FAsqueda");
+		btnVolverBusqueda.setBounds(212, 623, 89, 23);
+		frame.getContentPane().add(btnVolverBusqueda);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		btnVolverBusqueda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+				frameBusqueda.setEnabled(true);
+				frameBusqueda.setVisible(true);
+			}
+		});
 	
+	}
+	
+	public void setFrameBusqueda(JFrame f){
+		this.frameBusqueda=f;
 	}
 }
 

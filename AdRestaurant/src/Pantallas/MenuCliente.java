@@ -141,15 +141,15 @@ public class MenuCliente {
 		//button_1.setIcon(new ImageIcon("C:\\Users\\dam1\\Desktop\\reservas.png"));
 		
 		JButton btnPerfilCliente = new JButton("Perfil Cliente?");
-		btnPerfilCliente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				restaurante=new Restaurante("Foster's Hollywood" ,"Americano","Valencia");
-			
-				ptnRestaurante ptnrest=new ptnRestaurante(clie, restaurante, messages);
-				
-				frame.dispose();
-			}
-		});
+//		btnPerfilCliente.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				restaurante=new Restaurante("Foster's Hollywood" ,"Americano","Valencia");
+//			
+//				ptnRestaurante ptnrest=new ptnRestaurante(clie, restaurante, messages);
+//				
+//				frame.dispose();
+//			}
+//		});
 		
 		JLabel label_1 = new JLabel("");
 		

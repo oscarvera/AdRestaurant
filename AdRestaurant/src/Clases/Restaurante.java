@@ -54,16 +54,11 @@ public class Restaurante {
 		//Constructor para consultar restaurantes:
 		
 			//Constructor desde lista
-			public Restaurante(String nombre, String tipo,  
-					String poblacion){
-			
-				this.nombre=nombre;
-				this.tipo=tipo;
-				this.poblacion=poblacion;
+			public Restaurante(int codigo){
+				this.codigoRestaurante=codigo;
 				conectar();
 				prepararConsulta();
 				loginRestaurante();
-				
 			}
 			
 			//Constructor desde ingreso
@@ -79,15 +74,13 @@ public class Restaurante {
 			 * Si la contraseña también es correcta, selecciona todos los datos del usuario y crea una instancia de Restaurante con ellos.
 			 */
 			public void loginRestaurante(){
-				this.consulta = "SELECT * FROM restaurantes WHERE Nombre=?;";
+				this.consulta = "SELECT * FROM restaurantes WHERE codigoRestaurante=?;";
 				try {
 					this.stmt = conexion.prepareStatement(this.consulta);
-					this.stmt.setString(1, this.nombre);
-					System.out.println(""+this.nombre);
+					this.stmt.setInt(1,this.codigoRestaurante);
 					resultadoConsulta = stmt.executeQuery();					
 					while(resultadoConsulta.next()==true){
 						
-						this.codigoRestaurante=resultadoConsulta.getInt("codigoRestaurante");
 						this.nombre=resultadoConsulta.getString("Nombre");
 						this.direccion=resultadoConsulta.getString("direccion");
 						this.poblacion=resultadoConsulta.getString("poblacion");
@@ -206,19 +199,10 @@ public class Restaurante {
 				}
 			}
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+			/**
+			 * GETTERS Y SETTERS
+			 * @return
+			 */
 			public int getCodigoRestaurante() {
 				return codigoRestaurante;
 			}

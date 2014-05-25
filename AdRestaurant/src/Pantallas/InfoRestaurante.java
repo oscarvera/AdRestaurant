@@ -24,13 +24,16 @@ public class InfoRestaurante extends JPanel  {
 	private JLabel etiqueta_poblacion;
 	private JLabel etiqueta_tipo;
 	private JLabel etiqueta_direccion;
+	private int codigo;
 	
 	/**
 	 * Create the panel.
 	 */
-	public InfoRestaurante(String nombre, String direccion, String poblacion, String tipo) {
+	public InfoRestaurante(String nombre, String direccion, String poblacion, String tipo, int codigo) {
 		setBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 200, 0), new Color(255, 200, 0), new Color(255, 200, 0), Color.ORANGE));
 		setBackground(Color.GRAY);
+		
+		this.codigo=codigo;
 		
 		this.etiqueta_nombre = new JLabel(nombre);
 		etiqueta_nombre.setForeground(Color.ORANGE);
@@ -95,5 +98,9 @@ public class InfoRestaurante extends JPanel  {
 	
 	public InfoRestaurante getInfoRestaurante(){
 		return (this);
+	}
+	
+	public int getCodigo(){
+		return this.codigo;
 	}
 }
