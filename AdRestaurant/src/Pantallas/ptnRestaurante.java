@@ -185,79 +185,79 @@ public class ptnRestaurante extends JFrame {
 		}
 
 		JLabel lbTipo = new JLabel(messages.getString("Tipo"));
-		lbTipo.setBounds(10, 28, 109, 22);
+		lbTipo.setBounds(2, 11, 172, 22);
 		lbTipo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbTipo.setForeground(Color.LIGHT_GRAY);
 		lbTipo.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 
 		JLabel textTipo = new JLabel(rest.getTipo());
-		textTipo.setBounds(129, 29, 231, 21);
+		textTipo.setBounds(184, 12, 210, 21);
 		textTipo.setForeground(new Color(255, 153, 0));
 		textTipo.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
 
 		JLabel lbTelefono = new JLabel(messages.getString("Telefono"));
-		lbTelefono.setBounds(10, 95, 109, 22);
+		lbTelefono.setBounds(2, 75, 172, 22);
 		lbTelefono.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbTelefono.setForeground(Color.LIGHT_GRAY);
 		lbTelefono.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 
 		JLabel textTelefono = new JLabel(String.valueOf(rest.getTelefono()));
-		textTelefono.setBounds(129, 96, 154, 21);
+		textTelefono.setBounds(184, 76, 210, 21);
 		textTelefono.setForeground(new Color(255, 153, 0));
 		textTelefono.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
 
 		JLabel lbDireccion = new JLabel(messages.getString("Direccion"));
-		lbDireccion.setBounds(10, 62, 109, 22);
+		lbDireccion.setBounds(2, 44, 172, 22);
 		lbDireccion.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbDireccion.setForeground(Color.LIGHT_GRAY);
 		lbDireccion.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 
 		JLabel textDireccion = new JLabel(rest.getDireccion());
-		textDireccion.setBounds(129, 61, 246, 21);
+		textDireccion.setBounds(184, 44, 210, 21);
 		textDireccion.setForeground(new Color(255, 153, 0));
 		textDireccion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
 
 		JLabel lbPoblacion = new JLabel(messages.getString("Poblacion"));
-		lbPoblacion.setBounds(10, 128, 109, 22);
+		lbPoblacion.setBounds(2, 111, 172, 22);
 		lbPoblacion.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbPoblacion.setForeground(Color.LIGHT_GRAY);
 		lbPoblacion.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 
 		JLabel textPoblacion = new JLabel(rest.getPoblacion());
-		textPoblacion.setBounds(129, 128, 154, 21);
+		textPoblacion.setBounds(184, 108, 210, 21);
 		textPoblacion.setForeground(new Color(255, 153, 0));
 		textPoblacion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
 
 		JLabel textProvincia = new JLabel(rest.getProvincia());
-		textProvincia.setBounds(382, 129, 125, 21);
+		textProvincia.setBounds(184, 140, 210, 21);
 		textProvincia.setForeground(new Color(255, 153, 0));
 		textProvincia.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
 
 		JLabel lbProvincia = new JLabel(messages.getString("Provincia"));
-		lbProvincia.setBounds(258, 128, 117, 22);
+		lbProvincia.setBounds(2, 144, 172, 22);
 		lbProvincia.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbProvincia.setForeground(Color.LIGHT_GRAY);
 		lbProvincia.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 
 		JLabel lbCP = new JLabel(messages.getString("CP"));
-		lbCP.setBounds(10, 161, 109, 22);
+		lbCP.setBounds(2, 169, 172, 22);
 		lbCP.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbCP.setForeground(Color.LIGHT_GRAY);
 		lbCP.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 
 		JLabel textCP = new JLabel(rest.getCodigoPostal());
-		textCP.setBounds(129, 160, 125, 21);
+		textCP.setBounds(184, 170, 210, 21);
 		textCP.setForeground(new Color(255, 153, 0));
 		textCP.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
 
 		JLabel lbMinusvalidos = new JLabel(messages.getString("AP"));
-		lbMinusvalidos.setBounds(10, 194, 199, 22);
+		lbMinusvalidos.setBounds(12, 202, 271, 22);
 		lbMinusvalidos.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbMinusvalidos.setForeground(Color.LIGHT_GRAY);
 		lbMinusvalidos.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 
 		JLabel textMinusvalidos= new JLabel(messages.getString("NO"));
-		textMinusvalidos.setBounds(219, 192, 212, 21);
+		textMinusvalidos.setBounds(308, 203, 189, 21);
 		if(rest.getMinusvalidoApto()){
 			textMinusvalidos.setText(messages.getString("SI"));
 		}else{
@@ -444,9 +444,9 @@ public class ptnRestaurante extends JFrame {
 		frame.getContentPane().add(btnCerrarsesion);
 
 
-		JButton button = new JButton(messages.getString("VolverMenuPrincipal"));
-		button.setFocusable(false);
-		button.addActionListener(new ActionListener() {
+		JButton btnMenuPrincipal = new JButton(messages.getString("VolverMenuPrincipal"));
+		btnMenuPrincipal.setFocusable(false);
+		btnMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(clie!=null){
 					MenuCliente menuclie=new MenuCliente(clie, messages);
@@ -457,32 +457,35 @@ public class ptnRestaurante extends JFrame {
 
 			}
 		});
-		button.setForeground(Color.WHITE);
-		button.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-		button.setBackground(new Color(255, 153, 0));
-		button.setBounds(31, 623, 171, 23);
-		frame.getContentPane().add(button);
+		btnMenuPrincipal.setForeground(Color.WHITE);
+		btnMenuPrincipal.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
+		btnMenuPrincipal.setBackground(new Color(255, 153, 0));
+		btnMenuPrincipal.setBounds(31, 623, 171, 23);
+		frame.getContentPane().add(btnMenuPrincipal);
 
 
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ptnRestaurante.class.getResource("/Imagen/TituloPEQUE.png")));
 		label.setBounds(-11, 19, 393, 79);
 		frame.getContentPane().add(label);
-
-		JButton btnVolverBusqueda = new JButton("Volver a la b\u00FAsqueda");
-		btnVolverBusqueda.setBounds(212, 623, 89, 23);
+		
+		JButton btnVolverBusqueda = new JButton(messages.getString("VolverBusqueda"));
+		btnVolverBusqueda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			    BuscarRestaurante buscarrestaurante=new BuscarRestaurante(clie, messages);
+			    frame.dispose();
+			}
+		});
+		btnVolverBusqueda.setForeground(Color.WHITE);
+		btnVolverBusqueda.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
+		btnVolverBusqueda.setFocusable(false);
+		btnVolverBusqueda.setBackground(new Color(255, 153, 0));
+		btnVolverBusqueda.setBounds(227, 623, 271, 23);
 		frame.getContentPane().add(btnVolverBusqueda);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-		btnVolverBusqueda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				frame.dispose();
-				frameBusqueda.setEnabled(true);
-				frameBusqueda.setVisible(true);
-			}
-		});
 
 	}
 
