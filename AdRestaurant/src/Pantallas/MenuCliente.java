@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -30,7 +31,7 @@ import Clases.Restaurante;
 
 import javax.swing.SwingConstants;
 
-public class MenuCliente {
+public class MenuCliente{
 
 	private JFrame frame;
 	Cliente clie;
@@ -39,6 +40,7 @@ public class MenuCliente {
 	static Locale currentLocale;
 	static ResourceBundle messages;
 
+	
 	/**
 	 *  Create the application.
 	 */
@@ -210,14 +212,14 @@ public class MenuCliente {
 		lblnomUser.setBounds(500, 33, 239, 64);
 		frame.getContentPane().add(lblnomUser);
 
-		JLabel lblBienvenido = new JLabel("TRADUCIR ESTO");//messages.getString("Bienvenido"));
+		JLabel lblBienvenido = new JLabel(messages.getString("WLCOME1"));
 		lblBienvenido.setForeground(Color.WHITE);
 		lblBienvenido.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBienvenido.setBackground(Color.YELLOW);
 		lblBienvenido.setBounds(379, 33, 128, 64);
 		frame.getContentPane().add(lblBienvenido);
 
-		JButton btnCerrarsesion = new JButton("TRADUCIR ESTO");//messages.getString("CerrarSesion"));
+		JButton btnCerrarsesion = new JButton(messages.getString("CerrarSesion"));
 		btnCerrarsesion.setFocusable(false);
 		btnCerrarsesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnCerrarsesion.addActionListener(new ActionListener() {
