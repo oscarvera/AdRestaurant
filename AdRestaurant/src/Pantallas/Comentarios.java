@@ -26,6 +26,7 @@ import javax.swing.AbstractListModel;
 
 import Clases.Cliente;
 import javax.swing.SwingConstants;
+import javax.swing.JScrollPane;
 
 public class Comentarios extends JFrame {
 
@@ -93,31 +94,28 @@ public class Comentarios extends JFrame {
 			}
 		});
 		
-		JList list = new JList();
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Aqui", "los ", "restaurantes", "listados", "todos", "y", "cada", "uno", "de", "ellos"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
+		JScrollPane scrollPane = new JScrollPane();
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-					.addContainerGap(23, Short.MAX_VALUE)
-					.addComponent(list, GroupLayout.PREFERRED_SIZE, 846, GroupLayout.PREFERRED_SIZE)
-					.addGap(26))
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(21)
-					.addComponent(list, GroupLayout.PREFERRED_SIZE, 439, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(21, Short.MAX_VALUE))
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+					.addContainerGap())
 		);
+		
+		/**
+		 * Lista de comentarios hechos por el cliente.
+		 */
+		JList list = new JList();
+		scrollPane.setViewportView(list);
 		panel.setLayout(gl_panel);
 		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
@@ -172,5 +170,4 @@ public class Comentarios extends JFrame {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-
 }

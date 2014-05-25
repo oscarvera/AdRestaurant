@@ -215,7 +215,8 @@ public class BuscarRestaurante extends JFrame{
 		            restauranteSeleccionado = new Restaurante(restauranteSelec.getCodigo(), clie.getConexionConsulta());
 		            ptnRestaurante datosRestaurante = new ptnRestaurante(clie, restauranteSeleccionado, messages);
 		            datosRestaurante.setFrameBusqueda(frame);
-		            frame.setEnabled(false);
+		            //frame.setEnabled(false);
+		            frame.dispose();
 		        }    
 		    }
 		});
@@ -551,16 +552,16 @@ public class BuscarRestaurante extends JFrame{
 		//Contamos el número de filtos activados para la búsqueda.
 		boolean primeraConsulta=true;
 		this.consulta = "SELECT nombre, direccion, poblacion, tipo, codigoRestaurante FROM Restaurantes";
-		if(!this.textDireccion.getText().equals("Dirección")||!this.textCP.getText().equals("Codigo Postal")
-			||!this.textNombre.getText().equals("Nombre")||this.comboTipo.getSelectedIndex()!=0){
+		if(!this.textDireccion.getText().equals(messages.getString("Direccion1"))||!this.textCP.getText().equals(messages.getString("CP1"))
+			||!this.textNombre.getText().equals(messages.getString("Nombre1"))||this.comboTipo.getSelectedIndex()!=0){
 				this.consulta = consulta+" WHERE";
-			if(!this.textDireccion.getText().equals("Dirección")){
+			if(!this.textDireccion.getText().equals(messages.getString("Direccion1"))){
 				if(primeraConsulta){
 					this.consulta = this.consulta+" Direccion LIKE '%"+this.textDireccion.getText()+"%'";
 					primeraConsulta=false;
 				}
 			}
-			if(!this.textCP.getText().equals("Codigo Postal")){
+			if(!this.textCP.getText().equals(messages.getString("CP1"))){
 				if(primeraConsulta){
 					this.consulta = this.consulta+" codigoPostal="+this.textCP.getText()+"";
 					primeraConsulta=false;
@@ -569,7 +570,7 @@ public class BuscarRestaurante extends JFrame{
 					this.consulta = this.consulta+" AND codigoPostal="+this.textCP.getText()+"";
 				}
 			}
-			if(!this.textNombre.getText().equals("Nombre")){
+			if(!this.textNombre.getText().equals(messages.getString("Nombre1"))){
 				if(primeraConsulta){
 					this.consulta = this.consulta+" Nombre LIKE '%"+this.textNombre.getText()+"%'";
 					primeraConsulta=false;
