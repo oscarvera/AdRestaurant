@@ -39,6 +39,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import BBDD.Consulta;
 import Clases.Cliente;
 import Clases.Restaurante;
 
@@ -123,7 +124,8 @@ public class ptnReservasRestaurante extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Salir salir=new Salir(messages);
+				Consulta c= rest.getConexionConsulta();
+				Salir salir=new Salir(messages, c);
 
 			}
 		});

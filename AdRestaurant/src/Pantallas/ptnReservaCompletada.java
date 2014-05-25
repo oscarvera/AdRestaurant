@@ -90,7 +90,7 @@ public class ptnReservaCompletada extends JPanel{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Salir salir=new Salir(messages);
+				Salir salir=new Salir(messages, clie);
 
 			}
 		});
@@ -126,7 +126,7 @@ public class ptnReservaCompletada extends JPanel{
 		btnIniciarSesion.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ptnRestaurante resta=new ptnRestaurante(clie, rest, messages);
+				new MenuCliente(clie, messages);
 				frame.dispose();
 			}
 		});

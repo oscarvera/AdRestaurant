@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
+import BBDD.Consulta;
 import Clases.Restaurante;
 
 public class ptnMenuRestaurante extends JFrame {
@@ -111,8 +112,8 @@ public class ptnMenuRestaurante extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Salir salir=new Salir(messages);
-
+				Consulta c = rest.getConexionConsulta();
+				Salir salir=new Salir(messages, c);
 			}
 		});
 		

@@ -158,7 +158,7 @@ public class Registro extends JPanel{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Salir salir=new Salir(messages);
+				Salir salir=new Salir(messages, consulta);
 			}
 		});
 	}
@@ -916,7 +916,7 @@ public class Registro extends JPanel{
 			aviso.setVisible(true);
 			frame.setEnabled(false);
 		}else{
-			RegistroCompleto regCom=new RegistroCompleto(messages);
+			RegistroCompleto regCom=new RegistroCompleto(messages, consulta);
 			Cliente c = new Cliente(this.textNombre.getText(), this.textApellido1.getText(), this.textApellido2.getText(), 
 					this.textNomUser.getText(), this.passUser.getPassword(), this.textTelefono.getText(), this.textEmail.getText(), consulta);
 			frame.dispose();
@@ -1009,7 +1009,7 @@ public class Registro extends JPanel{
 			aviso.setVisible(true);
 			frame.setEnabled(false);
 		}else{
-			RegistroCompleto regCom=new RegistroCompleto(messages);
+			RegistroCompleto regCom=new RegistroCompleto(messages, consulta);
 			Restaurante r = new Restaurante(this.textNomUserRest.getText(),this.pwdContraRest.getPassword(),this.textNombreRest.getText(),this.comboTipoRest.getSelectedItem().toString(),this.textTelefonoRest.getText(),this.textDireccionRest.getText(),this.textPoblacionRest.getText(), this.textProvinciaRest.getText(),this.textCodPostRest.getText(),aptoMinusvalido, this.consulta);
 			frame.dispose();
 		}

@@ -25,18 +25,21 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
+import BBDD.Consulta;
+
 
 public class RegistroCompleto extends JPanel{
 
 	private JFrame frame;
-	
+	private Consulta consulta;
 	Locale currentLocale;
     ResourceBundle messages;
 	/**
 	 * Create the application.
 	 */
-	public RegistroCompleto(ResourceBundle messages) {
+	public RegistroCompleto(ResourceBundle messages, Consulta c) {
 		this.messages=messages;
+		this.consulta=c;
 		initialize();
 	}
 
@@ -136,7 +139,7 @@ public class RegistroCompleto extends JPanel{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Salir salir=new Salir(messages);
+				Salir salir=new Salir(messages, consulta);
 
 			}
 		});

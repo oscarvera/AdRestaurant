@@ -34,14 +34,14 @@ public class Reserva {
 		this.usuarioReserva=user;
 		this.fechaCreacion=fechaCrea;
 		this.conexionConsulta=c;
-		this.conexion=conexionConsulta.getConexion();
+		this.conexion=this.conexionConsulta.getConexion();
 		this.recibirReserva();
 		//consultar hora fechaReserva verificación realizacion
 	}
 	
 	//Reserva no creada. Para creacion.
 	
-	public Reserva(Restaurante Rest, Cliente user, String fechaReserva, String hora, int personas){
+	public Reserva(Restaurante Rest, Cliente user, String fechaReserva, String hora, int personas, Consulta c){
 		this.rest=Rest;
 		this.usuarioReserva=user;
 		this.fechaReserva=fechaReserva;
@@ -51,6 +51,7 @@ public class Reserva {
 		this.realizacion=false;
 		
 		//creacion de la consulta
+		this.conexionConsulta=c;
 		this.conexion=this.conexionConsulta.getConexion();
 		this.insertarReserva();
 	}

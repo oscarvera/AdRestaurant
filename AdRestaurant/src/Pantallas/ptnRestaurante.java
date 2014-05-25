@@ -131,7 +131,7 @@ public class ptnRestaurante extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Salir salir=new Salir(messages);
+				Salir salir=new Salir(messages, clie);
 
 			}
 		});

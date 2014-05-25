@@ -102,7 +102,7 @@ public class ptnCrearReserva extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Salir salir=new Salir(messages);
+				Salir salir=new Salir(messages, clie);
 
 			}
 		});
@@ -306,7 +306,7 @@ public class ptnCrearReserva extends JFrame {
 				String hora=""+Hora_hora.getValue()+":"+Hora_minutos.getValue()+":00";
 				int personas=(Integer) Personas.getValue();
 				System.out.println(""+Personas.getValue());
-				Reserva reserva=new Reserva(rest, clie, fechaReserva, hora, personas);
+				Reserva reserva=new Reserva(rest, clie, fechaReserva, hora, personas, clie.getConexionConsulta());
 				ptnReservaCompletada compl=new ptnReservaCompletada(clie, rest, messages);
 				frame.dispose();
 				//Comprobar campos

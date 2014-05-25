@@ -40,25 +40,27 @@ public class Salir extends JPanel{
 	private JFrame frame;
 	private JButton btnSi;
 	private JButton btnNo;
-	Cliente clie;
-
+	private Cliente clie;
+	private Consulta consulta;
 	static Locale currentLocale;
 	static ResourceBundle messages;
 
 	/**
 	 * Create the application.
 	 */
-	public Salir(Cliente c, ResourceBundle messages) {
+	public Salir(ResourceBundle messages, Cliente c) {
 		this.messages=messages;
 		clie=c;
 		initialize();
+		this.consulta=clie.getConexionConsulta();
 	}
 	/**
 	 * @wbp.parser.constructor
 	 */
-	public Salir(ResourceBundle messages) {
+	public Salir(ResourceBundle messages, Consulta c) {
 		this.messages=messages;
 		initialize();
+		this.consulta=c;
 	}
 
 	/**
@@ -124,6 +126,7 @@ public class Salir extends JPanel{
 		btnSi.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
 		btnSi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				consulta.cerrarConexion();
 				System.exit(0);
 			}
 		});
