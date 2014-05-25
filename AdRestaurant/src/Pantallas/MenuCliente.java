@@ -35,6 +35,7 @@ public class MenuCliente {
 	private JFrame frame;
 	Cliente clie;
 	Restaurante restaurante;
+	
 	static Locale currentLocale;
     static ResourceBundle messages;
 
@@ -42,8 +43,8 @@ public class MenuCliente {
 	 *  Create the application.
 	 */
 	public MenuCliente(Cliente clie, ResourceBundle messages) {
-		this.clie=clie;
 		this.messages=messages;
+		this.clie=clie;
 		initialize();
 	}
 
@@ -64,6 +65,7 @@ public class MenuCliente {
 		botonX();
 		botonesMenuCliente();
 	}
+	
 	public void botonX(){
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
@@ -107,8 +109,6 @@ public class MenuCliente {
 		panel.setBounds(0, 94, 895, 481);
 		frame.getContentPane().add(panel);
 		
-		
-		
 		JButton btnBuscarRestaurante = new JButton("Buscar Restaurante");
 		btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1ES.png")));
 		btnBuscarRestaurante.addActionListener(new ActionListener() {
@@ -120,8 +120,8 @@ public class MenuCliente {
 		
 		
 		
-		JButton button = new JButton("New button");
-		button.addActionListener(new ActionListener() {
+		JButton btnComentarios = new JButton("");
+		btnComentarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Comentarios comen=new Comentarios(clie, messages);
 				frame.dispose();
@@ -130,8 +130,8 @@ public class MenuCliente {
 		
 		//button.setIcon(new ImageIcon("C:\\Users\\dam1\\Desktop\\boton2.png"));
 		
-		JButton button_1 = new JButton("New button");
-		button_1.addActionListener(new ActionListener() {
+		JButton btnBuscarReservas = new JButton("");
+		btnBuscarReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ptnBuscarReservas reser=new ptnBuscarReservas(clie,messages);
 				frame.dispose();
@@ -159,13 +159,13 @@ public class MenuCliente {
 							.addGap(99)
 							.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 464, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(btnBuscarReservas, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)))
 					.addGap(101))
 				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
 					.addGap(91)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnPerfil, GroupLayout.PREFERRED_SIZE, 702, GroupLayout.PREFERRED_SIZE)
-						.addComponent(button, GroupLayout.PREFERRED_SIZE, 711, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnComentarios, GroupLayout.PREFERRED_SIZE, 711, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(93, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
@@ -173,14 +173,14 @@ public class MenuCliente {
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(22)
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(button_1, 0, 0, Short.MAX_VALUE)
+						.addComponent(btnBuscarReservas, 0, 0, Short.MAX_VALUE)
 						.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 190, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(label_1)
 						.addComponent(btnPerfil, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(button, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnComentarios, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
 					.addGap(22))
 		);
 		panel.setLayout(gl_panel);
@@ -188,18 +188,18 @@ public class MenuCliente {
 		if(messages.getLocale().getLanguage().equals("es")){
 			btnPerfil.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/1perfilES.png")));
 			btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1ES.png")));
-			button.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/ComentsBoton.png")));
-			button_1.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasES.png")));
+			btnComentarios.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/ComentsBoton.png")));
+			btnBuscarReservas.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasES.png")));
 		}else if (messages.getLocale().getLanguage().equals("en")) {
 			btnPerfil.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/1perfilEN.png")));
 			btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1EN.png")));
-			button.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonComentariosEN.png")));
-			button_1.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasEN.png")));
+			btnComentarios.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonComentariosEN.png")));
+			btnBuscarReservas.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasEN.png")));
 		}else if (messages.getLocale().getLanguage().equals("ca")) {
 			btnPerfil.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/1perfilCA.png")));
 			btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1CA.png")));
-			button.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonComentariosCA.png")));
-			button_1.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasCA.png")));
+			btnComentarios.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonComentariosCA.png")));
+			btnBuscarReservas.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasCA.png")));
 		}
 		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
@@ -210,14 +210,14 @@ public class MenuCliente {
 		lblnomUser.setBounds(500, 33, 239, 64);
 		frame.getContentPane().add(lblnomUser);
 		
-		JLabel lblBienvenido = new JLabel("Bienvenido");
+		JLabel lblBienvenido = new JLabel("TRADUCIR ESTO");//messages.getString("Bienvenido"));
 		lblBienvenido.setForeground(Color.WHITE);
 		lblBienvenido.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBienvenido.setBackground(Color.YELLOW);
-		lblBienvenido.setBounds(379, 33, 86, 64);
+		lblBienvenido.setBounds(379, 33, 128, 64);
 		frame.getContentPane().add(lblBienvenido);
 		
-		JButton btnCerrarsesion = new JButton("Cerrar Sesi\u00F3n");
+		JButton btnCerrarsesion = new JButton("TRADUCIR ESTO");//messages.getString("CerrarSesion"));
 		btnCerrarsesion.setFocusable(false);
 		btnCerrarsesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnCerrarsesion.addActionListener(new ActionListener() {

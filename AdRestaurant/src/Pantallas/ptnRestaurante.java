@@ -480,7 +480,7 @@ public class ptnRestaurante extends JFrame {
 		btnVolverBusqueda.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnVolverBusqueda.setFocusable(false);
 		btnVolverBusqueda.setBackground(new Color(255, 153, 0));
-		btnVolverBusqueda.setBounds(227, 623, 271, 23);
+		btnVolverBusqueda.setBounds(211, 623, 271, 23);
 		frame.getContentPane().add(btnVolverBusqueda);
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
