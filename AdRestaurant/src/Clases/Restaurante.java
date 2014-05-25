@@ -35,7 +35,7 @@ public class Restaurante {
 	
 	//Constructor para el registro de un nuevo restaurante:
 		public Restaurante(String nombreUsuario, char[] contraseña, String nombre, String tipo, String telf, String direccion, 
-				String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto){
+				String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto, Consulta c){
 			 //BufferedImage foto1, BufferedImage foto2
 			this.nombreUsuario=nombreUsuario;
 			this.contraseña=contraseña;
@@ -49,6 +49,7 @@ public class Restaurante {
 			this.minusvalidoApto=minusvalidoApto;
 			//foto1=this.foto1;
 			//foto2=this.foto2;
+			this.conexionConsulta=c;
 			this.conexion=conexionConsulta.getConexion();
 			insertarRestaurante();
 		}
@@ -56,15 +57,17 @@ public class Restaurante {
 		//Constructor para consultar restaurantes:
 		
 			//Constructor desde lista
-			public Restaurante(int codigo){
+			public Restaurante(int codigo, Consulta c){
 				this.codigoRestaurante=codigo;
+				this.conexionConsulta=c;
 				this.conexion=conexionConsulta.getConexion();
 				loginRestaurante();
 			}
 			
 			//Constructor desde ingreso
-			public Restaurante(String nombreUsuario){
+			public Restaurante(String nombreUsuario, Consulta c){
 				this.nombreUsuario=nombreUsuario;
+				this.conexionConsulta=c;
 				this.conexion=conexionConsulta.getConexion();
 				loginRestauranteIngreso();
 			}

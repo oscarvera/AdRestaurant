@@ -170,7 +170,7 @@ public class Ingreso extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				Registro regCli=new Registro(messages);
 				frame.dispose();
-
+				regCli.setConsulta(consulta);
 			}
 		});
 
@@ -205,21 +205,19 @@ public class Ingreso extends JPanel{
 		btnIngresar.setBackground(new Color(255, 255, 255));
 		btnIngresar.setForeground(new Color(255, 153, 51));
 		btnIngresar.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
+		this.consulta = new Consulta(messages);
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Pasamos el usuario y la contraseña a Consulta para que los compruebe
-				consulta = new Consulta(messages);
 				if(consulta.loginCliente(textLabelUser.getText(), textLabelPass.getPassword())&&(consulta.esRestaurante()==false)){
 					Cliente clie;
-					clie=new Clases.Cliente(textLabelUser.getText());
-					clie.setConexionConsulta(consulta);
+					clie=new Clases.Cliente(textLabelUser.getText(), consulta);
 					MenuCliente menuclie=new MenuCliente(clie, messages);
 					frame.dispose();
 				}else{
 					System.out.println(""+consulta.esRestaurante());
 					if(consulta.esRestaurante()){
-						Restaurante rest=new Restaurante(textLabelUser.getText());
-						rest.setConexionConsulta(consulta);
+						Restaurante rest=new Restaurante(textLabelUser.getText(), consulta);
 						System.out.println(""+rest.getNombre());
 						ptnMenuRestaurante menuRest=new ptnMenuRestaurante(rest, messages);
 						frame.dispose();

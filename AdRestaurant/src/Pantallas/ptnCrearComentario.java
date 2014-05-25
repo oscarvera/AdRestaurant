@@ -197,7 +197,7 @@ public class ptnCrearComentario extends JFrame {
 		btnReservar.setFocusable(false);
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Comentario comentario=new Comentario(rest, clie,textComentario.getText());
+				Comentario comentario=new Comentario(rest, clie,textComentario.getText(), clie.getConexionConsulta());
 				ptnComentarioCompletado comple=new ptnComentarioCompletado(clie, rest, messages);
 				frame.dispose();
 				//Comprobar campos

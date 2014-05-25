@@ -29,11 +29,12 @@ public class Reserva {
 	
 	//Reserva ya creada. Para consulta
 	
-	public Reserva(Restaurante nomRest, Cliente user,String fechaCrea){
+	public Reserva(Restaurante nomRest, Cliente user,String fechaCrea, Consulta c){
 		this.rest=nomRest;
 		this.usuarioReserva=user;
 		this.fechaCreacion=fechaCrea;
-		this.conexion=this.conexionConsulta.getConexion();
+		this.conexionConsulta=c;
+		this.conexion=conexionConsulta.getConexion();
 		this.recibirReserva();
 		//consultar hora fechaReserva verificación realizacion
 	}

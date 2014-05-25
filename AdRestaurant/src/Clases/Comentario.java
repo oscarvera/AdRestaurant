@@ -36,13 +36,14 @@ public class Comentario {
 	
 	//Reserva no creada. Para creacion.
 	
-	public Comentario(Restaurante rest, Cliente user, String comentari){
+	public Comentario(Restaurante rest, Cliente user, String comentari, Consulta c){
 		this.rest=rest;
 		this.user=user;
 		this.txtComentario=comentari;
 		
 		//Creacion de la consulta 
-		this.conexion=this.conexionConsulta.getConexion();
+		this.conexionConsulta=c;
+		this.conexion=conexionConsulta.getConexion();
 		this.insertarComentario();
 	}
 	

@@ -24,13 +24,14 @@ public class Cliente {
 	private int resultadoActualizacionBD;
 	private Consulta conexionConsulta;
 	
-	public Cliente(String usua){
+	public Cliente(String usua, Consulta c){
 		this.usuario=usua;
+		this.conexionConsulta=c;
 		this.conexion=conexionConsulta.getConexion();
 		loginCliente();
 	}
 	
-	public Cliente(String nombre, String primerApellido, String segundoApellido, String usuario, char[] contraseña, String telefono, String email){
+	public Cliente(String nombre, String primerApellido, String segundoApellido, String usuario, char[] contraseña, String telefono, String email, Consulta c){
 		this.nombre=nombre;
 		this.primerApellido=primerApellido;
 		this.segundoApellido=segundoApellido;
@@ -38,6 +39,7 @@ public class Cliente {
 		this.contraseña=contraseña;
 		this.telefono=telefono;
 		this.email=email;
+		this.conexionConsulta=c;
 		this.conexion=conexionConsulta.getConexion();
 		insertarCliente();
 	}

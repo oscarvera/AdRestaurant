@@ -77,7 +77,7 @@ public class InfoRestaurante extends JPanel  {
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 							.addComponent(etiqueta_nombre, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 							.addComponent(etiqueta_tipo, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(253, Short.MAX_VALUE))
+					.addContainerGap(0, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 		

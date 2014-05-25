@@ -14,7 +14,7 @@ public class Consulta {
 
 	private ResourceBundle messages;
 	private PreparedStatement stmt;
-	static Connection conexion;
+	private Connection conexion;
 	private String consulta;
 	private ResultSet resultadoConsulta;
 	int resultadoActualizacionBD;

@@ -47,6 +47,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import BBDD.Consulta;
 import Clases.Cliente;
 import Clases.Restaurante;
 
@@ -68,6 +69,7 @@ public class Registro extends JPanel{
 	private Registro registro;
 	private Border borde;
 	private FocusListener focus;
+	private Consulta consulta;
 
 	private JButton btnRegRest;
 	private JTextField textNomUserRest;
@@ -916,7 +918,7 @@ public class Registro extends JPanel{
 		}else{
 			RegistroCompleto regCom=new RegistroCompleto(messages);
 			Cliente c = new Cliente(this.textNombre.getText(), this.textApellido1.getText(), this.textApellido2.getText(), 
-					this.textNomUser.getText(), this.passUser.getPassword(), this.textTelefono.getText(), this.textEmail.getText());
+					this.textNomUser.getText(), this.passUser.getPassword(), this.textTelefono.getText(), this.textEmail.getText(), consulta);
 			frame.dispose();
 		}
 	}
@@ -1008,7 +1010,7 @@ public class Registro extends JPanel{
 			frame.setEnabled(false);
 		}else{
 			RegistroCompleto regCom=new RegistroCompleto(messages);
-			Restaurante r = new Restaurante(this.textNomUserRest.getText(),this.pwdContraRest.getPassword(),this.textNombreRest.getText(),this.comboTipoRest.getSelectedItem().toString(),this.textTelefonoRest.getText(),this.textDireccionRest.getText(),this.textPoblacionRest.getText(), this.textProvinciaRest.getText(),this.textCodPostRest.getText(),aptoMinusvalido);
+			Restaurante r = new Restaurante(this.textNomUserRest.getText(),this.pwdContraRest.getPassword(),this.textNombreRest.getText(),this.comboTipoRest.getSelectedItem().toString(),this.textTelefonoRest.getText(),this.textDireccionRest.getText(),this.textPoblacionRest.getText(), this.textProvinciaRest.getText(),this.textCodPostRest.getText(),aptoMinusvalido, this.consulta);
 			frame.dispose();
 		}
 	}
@@ -1018,6 +1020,10 @@ public class Registro extends JPanel{
 	 */
 	public void activaRegistro(){
 		frame.setEnabled(true);
+	}
+	
+	public void setConsulta(Consulta c){
+		this.consulta=c;
 	}
 }
 
