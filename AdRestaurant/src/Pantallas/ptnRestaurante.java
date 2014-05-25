@@ -94,46 +94,57 @@ public class ptnRestaurante extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
+		botonX();
+		botonesptnRestaurante();
+	}
+	/**
+	 *Botón X para Salir de la aplicación con pequeño JPanel Blanco
+	 */
+		public void botonX(){
+			JPanel panel_1 = new JPanel();
+			panel_1.setBackground(Color.WHITE);
+			panel_1.setBounds(0, 0, 895, 22);
+			frame.getContentPane().add(panel_1);
+			panel_1.setLayout(null);
+
+			JLabel cerrarImage = new JLabel("");
+			cerrarImage.setBounds(870, 0, 25, 22);
+			cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
+			panel_1.add(cerrarImage);
+			cerrarImage.addMouseListener(new MouseListener() {
+
+				@Override
+				public void mouseReleased(MouseEvent arg0) {
+				}
+
+				@Override
+				public void mousePressed(MouseEvent arg0) {
+				}
+
+				@Override
+				public void mouseExited(MouseEvent arg0) {
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent arg0) {
+				}
+
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					Salir salir=new Salir(messages);
+
+				}
+			});
+		}
 		
+		/**
+		 * Todos los botones de la pantalla ptnRestaurante
+		 */
+		public void botonesptnRestaurante(){
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 94, 895, 529);
 		frame.getContentPane().add(panel);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(0, 0, 895, 22);
-		frame.getContentPane().add(panel_1);
-		panel_1.setLayout(null);
-
-		JLabel cerrarImage = new JLabel("");
-		cerrarImage.setBounds(870, 0, 25, 22);
-		cerrarImage.setIcon(new ImageIcon(Ingreso.class.getResource("/Imagen/botonX.png")));
-		panel_1.add(cerrarImage);
-		cerrarImage.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Salir salir=new Salir(messages);
-
-			}
-		});
 		
 		JLabel lblNewLabel = new JLabel(rest.getNombre());
 		lblNewLabel.setBounds(42, 29, 724, 41);
