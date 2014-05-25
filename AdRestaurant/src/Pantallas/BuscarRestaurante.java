@@ -212,7 +212,7 @@ public class BuscarRestaurante extends JFrame{
 		        if (evt.getClickCount() == 2) {
 		            InfoRestaurante restauranteSelec = (InfoRestaurante) list.getSelectedValue();
 		            restauranteSeleccionado = new Restaurante(restauranteSelec.getCodigo());
-		            ptnRestaurante datosRestaurante = new ptnRestaurante(restauranteSeleccionado, messages);
+		            ptnRestaurante datosRestaurante = new ptnRestaurante(clie, restauranteSeleccionado, messages);
 		            datosRestaurante.setFrameBusqueda(frame);
 		            frame.setEnabled(false);
 		        }    

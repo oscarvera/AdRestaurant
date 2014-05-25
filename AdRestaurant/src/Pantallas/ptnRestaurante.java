@@ -60,7 +60,7 @@ public class ptnRestaurante extends JFrame {
 	 */
     
     /**
-     * Constructor desde menu cliente
+     * Constructor desde menu cliente o desde lista
      * @param clie
      * @param rest
      * @param messages
@@ -72,7 +72,7 @@ public class ptnRestaurante extends JFrame {
 		iniciar();
 	}
 	/**
-	 * Constructor desde menu restaurante o desde lista
+	 * Constructor desde menu restaurante 
 	 * @param rest
 	 * @param messages
 	 * @wbp.parser.constructor
