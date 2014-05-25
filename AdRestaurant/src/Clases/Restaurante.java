@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import BBDD.Consulta;
+
 
 public class Restaurante {
 	
@@ -29,6 +31,7 @@ public class Restaurante {
 	private String consulta;
 	private ResultSet resultadoConsulta;
 	private int resultadoActualizacionBD;
+	private Consulta conexionConsulta;
 	
 	//Constructor para el registro de un nuevo restaurante:
 		public Restaurante(String nombreUsuario, char[] contraseña, String nombre, String tipo, String telf, String direccion, 
@@ -46,8 +49,7 @@ public class Restaurante {
 			this.minusvalidoApto=minusvalidoApto;
 			//foto1=this.foto1;
 			//foto2=this.foto2;
-			conectar();
-			prepararConsulta();
+			this.conexion=conexionConsulta.getConexion();
 			insertarRestaurante();
 		}
 		
@@ -56,16 +58,14 @@ public class Restaurante {
 			//Constructor desde lista
 			public Restaurante(int codigo){
 				this.codigoRestaurante=codigo;
-				conectar();
-				prepararConsulta();
+				this.conexion=conexionConsulta.getConexion();
 				loginRestaurante();
 			}
 			
 			//Constructor desde ingreso
 			public Restaurante(String nombreUsuario){
 				this.nombreUsuario=nombreUsuario;
-				conectar();
-				prepararConsulta();
+				this.conexion=conexionConsulta.getConexion();
 				loginRestauranteIngreso();
 			}
 
@@ -135,34 +135,34 @@ public class Restaurante {
 				
 			}
 			
-			public void conectar(){
-				//Cargamos el driver
-				try{
-					Class.forName("com.mysql.jdbc.Driver");
-				}catch(ClassNotFoundException cnfe){
-					cnfe.printStackTrace();
-				}
-						
-				//Abrimos una conexión
-				this.conexion=null;
-				try {
-					//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
-					//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
-					String user = "adrestaurant";
-					this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143/adrestaurant", user, "adrestaurant");
-					conexion.setAutoCommit(true);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			
-			public void prepararConsulta(){ 
-				//Inicializamos la variable que contendrá el resultado
-				this.resultadoConsulta=null;
-			
-				//Inicializamos el PreparedStatement para manejar la consulta (mejor que el Statement normal)
-				this.stmt=null;
-			}
+//			public void conectar(){
+//				//Cargamos el driver
+//				try{
+//					Class.forName("com.mysql.jdbc.Driver");
+//				}catch(ClassNotFoundException cnfe){
+//					cnfe.printStackTrace();
+//				}
+//						
+//				//Abrimos una conexión
+//				this.conexion=null;
+//				try {
+//					//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
+//					//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
+//					String user = "adrestaurant";
+//					this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143/adrestaurant", user, "adrestaurant");
+//					conexion.setAutoCommit(true);
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//			
+//			public void prepararConsulta(){ 
+//				//Inicializamos la variable que contendrá el resultado
+//				this.resultadoConsulta=null;
+//			
+//				//Inicializamos el PreparedStatement para manejar la consulta (mejor que el Statement normal)
+//				this.stmt=null;
+//			}
 			
 			public void insertarRestaurante(){
 				//Escribimos la consulta SQL en la variable consulta -->De momento, las fotos se quedan fuera:
@@ -305,6 +305,14 @@ public class Restaurante {
 
 			public void setNombreUsuario(String nombreUsuario) {
 				this.nombreUsuario = nombreUsuario;
+			}
+
+			public Consulta getConexionConsulta() {
+				return conexionConsulta;
+			}
+
+			public void setConexionConsulta(Consulta conexionConsulta) {
+				this.conexionConsulta = conexionConsulta;
 			}
 			
 

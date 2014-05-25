@@ -24,7 +24,6 @@ public class Consulta {
 	public Consulta(ResourceBundle messages){
 		this.messages=messages;
 		conectar();
-		prepararConsulta();
 	}	
 
 	/**
@@ -50,18 +49,23 @@ public class Consulta {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-	
-
-	/**
-	 * Inicializa las variables necesarias para una nueva consulta.
-	 */
-	public void prepararConsulta(){ 
+		
 		//Inicializamos la variable que contendrá el resultado
-		this.resultadoConsulta=null;
+			this.resultadoConsulta=null;
 
 		//Inicializamos el PreparedStatement para manejar la consulta (mejor que el Statement normal)
-		this.stmt=null;
+			this.stmt=null;
+	}
+	
+	/**
+	 * Cierra la conexión
+	 */
+	public void cerrarConexion(){
+		try {
+			conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -138,5 +142,9 @@ public class Consulta {
 
 	public void setConexion(Connection conexion) {
 		this.conexion = conexion;
+	}
+	
+	public Consulta getconsulta(){
+		return this;
 	}
 }

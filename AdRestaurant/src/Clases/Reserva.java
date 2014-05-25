@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import BBDD.Consulta;
+
 public class Reserva {
 	
 	int codReserva;
@@ -23,6 +25,7 @@ public class Reserva {
 	private String consulta;
 	private ResultSet resultadoConsulta;
 	private int resultadoActualizacionBD;
+	private Consulta conexionConsulta;
 	
 	//Reserva ya creada. Para consulta
 	
@@ -30,9 +33,7 @@ public class Reserva {
 		this.rest=nomRest;
 		this.usuarioReserva=user;
 		this.fechaCreacion=fechaCrea;
-		
-		this.conectar();
-		this.prepararConsulta();
+		this.conexion=this.conexionConsulta.getConexion();
 		this.recibirReserva();
 		//consultar hora fechaReserva verificación realizacion
 	}
@@ -49,10 +50,7 @@ public class Reserva {
 		this.realizacion=false;
 		
 		//creacion de la consulta
-		
-
-		this.conectar();
-		this.prepararConsulta();
+		this.conexion=this.conexionConsulta.getConexion();
 		this.insertarReserva();
 	}
 	
@@ -85,34 +83,34 @@ public class Reserva {
 		
 	}
 	
-	public void conectar(){
-		//Cargamos el driver
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-		}catch(ClassNotFoundException cnfe){
-			cnfe.printStackTrace();
-		}
-				
-		//Abrimos una conexión
-		this.conexion=null;
-		try {
-			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
-			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
-			String user = "adrestaurant";
-			this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143/adrestaurant", user, "adrestaurant");
-			conexion.setAutoCommit(true);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void prepararConsulta(){ 
-		//Inicializamos la variable que contendrá el resultado
-		this.resultadoConsulta=null;
-	
-		//Inicializamos el PreparedStatement para manejar la consulta (mejor que el Statement normal)
-		this.stmt=null;
-	}
+//	public void conectar(){
+//		//Cargamos el driver
+//		try{
+//			Class.forName("com.mysql.jdbc.Driver");
+//		}catch(ClassNotFoundException cnfe){
+//			cnfe.printStackTrace();
+//		}
+//				
+//		//Abrimos una conexión
+//		this.conexion=null;
+//		try {
+//			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
+//			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
+//			String user = "adrestaurant";
+//			this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143/adrestaurant", user, "adrestaurant");
+//			conexion.setAutoCommit(true);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	
+//	public void prepararConsulta(){ 
+//		//Inicializamos la variable que contendrá el resultado
+//		this.resultadoConsulta=null;
+//	
+//		//Inicializamos el PreparedStatement para manejar la consulta (mejor que el Statement normal)
+//		this.stmt=null;
+//	}
 	
 	
 	public void insertarReserva(){
@@ -209,6 +207,14 @@ public class Reserva {
 	public void actualizacionReserva(){
 		//Actualizacion de los datos de la consulta
 	
+	}
+
+	public Consulta getConexionConsulta() {
+		return conexionConsulta;
+	}
+
+	public void setConexionConsulta(Consulta conexionConsulta) {
+		this.conexionConsulta = conexionConsulta;
 	}
 	
 	

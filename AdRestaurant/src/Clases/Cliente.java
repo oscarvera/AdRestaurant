@@ -22,11 +22,11 @@ public class Cliente {
 	private String consulta;
 	private ResultSet resultadoConsulta;
 	private int resultadoActualizacionBD;
+	private Consulta conexionConsulta;
 	
 	public Cliente(String usua){
 		this.usuario=usua;
-		conectar();
-		prepararConsulta();
+		this.conexion=conexionConsulta.getConexion();
 		loginCliente();
 	}
 	
@@ -38,8 +38,7 @@ public class Cliente {
 		this.contraseña=contraseña;
 		this.telefono=telefono;
 		this.email=email;
-		conectar();
-		prepararConsulta();
+		this.conexion=conexionConsulta.getConexion();
 		insertarCliente();
 	}
 
@@ -108,7 +107,7 @@ public class Cliente {
 	public void loginCliente(){
 		this.consulta = "SELECT * FROM Clientes WHERE usuario=?;";
 		try {
-			this.stmt = conexion.prepareStatement(this.consulta);
+			this.stmt = this.conexion.prepareStatement(this.consulta);
 			this.stmt.setString(1, this.usuario);
 			resultadoConsulta = stmt.executeQuery();					
 			while(resultadoConsulta.next()==true){
@@ -127,34 +126,34 @@ public class Cliente {
 		
 	}
 	
-	public void conectar(){
-		//Cargamos el driver
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-		}catch(ClassNotFoundException cnfe){
-			cnfe.printStackTrace();
-		}
-				
-		//Abrimos una conexión
-		this.conexion=null;
-		try {
-			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
-			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
-			String user = "adrestaurant";
-			this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143:3306/adrestaurant", user, "adrestaurant");
-			this.conexion.setAutoCommit(true);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void prepararConsulta(){ 
-		//Inicializamos la variable que contendrá el resultado
-		this.resultadoConsulta=null;
-	
-		//Inicializamos el PreparedStatement para manejar la consulta (mejor que el Statement normal)
-		this.stmt=null;
-	}
+//	public void conectar(){
+//		//Cargamos el driver
+//		try{
+//			Class.forName("com.mysql.jdbc.Driver");
+//		}catch(ClassNotFoundException cnfe){
+//			cnfe.printStackTrace();
+//		}
+//				
+//		//Abrimos una conexión
+//		this.conexion=null;
+//		try {
+//			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
+//			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
+//			String user = "adrestaurant";
+//			this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143:3306/adrestaurant", user, "adrestaurant");
+//			this.conexion.setAutoCommit(true);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	
+//	public void prepararConsulta(){ 
+//		//Inicializamos la variable que contendrá el resultado
+//		this.resultadoConsulta=null;
+//	
+//		//Inicializamos el PreparedStatement para manejar la consulta (mejor que el Statement normal)
+//		this.stmt=null;
+//	}
 	
 	public void insertarCliente(){
 		//Escribimos la consulta SQL en la variable consulta
@@ -162,7 +161,7 @@ public class Cliente {
 				+ " VALUES (?,?,?,?,?,?,?);";
 		try{
 			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
-			this.stmt = this.conexion.prepareStatement(this.consulta);
+			this.stmt = conexion.prepareStatement(this.consulta);
 			
 			//Asignamos los campos del cliente a insertar con los campos a rellenar en las tablas (los "?").
 			stmt.setString(1, this.nombre);
@@ -188,6 +187,14 @@ public class Cliente {
 	
 	public void actualizar(){
 		loginCliente();
+	}
+
+	public Consulta getConexionConsulta() {
+		return conexionConsulta;
+	}
+
+	public void setConexionConsulta(Consulta conexionConsulta) {
+		this.conexionConsulta = conexionConsulta;
 	}
 }
 

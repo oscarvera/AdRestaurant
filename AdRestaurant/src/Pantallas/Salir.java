@@ -29,7 +29,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import BBDD.Consulta;
 import Clases.Cliente;
+
 import javax.swing.SwingConstants;
 
 
