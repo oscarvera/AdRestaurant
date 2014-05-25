@@ -27,7 +27,7 @@ public class ptnReservaCompletada extends JPanel{
 	Restaurante rest;
 	static Locale currentLocale;
 	static ResourceBundle messages;
-	
+
 	private JFrame frame;
 	/**
 	 * Create the application.
@@ -53,13 +53,13 @@ public class ptnReservaCompletada extends JPanel{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 224, 895, 160);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
-		
+		botonX();
+		botonesptnReservaCompletada();
+	}
+	/**
+	 *Botón X para Salir de la aplicación con pequeño JPanel Blanco
+	 */
+	public void botonX(){
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(0, 0, 895, 22);
@@ -94,21 +94,31 @@ public class ptnReservaCompletada extends JPanel{
 
 			}
 		});
-		
+	}
+	/**
+	 * Todos los botones de la pantalla ptnReservaCompletada
+	 */
+	public void botonesptnReservaCompletada(){
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 224, 895, 160);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+
 		JLabel ReservaCompleta = new JLabel(messages.getString("ReservaCompletada"));
 		ReservaCompleta.setForeground(new Color(255, 153, 0));
 		ReservaCompleta.setHorizontalAlignment(SwingConstants.CENTER);
 		ReservaCompleta.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 39));
 		ReservaCompleta.setBounds(0, 45, 895, 44);
 		panel.add(ReservaCompleta);
-		
+
 		JLabel lblNewLabel_2 = new JLabel(messages.getString("ReservaCreada"));
 		lblNewLabel_2.setForeground(new Color(255, 153, 0));
 		lblNewLabel_2.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(10, 89, 875, 28);
 		panel.add(lblNewLabel_2);
-		
+
 		JButton btnIniciarSesion = new JButton(messages.getString("VolverMenuPrincipal"));
 		btnIniciarSesion.setFocusable(false);
 		btnIniciarSesion.setBackground(new Color(255, 255, 255));
@@ -122,7 +132,7 @@ public class ptnReservaCompletada extends JPanel{
 		});
 		btnIniciarSesion.setBounds(316, 415, 227, 37);
 		frame.getContentPane().add(btnIniciarSesion);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(RegistroCompleto.class.getResource("/Imagen/Titulo.png")));
 		lblNewLabel_1.setBounds(90, 65, 699, 97);
