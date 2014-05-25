@@ -468,12 +468,12 @@ public class ptnRestaurante extends JFrame {
 		label.setIcon(new ImageIcon(ptnRestaurante.class.getResource("/Imagen/TituloPEQUE.png")));
 		label.setBounds(-11, 19, 393, 79);
 		frame.getContentPane().add(label);
-		
+
 		JButton btnVolverBusqueda = new JButton(messages.getString("VolverBusqueda"));
 		btnVolverBusqueda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			    BuscarRestaurante buscarrestaurante=new BuscarRestaurante(clie, messages);
-			    frame.dispose();
+				BuscarRestaurante buscarrestaurante=new BuscarRestaurante(clie, messages);
+				frame.dispose();
 			}
 		});
 		btnVolverBusqueda.setForeground(Color.WHITE);

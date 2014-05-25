@@ -35,9 +35,9 @@ public class MenuCliente {
 	private JFrame frame;
 	Cliente clie;
 	Restaurante restaurante;
-	
+
 	static Locale currentLocale;
-    static ResourceBundle messages;
+	static ResourceBundle messages;
 
 	/**
 	 *  Create the application.
@@ -65,7 +65,7 @@ public class MenuCliente {
 		botonX();
 		botonesMenuCliente();
 	}
-	
+
 	public void botonX(){
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
@@ -102,13 +102,13 @@ public class MenuCliente {
 			}
 		});
 	}
-		
-		public void botonesMenuCliente(){
+
+	public void botonesMenuCliente(){
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 94, 895, 481);
 		frame.getContentPane().add(panel);
-		
+
 		JButton btnBuscarRestaurante = new JButton("Buscar Restaurante");
 		btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1ES.png")));
 		btnBuscarRestaurante.addActionListener(new ActionListener() {
@@ -117,9 +117,9 @@ public class MenuCliente {
 				frame.dispose();
 			}
 		});
-		
-		
-		
+
+
+
 		JButton btnComentarios = new JButton("");
 		btnComentarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -127,9 +127,9 @@ public class MenuCliente {
 				frame.dispose();
 			}
 		});
-		
+
 		//button.setIcon(new ImageIcon("C:\\Users\\dam1\\Desktop\\boton2.png"));
-		
+
 		JButton btnBuscarReservas = new JButton("");
 		btnBuscarReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -137,9 +137,9 @@ public class MenuCliente {
 				frame.dispose();
 			}
 		});
-		
+
 		JLabel label_1 = new JLabel("");
-		
+
 		JButton btnPerfil = new JButton("");
 		btnPerfil.setBackground(Color.WHITE);
 		btnPerfil.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/perfil.png")));
@@ -151,40 +151,40 @@ public class MenuCliente {
 		});
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
+				gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(label_1)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(99)
-							.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 464, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnBuscarReservas, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)))
-					.addGap(101))
-				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
-					.addGap(91)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnPerfil, GroupLayout.PREFERRED_SIZE, 702, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnComentarios, GroupLayout.PREFERRED_SIZE, 711, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(93, Short.MAX_VALUE))
-		);
+						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(label_1)
+								.addGroup(gl_panel.createSequentialGroup()
+										.addGap(99)
+										.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 464, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(btnBuscarReservas, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)))
+										.addGap(101))
+										.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+												.addGap(91)
+												.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+														.addComponent(btnPerfil, GroupLayout.PREFERRED_SIZE, 702, GroupLayout.PREFERRED_SIZE)
+														.addComponent(btnComentarios, GroupLayout.PREFERRED_SIZE, 711, GroupLayout.PREFERRED_SIZE))
+														.addContainerGap(93, Short.MAX_VALUE))
+				);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+				gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(22)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnBuscarReservas, 0, 0, Short.MAX_VALUE)
-						.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 190, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(label_1)
-						.addComponent(btnPerfil, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnComentarios, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-					.addGap(22))
-		);
+						.addGap(22)
+						.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnBuscarReservas, 0, 0, Short.MAX_VALUE)
+								.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 190, Short.MAX_VALUE))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addComponent(label_1)
+										.addComponent(btnPerfil, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(btnComentarios, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+										.addGap(22))
+				);
 		panel.setLayout(gl_panel);
-		
+
 		if(messages.getLocale().getLanguage().equals("es")){
 			btnPerfil.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/1perfilES.png")));
 			btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1ES.png")));
@@ -201,7 +201,7 @@ public class MenuCliente {
 			btnComentarios.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonComentariosCA.png")));
 			btnBuscarReservas.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasCA.png")));
 		}
-		
+
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblnomUser.setForeground(Color.WHITE);
@@ -209,14 +209,14 @@ public class MenuCliente {
 		lblnomUser.setBackground(Color.YELLOW);
 		lblnomUser.setBounds(500, 33, 239, 64);
 		frame.getContentPane().add(lblnomUser);
-		
+
 		JLabel lblBienvenido = new JLabel("TRADUCIR ESTO");//messages.getString("Bienvenido"));
 		lblBienvenido.setForeground(Color.WHITE);
 		lblBienvenido.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBienvenido.setBackground(Color.YELLOW);
 		lblBienvenido.setBounds(379, 33, 128, 64);
 		frame.getContentPane().add(lblBienvenido);
-		
+
 		JButton btnCerrarsesion = new JButton("TRADUCIR ESTO");//messages.getString("CerrarSesion"));
 		btnCerrarsesion.setFocusable(false);
 		btnCerrarsesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
@@ -230,7 +230,7 @@ public class MenuCliente {
 		btnCerrarsesion.setBackground(new Color(255, 153, 51));
 		btnCerrarsesion.setBounds(757, 55, 128, 23);
 		frame.getContentPane().add(btnCerrarsesion);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/TituloPEQUE.png")));
 		lblNewLabel.setBounds(-18, 33, 393, 64);
