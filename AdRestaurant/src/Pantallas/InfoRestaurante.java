@@ -19,6 +19,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class InfoRestaurante extends JPanel  {
 	private JLabel etiqueta_nombre;
@@ -37,10 +38,12 @@ public class InfoRestaurante extends JPanel  {
 		this.codigo=codigo;
 		
 		this.etiqueta_nombre = new JLabel(nombre);
+		etiqueta_nombre.setHorizontalAlignment(SwingConstants.LEFT);
 		etiqueta_nombre.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		etiqueta_nombre.setForeground(new Color(255,153,0));
 		
 		this.etiqueta_tipo = new JLabel(tipo);
+		etiqueta_tipo.setHorizontalAlignment(SwingConstants.LEFT);
 		etiqueta_tipo.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		etiqueta_tipo.setForeground(new Color(255,153,0));
 		
