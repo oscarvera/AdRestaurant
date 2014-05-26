@@ -26,10 +26,13 @@ import java.util.Enumeration;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import BBDD.Consulta;
 import Clases.Cliente;
 import Clases.Restaurante;
 
 import javax.swing.SwingConstants;
+
+import com.mysql.jdbc.Connection;
 
 public class MenuCliente{
 
@@ -40,7 +43,6 @@ public class MenuCliente{
 	static Locale currentLocale;
 	static ResourceBundle messages;
 
-	
 	/**
 	 *  Create the application.
 	 */
@@ -110,9 +112,11 @@ public class MenuCliente{
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 94, 895, 481);
 		frame.getContentPane().add(panel);
-
-		JButton btnBuscarRestaurante = new JButton("Buscar Restaurante");
-		btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1ES.png")));
+		
+		JButton btnBuscarRestaurante = new JButton(messages.getString("BuscarRestaurantes"),(new ImageIcon(MenuCliente.class.getResource("/Imagen/BuscarRestaurantes.png"))));
+		btnBuscarRestaurante.setForeground(new Color(255, 153, 0));
+		btnBuscarRestaurante.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnBuscarRestaurante.setFont(new Font("Fira Sans OT", Font.PLAIN, 40));
 		btnBuscarRestaurante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				BuscarRestaurante busRest=new BuscarRestaurante(clie, messages);
@@ -120,9 +124,10 @@ public class MenuCliente{
 			}
 		});
 
-
-
-		JButton btnComentarios = new JButton("");
+		JButton btnComentarios = new JButton(messages.getString("Comentarios1"),(new ImageIcon(MenuCliente.class.getResource("/Imagen/Comentarios.png"))));
+		btnComentarios.setForeground(new Color(255, 153, 0));
+		btnComentarios.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnComentarios.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 40));
 		btnComentarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Comentarios comen=new Comentarios(clie, messages);
@@ -130,9 +135,10 @@ public class MenuCliente{
 			}
 		});
 
-		//button.setIcon(new ImageIcon("C:\\Users\\dam1\\Desktop\\boton2.png"));
-
-		JButton btnBuscarReservas = new JButton("");
+		JButton btnBuscarReservas = new JButton(messages.getString("BuscarReservas"),(new ImageIcon(MenuCliente.class.getResource("/Imagen/botonReservas.png"))));
+		btnBuscarReservas.setForeground(Color.WHITE);
+		btnBuscarReservas.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnBuscarReservas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 24));
 		btnBuscarReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ptnBuscarReservas reser=new ptnBuscarReservas(clie,messages);
@@ -142,9 +148,11 @@ public class MenuCliente{
 
 		JLabel label_1 = new JLabel("");
 
-		JButton btnPerfil = new JButton("");
+		JButton btnPerfil = new JButton(messages.getString("Perfil"),(new ImageIcon(MenuCliente.class.getResource("/Imagen/perfil.png"))));
+		btnPerfil.setForeground(new Color(255, 153, 0));
+		btnPerfil.setHorizontalTextPosition(SwingConstants.LEFT);
+		btnPerfil.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 40));
 		btnPerfil.setBackground(Color.WHITE);
-		btnPerfil.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/perfil.png")));
 		btnPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ptnPerfilCliente perfil=new ptnPerfilCliente(clie, messages);
@@ -153,56 +161,37 @@ public class MenuCliente{
 		});
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-				gl_panel.createParallelGroup(Alignment.TRAILING)
+			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(label_1)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(label_1)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(99)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(btnComentarios, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+								.addComponent(btnPerfil, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
 								.addGroup(gl_panel.createSequentialGroup()
-										.addGap(99)
-										.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 464, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.UNRELATED)
-										.addComponent(btnBuscarReservas, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)))
-										.addGap(101))
-										.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
-												.addGap(91)
-												.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-														.addComponent(btnPerfil, GroupLayout.PREFERRED_SIZE, 702, GroupLayout.PREFERRED_SIZE)
-														.addComponent(btnComentarios, GroupLayout.PREFERRED_SIZE, 711, GroupLayout.PREFERRED_SIZE))
-														.addContainerGap(93, Short.MAX_VALUE))
-				);
+									.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 464, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(btnBuscarReservas, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)))))
+					.addContainerGap(93, Short.MAX_VALUE))
+		);
 		gl_panel.setVerticalGroup(
-				gl_panel.createParallelGroup(Alignment.LEADING)
+			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-						.addGap(22)
-						.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnBuscarReservas, 0, 0, Short.MAX_VALUE)
-								.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 190, Short.MAX_VALUE))
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addComponent(label_1)
-										.addComponent(btnPerfil, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(btnComentarios, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-										.addGap(22))
-				);
+					.addGap(22)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 190, Short.MAX_VALUE)
+						.addComponent(btnBuscarReservas, 0, 0, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(label_1)
+						.addComponent(btnPerfil, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnComentarios, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+					.addGap(22))
+		);
 		panel.setLayout(gl_panel);
-
-		if(messages.getLocale().getLanguage().equals("es")){
-			btnPerfil.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/1perfilES.png")));
-			btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1ES.png")));
-			btnComentarios.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/ComentsBoton.png")));
-			btnBuscarReservas.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasES.png")));
-		}else if (messages.getLocale().getLanguage().equals("en")) {
-			btnPerfil.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/1perfilEN.png")));
-			btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1EN.png")));
-			btnComentarios.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonComentariosEN.png")));
-			btnBuscarReservas.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasEN.png")));
-		}else if (messages.getLocale().getLanguage().equals("ca")) {
-			btnPerfil.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/1perfilCA.png")));
-			btnBuscarRestaurante.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/Boton1CA.png")));
-			btnComentarios.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonComentariosCA.png")));
-			btnBuscarReservas.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/BotonReservasCA.png")));
-		}
 
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);
