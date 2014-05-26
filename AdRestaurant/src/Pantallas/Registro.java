@@ -943,51 +943,6 @@ public class Registro extends JPanel{
 			e.printStackTrace();
 		}
 		
-		//Escribimos la consulta SQL en la variable consulta
-		this.consulta = "SELECT email FROM Clientes WHERE email=?";
-		
-		try{
-			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
-			this.stmt = conexion.prepareStatement(this.consulta);
-			
-			//Asignamos los campos del cliente a comprobar.
-
-			stmt.setString(1, this.textEmail.getText());
-			
-			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
-			resultadoConsulta = stmt.executeQuery();
-			if(resultadoConsulta.next()){
-				mensajesError.add(messages.getString("Emailyaexiste")); 
-				this.textEmail.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
-			}
-			
-			
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		
-		//Escribimos la consulta SQL en la variable consulta
-		this.consulta = "SELECT telefono FROM Clientes WHERE telefono=?";
-		
-		try{
-			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
-			this.stmt = conexion.prepareStatement(this.consulta);
-			
-			//Asignamos los campos del cliente a comprobar.
-
-			stmt.setInt(1, Integer.valueOf(this.textTelefono.getText()));
-			
-			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
-			resultadoConsulta = stmt.executeQuery();
-			if(resultadoConsulta.next()){
-				mensajesError.add(messages.getString("Telefonoyaexiste")); 
-				this.textTelefono.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
-			}
-			
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		
 		//Si hay errores, abre la pantalla ErrorRegistro y le pasa el array de errores. Si está correcto
 		if(mensajesError.size()>0){
 			JDialog aviso = new ErrorRegistro(mensajesError, this.registro, messages);
