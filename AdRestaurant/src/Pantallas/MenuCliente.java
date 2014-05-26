@@ -1,6 +1,7 @@
 package Pantallas;
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -124,10 +125,14 @@ public class MenuCliente{
 			}
 		});
 
-		JButton btnComentarios = new JButton(messages.getString("Comentarios1"),(new ImageIcon(MenuCliente.class.getResource("/Imagen/Comentarios.png"))));
-		btnComentarios.setForeground(new Color(255, 153, 0));
-		btnComentarios.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnComentarios.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 48));
+		//JButton btnComentarios = new JButton(messages.getString("Comentarios1"),(new ImageIcon(MenuCliente.class.getResource("/Imagen/Comentarios.png"))));
+		JButton btnComentarios = new JButton(new ImageIcon(MenuCliente.class.getResource("/Imagen/Comentarios.png")));
+		btnComentarios.setLayout(new BorderLayout());
+		JLabel lblComentarios= new JLabel(messages.getString("Comentarios1"));
+		lblComentarios.setForeground(new Color(255, 153, 0));
+		lblComentarios.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 48));
+		lblComentarios.setHorizontalAlignment(SwingConstants.LEFT);
+		btnComentarios.add(lblComentarios);
 		btnComentarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Comentarios comen=new Comentarios(clie, messages);
@@ -148,10 +153,14 @@ public class MenuCliente{
 
 		JLabel label_1 = new JLabel("");
 
-		JButton btnPerfil = new JButton(messages.getString("Perfil"),(new ImageIcon(MenuCliente.class.getResource("/Imagen/perfil.png"))));
-		btnPerfil.setForeground(new Color(255, 153, 0));
-		btnPerfil.setHorizontalTextPosition(SwingConstants.LEFT);
-		btnPerfil.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 40));
+		//JButton btnPerfil = new JButton(messages.getString("Perfil"),(new ImageIcon(MenuCliente.class.getResource("/Imagen/perfil.png"))));
+		JButton btnPerfil = new JButton(new ImageIcon(MenuCliente.class.getResource("/Imagen/perfil.png")));
+		btnPerfil.setLayout(new BorderLayout());
+		JLabel lblPerfil= new JLabel(messages.getString("Perfil"));
+		lblPerfil.setForeground(new Color(255, 153, 0));
+		lblPerfil.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 42));
+		lblPerfil.setHorizontalAlignment(SwingConstants.LEFT);
+		btnPerfil.add(lblPerfil);
 		btnPerfil.setBackground(Color.WHITE);
 		btnPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -202,6 +211,7 @@ public class MenuCliente{
 		frame.getContentPane().add(lblnomUser);
 
 		JLabel lblBienvenido = new JLabel(messages.getString("WLCOME1"));
+		lblBienvenido.setHorizontalAlignment(SwingConstants.LEFT);
 		lblBienvenido.setForeground(Color.WHITE);
 		lblBienvenido.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBienvenido.setBackground(Color.YELLOW);
