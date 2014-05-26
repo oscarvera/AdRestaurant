@@ -66,6 +66,7 @@ import Clases.Cliente;
 	 this.clie=clie;
 	 this.messages=messages;
  	initialize();
+ 	conectar();
  }
  	 
  private void initialize() {
@@ -310,6 +311,14 @@ import Clases.Cliente;
  		scrollPane.setBorder(null);
  		
  		JButton btnVerificar = new JButton("Verificar");
+ 		btnVerificar.addActionListener(new ActionListener() {
+ 			public void actionPerformed(ActionEvent arg0) {
+ 				
+ 				
+ 				
+ 				
+ 			}
+ 		});
  		btnVerificar.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
  		btnVerificar.setForeground(new Color(255, 255, 255));
  		btnVerificar.setBackground(new Color(255, 153, 0));
@@ -443,13 +452,13 @@ import Clases.Cliente;
  		 */
  		public void realizaBusqueda(){
  			conectar();
- 			String consulta="select c.usuario, r.fechaReserva, r.hora, r.fechaCreacion, r.personas,r.verificacion, r.realizacion from reserva r inner join clientes c on r.Codigo_Cliente=c.codigoCliente where r.Codigo_Restaurante=? order by r.fechaCreacion ASC";
+ 			String consulta="select c.usuario, r.fechaReserva, r.hora, r.fechaCreacion, r.personas,r.Codigo_Cliente,r.verificacion, r.realizacion from reserva r inner join clientes c on r.Codigo_Cliente=c.codigoCliente where r.Codigo_Restaurante=? order by r.fechaCreacion ASC";
  			try {
  				this.stmt = (PreparedStatement) conexion.prepareStatement(consulta);
  				this.resultadoConsulta = (ResultSet) this.stmt.executeQuery();
  				modelo_lista_reservas.clear();
  				while(resultadoConsulta.next()){
- 					modelo_lista_reservas.addElement(new InfoRestaurante(resultadoConsulta.getString("Nombre"),resultadoConsulta.getString("Tipo"),resultadoConsulta.getString("Direccion"),resultadoConsulta.getString("Poblacion"), resultadoConsulta.getInt("codigoRestaurante")));
+ 					modelo_lista_reservas.addElement(new InfoReserva(resultadoConsulta.getString("usuario"),resultadoConsulta.getString("fechaReserva"),resultadoConsulta.getString("hora"),resultadoConsulta.getInt("personas"), resultadoConsulta.getInt("Codigo_Cliente"),resultadoConsulta.getBoolean("verificacion"),resultadoConsulta.getBoolean("realizacion") ));
  				}
  				
  			} catch (SQLException e) {
