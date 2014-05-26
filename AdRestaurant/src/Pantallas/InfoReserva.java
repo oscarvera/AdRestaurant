@@ -116,7 +116,7 @@ public class InfoReserva extends JPanel{
 		add(lblRealizado);
 	}
 	
-	public InfoReserva(int codigoRes,String nomrest, String fecha, String hora, int pers, boolean realizado, boolean verificado){
+	public InfoReserva(int codigoRes, String nomrest, String fecha, String hora, int pers, boolean realizado, boolean verificado){
 		setBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 200, 0), new Color(255, 200, 0), Color.ORANGE, Color.ORANGE));
 		
 		this.codigoUsuRest=codigoRes;

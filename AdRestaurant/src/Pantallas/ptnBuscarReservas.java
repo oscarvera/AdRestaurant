@@ -14,6 +14,7 @@ import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -56,15 +57,14 @@ import javax.swing.SwingConstants;
 	private String consulta;
 	private ResultSet resultadoConsulta;
 	private int resultadoActualizacionBD;
-	private Consulta conexionConsulta;
+	private DefaultListModel<InfoReserva> modelo_lista_reservas;
  	
  	static Locale currentLocale;
     static ResourceBundle messages;
  	
  public ptnBuscarReservas(Cliente clie,ResourceBundle messages){
 	 this.clie=clie;
-	 this.conexionConsulta=clie.getConexionConsulta();
-	 this.conexion=conexionConsulta.getConexion();
+	 this.conexion=this.clie.getConexionConsulta().getConexion();
 	 this.messages=messages;
 	 initialize();
  }
@@ -316,8 +316,8 @@ import javax.swing.SwingConstants;
  		/**
  		 * Lista reservas
  		 */
- 		DefaultListModel<InfoReserva> modelo_lista_reservas = new DefaultListModel<InfoReserva>();
- 	    JList<InfoReserva> lista_reservas = new JList<InfoReserva>(modelo_lista_reservas);
+ 		this.modelo_lista_reservas = new DefaultListModel<InfoReserva>();
+ 	    JList<InfoReserva> lista_reservas = new JList<InfoReserva>(this.modelo_lista_reservas);
  	    ConstructorDeCelda celda = new ConstructorDeCelda();
  		DefaultListModel dlm=new DefaultListModel();
  		lista_reservas.setBorder(new EmptyBorder(21, 10, 10, 10));
@@ -383,24 +383,29 @@ import javax.swing.SwingConstants;
  	
  	}
  
-// 	/**
-// 	 * Realiza la búsqueda de reservas según los filtros.
-// 	 */
-// 	public void buscarReservas(){
-//		this.consulta="select c.usuario, r.fechaReserva, r.hora,r.fechaCreacion, r.personas,r.verificacion,r.realizacion from reserva r inner join clientes c on r.Codigo_Cliente=c.codigoCliente where r.Codigo_Restaurante=?;"
-// 		try {
-//			this.stmt = conexion.prepareStatement(this.consulta);
-//			this.resultadoConsulta = this.stmt.executeQuery();
-//			modelo_lista_restaurantes.clear();
-//			while(resultadoConsulta.next()){
-//				modelo_lista_restaurantes.addElement(new InfoRestaurante(resultadoConsulta.getString("Nombre"),resultadoConsulta.getString("Tipo"),resultadoConsulta.getString("Direccion"),resultadoConsulta.getString("Poblacion"), resultadoConsulta.getInt("codigoRestaurante")));
-//			}
-//			
-//		} catch (SQLException e) {
-//			System.out.println("Consulta:"+this.consulta);
-//			e.printStackTrace();
-//		}
-//	}
+ 	/**
+ 	 * Realiza la búsqueda de reservas según los filtros.
+ 	 */
+ 	public void buscarReservas(){
+		this.consulta="select rest.nombre, r.fechaReserva, r.hora, r.personas, r.verificacion, r.realizacion from reserva r "
+				+ "INNER JOIN Restaurante rest ON r.Codigo_Restaurante=rest.CodigoRestaurante "
+				+ "where r.codigo_Cliente="+String.valueOf(this.clie.getCodigoCliente())+";";
+ 		try {
+			this.stmt = conexion.prepareStatement(this.consulta);
+			this.resultadoConsulta = this.stmt.executeQuery();
+			this.modelo_lista_reservas.clear();
+			while(resultadoConsulta.next()){
+				this.modelo_lista_reservas.addElement(new InfoReserva(resultadoConsulta.getInt("codigoRestaurante"), 
+						resultadoConsulta.getString("Nombre"), resultadoConsulta.getString("fechaReserva"),
+						resultadoConsulta.getString("hora"), resultadoConsulta.getInt("personas"), 
+						resultadoConsulta.getBoolean("realizacion"), resultadoConsulta.getBoolean("verificacion")));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Consulta:"+this.consulta);
+			e.printStackTrace();
+		}
+	}
 }
  
 
