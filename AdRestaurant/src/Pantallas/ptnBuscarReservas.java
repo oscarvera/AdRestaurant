@@ -11,6 +11,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -28,6 +31,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 
+import BBDD.Consulta;
 import Clases.Cliente;
 
 import javax.swing.ListSelectionModel;
@@ -47,14 +51,22 @@ import javax.swing.SwingConstants;
  	private JButton btnXNombre;
  	private JButton btnXCP;
  	private JButton btnXTipo;
+ 	private PreparedStatement stmt;
+	private Connection conexion;
+	private String consulta;
+	private ResultSet resultadoConsulta;
+	private int resultadoActualizacionBD;
+	private Consulta conexionConsulta;
  	
  	static Locale currentLocale;
     static ResourceBundle messages;
  	
  public ptnBuscarReservas(Cliente clie,ResourceBundle messages){
 	 this.clie=clie;
+	 this.conexionConsulta=clie.getConexionConsulta();
+	 this.conexion=conexionConsulta.getConexion();
 	 this.messages=messages;
- 	initialize();
+	 initialize();
  }
  	 
  private void initialize() {
@@ -122,11 +134,7 @@ import javax.swing.SwingConstants;
  		btnBuscar.setBounds(10, 274, 187, 43);
  		btnBuscar.setForeground(new Color(255, 153, 0));
  		btnBuscar.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
- 		btnBuscar.setBackground(Color.WHITE);
- 		
- 
- 		
- 		
+ 		btnBuscar.setBackground(Color.WHITE); 		
  		
  		//KEYLIST Y FOCUS LISTENERS DE LOS CAMPOS
  		
@@ -224,13 +232,7 @@ import javax.swing.SwingConstants;
  					@Override
  					public void keyPressed(KeyEvent arg0) {
  					}
- 				};
- 				
- 				
- 				
- 				
- 		
- 				
+ 				};			
  		
  		textNombreRest = new JTextField();
  		textNombreRest.setBackground(new Color(255, 255, 255));
@@ -242,9 +244,6 @@ import javax.swing.SwingConstants;
  		textNombreRest.addFocusListener(focusNombre);
  		textNombreRest.addKeyListener(keylisNombre);
  		textNombreRest.setBorder(null);
- 		
- 		
- 		
  		
  		textFecha = new JTextField();
  		textFecha.setBounds(10, 197, 165, 46);
@@ -272,9 +271,6 @@ import javax.swing.SwingConstants;
  		btnXNombre.setIcon(new ImageIcon(BuscarRestaurante.class.getResource("/Imagen/botonX.png")));
  		btnXNombre.setBorder(null);
  		
- 		
- 		
- 		
  		panel_1.add(textNombreRest);
  		panel_1.add(textFecha);
  		panel_1.add(btnBuscar);
@@ -295,6 +291,9 @@ import javax.swing.SwingConstants;
  		btnXFecha.setBackground(Color.WHITE);
  		btnXFecha.setBounds(175, 196, 22, 46);
  		
+ 		/**
+ 		 * Panel deslizante de la lista y su layout.
+ 		 */
  		JScrollPane scrollPane = new JScrollPane();
  		scrollPane.setBorder(null);
  		GroupLayout gl_panel = new GroupLayout(panel);
@@ -314,21 +313,20 @@ import javax.swing.SwingConstants;
  					.addContainerGap())
  		);
  		
+ 		/**
+ 		 * Lista reservas
+ 		 */
+ 		DefaultListModel<InfoReserva> modelo_lista_reservas = new DefaultListModel<InfoReserva>();
+ 	    JList<InfoReserva> lista_reservas = new JList<InfoReserva>(modelo_lista_reservas);
+ 	    ConstructorDeCelda celda = new ConstructorDeCelda();
  		DefaultListModel dlm=new DefaultListModel();
- 		JList list = new JList();
- 		list.setBorder(new EmptyBorder(21, 10, 10, 10));
- 		list.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 17));
- 		list.setValueIsAdjusting(true);
- 		list.setForeground(new Color(255, 153, 0));
- 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
- 		for(int i=0;i<50;i++){
- 			String reserva="<html>Nombre del resetaurante"+i+"<br><table cellpadding='10px'><tr><td><font color=silver>Fecha: </font></td><td><font color=silver> Hora: </font></td><td><font color=silver>Personas: </font></td><td><font color=silver>Verificado: </font></td></tr></table></html>";
- 	 		dlm.addElement(reserva);
- 		}
- 		
- 		
- 		list.setModel(dlm);
- 		scrollPane.setViewportView(list);
+ 		lista_reservas.setBorder(new EmptyBorder(21, 10, 10, 10));
+ 		lista_reservas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 17));
+ 		lista_reservas.setValueIsAdjusting(true);
+ 		lista_reservas.setForeground(new Color(255, 153, 0));
+ 		lista_reservas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+ 		lista_reservas.setModel(dlm);
+ 		scrollPane.setViewportView(lista_reservas);
  		panel.setLayout(gl_panel);
  		
  		JLabel lblnomUser = new JLabel(clie.getNombre());
@@ -383,6 +381,26 @@ import javax.swing.SwingConstants;
  		frame.setLocationRelativeTo(null);
  		frame.setVisible(true);
  	
- }
- }
+ 	}
+ 
+// 	/**
+// 	 * Realiza la búsqueda de reservas según los filtros.
+// 	 */
+// 	public void buscarReservas(){
+//		this.consulta="select c.usuario, r.fechaReserva, r.hora,r.fechaCreacion, r.personas,r.verificacion,r.realizacion from reserva r inner join clientes c on r.Codigo_Cliente=c.codigoCliente where r.Codigo_Restaurante=?;"
+// 		try {
+//			this.stmt = conexion.prepareStatement(this.consulta);
+//			this.resultadoConsulta = this.stmt.executeQuery();
+//			modelo_lista_restaurantes.clear();
+//			while(resultadoConsulta.next()){
+//				modelo_lista_restaurantes.addElement(new InfoRestaurante(resultadoConsulta.getString("Nombre"),resultadoConsulta.getString("Tipo"),resultadoConsulta.getString("Direccion"),resultadoConsulta.getString("Poblacion"), resultadoConsulta.getInt("codigoRestaurante")));
+//			}
+//			
+//		} catch (SQLException e) {
+//			System.out.println("Consulta:"+this.consulta);
+//			e.printStackTrace();
+//		}
+//	}
+}
+ 
 

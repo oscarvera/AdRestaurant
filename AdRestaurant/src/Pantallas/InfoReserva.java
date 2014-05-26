@@ -21,11 +21,18 @@ public class InfoReserva extends JPanel{
 	private JLabel etiquetaHora;
 	private JLabel etiquetaPersonas;
 	private JLabel etiquetaVerificado;
+	private int codigoUsuRest;
+	private boolean realizado;
+	private boolean verificado;
 	
-	public InfoReserva(Cliente clie, String fecha, String hora, int pers, boolean verificado){
+	public InfoReserva(Cliente clie, String fecha, String hora, int pers, boolean verificado, int codigoUs, boolean realizado){
 		setBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 200, 0), new Color(255, 200, 0), Color.ORANGE, Color.ORANGE));
 		
-		this.etiquetaNombre = new JLabel(clie.getNombre());	
+		this.realizado=realizado;
+		this.verificado=verificado;
+		this.codigoUsuRest=codigoUs;
+		
+		this.etiquetaNombre = new JLabel(clie.getUsuario());	
 		etiquetaNombre.setHorizontalAlignment(SwingConstants.LEFT);
 		etiquetaNombre.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		etiquetaNombre.setForeground(new Color(255,153,0));
@@ -87,8 +94,10 @@ public class InfoReserva extends JPanel{
 		setLayout(groupLayout);	
 	}
 	
-	public InfoReserva(Restaurante rest, String fecha, String hora, int pers, boolean verificado){
+	public InfoReserva(Restaurante rest, String fecha, String hora, int pers, boolean verificado, int codigoRes){
 		setBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 200, 0), new Color(255, 200, 0), Color.ORANGE, Color.ORANGE));
+		
+		this.codigoUsuRest=codigoRes;
 		
 		this.etiquetaNombre = new JLabel(rest.getNombre());	
 		etiquetaNombre.setHorizontalAlignment(SwingConstants.LEFT);
