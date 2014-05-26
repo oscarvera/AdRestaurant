@@ -443,7 +443,7 @@ import Clases.Cliente;
  		 */
  		public void realizaBusqueda(){
  			conectar();
- 			String consulta="select c.usuario, r.fechaReserva, r.hora, r.fechaCreacion, r.personas,r.verificacion, r.realizacion from reserva r inner join clientes c on r.Codigo_Cliente=c.codigoCliente where r.Codigo_Restaurante=1";
+ 			String consulta="select c.usuario, r.fechaReserva, r.hora, r.fechaCreacion, r.personas,r.verificacion, r.realizacion from reserva r inner join clientes c on r.Codigo_Cliente=c.codigoCliente where r.Codigo_Restaurante=? order by r.fechaCreacion ASC";
  			try {
  				this.stmt = (PreparedStatement) conexion.prepareStatement(consulta);
  				this.resultadoConsulta = (ResultSet) this.stmt.executeQuery();
