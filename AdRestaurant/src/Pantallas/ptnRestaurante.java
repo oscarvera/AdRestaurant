@@ -161,7 +161,7 @@ public class ptnRestaurante extends JFrame {
 		 BufferedImage image = null;
 	        try
 	        {
-	          image = ImageIO.read(rest.getFoto1());
+	          image = ImageIO.read(rest.getFotofile1());
 	        }
 	        catch (Exception e)
 	        {

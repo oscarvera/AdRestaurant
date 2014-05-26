@@ -1039,7 +1039,7 @@ public class Registro extends JPanel{
 		} 
 		
 		//Escribimos la consulta SQL en la variable consulta
-		this.consulta = "SELECT usuario FROM Restaurantes WHERE usuario=?";
+		this.consulta = "SELECT nombreUsuario FROM Restaurantes WHERE nombreUsuario=?";
 		
 		try{
 			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
@@ -1068,7 +1068,7 @@ public class Registro extends JPanel{
 			frame.setEnabled(false);
 		}else{
 			RegistroCompleto regCom=new RegistroCompleto(messages, conexionConsulta);
-			Restaurante r = new Restaurante(this.textNomUserRest.getText(),this.pwdContraRest.getPassword(),this.textNombreRest.getText(),this.comboTipoRest.getSelectedItem().toString(),this.textTelefonoRest.getText(),this.textDireccionRest.getText(),this.textPoblacionRest.getText(), this.textProvinciaRest.getText(),this.textCodPostRest.getText(),aptoMinusvalido, this.conexionConsulta);
+			Restaurante r = new Restaurante(this.textNomUserRest.getText(),this.pwdContraRest.getPassword(),this.textNombreRest.getText(),this.comboTipoRest.getSelectedItem().toString(),this.textTelefonoRest.getText(),this.textDireccionRest.getText(),this.textPoblacionRest.getText(), this.textProvinciaRest.getText(),this.textCodPostRest.getText(),aptoMinusvalido, this.file1, this.file2, this.conexionConsulta);
 			frame.dispose();
 		}
 	}

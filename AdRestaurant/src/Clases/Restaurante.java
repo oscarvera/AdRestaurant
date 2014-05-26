@@ -1,7 +1,9 @@
 package Clases;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -9,6 +11,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.imageio.ImageIO;
 
 import BBDD.Consulta;
 
@@ -25,8 +29,10 @@ public class Restaurante {
 	private String codigoPostal;
 	private boolean minusvalidoApto;
 	//De momento las imagenes van con este tipo, hasta que no esté claro, todo lo de imagenes está comentado.
-	private File foto1;
-	private File foto2;
+	private BufferedImage foto1;
+	private BufferedImage foto2;
+	private File fotofile1;
+	private File fotofile2;
 	private String nombreUsuario;
 	private char[] contraseña;
 	private PreparedStatement stmt;
@@ -36,10 +42,9 @@ public class Restaurante {
 	private int resultadoActualizacionBD;
 	private Consulta conexionConsulta;
 	
-	//Constructor para el registro de un nuevo restaurante:
+	//Constructor para el registro de restaurantes en la Base de Datos:
 		public Restaurante(String nombreUsuario, char[] contraseña, String nombre, String tipo, String telf, String direccion, 
-				String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto, Consulta c){
-			 //BufferedImage foto1, BufferedImage foto2
+				String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto, BufferedImage foto1, BufferedImage foto2, Consulta c){
 			this.nombreUsuario=nombreUsuario;
 			this.contraseña=contraseña;
 			this.nombre=nombre;
@@ -56,6 +61,26 @@ public class Restaurante {
 			this.conexion=conexionConsulta.getConexion();
 			insertarRestaurante();
 		}
+		
+		//Constructor para el registro de un restaurante nuevo:
+				public Restaurante(String nombreUsuario, char[] contraseña, String nombre, String tipo, String telf, String direccion, 
+						String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto, File fotofile1, File fotofile2, Consulta c){
+					this.nombreUsuario=nombreUsuario;
+					this.contraseña=contraseña;
+					this.nombre=nombre;
+					this.tipo=tipo;
+					this.telefono=telf;
+					this.direccion=direccion;
+					this.poblacion=poblacion;
+					this.provincia=provincia;
+					this.codigoPostal=codigoPostal;
+					this.minusvalidoApto=minusvalidoApto;
+					this.fotofile1=fotofile1;
+					this.fotofile2=fotofile2;
+					this.conexionConsulta=c;
+					this.conexion=conexionConsulta.getConexion();
+					insertarRestaurante();
+				}
 		
 		//Constructor para consultar restaurantes:
 		
@@ -95,14 +120,26 @@ public class Restaurante {
 						this.telefono=resultadoConsulta.getString("telefono");
 						this.tipo=resultadoConsulta.getString("tipo");			
 						this.minusvalidoApto=resultadoConsulta.getBoolean("minusvalido_Apto");
-						this.foto1=(File) resultadoConsulta.getBlob("foto1");
-						this.foto2=(File) resultadoConsulta.getBlob("foto2");
+						//sacamos las imagenes de la base de datos
+						//foto1
+						Blob blob1 = resultadoConsulta.getBlob("foto1"); //Guardo el Blob de la BD en una variable Blob
+						byte[] data1 = blob1.getBytes(0, (int) blob1.length()); //lo trasformo en una variable de bytes
+						BufferedImage img1 = ImageIO.read(new ByteArrayInputStream(data1)); //Creo la imagen a partir del array 
+						this.foto1= img1; //guardo la imagen
+						//foto2
+						Blob blob2 = resultadoConsulta.getBlob("foto2"); //Guardo el Blob de la BD en una variable Blob
+						byte[] data2 = blob2.getBytes(0, (int) blob2.length()); //lo trasformo en una variable de bytes
+						BufferedImage img2 = ImageIO.read(new ByteArrayInputStream(data2)); //Creo la imagen a partir del array 
+						this.foto2= img2; //guardo la imagen
 						this.nombreUsuario=resultadoConsulta.getString("nombreUsuario");
 						this.contraseña=resultadoConsulta.getString("contraseña").toCharArray();
 					
 					}
 					
 				} catch (SQLException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
@@ -127,14 +164,26 @@ public class Restaurante {
 						this.telefono=resultadoConsulta.getString("telefono");
 						this.tipo=resultadoConsulta.getString("tipo");			
 						this.minusvalidoApto=resultadoConsulta.getBoolean("minusvalido_Apto");
-						this.foto1=(File) resultadoConsulta.getBlob("foto1");
-						this.foto2=(File) resultadoConsulta.getBlob("foto2");
+						//sacamos las imagenes de la base de datos
+						//foto1
+						Blob blob1 = resultadoConsulta.getBlob("foto1"); //Guardo el Blob de la BD en una variable Blob
+						byte[] data1 = blob1.getBytes(0, (int) blob1.length()); //lo trasformo en una variable de bytes
+						BufferedImage img1 = ImageIO.read(new ByteArrayInputStream(data1));//Creo la imagen a partir del array 
+						this.foto1= img1; //guardo la imagen
+						//foto2
+						Blob blob2 = resultadoConsulta.getBlob("foto2");//Guardo el Blob de la BD en una variable Blob
+						byte[] data2 = blob2.getBytes(0, (int) blob2.length());//lo trasformo en una variable de bytes
+						BufferedImage img2 = ImageIO.read(new ByteArrayInputStream(data2));//Creo la imagen a partir del array 
+						this.foto2= img2; //guardo la imagen
 						this.nombreUsuario=resultadoConsulta.getString("nombreUsuario");
 						this.contraseña=resultadoConsulta.getString("contraseña").toCharArray();
 					
 					}
 					
 				} catch (SQLException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
@@ -172,8 +221,8 @@ public class Restaurante {
 			
 			public void insertarRestaurante(){
 				try{
-				FileInputStream io1 = new FileInputStream(foto1);
-				FileInputStream io2 = new FileInputStream(foto2);
+				FileInputStream io1 = new FileInputStream(fotofile1);
+				FileInputStream io2 = new FileInputStream(fotofile2);
 				//Escribimos la consulta SQL en la variable consulta -->De momento, las fotos se quedan fuera:
 				this.consulta = "INSERT INTO restaurantes (Nombre,direccion,poblacion,provincia,codigoPostal,Telefono,tipo,Minusvalido_Apto,foto1,foto2,nombreUsuario,contraseña)"
 						+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";  
@@ -190,8 +239,8 @@ public class Restaurante {
 					stmt.setInt(6, Integer.valueOf(this.telefono));
 					stmt.setString(7, this.tipo);
 					stmt.setBoolean(8, this.minusvalidoApto);
-					stmt.setBinaryStream(9, (InputStream)io1, (int)foto1.length());
-					stmt.setBinaryStream(10, (InputStream)io2, (int)foto2.length());
+					stmt.setBinaryStream(9, (InputStream)io1, (int)fotofile1.length());
+					stmt.setBinaryStream(10, (InputStream)io2, (int)fotofile2.length());
 					stmt.setString(11, this.nombreUsuario);
 					//En contraseña hay que pasarlo a String y borrar el contenido de la variable de clase por seguridad.
 					stmt.setString(12, String.copyValueOf(this.contraseña));
@@ -298,19 +347,19 @@ public class Restaurante {
 				this.minusvalidoApto = minusvalidoApto;
 			}
 
-			public File getFoto1() {
+			public BufferedImage getFoto1() {
 				return foto1;
 			}
 
-			public void setFoto1(File foto1) {
+			public void setFoto1(BufferedImage foto1) {
 				this.foto1 = foto1;
 			}
 
-			public File getFoto2() {
+			public BufferedImage getFoto2() {
 				return foto2;
 			}
 
-			public void setFoto2(File foto2) {
+			public void setFoto2(BufferedImage foto2) {
 				this.foto2 = foto2;
 			}
 			
@@ -328,6 +377,22 @@ public class Restaurante {
 
 			public void setConexionConsulta(Consulta conexionConsulta) {
 				this.conexionConsulta = conexionConsulta;
+			}
+
+			public File getFotofile1() {
+				return fotofile1;
+			}
+
+			public void setFotofile1(File fotofile1) {
+				this.fotofile1 = fotofile1;
+			}
+
+			public File getFotofile2() {
+				return fotofile2;
+			}
+
+			public void setFotofile2(File fotofile2) {
+				this.fotofile2 = fotofile2;
 			}
 			
 
