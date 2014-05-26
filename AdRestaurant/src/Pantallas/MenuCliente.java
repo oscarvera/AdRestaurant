@@ -127,7 +127,7 @@ public class MenuCliente{
 		JButton btnComentarios = new JButton(messages.getString("Comentarios1"),(new ImageIcon(MenuCliente.class.getResource("/Imagen/Comentarios.png"))));
 		btnComentarios.setForeground(new Color(255, 153, 0));
 		btnComentarios.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnComentarios.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 40));
+		btnComentarios.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 48));
 		btnComentarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Comentarios comen=new Comentarios(clie, messages);
