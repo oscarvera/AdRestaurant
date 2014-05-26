@@ -110,9 +110,11 @@ public class Registro extends JPanel{
 	/**
 	 * Create the application.
 	 */
-	public Registro(ResourceBundle messages) {
+	public Registro(ResourceBundle messages, Consulta c) {
 		this.registro=this;
 		this.messages=messages;
+		this.conexionConsulta=c;
+		this.conexion=conexionConsulta.getConexion();
 		initialize();
 		this.borde=BorderFactory.createLineBorder(new Color(255, 134, 0));
 	}
