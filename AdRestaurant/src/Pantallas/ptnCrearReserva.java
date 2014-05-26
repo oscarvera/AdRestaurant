@@ -208,11 +208,11 @@ public class ptnCrearReserva extends JFrame {
 		lblHora.setFont(new Font("Fira Sans OT", Font.PLAIN, 21));
 		
 		final JSpinner Hora_hora = new JSpinner();
-		Hora_hora.setModel(new SpinnerNumberModel(new Byte((byte) 0), null, new Byte((byte) 23), new Byte((byte) 1)));
+		Hora_hora.setModel(new SpinnerNumberModel(new Byte((byte) 0), new Byte((byte) 0), new Byte((byte) 23), new Byte((byte) 1)));
 		Hora_hora.setBounds(60, 89, 47, 34);
 		
 		final JSpinner Hora_minutos = new JSpinner();
-		Hora_minutos.setModel(new SpinnerNumberModel(new Byte((byte) 0), null, new Byte((byte) 55), new Byte((byte) 5)));
+		Hora_minutos.setModel(new SpinnerNumberModel(new Byte((byte) 0), new Byte((byte) 0), new Byte((byte) 55), new Byte((byte) 5)));
 		Hora_minutos.setBounds(130, 89, 47, 34);
 		panel_11.setLayout(null);
 		panel_11.add(lblHora);
