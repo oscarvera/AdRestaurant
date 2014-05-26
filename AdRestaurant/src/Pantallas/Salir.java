@@ -31,6 +31,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import BBDD.Consulta;
 import Clases.Cliente;
+import Clases.Restaurante;
 
 import javax.swing.SwingConstants;
 
@@ -41,6 +42,7 @@ public class Salir extends JPanel{
 	private JButton btnSi;
 	private JButton btnNo;
 	private Cliente clie;
+	private Restaurante rest;
 	private Consulta consulta;
 	static Locale currentLocale;
 	static ResourceBundle messages;
@@ -61,6 +63,13 @@ public class Salir extends JPanel{
 		this.messages=messages;
 		initialize();
 		this.consulta=c;
+	}
+	
+	public Salir(ResourceBundle messages, Restaurante rest) {
+		this.messages=messages;
+		this.rest=rest;
+		initialize();
+		this.consulta=rest.getConexionConsulta();
 	}
 
 	/**

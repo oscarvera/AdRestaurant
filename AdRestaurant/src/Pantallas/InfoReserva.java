@@ -27,6 +27,12 @@ public class InfoReserva extends JPanel{
 	private JLabel lblVerificacion;
 	private JLabel lblRealizado;
 	
+	String usuario;
+	String fecha;
+	String hora;
+	int personas;
+	int codigoUsuario;
+	
 	/**
 	 * @wbp.parser.constructor
 	 */
@@ -198,4 +204,26 @@ public class InfoReserva extends JPanel{
 		this.etiquetaPersonas.setForeground(new Color(255, 255, 255));
 		this.etiquetaVerificado.setForeground(new Color(255, 255, 255));
 	}
+	
+	//GETTERS
+	
+	public String getUsuario(){
+		return usuario;
+	}
+	
+	public String getFecha(){
+		return fecha;
+	}
+	
+	public String getHora(){
+		return hora;
+	}
+	
+	public int getPersonas(){
+		return personas;
+	}
+	
+	public int getCodigoUsuario(){
+		return codigoUsuario;
+	}	
 }

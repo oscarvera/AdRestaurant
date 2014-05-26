@@ -38,9 +38,10 @@ import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
 
 import Clases.Cliente;
+import Clases.Restaurante;
  
  public class ptnBuscarReservasRestaurante extends JFrame {
- 	Cliente clie;
+ 	Restaurante rest;
  	private JFrame frame;
  	private JTextField textNombreRest;
  	private JTextField textFecha;
@@ -62,8 +63,8 @@ import Clases.Cliente;
 	private Connection conexion;
 	private ResultSet resultadoConsulta;
  	
- public ptnBuscarReservasRestaurante(Cliente clie,ResourceBundle messages){
-	 this.clie=clie;
+ public ptnBuscarReservasRestaurante(Restaurante rest,ResourceBundle messages){
+	 this.rest=rest;
 	 this.messages=messages;
  	initialize();
  	conectar();
@@ -124,7 +125,7 @@ import Clases.Cliente;
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Salir salir=new Salir(messages, clie);
+				Salir salir=new Salir(messages, rest);
 
 			}
 		});
@@ -291,6 +292,8 @@ import Clases.Cliente;
  		panel_1.add(textFecha);
  		panel_1.add(btnBuscar);
  		
+ 		final JList list = new JList();
+ 		
  		btnXFecha = new JButton("");
  		btnXFecha.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent arg0) {
@@ -313,9 +316,9 @@ import Clases.Cliente;
  		JButton btnVerificar = new JButton("Verificar");
  		btnVerificar.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent arg0) {
- 				
- 				
- 				
+ 				InfoReserva reservaSelec = (InfoReserva) list.getSelectedValue();
+ 				 conexion=(Connection) rest.getConexionConsulta().getConexion();
+ 				String consulta="Update reserva set Verificacion=true where Codigo_Cliente="+reservaSelec.getCodigoUsuario()+"AND Codigo_Restaurante="+rest.getCodigoRestaurante()+"AND FechaReserva="+reservaSelec.getFecha();
  				
  			}
  		});
@@ -356,7 +359,7 @@ import Clases.Cliente;
  		);
  		
  		DefaultListModel dlm=new DefaultListModel();
- 		JList list = new JList();
+ 		
  		list.setBorder(new EmptyBorder(21, 10, 10, 10));
  		list.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 17));
  		list.setValueIsAdjusting(true);
@@ -372,7 +375,7 @@ import Clases.Cliente;
  		scrollPane.setViewportView(list);
  		panel.setLayout(gl_panel);
  		
- 		JLabel lblnomUser = new JLabel(clie.getNombre());
+ 		JLabel lblnomUser = new JLabel(rest.getNombre());
  		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);
  		lblnomUser.setForeground(Color.WHITE);
  		lblnomUser.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 17));
@@ -392,7 +395,7 @@ import Clases.Cliente;
  		btnMenuPrincipal.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
  		btnMenuPrincipal.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent e) {
- 				MenuCliente menuclie=new MenuCliente(clie, messages);
+ 				ptnMenuRestaurante menurest=new ptnMenuRestaurante(rest, messages);
  				frame.dispose();
  			}
  		});
