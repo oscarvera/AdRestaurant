@@ -26,5 +26,24 @@ public class ConstructorDeCelda implements ListCellRenderer<Object>{
 		}
 		return component;
 	}
+	
+	public Component getListCellRendererComponentReservas(
+            JList<?> list,                    
+            Object value,
+            int index, 
+            boolean isSelected, 
+            boolean cellHasFocus) {
+
+		Component component = (Component)value;
+		InfoReserva reserv=(InfoReserva)component;
+		if (isSelected){
+			component.setBackground(new Color(255, 153, 0));
+			reserv.fondoBlanco();
+		}else {
+			component.setBackground(new Color(255, 255, 255));
+			reserv.fondoNaranja();
+		}
+		return component;
+	}
 }	 
 

@@ -169,7 +169,6 @@ public class ptnReservasRestaurante extends JFrame {
 			dlm.addElement(reserva);
 		}
 
-
 		list.setModel(dlm);
 		scrollPane.setViewportView(list);
 		panel.setLayout(gl_panel);
