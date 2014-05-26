@@ -37,6 +37,10 @@ import javax.swing.GroupLayout.Alignment;
 
 import java.awt.Panel;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -69,7 +73,13 @@ public class Registro extends JPanel{
 	private Registro registro;
 	private Border borde;
 	private FocusListener focus;
-	private Consulta consulta;
+	
+	private String consulta;
+	private PreparedStatement stmt;
+	private Connection conexion;
+	private ResultSet resultadoConsulta;
+	private int resultadoActualizacionBD;
+	private Consulta conexionConsulta;
 
 	private JButton btnRegRest;
 	private JTextField textNomUserRest;
@@ -158,7 +168,7 @@ public class Registro extends JPanel{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Salir salir=new Salir(messages, consulta);
+				Salir salir=new Salir(messages, conexionConsulta);
 			}
 		});
 	}
@@ -916,9 +926,9 @@ public class Registro extends JPanel{
 			aviso.setVisible(true);
 			frame.setEnabled(false);
 		}else{
-			RegistroCompleto regCom=new RegistroCompleto(messages, consulta);
+			RegistroCompleto regCom=new RegistroCompleto(messages, conexionConsulta);
 			Cliente c = new Cliente(this.textNombre.getText(), this.textApellido1.getText(), this.textApellido2.getText(), 
-					this.textNomUser.getText(), this.passUser.getPassword(), this.textTelefono.getText(), this.textEmail.getText(), consulta);
+					this.textNomUser.getText(), this.passUser.getPassword(), this.textTelefono.getText(), this.textEmail.getText(), conexionConsulta);
 			frame.dispose();
 		}
 	}
@@ -929,7 +939,7 @@ public class Registro extends JPanel{
 	 */	
 	public void comprobarDatosRestaurante(){
 		ArrayList <String> mensajesError = new ArrayList <String>();
-
+		
 		//Comprobamos el número de teléfono
 		String textoIntroducido=this.textTelefonoRest.getText();	
 		Pattern pat = Pattern.compile("[0-9]{9}");
@@ -1003,18 +1013,86 @@ public class Registro extends JPanel{
 			this.textCodPostRest.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 		} 
 
+		//Escribimos la consulta SQL en la variable consulta
+				this.consulta = "SELECT usuario FROM Clientes WHERE usuario=?";
+				
+				try{
+					//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
+					this.stmt = conexion.prepareStatement(this.consulta);
+					
+					//Asignamos los campos del cliente a comprobar.
+
+					stmt.setString(1, this.textNomUser.getText());
+					
+					//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
+					resultadoConsulta = stmt.executeQuery();
+					if(resultadoConsulta.next()){
+						mensajesError.add(messages.getString("Usuarioyaexiste")); 
+						this.textNomUser.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
+					}
+					
+					
+				}catch(SQLException e){
+					e.printStackTrace();
+				}
+				
+				//Escribimos la consulta SQL en la variable consulta
+				this.consulta = "SELECT email FROM Clientes WHERE email=?";
+				
+				try{
+					//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
+					this.stmt = conexion.prepareStatement(this.consulta);
+					
+					//Asignamos los campos del cliente a comprobar.
+
+					stmt.setString(1, this.textEmail.getText());
+					
+					//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
+					resultadoConsulta = stmt.executeQuery();
+					if(resultadoConsulta.next()){
+						mensajesError.add(messages.getString("Emailyaexiste")); 
+						this.textEmail.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
+					}
+					
+					
+				}catch(SQLException e){
+					e.printStackTrace();
+				}
+				
+				//Escribimos la consulta SQL en la variable consulta
+				this.consulta = "SELECT telefono FROM Clientes WHERE telefono=?";
+				
+				try{
+					//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
+					this.stmt = conexion.prepareStatement(this.consulta);
+					
+					//Asignamos los campos del cliente a comprobar.
+
+					stmt.setInt(1, Integer.valueOf(this.textTelefono.getText()));
+					
+					//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
+					resultadoConsulta = stmt.executeQuery();
+					if(resultadoConsulta.next()){
+						mensajesError.add(messages.getString("Telefonoyaexiste")); 
+						this.textTelefono.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
+					}
+					
+				}catch(SQLException e){
+					e.printStackTrace();
+				}
+		
 		//Si hay errores, abre la pantalla ErrorRegistro y le pasa el array de errores.
 		if(mensajesError.size()>0){
 			JDialog aviso = new ErrorRegistro(mensajesError, this.registro, messages);
 			aviso.setVisible(true);
 			frame.setEnabled(false);
 		}else{
-			RegistroCompleto regCom=new RegistroCompleto(messages, consulta);
-			Restaurante r = new Restaurante(this.textNomUserRest.getText(),this.pwdContraRest.getPassword(),this.textNombreRest.getText(),this.comboTipoRest.getSelectedItem().toString(),this.textTelefonoRest.getText(),this.textDireccionRest.getText(),this.textPoblacionRest.getText(), this.textProvinciaRest.getText(),this.textCodPostRest.getText(),aptoMinusvalido, this.consulta);
+			RegistroCompleto regCom=new RegistroCompleto(messages, conexionConsulta);
+			Restaurante r = new Restaurante(this.textNomUserRest.getText(),this.pwdContraRest.getPassword(),this.textNombreRest.getText(),this.comboTipoRest.getSelectedItem().toString(),this.textTelefonoRest.getText(),this.textDireccionRest.getText(),this.textPoblacionRest.getText(), this.textProvinciaRest.getText(),this.textCodPostRest.getText(),aptoMinusvalido, this.conexionConsulta);
 			frame.dispose();
 		}
 	}
-
+	
 	/**
 	 * Activa la pantalla registro de nuevo, después de leer los mensajes de error.
 	 */
@@ -1023,7 +1101,7 @@ public class Registro extends JPanel{
 	}
 	
 	public void setConsulta(Consulta c){
-		this.consulta=c;
+		this.conexionConsulta=c;
 	}
 }
 
