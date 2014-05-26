@@ -1,5 +1,8 @@
 package Clases;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,8 +25,8 @@ public class Restaurante {
 	private String codigoPostal;
 	private boolean minusvalidoApto;
 	//De momento las imagenes van con este tipo, hasta que no esté claro, todo lo de imagenes está comentado.
-	private BufferedImage foto1;
-	private BufferedImage foto2;
+	private File foto1;
+	private File foto2;
 	private String nombreUsuario;
 	private char[] contraseña;
 	private PreparedStatement stmt;
@@ -47,8 +50,8 @@ public class Restaurante {
 			this.provincia=provincia;
 			this.codigoPostal=codigoPostal;
 			this.minusvalidoApto=minusvalidoApto;
-			//foto1=this.foto1;
-			//foto2=this.foto2;
+			this.foto1=foto1;
+			this.foto2=foto2;
 			this.conexionConsulta=c;
 			this.conexion=conexionConsulta.getConexion();
 			insertarRestaurante();
@@ -92,8 +95,8 @@ public class Restaurante {
 						this.telefono=resultadoConsulta.getString("telefono");
 						this.tipo=resultadoConsulta.getString("tipo");			
 						this.minusvalidoApto=resultadoConsulta.getBoolean("minusvalido_Apto");
-						//this.foto1=(BufferedImage) resultadoConsulta.getBlob("foto1");
-						//this.foto2=(BufferedImage) resultadoConsulta.getBlob("foto2");
+						this.foto1=(File) resultadoConsulta.getBlob("foto1");
+						this.foto2=(File) resultadoConsulta.getBlob("foto2");
 						this.nombreUsuario=resultadoConsulta.getString("nombreUsuario");
 						this.contraseña=resultadoConsulta.getString("contraseña").toCharArray();
 					
@@ -124,8 +127,8 @@ public class Restaurante {
 						this.telefono=resultadoConsulta.getString("telefono");
 						this.tipo=resultadoConsulta.getString("tipo");			
 						this.minusvalidoApto=resultadoConsulta.getBoolean("minusvalido_Apto");
-						//this.foto1=(BufferedImage) resultadoConsulta.getBlob("foto1");
-						//this.foto2=(BufferedImage) resultadoConsulta.getBlob("foto2");
+						this.foto1=(File) resultadoConsulta.getBlob("foto1");
+						this.foto2=(File) resultadoConsulta.getBlob("foto2");
 						this.nombreUsuario=resultadoConsulta.getString("nombreUsuario");
 						this.contraseña=resultadoConsulta.getString("contraseña").toCharArray();
 					
@@ -168,10 +171,13 @@ public class Restaurante {
 //			}
 			
 			public void insertarRestaurante(){
-				//Escribimos la consulta SQL en la variable consulta -->De momento, las fotos se quedan fuera:
-				this.consulta = "INSERT INTO restaurantes (Nombre,direccion,poblacion,provincia,codigoPostal,Telefono,tipo,Minusvalido_Apto,nombreUsuario,contraseña)"
-						+ " VALUES (?,?,?,?,?,?,?,?,?,?);"; //,?,?  foto1,foto2,
 				try{
+				FileInputStream io1 = new FileInputStream(foto1);
+				FileInputStream io2 = new FileInputStream(foto2);
+				//Escribimos la consulta SQL en la variable consulta -->De momento, las fotos se quedan fuera:
+				this.consulta = "INSERT INTO restaurantes (Nombre,direccion,poblacion,provincia,codigoPostal,Telefono,tipo,Minusvalido_Apto,foto1,foto2,nombreUsuario,contraseña)"
+						+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";  
+					try{
 					//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
 					this.stmt = conexion.prepareStatement(this.consulta);
 					
@@ -184,22 +190,28 @@ public class Restaurante {
 					stmt.setInt(6, Integer.valueOf(this.telefono));
 					stmt.setString(7, this.tipo);
 					stmt.setBoolean(8, this.minusvalidoApto);
-					stmt.setString(9, this.nombreUsuario);
+					stmt.setBinaryStream(9, (InputStream)io1, (int)foto1.length());
+					stmt.setBinaryStream(10, (InputStream)io2, (int)foto2.length());
+					stmt.setString(11, this.nombreUsuario);
 					//En contraseña hay que pasarlo a String y borrar el contenido de la variable de clase por seguridad.
-					stmt.setString(10, String.copyValueOf(this.contraseña));
+					stmt.setString(12, String.copyValueOf(this.contraseña));
 					for(int i=0; i<contraseña.length; i++){
 						this.contraseña[i]=0;
 					}
-					//stmt.setBlob(n, (Blob) this.foto1);
-					//stmt.setBlob(n, (Blob) this.foto2);
+	;
 					
 					//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
 					resultadoActualizacionBD = stmt.executeUpdate();
 					System.out.println("Se han actualizado "+resultadoActualizacionBD+" registros.");
 					
-				}catch(SQLException e){
+					}catch(SQLException e){
 					e.printStackTrace();
+					}
+				
+				}catch(Exception ex) {
+				System.out.println(ex.getMessage());
 				}
+				
 			}
 			
 			/**
@@ -286,19 +298,19 @@ public class Restaurante {
 				this.minusvalidoApto = minusvalidoApto;
 			}
 
-			public BufferedImage getFoto1() {
+			public File getFoto1() {
 				return foto1;
 			}
 
-			public void setFoto1(BufferedImage foto1) {
+			public void setFoto1(File foto1) {
 				this.foto1 = foto1;
 			}
 
-			public BufferedImage getFoto2() {
+			public File getFoto2() {
 				return foto2;
 			}
 
-			public void setFoto2(BufferedImage foto2) {
+			public void setFoto2(File foto2) {
 				this.foto2 = foto2;
 			}
 			

@@ -92,9 +92,10 @@ public class Registro extends JPanel{
 	private JTextField textDireccionRest;
 	private JPasswordField pwdContraRest;
 	private JComboBox comboTipoRest;
-	JButton btnImagen2;
-	JButton btnImagen1;
-	File file2;
+	private JButton btnImagen2;
+	private JButton btnImagen1;
+	private File file1;
+	private File file2;
 	private JCheckBox aptoMinus;
 	private boolean aptoMinusvalido;
 
@@ -753,7 +754,7 @@ public class Registro extends JPanel{
 						FileNameExtensionFilter filtroImagen=new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
 						chooser.setFileFilter(filtroImagen);
 						int returnVal = chooser.showOpenDialog(null);
-						File file1 = null;
+						file1 = null;
 						if(returnVal == JFileChooser.APPROVE_OPTION) {
 							file1 = chooser.getSelectedFile(); // ruta de la primera foto
 							btnImagen1.setText("Cambiar Imagen");

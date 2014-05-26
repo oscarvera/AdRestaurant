@@ -7,12 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -154,7 +156,20 @@ public class ptnRestaurante extends JFrame {
 
 		JLabel lblImagen = new JLabel("");
 		lblImagen.setBounds(22, 88, 360, 235);
-		lblImagen.setIcon(new ImageIcon(ptnRestaurante.class.getResource("/Imagen/olawu.jpg")));
+		
+		//LLegim el fitxer de la Imatge
+		 BufferedImage image = null;
+	        try
+	        {
+	          image = ImageIO.read(rest.getFoto1());
+	        }
+	        catch (Exception e)
+	        {
+	          e.printStackTrace();
+	          System.exit(1);
+	        }
+		
+		lblImagen.setIcon(new ImageIcon(image));
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(22, 359, 846, 164);
