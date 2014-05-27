@@ -42,7 +42,7 @@ public class Consulta {
 		try {
 			String user = "adrestaurant";
 			this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143:3306/adrestaurant", user, "adrestaurant");
-
+			//this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/adrestaurant", "root", "tonphp");
 			//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
 			//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
 			this.conexion.setAutoCommit(true);
@@ -121,16 +121,6 @@ public class Consulta {
 		}
 		return false;
 
-		
-		//		//Comprobamos la contraseña.
-		//		this.consulta = "SELECT contraseña FROM Cientes";
-		//		try{
-		//			this.stmt = conexion.prepareStatement(this.consulta);
-		//			resultadoConsulta = stmt.executeQuery();
-		//		}catch(SQLException e){
-		//			e.printStackTrace();
-		//			new ErrorRegistro("El usuario no existe");
-		//		}
 	}
 	public ErrorRegistro error(){
 		return err;

@@ -57,8 +57,7 @@ public class Restaurante {
 			this.minusvalidoApto=minusvalidoApto;
 			this.foto1=foto1;
 			this.foto2=foto2;
-			this.conexionConsulta=c;
-			this.conexion=conexionConsulta.getConexion();
+			this.conexion=this.conexionConsulta.getConexion();
 			insertarRestaurante();
 		}
 		
@@ -77,8 +76,7 @@ public class Restaurante {
 					this.minusvalidoApto=minusvalidoApto;
 					this.fotofile1=fotofile1;
 					this.fotofile2=fotofile2;
-					this.conexionConsulta=c;
-					this.conexion=conexionConsulta.getConexion();
+					this.conexion=this.conexionConsulta.getConexion();
 					insertarRestaurante();
 				}
 		
@@ -87,16 +85,14 @@ public class Restaurante {
 			//Constructor desde lista
 			public Restaurante(int codigo, Consulta c){
 				this.codigoRestaurante=codigo;
-				this.conexionConsulta=c;
-				this.conexion=conexionConsulta.getConexion();
+				this.conexion=this.conexionConsulta.getConexion();
 				loginRestaurante();
 			}
 			
 			//Constructor desde ingreso
 			public Restaurante(String nombreUsuario, Consulta c){
 				this.nombreUsuario=nombreUsuario;
-				this.conexionConsulta=c;
-				this.conexion=conexionConsulta.getConexion();
+				this.conexion=this.conexionConsulta.getConexion();
 				loginRestauranteIngreso();
 			}
 
@@ -189,35 +185,6 @@ public class Restaurante {
 				
 				
 			}
-			
-//			public void conectar(){
-//				//Cargamos el driver
-//				try{
-//					Class.forName("com.mysql.jdbc.Driver");
-//				}catch(ClassNotFoundException cnfe){
-//					cnfe.printStackTrace();
-//				}
-//						
-//				//Abrimos una conexión
-//				this.conexion=null;
-//				try {
-//					//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
-//					//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
-//					String user = "adrestaurant";
-//					this.conexion = DriverManager.getConnection("jdbc:mysql://84.126.12.143/adrestaurant", user, "adrestaurant");
-//					conexion.setAutoCommit(true);
-//				} catch (SQLException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//			
-//			public void prepararConsulta(){ 
-//				//Inicializamos la variable que contendrá el resultado
-//				this.resultadoConsulta=null;
-//			
-//				//Inicializamos el PreparedStatement para manejar la consulta (mejor que el Statement normal)
-//				this.stmt=null;
-//			}
 			
 			public void insertarRestaurante(){
 				try{
