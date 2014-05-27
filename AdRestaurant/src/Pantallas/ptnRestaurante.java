@@ -3,6 +3,7 @@ package Pantallas;
 import java.awt.Color;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -159,13 +160,13 @@ public class ptnRestaurante extends JFrame {
 		lblImagen.setBounds(22, 88, 360, 235);
 		
 		//LLegim el fitxer de la Imatge
-		BufferedImage image = null;
-		 
-		image = rest.getFoto1();
+		
+		ImageIcon imagen = new ImageIcon(rest.getFoto1());
+		ImageIcon icon = new ImageIcon(imagen.getImage().getScaledInstance(360, 235, Image.SCALE_DEFAULT)); 
 	        	//image = ImageIO.read(rest.getFotofile1());
 
 		
-		lblImagen.setIcon(new ImageIcon(image));
+		lblImagen.setIcon(icon);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(22, 359, 846, 164);
