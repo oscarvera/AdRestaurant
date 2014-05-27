@@ -1028,7 +1028,7 @@ public class Registro extends JPanel{
 
 		//Comprobamos la direccion
 		textoIntroducido = this.textDireccionRest.getText();
-		pat = Pattern.compile("^\\p{L}+[\\p{L}\\p{Z}\\p{P}]+[0-9]");
+		pat = Pattern.compile("^\\p{L}+[\\p{L}\\p{Z}\\p{P}]+[0-9]+([0-9])*$");
 		mat = pat.matcher(textoIntroducido);
 		if (!mat.matches()){
 			mensajesError.add(messages.getString("ErrorDIRECCION")); 
