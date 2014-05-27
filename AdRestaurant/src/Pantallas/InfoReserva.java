@@ -34,7 +34,6 @@ public class InfoReserva extends JPanel{
 	String fecha;
 	String hora;
 	int personas;
-	int codigoUsuario;
 	private JLabel lblPersonas;
 	private JLabel lblVerificado;
 	private JLabel lblRealizado_1;
@@ -49,6 +48,10 @@ public class InfoReserva extends JPanel{
 		this.realizado=realizado;
 		this.verificado=verificado;
 		this.codigoUsuClie=codigoUs;
+		this.usuario=usuario;
+		this.fecha=fecha;
+		this.hora=hora;
+		this.personas=pers;
 		
 		this.etiquetaNombre = new JLabel(usuario);
 		etiquetaNombre.setHorizontalAlignment(SwingConstants.LEFT);
@@ -194,6 +197,10 @@ public class InfoReserva extends JPanel{
 		this.realizado=realizado;
 		this.verificado=verificado;
 		this.codigoUsuRest=codigoRes;
+		this.usuario=nomrest;
+		this.fecha=fecha;
+		this.hora=hora;
+		this.personas=pers;
 		
 		this.etiquetaNombre = new JLabel(nomrest);
 		etiquetaNombre.setHorizontalAlignment(SwingConstants.LEFT);
@@ -372,6 +379,6 @@ public class InfoReserva extends JPanel{
 	}
 	
 	public int getCodigoUsuario(){
-		return codigoUsuario;
+		return codigoUsuClie;
 	}	
 }

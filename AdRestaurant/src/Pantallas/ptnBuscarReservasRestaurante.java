@@ -126,13 +126,16 @@ import Clases.Restaurante;
 			}
 		});
  		
+ 		//KEYLIST Y FOCUS LISTENERS DE LOS CAMPOS
+ 		
+ 		//NOMBRE
  		
  		
  		/**
  		 * Panel deslizante de la lista de reservas
  		 */
  		JScrollPane scroll_lista_reservas = new JScrollPane(); 	
- 		scroll_lista_reservas.setBounds(95, 0, 800, 424);
+ 		scroll_lista_reservas.setBounds(23, 11, 848, 413);
  		scroll_lista_reservas.setBorder(null);
  		
  		/**
@@ -140,13 +143,22 @@ import Clases.Restaurante;
  		 */
  		
  		JButton btnVerificar = new JButton("Verificar");
- 		btnVerificar.setBounds(229, 430, 325, 40);
+ 		btnVerificar.setBounds(121, 430, 325, 40);
  		btnVerificar.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent arg0) {
  				InfoReserva reservaSelec = (InfoReserva) lista_reservas.getSelectedValue();
- 				 conexion=(Connection) rest.getConexionConsulta().getConexion();
- 				String consulta="Update reserva set Verificacion=true where Codigo_Cliente="+reservaSelec.getCodigoUsuario()+"AND Codigo_Restaurante="+rest.getCodigoRestaurante()+"AND FechaReserva="+reservaSelec.getFecha();
  				
+ 				String consulta="Update reserva set Verificacion=true where Codigo_Cliente="+reservaSelec.getCodigoUsuario()+" AND Codigo_Restaurante="+rest.getCodigoRestaurante()+" AND FechaReserva='"+reservaSelec.getFecha()+"'";
+ 				System.out.println(consulta);
+ 				try {
+					stmt = conexion.prepareStatement(consulta);
+					stmt.executeUpdate();
+					realizaBusqueda();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
  			}
  		});
  		btnVerificar.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
@@ -154,13 +166,33 @@ import Clases.Restaurante;
  		btnVerificar.setBackground(new Color(255, 153, 0));
  		
  		JButton btnRealizar = new JButton("Realizado");
- 		btnRealizar.setBounds(560, 430, 325, 40);
+ 		btnRealizar.addActionListener(new ActionListener() {
+ 			public void actionPerformed(ActionEvent arg0) {
+ 				InfoReserva reservaSelec = (InfoReserva) lista_reservas.getSelectedValue();
+ 				
+ 				String consulta="Update reserva set realizacion=true where Codigo_Cliente="+reservaSelec.getCodigoUsuario()+" AND Codigo_Restaurante="+rest.getCodigoRestaurante()+" AND FechaReserva='"+reservaSelec.getFecha()+"'";
+ 				System.out.println(consulta);
+ 				try {
+					stmt = conexion.prepareStatement(consulta);
+					stmt.executeUpdate();
+					realizaBusqueda();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+ 			}
+ 		});
+ 		btnRealizar.setBounds(466, 430, 325, 40);
  		btnRealizar.setBackground(new Color(255, 153,0));
  		btnRealizar.setForeground(new Color(255, 255, 255));
  		btnRealizar.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
  		panel.setLayout(null);
- 		lista_reservas.setBounds(10, 11, 682, 408);
- 		panel.add(lista_reservas);
+ 		
+ 		DefaultListModel dlm=new DefaultListModel();
+ 		panel.add(scroll_lista_reservas);
+ 		//panel.add(lista_reservas);
+ 		scroll_lista_reservas.setViewportView(lista_reservas);
  		this.lista_reservas.setCellRenderer(celda);
  		this.lista_reservas.setFocusable(false);
  		this.lista_reservas.setBorder(new EmptyBorder(21, 10, 10, 10));
@@ -168,32 +200,9 @@ import Clases.Restaurante;
  		this.lista_reservas.setValueIsAdjusting(true);
  		this.lista_reservas.setForeground(new Color(255, 153, 0));
  		this.lista_reservas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
- 		GroupLayout gl_panel1 = new GroupLayout(panel);
- 		gl_panel1.setHorizontalGroup(
- 			gl_panel1.createParallelGroup(Alignment.LEADING)
- 				.addGroup(gl_panel1.createSequentialGroup()
- 					.addGap(213)
- 					.addGroup(gl_panel1.createParallelGroup(Alignment.TRAILING)
- 						.addGroup(gl_panel1.createSequentialGroup()
- 							.addComponent(btnVerificar, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE)
- 							.addPreferredGap(ComponentPlacement.RELATED)
- 							.addComponent(btnRealizar, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE)
- 							.addContainerGap())
- 						.addComponent(scroll_lista_reservas, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)))
- 		);
- 		gl_panel1.setVerticalGroup(
- 			gl_panel1.createParallelGroup(Alignment.LEADING)
- 				.addGroup(gl_panel1.createSequentialGroup()
- 					.addComponent(scroll_lista_reservas, GroupLayout.PREFERRED_SIZE, 424, GroupLayout.PREFERRED_SIZE)
- 					.addPreferredGap(ComponentPlacement.RELATED)
- 					.addGroup(gl_panel1.createParallelGroup(Alignment.BASELINE)
- 						.addComponent(btnRealizar, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
- 						.addComponent(btnVerificar, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
- 					.addGap(11))
- 		);
- 		
- 		DefaultListModel dlm=new DefaultListModel();
- 		panel.setLayout(gl_panel1);
+ 		panel.add(btnVerificar);
+ 		panel.add(btnRealizar);
+ 		panel.setLayout(null);
  		panel.add(scroll_lista_reservas);
  		panel.add(btnVerificar);
  		panel.add(btnRealizar);
@@ -264,7 +273,7 @@ import Clases.Restaurante;
  				modelo_lista_reservas.clear();
  				while(resultadoConsulta.next()){
  					System.out.println(resultadoConsulta.getString("usuario"));
- 					modelo_lista_reservas.addElement(new InfoReserva(resultadoConsulta.getString("usuario"),resultadoConsulta.getString("fechaReserva"),resultadoConsulta.getString("hora"),resultadoConsulta.getInt("personas"), resultadoConsulta.getInt("Codigo_Cliente"),resultadoConsulta.getBoolean("verificacion"),resultadoConsulta.getBoolean("realizacion") ));
+ 					modelo_lista_reservas.addElement(new InfoReserva(resultadoConsulta.getString("usuario"),resultadoConsulta.getString("fechaReserva"),resultadoConsulta.getString("hora"),resultadoConsulta.getInt("personas"), resultadoConsulta.getInt("Codigo_Cliente"),resultadoConsulta.getBoolean("realizacion"),resultadoConsulta.getBoolean("verificacion")));
  				}
  				
  			} catch (SQLException e) {
