@@ -142,8 +142,9 @@ public class Ingreso extends JPanel{
 					btnIngresar.setEnabled(false);
 				}
 			}
-
 			@Override
+			
+			
 			public void keyPressed(KeyEvent e) {
 				   if (e.getKeyCode()==KeyEvent.VK_ENTER){
 			            btnIngresar.doClick();
