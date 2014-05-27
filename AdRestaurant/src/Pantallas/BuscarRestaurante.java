@@ -85,6 +85,8 @@ public class BuscarRestaurante extends JFrame{
 		this.messages=messages;
 		this.clie=clie;
 		initialize();
+		estableceConsulta();
+		realizaBusqueda();
 	}
 
 	/**
@@ -187,9 +189,14 @@ public class BuscarRestaurante extends JFrame{
 		scroll_lista_restaurantes.setViewportView(lista_restaurantes);
 		
 		JButton btnBuscar = new JButton(messages.getString("BUSCAR"));
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				estableceConsulta();
 				realizaBusqueda();
 			}
 		});
@@ -401,17 +408,10 @@ public class BuscarRestaurante extends JFrame{
 		
 		
 		JLabel lblOtrasBusquedas = new JLabel(messages.getString("OtrasBusquedas"));
-		lblOtrasBusquedas.setBounds(10, 285, 190, 64);
+		lblOtrasBusquedas.setBounds(10, 314, 190, 64);
 		lblOtrasBusquedas.setForeground(new Color(255, 153, 51));
 		lblOtrasBusquedas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblOtrasBusquedas.setBackground(Color.YELLOW);
-		
-		JButton btnMejorValorado = new JButton(messages.getString("MejorValorado"));
-		btnMejorValorado.setFocusable(false);
-		btnMejorValorado.setBounds(20, 351, 165, 43);
-		btnMejorValorado.setForeground(new Color(255, 153, 0));
-		btnMejorValorado.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
-		btnMejorValorado.setBackground(Color.WHITE);
 		panel_1.setLayout(null);
 		
 		btnXNombre = new JButton("");
@@ -437,15 +437,20 @@ public class BuscarRestaurante extends JFrame{
 		panel_1.add(textCP);
 		panel_1.add(comboTipo);
 		panel_1.add(btnBuscar);
-		panel_1.add(btnMejorValorado);
 		panel_1.add(lblOtrasBusquedas);
 		
 		JButton btnNuevos = new JButton(messages.getString("Nuevos"));
+		btnNuevos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				consulta = "SELECT nombre, direccion, poblacion, tipo, codigoRestaurante FROM Restaurantes order by codigoRestaurante DESC";
+				realizaBusqueda();
+			}
+		});
 		btnNuevos.setFocusable(false);
 		btnNuevos.setForeground(new Color(255, 153, 0));
 		btnNuevos.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
 		btnNuevos.setBackground(Color.WHITE);
-		btnNuevos.setBounds(20, 403, 165, 43);
+		btnNuevos.setBounds(20, 378, 165, 43);
 		panel_1.add(btnNuevos);
 		
 		btnXDireccion = new JButton("");
@@ -623,7 +628,6 @@ public class BuscarRestaurante extends JFrame{
 	 */
 	public void realizaBusqueda(){
 		conectar();
-		estableceConsulta();
 		try {
 			this.stmt = conexion.prepareStatement(this.consulta);
 			this.resultadoConsulta = this.stmt.executeQuery();
