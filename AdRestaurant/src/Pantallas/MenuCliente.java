@@ -140,7 +140,7 @@ public class MenuCliente{
 			}
 		});
 
-		JButton btnBuscarReservas = new JButton(messages.getString("BuscarReservas"),(new ImageIcon(MenuCliente.class.getResource("/Imagen/botonReservas.png"))));
+		JButton btnBuscarReservas = new JButton(messages.getString("Reservas"),(new ImageIcon(MenuCliente.class.getResource("/Imagen/botonReservas.png"))));
 		btnBuscarReservas.setForeground(Color.WHITE);
 		btnBuscarReservas.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnBuscarReservas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 24));

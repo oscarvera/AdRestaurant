@@ -137,7 +137,7 @@ public class ptnCrearComentario extends JFrame {
 		textCliente.setFont(new Font("Fira Sans OT Light", Font.ITALIC, 40));
 		panel.add(textCliente);
 		
-		JLabel lblComentario = new JLabel("COMENTARIO:");
+		JLabel lblComentario = new JLabel(messages.getString("Comentario"));
 		lblComentario.setForeground(new Color(255, 153, 0));
 		lblComentario.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 20));
 		lblComentario.setBounds(63, 162, 137, 22);
@@ -193,7 +193,7 @@ public class ptnCrearComentario extends JFrame {
 		btnMenuPrincipal.setBounds(39, 605, 171, 23);
 		frame.getContentPane().add(btnMenuPrincipal);
 		
-		JButton btnReservar = new JButton("COMENTAR");
+		JButton btnReservar = new JButton(messages.getString("Comentar"));
 		btnReservar.setFocusable(false);
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -60,7 +60,7 @@ public class ptnMenuRestaurante extends JFrame {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JButton btnNewButton_1 = new JButton("Perfil");
+		JButton btnNewButton_1 = new JButton(messages.getString("Perfil"));
 		btnNewButton_1.setBounds(182, 68, 232, 345);
 		panel.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -70,7 +70,7 @@ public class ptnMenuRestaurante extends JFrame {
 			}
 		});
 		
-		JButton button = new JButton("Reservas");
+		JButton button = new JButton(messages.getString("Reservas"));
 		button.setBounds(487, 68, 232, 345);
 		panel.add(button);
 		button.addActionListener(new ActionListener() {
@@ -127,14 +127,14 @@ public class ptnMenuRestaurante extends JFrame {
 		lblnomUser.setBounds(500, 33, 239, 64);
 		frame.getContentPane().add(lblnomUser);
 		
-		JLabel lblBienvenido = new JLabel("Bienvenido");
+		JLabel lblBienvenido = new JLabel(messages.getString("WLCOME1"));
 		lblBienvenido.setForeground(Color.WHITE);
 		lblBienvenido.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBienvenido.setBackground(Color.YELLOW);
 		lblBienvenido.setBounds(379, 33, 86, 64);
 		frame.getContentPane().add(lblBienvenido);
 		
-		JButton btnCerrarsesion = new JButton("Cerrar Sesi\u00F3n");
+		JButton btnCerrarsesion = new JButton(messages.getString("CerrarSesion"));
 		btnCerrarsesion.setFocusable(false);
 		btnCerrarsesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
 		btnCerrarsesion.addActionListener(new ActionListener() {

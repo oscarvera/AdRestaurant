@@ -95,21 +95,21 @@ public class ptnComentarioCompletado extends JPanel{
 			}
 		});
 		
-		JLabel ReservaCompleta = new JLabel("Nuevo comentario completado");
+		JLabel ReservaCompleta = new JLabel(messages.getString("NuevoComentario"));
 		ReservaCompleta.setForeground(new Color(255, 153, 0));
 		ReservaCompleta.setHorizontalAlignment(SwingConstants.CENTER);
 		ReservaCompleta.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 39));
 		ReservaCompleta.setBounds(0, 45, 895, 44);
 		panel.add(ReservaCompleta);
 		
-		JLabel lblNewLabel_2 = new JLabel("Su comentario ha sido creado satisfactoriamente. Gracias por aportar tu opinión.");
+		JLabel lblNewLabel_2 = new JLabel(messages.getString("ComentarioGracias"));
 		lblNewLabel_2.setForeground(new Color(255, 153, 0));
 		lblNewLabel_2.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(10, 89, 875, 28);
 		panel.add(lblNewLabel_2);
 		
-		JButton btnIniciarSesion = new JButton("Volver al restaurante");
+		JButton btnIniciarSesion = new JButton(messages.getString("VolverRestaurante"));
 		btnIniciarSesion.setFocusable(false);
 		btnIniciarSesion.setBackground(new Color(255, 255, 255));
 		btnIniciarSesion.setForeground(new Color(255, 153, 51));

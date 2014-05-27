@@ -272,7 +272,7 @@ public class ptnPerfilCliente extends JFrame {
 					textPrimerApellido.setText(clie.getPrimerApellido());
 					panel.add(textPrimerApellido);
 					frame.repaint();
-					btnEditar.setText("Confirmar");
+					btnEditar.setText(messages.getString("Confirmar"));
 
 					panel.remove(Telefono);
 					panel.remove(Nombre);

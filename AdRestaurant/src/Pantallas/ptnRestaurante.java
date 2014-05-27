@@ -355,7 +355,7 @@ public class ptnRestaurante extends JFrame {
 				System.out.println("Hola");
 			}
 
-			JButton btnNuevoComentario = new JButton("Nuevo Comentario");
+			JButton btnNuevoComentario = new JButton(messages.getString("NuevoComentario1"));
 			btnNuevoComentario.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent arg0) {
