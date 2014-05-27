@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -158,16 +159,11 @@ public class ptnRestaurante extends JFrame {
 		lblImagen.setBounds(22, 88, 360, 235);
 		
 		//LLegim el fitxer de la Imatge
-		 BufferedImage image = null;
-	        try
-	        {
-	          image = ImageIO.read(rest.getFotofile1());
-	        }
-	        catch (Exception e)
-	        {
-	          e.printStackTrace();
-	          System.exit(1);
-	        }
+		BufferedImage image = null;
+		 
+		image = rest.getFoto1();
+	        	//image = ImageIO.read(rest.getFotofile1());
+
 		
 		lblImagen.setIcon(new ImageIcon(image));
 

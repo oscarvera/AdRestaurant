@@ -123,12 +123,12 @@ public class Restaurante {
 						//sacamos las imagenes de la base de datos
 						//foto1
 						Blob blob1 = resultadoConsulta.getBlob("foto1"); //Guardo el Blob de la BD en una variable Blob
-						byte[] data1 = blob1.getBytes(0, (int) blob1.length()); //lo trasformo en una variable de bytes
+						byte[] data1 = blob1.getBytes(1, (int) blob1.length()); //lo trasformo en una variable de bytes
 						BufferedImage img1 = ImageIO.read(new ByteArrayInputStream(data1)); //Creo la imagen a partir del array 
 						this.foto1= img1; //guardo la imagen
 						//foto2
 						Blob blob2 = resultadoConsulta.getBlob("foto2"); //Guardo el Blob de la BD en una variable Blob
-						byte[] data2 = blob2.getBytes(0, (int) blob2.length()); //lo trasformo en una variable de bytes
+						byte[] data2 = blob2.getBytes(1, (int) blob2.length()); //lo trasformo en una variable de bytes
 						BufferedImage img2 = ImageIO.read(new ByteArrayInputStream(data2)); //Creo la imagen a partir del array 
 						this.foto2= img2; //guardo la imagen
 						this.nombreUsuario=resultadoConsulta.getString("nombreUsuario");
@@ -167,12 +167,12 @@ public class Restaurante {
 						//sacamos las imagenes de la base de datos
 						//foto1
 						Blob blob1 = resultadoConsulta.getBlob("foto1"); //Guardo el Blob de la BD en una variable Blob
-						byte[] data1 = blob1.getBytes(0, (int) blob1.length()); //lo trasformo en una variable de bytes
+						byte[] data1 = blob1.getBytes(1, (int) blob1.length()); //lo trasformo en una variable de bytes
 						BufferedImage img1 = ImageIO.read(new ByteArrayInputStream(data1));//Creo la imagen a partir del array 
 						this.foto1= img1; //guardo la imagen
 						//foto2
 						Blob blob2 = resultadoConsulta.getBlob("foto2");//Guardo el Blob de la BD en una variable Blob
-						byte[] data2 = blob2.getBytes(0, (int) blob2.length());//lo trasformo en una variable de bytes
+						byte[] data2 = blob2.getBytes(1, (int) blob2.length());//lo trasformo en una variable de bytes
 						BufferedImage img2 = ImageIO.read(new ByteArrayInputStream(data2));//Creo la imagen a partir del array 
 						this.foto2= img2; //guardo la imagen
 						this.nombreUsuario=resultadoConsulta.getString("nombreUsuario");

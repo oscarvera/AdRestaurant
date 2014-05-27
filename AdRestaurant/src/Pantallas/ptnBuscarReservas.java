@@ -57,7 +57,9 @@ import javax.swing.SwingConstants;
 	private String consulta;
 	private ResultSet resultadoConsulta;
 	private int resultadoActualizacionBD;
-	private DefaultListModel<InfoReserva> modelo_lista_reservas;
+	private DefaultListModel<InfoReserva> modelo_lista_reservas = new DefaultListModel<InfoReserva>();
+    private JList<InfoReserva> lista_reservas = new JList<InfoReserva>(modelo_lista_reservas);
+    private ConstructorDeCelda celda = new ConstructorDeCelda();
  	
  	static Locale currentLocale;
     static ResourceBundle messages;
@@ -67,6 +69,7 @@ import javax.swing.SwingConstants;
 	 this.conexion=this.clie.getConexionConsulta().getConexion();
 	 this.messages=messages;
 	 initialize();
+	 buscarReservas();
  }
  	 
  private void initialize() {
@@ -294,21 +297,22 @@ import javax.swing.SwingConstants;
  		/**
  		 * Panel deslizante de la lista y su layout.
  		 */
- 		JScrollPane scrollPane = new JScrollPane();
- 		scrollPane.setBorder(null);
+ 		this.lista_reservas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 11));
+ 		JScrollPane scroll_lista_reservas = new JScrollPane(this.lista_reservas); 		
+ 		scroll_lista_reservas.setBorder(null);
  		GroupLayout gl_panel = new GroupLayout(panel);
  		gl_panel.setHorizontalGroup(
  			gl_panel.createParallelGroup(Alignment.LEADING)
  				.addGroup(gl_panel.createSequentialGroup()
  					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
  					.addPreferredGap(ComponentPlacement.RELATED)
- 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE))
+ 					.addComponent(scroll_lista_reservas, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE))
  		);
  		gl_panel.setVerticalGroup(
  			gl_panel.createParallelGroup(Alignment.LEADING)
  				.addGroup(gl_panel.createSequentialGroup()
  					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
- 						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+ 						.addComponent(scroll_lista_reservas, GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
  						.addComponent(panel_1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE))
  					.addContainerGap())
  		);
@@ -316,17 +320,15 @@ import javax.swing.SwingConstants;
  		/**
  		 * Lista reservas
  		 */
- 		this.modelo_lista_reservas = new DefaultListModel<InfoReserva>();
- 	    JList<InfoReserva> lista_reservas = new JList<InfoReserva>(this.modelo_lista_reservas);
- 	    ConstructorDeCelda celda = new ConstructorDeCelda();
- 		DefaultListModel dlm=new DefaultListModel();
+ 		this.lista_reservas.setCellRenderer(celda);
+		this.lista_reservas.setFocusable(false);		
+		scroll_lista_reservas.setViewportView(this.lista_reservas);
  		lista_reservas.setBorder(new EmptyBorder(21, 10, 10, 10));
  		lista_reservas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 17));
  		lista_reservas.setValueIsAdjusting(true);
  		lista_reservas.setForeground(new Color(255, 153, 0));
  		lista_reservas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
- 		lista_reservas.setModel(dlm);
- 		scrollPane.setViewportView(lista_reservas);
+ 		scroll_lista_reservas.setViewportView(lista_reservas);
  		panel.setLayout(gl_panel);
  		
  		JLabel lblnomUser = new JLabel(clie.getNombre());
@@ -387,8 +389,8 @@ import javax.swing.SwingConstants;
  	 * Realiza la búsqueda de reservas según los filtros.
  	 */
  	public void buscarReservas(){
-		this.consulta="select rest.nombre, r.fechaReserva, r.hora, r.personas, r.verificacion, r.realizacion from reserva r "
-				+ "INNER JOIN Restaurante rest ON r.Codigo_Restaurante=rest.CodigoRestaurante "
+		this.consulta="select rest.codigoRestaurante, rest.nombre, r.fechaReserva, r.hora, r.personas, r.verificacion, r.realizacion "
+				+ "from reserva r INNER JOIN Restaurantes rest ON r.Codigo_Restaurante=rest.codigoRestaurante "
 				+ "where r.codigo_Cliente="+String.valueOf(this.clie.getCodigoCliente())+";";
  		try {
 			this.stmt = conexion.prepareStatement(this.consulta);
