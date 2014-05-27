@@ -212,7 +212,12 @@ public class Registro extends JPanel{
 
 					@Override
 					public void keyReleased(KeyEvent e) {
-						if(!textNombre.getText().isEmpty()&&!textApellido1.getText().isEmpty()&&!textNomUser.getText().isEmpty()&&!textEmail.getText().isEmpty()&&!(passUser.getPassword().length==0)&&!textTelefono.getText().isEmpty()){
+						if(!textNombre.getText().isEmpty()
+								&&!textApellido1.getText().isEmpty()
+								&&!textNomUser.getText().isEmpty()
+								&&!textEmail.getText().isEmpty()
+								&&!(passUser.getPassword().length==0)
+								&&!textTelefono.getText().isEmpty()){
 							btnRegistrarse.setEnabled(true);
 						}else{
 							btnRegistrarse.setEnabled(false);
@@ -446,7 +451,18 @@ public class Registro extends JPanel{
 					}
 					@Override
 					public void keyReleased(KeyEvent e) {
-						if(!textNombreRest.getText().isEmpty()&&!textCodPostRest.getText().isEmpty()&&!textDireccionRest.getText().isEmpty()&&!textEmailRest.getText().isEmpty()&&!textNombreRest.getText().isEmpty()&&!(pwdContraRest.getPassword().length==0)&&!textNomUserRest.getText().isEmpty()&&!textPoblacionRest.getText().isEmpty()&&!textProvinciaRest.getText().isEmpty()&&(comboTipoRest.getSelectedIndex()!=0)&&btnImagen1.getText()=="Cambiar Imagen"){
+						if(!textNombreRest.getText().isEmpty()
+								&&!textCodPostRest.getText().isEmpty()
+								&&!textDireccionRest.getText().isEmpty()
+								&&!textEmailRest.getText().isEmpty()
+								&&!textNombreRest.getText().isEmpty()
+								&&!textTelefonoRest.getText().isEmpty()
+								&&!(pwdContraRest.getPassword().length==0)
+								&&!textNomUserRest.getText().isEmpty()
+								&&!textPoblacionRest.getText().isEmpty()
+								&&!textProvinciaRest.getText().isEmpty()
+								&&(comboTipoRest.getSelectedIndex()!=0)
+								&&btnImagen1.getText()=="Cambiar Imagen"){
 							btnRegRest.setEnabled(true);
 						}else{
 							btnRegRest.setEnabled(false);
@@ -733,7 +749,16 @@ public class Registro extends JPanel{
 
 					@Override
 					public void focusLost(FocusEvent arg0) {
-						if(!textNombreRest.getText().isEmpty()&&!textCodPostRest.getText().isEmpty()&&!textDireccionRest.getText().isEmpty()&&!textEmailRest.getText().isEmpty()&&!textNombreRest.getText().isEmpty()&&!(pwdContraRest.getPassword().length==0)&&!textNomUserRest.getText().isEmpty()&&!textPoblacionRest.getText().isEmpty()&&!textProvinciaRest.getText().isEmpty()&&(comboTipoRest.getSelectedIndex()!=0)&&btnImagen1.getText()=="Cambiar Imagen"){
+						if(!textNombreRest.getText().isEmpty()&&!textCodPostRest.getText().isEmpty()
+								&&!textDireccionRest.getText().isEmpty()
+								&&!textEmailRest.getText().isEmpty()
+								&&!textNombreRest.getText().isEmpty()
+								&&!(pwdContraRest.getPassword().length==0)
+								&&!textNomUserRest.getText().isEmpty()
+								&&!textPoblacionRest.getText().isEmpty()
+								&&!textProvinciaRest.getText().isEmpty()
+								&&(comboTipoRest.getSelectedIndex()!=0)
+								&&btnImagen1.getText()=="Cambiar Imagen"){
 							btnRegRest.setEnabled(true);
 						}else{
 							btnRegRest.setEnabled(false);
