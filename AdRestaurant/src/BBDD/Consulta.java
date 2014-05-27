@@ -62,7 +62,7 @@ public class Consulta {
 	 */
 	public void cerrarConexion(){
 		try {
-			conexion.close();
+			this.conexion.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

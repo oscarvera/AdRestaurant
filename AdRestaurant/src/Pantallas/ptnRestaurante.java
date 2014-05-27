@@ -134,8 +134,7 @@ public class ptnRestaurante extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Salir salir=new Salir(messages, clie);
-
+				Salir salir=new Salir(messages, rest);
 			}
 		});
 	}
@@ -369,14 +368,16 @@ public class ptnRestaurante extends JFrame {
 			btnNuevoComentario.setBackground(null);
 		}
 
-
+		/**
+		 * Lista de comentarios
+		 */
 		DefaultListModel dlm=new DefaultListModel();
 		JList list = new JList();
 		list.setBorder(new EmptyBorder(3, 3, 3, 3));
 		list.setFont(new Font("Fira Sans OT", Font.PLAIN, 11));
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(list);
-		//LISTAR COMENTARIOS
+		
 		consulta= "SELECT cli.usuario, c.fechaCreacion, c.txtComentario FROM comentarios c INNER JOIN clientes cli on cli.codigoCliente=c.Codigo_Cliente WHERE Codigo_Restaurante=?";
 		try {
 			stmt = conexion.prepareStatement(consulta);
