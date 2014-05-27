@@ -73,7 +73,7 @@ public class Registro extends JPanel{
 	private Registro registro;
 	private Border borde;
 	private FocusListener focus;
-	
+
 	private String consulta;
 	private PreparedStatement stmt;
 	private Connection conexion;
@@ -949,27 +949,27 @@ public class Registro extends JPanel{
 
 		//Escribimos la consulta SQL en la variable consulta
 		this.consulta = "SELECT usuario FROM Clientes WHERE usuario=?";
-		
+
 		try{
 			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
 			this.stmt = conexion.prepareStatement(this.consulta);
-			
+
 			//Asignamos los campos del cliente a comprobar.
 
 			stmt.setString(1, this.textNomUser.getText());
-			
+
 			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
 			resultadoConsulta = stmt.executeQuery();
 			if(resultadoConsulta.next()){
 				mensajesError.add(messages.getString("Usuarioyaexiste")); 
 				this.textNomUser.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 			}
-			
-			
+
+
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		
+
 		//Si hay errores, abre la pantalla ErrorRegistro y le pasa el array de errores. Si está correcto
 		if(mensajesError.size()>0){
 			JDialog aviso = new ErrorRegistro(mensajesError, this.registro, messages);
@@ -989,7 +989,7 @@ public class Registro extends JPanel{
 	 */	
 	public void comprobarDatosRestaurante(){
 		ArrayList <String> mensajesError = new ArrayList <String>();
-		
+
 		//Comprobamos el número de teléfono
 		String textoIntroducido=this.textTelefonoRest.getText();	
 		Pattern pat = Pattern.compile("[0-9]{9}");
@@ -1061,30 +1061,30 @@ public class Registro extends JPanel{
 			mensajesError.add(messages.getString("ErrorCP")); 
 			this.textCodPostRest.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 		} 
-		
+
 		//Escribimos la consulta SQL en la variable consulta
 		this.consulta = "SELECT nombreUsuario FROM Restaurantes WHERE nombreUsuario=?";
-		
+
 		try{
 			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
 			this.stmt = conexion.prepareStatement(this.consulta);
-			
+
 			//Asignamos los campos del cliente a comprobar.
 
 			stmt.setString(1, this.textNomUserRest.getText());
-			
+
 			//Ejecutamos la consulta y la guardamos en un entero (ya que es de actualización y nos dirá las columnas afectadas).
 			resultadoConsulta = stmt.executeQuery();
 			if(resultadoConsulta.next()){
 				mensajesError.add(messages.getString("Usuarioyaexiste")); 
 				this.textNomUser.setBorder(BorderFactory.createBevelBorder(1, (Color.RED), (Color.RED)));
 			}
-			
-			
+
+
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		
+
 		//Si hay errores, abre la pantalla ErrorRegistro y le pasa el array de errores.
 		if(mensajesError.size()>0){
 			JDialog aviso = new ErrorRegistro(mensajesError, this.registro, messages);
@@ -1099,14 +1099,14 @@ public class Registro extends JPanel{
 			frame.dispose();
 		}
 	}
-	
+
 	/**
 	 * Activa la pantalla registro de nuevo, después de leer los mensajes de error.
 	 */
 	public void activaRegistro(){
 		frame.setEnabled(true);
 	}
-	
+
 	public void setConsulta(Consulta c){
 		this.conexionConsulta=c;
 	}
