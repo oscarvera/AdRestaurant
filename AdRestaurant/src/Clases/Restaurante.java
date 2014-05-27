@@ -57,6 +57,7 @@ public class Restaurante {
 			this.minusvalidoApto=minusvalidoApto;
 			this.foto1=foto1;
 			this.foto2=foto2;
+			this.conexionConsulta=c;
 			this.conexion=this.conexionConsulta.getConexion();
 			insertarRestaurante();
 		}
@@ -76,6 +77,7 @@ public class Restaurante {
 					this.minusvalidoApto=minusvalidoApto;
 					this.fotofile1=fotofile1;
 					this.fotofile2=fotofile2;
+					this.conexionConsulta=c;
 					this.conexion=this.conexionConsulta.getConexion();
 					insertarRestaurante();
 				}
@@ -85,6 +87,7 @@ public class Restaurante {
 			//Constructor desde lista
 			public Restaurante(int codigo, Consulta c){
 				this.codigoRestaurante=codigo;
+				this.conexionConsulta=c;
 				this.conexion=this.conexionConsulta.getConexion();
 				loginRestaurante();
 			}
@@ -92,6 +95,7 @@ public class Restaurante {
 			//Constructor desde ingreso
 			public Restaurante(String nombreUsuario, Consulta c){
 				this.nombreUsuario=nombreUsuario;
+				this.conexionConsulta=c;
 				this.conexion=this.conexionConsulta.getConexion();
 				loginRestauranteIngreso();
 			}
