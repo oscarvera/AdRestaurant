@@ -68,6 +68,7 @@ import Clases.Restaurante;
 	 this.messages=messages;
  	initialize();
  	conectar();
+ 	realizaBusqueda();
  }
  	 
  private void initialize() {
@@ -292,8 +293,6 @@ import Clases.Restaurante;
  		panel_1.add(textFecha);
  		panel_1.add(btnBuscar);
  		
- 		final JList list = new JList();
- 		
  		btnXFecha = new JButton("");
  		btnXFecha.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent arg0) {
@@ -310,13 +309,13 @@ import Clases.Restaurante;
  		btnXFecha.setBackground(Color.WHITE);
  		btnXFecha.setBounds(175, 196, 22, 46);
  		
- 		JScrollPane scrollPane = new JScrollPane();
+ 		JScrollPane scrollPane = new JScrollPane(lista_reservas);
  		scrollPane.setBorder(null);
  		
  		JButton btnVerificar = new JButton("Verificar");
  		btnVerificar.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent arg0) {
- 				InfoReserva reservaSelec = (InfoReserva) list.getSelectedValue();
+ 				InfoReserva reservaSelec = (InfoReserva) lista_reservas.getSelectedValue();
  				 conexion=(Connection) rest.getConexionConsulta().getConexion();
  				String consulta="Update reserva set Verificacion=true where Codigo_Cliente="+reservaSelec.getCodigoUsuario()+"AND Codigo_Restaurante="+rest.getCodigoRestaurante()+"AND FechaReserva="+reservaSelec.getFecha();
  				
@@ -359,20 +358,6 @@ import Clases.Restaurante;
  		);
  		
  		DefaultListModel dlm=new DefaultListModel();
- 		
- 		list.setBorder(new EmptyBorder(21, 10, 10, 10));
- 		list.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 17));
- 		list.setValueIsAdjusting(true);
- 		list.setForeground(new Color(255, 153, 0));
- 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
- 		for(int i=0;i<50;i++){
- 			String reserva="<html>Nombre del resetaurante"+i+"<br><table cellpadding='10px'><tr><td><font color=silver>Fecha: </font></td><td><font color=silver> Hora: </font></td><td><font color=silver>Personas: </font></td><td><font color=silver>Verificado: </font></td></tr></table></html>";
- 	 		dlm.addElement(reserva);
- 		}
- 		
- 		
- 		list.setModel(dlm);
- 		scrollPane.setViewportView(list);
  		panel.setLayout(gl_panel);
  		
  		JLabel lblnomUser = new JLabel(rest.getNombre());
@@ -458,9 +443,11 @@ import Clases.Restaurante;
  			String consulta="select c.usuario, r.fechaReserva, r.hora, r.fechaCreacion, r.personas,r.Codigo_Cliente,r.verificacion, r.realizacion from reserva r inner join clientes c on r.Codigo_Cliente=c.codigoCliente where r.Codigo_Restaurante=? order by r.fechaCreacion ASC";
  			try {
  				this.stmt = (PreparedStatement) conexion.prepareStatement(consulta);
+ 				this.stmt.setInt(1, rest.getCodigoRestaurante());
  				this.resultadoConsulta = (ResultSet) this.stmt.executeQuery();
  				modelo_lista_reservas.clear();
  				while(resultadoConsulta.next()){
+ 					System.out.println(resultadoConsulta.getString("usuario"));
  					modelo_lista_reservas.addElement(new InfoReserva(resultadoConsulta.getString("usuario"),resultadoConsulta.getString("fechaReserva"),resultadoConsulta.getString("hora"),resultadoConsulta.getInt("personas"), resultadoConsulta.getInt("Codigo_Cliente"),resultadoConsulta.getBoolean("verificacion"),resultadoConsulta.getBoolean("realizacion") ));
  				}
  				

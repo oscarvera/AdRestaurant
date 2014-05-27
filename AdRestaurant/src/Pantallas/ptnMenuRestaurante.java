@@ -75,7 +75,7 @@ public class ptnMenuRestaurante extends JFrame {
 		JButton button = new JButton("Reservas");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ptnBuscarReservas reser=new ptnBuscarReservas(null, messages);
+				ptnBuscarReservasRestaurante reser=new ptnBuscarReservasRestaurante(rest, messages);
 				frame.dispose();
 			}
 		});
