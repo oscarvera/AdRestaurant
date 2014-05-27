@@ -160,13 +160,19 @@ public class ptnRestaurante extends JFrame {
 		
 		//LLegim el fitxer de la Imatge
 		
-		ImageIcon imagen = new ImageIcon(rest.getFoto1());
-		ImageIcon icon = new ImageIcon(imagen.getImage().getScaledInstance(360, 235, Image.SCALE_DEFAULT)); 
-	        	//image = ImageIO.read(rest.getFotofile1());
-
-		
-		lblImagen.setIcon(icon);
-
+		if(rest.getFoto1().getWidth()>360){
+			ImageIcon imagen = new ImageIcon(rest.getFoto1());
+			ImageIcon icon = new ImageIcon(imagen.getImage().getScaledInstance(360, imagen.getIconHeight(), Image.SCALE_DEFAULT));
+			lblImagen.setIcon(icon);
+		}if(rest.getFoto1().getHeight()>235){
+			ImageIcon imagen = new ImageIcon(rest.getFoto1());
+			ImageIcon icon = new ImageIcon(imagen.getImage().getScaledInstance(imagen.getIconWidth(), 235, Image.SCALE_DEFAULT));
+			lblImagen.setIcon(icon);
+		}else{
+			ImageIcon icon =new ImageIcon(rest.getFoto1());
+			lblImagen.setIcon(icon);
+		}
+	       	//image = ImageIO.read(rest.getFotofile1());
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(22, 359, 846, 164);
 
