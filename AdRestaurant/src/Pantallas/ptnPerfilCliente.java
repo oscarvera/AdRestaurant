@@ -239,7 +239,7 @@ public class ptnPerfilCliente extends JFrame {
 		final JButton btnEditar = new JButton(messages.getString("Editar"));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(btnEditar.getText()=="Editar"){
+				if(btnEditar.getText()==messages.getString("Editar")){
 
 					textNombre = new JTextField();
 					textNombre.setBounds(593, 129, 175, 28);
