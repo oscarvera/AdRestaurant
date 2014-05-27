@@ -19,6 +19,7 @@ public class InfoComentario extends JPanel{
 	private JLabel etiquetaUsuario;
 	private JLabel etiquetaFecha;
 	private JLabel etiquetaTextoComentario;
+	private JTextPane textPane;
 	
 	public InfoComentario(String usuario, String fechaRes, String coment){
 		setBorder(new BevelBorder(BevelBorder.RAISED, Color.ORANGE, Color.ORANGE, Color.ORANGE, Color.ORANGE));
@@ -26,26 +27,44 @@ public class InfoComentario extends JPanel{
 		JLabel etiquetaUsuario = new JLabel(usuario);
 		JLabel etiquetaFecha = new JLabel(fechaRes);
 		JLabel etiquetaTextoComentario = new JLabel(coment);
-		
+		etiquetaTextoComentario.setHorizontalAlignment(SwingConstants.LEFT);
 		etiquetaTextoComentario.setVerticalAlignment(SwingConstants.TOP);
 		
 		JPopupMenu popupMenu = new JPopupMenu();
+		popupMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				setVisible(true);
+				textPane.setVisible(true);
+			}
+		});
 		addPopup(this, popupMenu);
 		popupMenu.add(coment);
 		
-		JTextPane textPane = new JTextPane();
+		//addPopup(this.textPane, popupMenu);
+		
+		this.textPane = new JTextPane();
+		textPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
 		popupMenu.add(textPane);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(10)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(etiquetaTextoComentario, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addContainerGap())
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(etiquetaUsuario)
 							.addGap(105)
-							.addComponent(etiquetaFecha))
-						.addComponent(etiquetaTextoComentario, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(etiquetaFecha)
+							.addGap(566))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -54,8 +73,9 @@ public class InfoComentario extends JPanel{
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(etiquetaUsuario)
 						.addComponent(etiquetaFecha))
-					.addGap(6)
-					.addComponent(etiquetaTextoComentario, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(etiquetaTextoComentario, GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		setLayout(groupLayout);
 	}
