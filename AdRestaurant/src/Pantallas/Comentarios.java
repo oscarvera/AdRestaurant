@@ -7,9 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,6 +30,7 @@ import javax.swing.JList;
 import javax.swing.AbstractListModel;
 
 import Clases.Cliente;
+
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 
@@ -35,6 +41,14 @@ public class Comentarios extends JFrame {
 	Cliente clie;
 	static Locale currentLocale;
     static ResourceBundle messages;
+    
+    private DefaultListModel<InfoComentario> modelo_lista_comentarios = new DefaultListModel<InfoComentario>();
+    private JList<InfoComentario> lista_comentarios = new JList<InfoComentario>(modelo_lista_comentarios);
+    private ConstructorDeCeldaComentarios celda = new ConstructorDeCeldaComentarios();
+	private PreparedStatement stmt;
+	private String consulta;
+	private Connection conexion;
+	private ResultSet resultadoConsulta;
 
 	/**
 	 *  Create the frame.
@@ -42,6 +56,8 @@ public class Comentarios extends JFrame {
 	public Comentarios( final Cliente clie, final ResourceBundle messages) {
 		this.messages=messages;
 		this.clie=clie;
+		this.conexion=this.clie.getConexionConsulta().getConexion();
+		mostrarComentarios();
 		frame = new JFrame();		
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(255, 153, 0));
@@ -52,7 +68,6 @@ public class Comentarios extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
-		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
@@ -94,28 +109,34 @@ public class Comentarios extends JFrame {
 			}
 		});
 		
-		JScrollPane scrollPane = new JScrollPane();
+		/**
+		 * Panel deslizante de la lista comentarios
+		 */
+		lista_comentarios.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 11));
+		JScrollPane scrollComentarios = new JScrollPane();
+		scrollComentarios.setBorder(null);
+		
+		/**
+		 * Lista de comentarios hechos por el cliente.
+		 */
+		this.lista_comentarios.setCellRenderer(celda);
+		this.lista_comentarios.setFocusable(false);		
+		scrollComentarios.setViewportView(this.lista_comentarios);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
+					.addComponent(scrollComentarios, GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+					.addGap(5)
+					.addComponent(scrollComentarios, GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
 					.addContainerGap())
 		);
-		
-		/**
-		 * Lista de comentarios hechos por el cliente.
-		 */
-		JList list = new JList();
-		scrollPane.setViewportView(list);
 		panel.setLayout(gl_panel);
 		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
@@ -169,5 +190,23 @@ public class Comentarios extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+	}
+	
+	public void mostrarComentarios(){
+		this.consulta="SELECT fechaCreacion, txtComentario FROM Comentarios WHERE Codigo_Cliente="+this.clie.getCodigoCliente()+";";
+ 		try {
+			this.stmt = conexion.prepareStatement(this.consulta);
+			//this.stmt.setInt(1, this.clie.getCodigoCliente());
+			this.resultadoConsulta = this.stmt.executeQuery();
+			this.modelo_lista_comentarios.clear();
+			System.out.println("Consulta:"+this.consulta);
+			while(resultadoConsulta.next()){
+				this.modelo_lista_comentarios.addElement(new InfoComentario(this.clie.getUsuario(), resultadoConsulta.getString("fechaCreacion"), resultadoConsulta.getString("txtComentario")));
+				System.out.print(resultadoConsulta.getString(1)+resultadoConsulta.getString(2));
+			}	
+		} catch (SQLException e) {
+			System.out.println("Consulta:"+this.consulta);
+			e.printStackTrace();
+		}
 	}
 }
