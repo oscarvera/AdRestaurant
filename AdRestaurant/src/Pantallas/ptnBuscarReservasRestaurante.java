@@ -46,9 +46,6 @@ import Clases.Restaurante;
  public class ptnBuscarReservasRestaurante extends JFrame {
  	Restaurante rest;
  	private JFrame frame;
- 	private JTextField textNombreRest;
- 	private JTextField textFecha;
- 	JPanel panel_1;
  	
  	private JButton btnXFecha;
  	private JButton btnXNombre;
@@ -94,10 +91,6 @@ import Clases.Restaurante;
  		panel.setBounds(0, 86, 895, 481);
  		frame.getContentPane().add(panel);
  		
- 		panel_1 = new JPanel();
- 		panel_1.setBorder(new MatteBorder(0, 0, 0, 4, (Color) new Color(255, 153, 51)));
- 		panel_1.setBackground(Color.WHITE);
- 		
  		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.WHITE);
 		panel_2.setBounds(0, 0, 895, 22);
@@ -133,211 +126,21 @@ import Clases.Restaurante;
 			}
 		});
  		
- 		JButton btnBuscar = new JButton(messages.getString("BUSCAR"));
- 		btnBuscar.setFocusable(false);
- 		btnBuscar.setBounds(10, 274, 187, 43);
- 		btnBuscar.setForeground(new Color(255, 153, 0));
- 		btnBuscar.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
- 		btnBuscar.setBackground(Color.WHITE);
  		
- 		//KEYLIST Y FOCUS LISTENERS DE LOS CAMPOS
- 		
- 		//NOMBRE
- 		
- 		KeyListener keylisNombre=new KeyListener() {
- 			@Override
- 			public void keyTyped(KeyEvent arg0) {
- 				panel_1.add(btnXNombre);
- 				panel_1.repaint();
- 			}
- 			
- 			@Override
- 			public void keyReleased(KeyEvent arg0) {
- 			}
- 			
- 			@Override
- 			public void keyPressed(KeyEvent arg0) {
- 			}
- 		};
- 		
- 		FocusListener focusNombre=new FocusListener() {
- 			
- 			@Override
- 			public void focusLost(FocusEvent arg0) {
- 				if(textNombreRest.getText().compareTo((messages.getString("NombreRestaurante")))==0||textNombreRest.getText().isEmpty()){
- 					textNombreRest.setText(messages.getString("NombreRestaurante"));
- 					textNombreRest.setForeground(Color.LIGHT_GRAY);
- 					panel_1.remove(btnXNombre);
- 					panel_1.repaint();
- 					}
- 			}
- 			
- 			@Override
- 			public void focusGained(FocusEvent arg0) {
- 				if(textNombreRest.getText().compareTo("Nombre Restaurante")==0||textNombreRest.getText().isEmpty()){
- 					textNombreRest.setText("");
- 					textNombreRest.setForeground(new Color(255, 153, 51));
- 					}
- 			}
- 		};
- 		
- 		//DIRECION
- 		
- 		KeyListener keylisDireccion=new KeyListener() {
- 			@Override
- 			public void keyTyped(KeyEvent arg0) {
- 				panel_1.add(btnXFecha);
- 				panel_1.repaint();
- 			}
- 			
- 			@Override
- 			public void keyReleased(KeyEvent arg0) {
- 			}
- 			
- 			@Override
- 			public void keyPressed(KeyEvent arg0) {
- 			}
- 		};
- 		
- 		FocusListener focusDireccion=new FocusListener() {
- 			
- 			@Override
- 			public void focusLost(FocusEvent arg0) {
- 				if(textFecha.getText().compareTo("Fecha")==0||textFecha.getText().isEmpty()){
- 					textFecha.setText(messages.getString("Fecha"));
- 					textFecha.setForeground(Color.LIGHT_GRAY);
- 					panel_1.remove(btnXFecha);
- 					panel_1.repaint();
- 					}
- 			}
- 			
- 			@Override
- 			public void focusGained(FocusEvent arg0) {
- 				if(textFecha.getText().compareTo("Fecha")==0||textFecha.getText().isEmpty()){
- 					textFecha.setText("");
- 					textFecha.setForeground(new Color(255, 153, 51));
- 					}
- 			}
- 		};
- 		
- 		//Codigo Postal
- 		
- 				KeyListener keylisCP=new KeyListener() {
- 					@Override
- 					public void keyTyped(KeyEvent arg0) {
- 						panel_1.add(btnXCP);
- 						panel_1.repaint();
- 					}
- 					
- 					@Override
- 					public void keyReleased(KeyEvent arg0) {
- 					}
- 					
- 					@Override
- 					public void keyPressed(KeyEvent arg0) {
- 					}
- 				};
- 				
- 				
- 				
- 				
- 		
- 				
- 		
- 		textNombreRest = new JTextField();
- 		textNombreRest.setBackground(new Color(255, 255, 255));
- 		textNombreRest.setBounds(10, 145, 165, 46);
- 		textNombreRest.setText(messages.getString("NombreRestaurante"));
- 		textNombreRest.setForeground(Color.LIGHT_GRAY);
- 		textNombreRest.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
- 		textNombreRest.setColumns(10);
- 		textNombreRest.addFocusListener(focusNombre);
- 		textNombreRest.addKeyListener(keylisNombre);
- 		textNombreRest.setBorder(null);
- 		
- 		textFecha = new JTextField();
- 		textFecha.setBounds(10, 197, 165, 46);
- 		textFecha.setText(messages.getString("Fecha"));
- 		textFecha.setForeground(Color.LIGHT_GRAY);
- 		textFecha.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
- 		textFecha.setColumns(10);
- 		textFecha.addKeyListener(keylisDireccion);
- 		textFecha.addFocusListener(focusDireccion);
- 		textFecha.setBorder(null);
- 		panel_1.setLayout(null);
- 		
- 		btnXNombre = new JButton("");
- 		btnXNombre.addActionListener(new ActionListener() {
- 			public void actionPerformed(ActionEvent arg0) {
- 				textNombreRest.setText(messages.getString("Nombre"));
- 				textNombreRest.setForeground(Color.LIGHT_GRAY);
- 				panel_1.requestFocus();
- 				panel_1.remove(btnXNombre);
- 				panel_1.repaint();
- 			}
- 		});
- 		btnXNombre.setBounds(175, 145, 22, 46);//175, 28, 22, 46
- 		btnXNombre.setBackground(Color.WHITE);
- 		btnXNombre.setIcon(new ImageIcon(BuscarRestaurante.class.getResource("/Imagen/botonX.png")));
- 		btnXNombre.setBorder(null);
- 		
- 		panel_1.add(textNombreRest);
- 		panel_1.add(textFecha);
- 		panel_1.add(btnBuscar);
- 		
- 		btnXFecha = new JButton("");
- 		btnXFecha.addActionListener(new ActionListener() {
- 			public void actionPerformed(ActionEvent arg0) {
- 				textFecha.setText(messages.getString("Direccion"));
- 				textFecha.setForeground(Color.LIGHT_GRAY);
- 				panel_1.requestFocus();
- 				panel_1.remove(btnXFecha);
- 				panel_1.repaint();
- 				
- 			}
- 		});
- 		btnXFecha.setIcon(new ImageIcon(BuscarRestaurante.class.getResource("/Imagen/botonX.png")));
- 		btnXFecha.setBorder(null);
- 		btnXFecha.setBackground(Color.WHITE);
- 		btnXFecha.setBounds(175, 196, 22, 46);
  		
  		/**
  		 * Panel deslizante de la lista de reservas
  		 */
- 		JScrollPane scroll_lista_reservas = new JScrollPane(this.lista_reservas); 	
+ 		JScrollPane scroll_lista_reservas = new JScrollPane(); 	
+ 		scroll_lista_reservas.setBounds(95, 0, 800, 424);
  		scroll_lista_reservas.setBorder(null);
- 		GroupLayout gl_panel = new GroupLayout(panel);
- 		gl_panel.setHorizontalGroup(
- 			gl_panel.createParallelGroup(Alignment.LEADING)
- 				.addGroup(gl_panel.createSequentialGroup()
- 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
- 					.addPreferredGap(ComponentPlacement.RELATED)
- 					.addComponent(scroll_lista_reservas, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE))
- 		);
- 		gl_panel.setVerticalGroup(
- 			gl_panel.createParallelGroup(Alignment.LEADING)
- 				.addGroup(gl_panel.createSequentialGroup()
- 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
- 						.addComponent(scroll_lista_reservas, GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
- 						.addComponent(panel_1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE))
- 					.addContainerGap())
- 		);
  		
  		/**
  		 * Lista de reservas del restaurante
  		 */
- 		this.lista_reservas.setCellRenderer(celda);
-		this.lista_reservas.setFocusable(false);		
-		scroll_lista_reservas.setViewportView(this.lista_reservas);
- 		this.lista_reservas.setBorder(new EmptyBorder(21, 10, 10, 10));
- 		this.lista_reservas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 17));
- 		this.lista_reservas.setValueIsAdjusting(true);
- 		this.lista_reservas.setForeground(new Color(255, 153, 0));
- 		this.lista_reservas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
- 		scroll_lista_reservas.setViewportView(this.lista_reservas);
- 		panel.setLayout(gl_panel);
  		
  		JButton btnVerificar = new JButton("Verificar");
+ 		btnVerificar.setBounds(229, 430, 325, 40);
  		btnVerificar.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent arg0) {
  				InfoReserva reservaSelec = (InfoReserva) lista_reservas.getSelectedValue();
@@ -351,17 +154,27 @@ import Clases.Restaurante;
  		btnVerificar.setBackground(new Color(255, 153, 0));
  		
  		JButton btnRealizar = new JButton("Realizado");
+ 		btnRealizar.setBounds(560, 430, 325, 40);
  		btnRealizar.setBackground(new Color(255, 153,0));
  		btnRealizar.setForeground(new Color(255, 255, 255));
  		btnRealizar.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+ 		panel.setLayout(null);
+ 		lista_reservas.setBounds(10, 11, 682, 408);
+ 		panel.add(lista_reservas);
+ 		this.lista_reservas.setCellRenderer(celda);
+ 		this.lista_reservas.setFocusable(false);
+ 		this.lista_reservas.setBorder(new EmptyBorder(21, 10, 10, 10));
+ 		this.lista_reservas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 17));
+ 		this.lista_reservas.setValueIsAdjusting(true);
+ 		this.lista_reservas.setForeground(new Color(255, 153, 0));
+ 		this.lista_reservas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
  		GroupLayout gl_panel1 = new GroupLayout(panel);
  		gl_panel1.setHorizontalGroup(
  			gl_panel1.createParallelGroup(Alignment.LEADING)
  				.addGroup(gl_panel1.createSequentialGroup()
- 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
- 					.addPreferredGap(ComponentPlacement.RELATED)
- 					.addGroup(gl_panel1.createParallelGroup(Alignment.LEADING)
- 						.addGroup(Alignment.TRAILING, gl_panel1.createSequentialGroup()
+ 					.addGap(213)
+ 					.addGroup(gl_panel1.createParallelGroup(Alignment.TRAILING)
+ 						.addGroup(gl_panel1.createSequentialGroup()
  							.addComponent(btnVerificar, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE)
  							.addPreferredGap(ComponentPlacement.RELATED)
  							.addComponent(btnRealizar, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE)
@@ -371,19 +184,19 @@ import Clases.Restaurante;
  		gl_panel1.setVerticalGroup(
  			gl_panel1.createParallelGroup(Alignment.LEADING)
  				.addGroup(gl_panel1.createSequentialGroup()
- 					.addGroup(gl_panel1.createParallelGroup(Alignment.LEADING)
- 						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE)
- 						.addGroup(gl_panel1.createSequentialGroup()
- 							.addComponent(scroll_lista_reservas, GroupLayout.PREFERRED_SIZE, 424, GroupLayout.PREFERRED_SIZE)
- 							.addPreferredGap(ComponentPlacement.RELATED)
- 							.addGroup(gl_panel1.createParallelGroup(Alignment.BASELINE)
- 								.addComponent(btnRealizar, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
- 								.addComponent(btnVerificar, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))))
- 					.addContainerGap())
+ 					.addComponent(scroll_lista_reservas, GroupLayout.PREFERRED_SIZE, 424, GroupLayout.PREFERRED_SIZE)
+ 					.addPreferredGap(ComponentPlacement.RELATED)
+ 					.addGroup(gl_panel1.createParallelGroup(Alignment.BASELINE)
+ 						.addComponent(btnRealizar, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+ 						.addComponent(btnVerificar, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+ 					.addGap(11))
  		);
  		
  		DefaultListModel dlm=new DefaultListModel();
  		panel.setLayout(gl_panel1);
+ 		panel.add(scroll_lista_reservas);
+ 		panel.add(btnVerificar);
+ 		panel.add(btnRealizar);
  		
  		JLabel lblnomUser = new JLabel(rest.getNombre());
  		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);

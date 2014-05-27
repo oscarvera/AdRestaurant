@@ -58,9 +58,7 @@ public class Restaurante {
 			this.foto1=foto1;
 			this.foto2=foto2;
 			this.conexionConsulta=c;
-			this.conexionConsulta=c;
-
-			this.conexion=conexionConsulta.getConexion();
+			this.conexion=this.conexionConsulta.getConexion();
 			insertarRestaurante();
 		}
 		
@@ -80,9 +78,7 @@ public class Restaurante {
 					this.fotofile1=fotofile1;
 					this.fotofile2=fotofile2;
 					this.conexionConsulta=c;
-					this.conexionConsulta=c;
-					this.conexionConsulta=c;
-					this.conexion=conexionConsulta.getConexion();
+					this.conexion=this.conexionConsulta.getConexion();
 					insertarRestaurante();
 				}
 		
@@ -92,9 +88,7 @@ public class Restaurante {
 			public Restaurante(int codigo, Consulta c){
 				this.codigoRestaurante=codigo;
 				this.conexionConsulta=c;
-				this.conexionConsulta=c;
-				this.conexionConsulta=c;
-				this.conexion=conexionConsulta.getConexion();
+				this.conexion=this.conexionConsulta.getConexion();
 				loginRestaurante();
 			}
 			
