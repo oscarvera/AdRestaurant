@@ -488,6 +488,7 @@ public class ptnRestaurante extends JFrame {
 		label.setBounds(-11, 19, 393, 79);
 		frame.getContentPane().add(label);
 
+		if(clie!=null){
 		JButton btnVolverBusqueda = new JButton(messages.getString("VolverBusqueda"));
 		btnVolverBusqueda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -501,6 +502,7 @@ public class ptnRestaurante extends JFrame {
 		btnVolverBusqueda.setBackground(new Color(255, 153, 0));
 		btnVolverBusqueda.setBounds(211, 623, 271, 23);
 		frame.getContentPane().add(btnVolverBusqueda);
+		}
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
