@@ -78,7 +78,6 @@ public class Registro extends JPanel{
 	private PreparedStatement stmt;
 	private Connection conexion;
 	private ResultSet resultadoConsulta;
-	private int resultadoActualizacionBD;
 	private Consulta conexionConsulta;
 
 	private JButton btnRegRest;
@@ -1003,8 +1002,7 @@ public class Registro extends JPanel{
 		} 
 
 		//Comprobamos la direccion
-		textoIntroducido = this.textDireccionRest.getText();	
-		//pat = Pattern.compile("^\\p{L}+[\\p{L}\\p{Z}\\p{P}]{0,}");
+		textoIntroducido = this.textDireccionRest.getText();
 		pat = Pattern.compile("^\\p{L}+[\\p{L}\\p{Z}\\p{P}]+[0-9]");
 		mat = pat.matcher(textoIntroducido);
 		if (!mat.matches()){
