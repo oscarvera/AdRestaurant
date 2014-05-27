@@ -135,7 +135,7 @@ public class Ingreso extends JPanel{
 			}
 
 			@Override
-			public void keyReleased(KeyEvent e) {  
+			public void keyReleased(KeyEvent e) {
 				if(!textLabelUser.getText().isEmpty()&&!textLabelPass.getText().isEmpty()){
 					btnIngresar.setEnabled(true);
 				}else{
@@ -145,6 +145,9 @@ public class Ingreso extends JPanel{
 
 			@Override
 			public void keyPressed(KeyEvent e) {
+				   if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			            btnIngresar.doClick();
+			        }
 			}
 		};
 		textLabelUser.addKeyListener(kl);
@@ -205,9 +208,6 @@ public class Ingreso extends JPanel{
 		btnIngresar.setBackground(new Color(255, 255, 255));
 		btnIngresar.setForeground(new Color(255, 153, 51));
 		btnIngresar.setFont(new Font("Fira Sans OT", Font.PLAIN, 12));
-		
-
-		
 		this.consulta = new Consulta(messages);
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
