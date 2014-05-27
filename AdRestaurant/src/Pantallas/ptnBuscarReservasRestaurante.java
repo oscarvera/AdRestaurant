@@ -11,7 +11,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -33,9 +35,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.ResultSet;
+//import com.mysql.jdbc.Connection;
+//import com.mysql.jdbc.PreparedStatement;
+//import com.mysql.jdbc.ResultSet;
 
 import Clases.Cliente;
 import Clases.Restaurante;
@@ -57,17 +59,16 @@ import Clases.Restaurante;
     
     private DefaultListModel<InfoReserva> modelo_lista_reservas = new DefaultListModel<InfoReserva>();
     private JList<InfoReserva> lista_reservas = new JList<InfoReserva>(modelo_lista_reservas);
-    private ConstructorDeCelda celda = new ConstructorDeCelda();
+    private ConstructorDeCeldaReservas celda = new ConstructorDeCeldaReservas();
     
 	private PreparedStatement stmt;
 	private Connection conexion;
 	private ResultSet resultadoConsulta;
  	
  public ptnBuscarReservasRestaurante(Restaurante rest,ResourceBundle messages){
-	 this.rest=rest;
-	 this.messages=messages;
- 	initialize();
- 	conectar();
+	this.rest=rest;
+	this.messages=messages;
+	this.conexion=this.rest.getConexionConsulta().getConexion();
  	realizaBusqueda();
  }
  	 
@@ -137,10 +138,6 @@ import Clases.Restaurante;
  		btnBuscar.setForeground(new Color(255, 153, 0));
  		btnBuscar.setFont(new Font("Fira Sans OT", Font.PLAIN, 15));
  		btnBuscar.setBackground(Color.WHITE);
- 		
- 
- 		
- 		
  		
  		//KEYLIST Y FOCUS LISTENERS DE LOS CAMPOS
  		
@@ -309,8 +306,24 @@ import Clases.Restaurante;
  		btnXFecha.setBackground(Color.WHITE);
  		btnXFecha.setBounds(175, 196, 22, 46);
  		
- 		JScrollPane scrollPane = new JScrollPane(lista_reservas);
- 		scrollPane.setBorder(null);
+ 		/**
+ 		 * Panel deslizante de la lista de reservas
+ 		 */
+ 		JScrollPane scroll_lista_reservas = new JScrollPane(this.lista_reservas); 	
+ 		scroll_lista_reservas.setBorder(null);
+ 		
+ 		/**
+ 		 * Lista de reservas del restaurante
+ 		 */
+ 		this.lista_reservas.setCellRenderer(celda);
+		this.lista_reservas.setFocusable(false);		
+		scroll_lista_reservas.setViewportView(this.lista_reservas);
+ 		this.lista_reservas.setBorder(new EmptyBorder(21, 10, 10, 10));
+ 		this.lista_reservas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 17));
+ 		this.lista_reservas.setValueIsAdjusting(true);
+ 		this.lista_reservas.setForeground(new Color(255, 153, 0));
+ 		this.lista_reservas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+ 		scroll_lista_reservas.setViewportView(this.lista_reservas);
  		
  		JButton btnVerificar = new JButton("Verificar");
  		btnVerificar.addActionListener(new ActionListener() {
@@ -341,7 +354,7 @@ import Clases.Restaurante;
  							.addPreferredGap(ComponentPlacement.RELATED)
  							.addComponent(btnRealizar, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE)
  							.addContainerGap())
- 						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)))
+ 						.addComponent(scroll_lista_reservas, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)))
  		);
  		gl_panel.setVerticalGroup(
  			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -349,7 +362,7 @@ import Clases.Restaurante;
  					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
  						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE)
  						.addGroup(gl_panel.createSequentialGroup()
- 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 424, GroupLayout.PREFERRED_SIZE)
+ 							.addComponent(scroll_lista_reservas, GroupLayout.PREFERRED_SIZE, 424, GroupLayout.PREFERRED_SIZE)
  							.addPreferredGap(ComponentPlacement.RELATED)
  							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
  								.addComponent(btnRealizar, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
@@ -413,33 +426,11 @@ import Clases.Restaurante;
  		frame.setVisible(true);
  	
  }
- 		public void conectar(){
- 			//Cargamos el driver
- 			try{
- 				Class.forName("com.mysql.jdbc.Driver");
- 			}catch(ClassNotFoundException cnfe){
- 				cnfe.printStackTrace();
- 			}
-
- 			//Abrimos una conexión
- 			this.conexion=null;
- 			try {
- 				String user = "adrestaurant";
- 				this.conexion = (Connection) DriverManager.getConnection("jdbc:mysql://84.126.12.143:3306/adrestaurant", user, "adrestaurant");
-
- 				//Ponemos la conexión en autoCommit, para que ejecute las sentencias automáticamente sin necesidad de usar commit.
- 				//Si está desactivado, las sentencias no serán efectivas, sino que se quedarán en un punto de guardado intermedio.
- 				this.conexion.setAutoCommit(true);
- 			} catch (SQLException e) {
- 				e.printStackTrace();
- 			}
- 		}
  		
  		/**
  		 * Realiza la búsqueda, cuenta resultados y los muestra en la lista.
  		 */
  		public void realizaBusqueda(){
- 			conectar();
  			String consulta="select c.usuario, r.fechaReserva, r.hora, r.fechaCreacion, r.personas,r.Codigo_Cliente,r.verificacion, r.realizacion from reserva r inner join clientes c on r.Codigo_Cliente=c.codigoCliente where r.Codigo_Restaurante=? order by r.fechaCreacion ASC";
  			try {
  				this.stmt = (PreparedStatement) conexion.prepareStatement(consulta);

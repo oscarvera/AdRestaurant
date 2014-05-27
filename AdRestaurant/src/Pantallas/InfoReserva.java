@@ -126,6 +126,8 @@ public class InfoReserva extends JPanel{
 		setBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 200, 0), new Color(255, 200, 0), Color.ORANGE, Color.ORANGE));
 		
 		this.codigoUsuRest=codigoRes;
+		this.realizado=realizado;
+		this.verificado=verificado;
 		
 		this.etiquetaNombre = new JLabel(nomrest);	
 		etiquetaNombre.setHorizontalAlignment(SwingConstants.LEFT);

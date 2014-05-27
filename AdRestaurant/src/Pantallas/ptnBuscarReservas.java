@@ -1,6 +1,6 @@
  package Pantallas;
  
- import java.awt.Color;
+import java.awt.Color;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -59,7 +59,7 @@ import javax.swing.SwingConstants;
 	private int resultadoActualizacionBD;
 	private DefaultListModel<InfoReserva> modelo_lista_reservas = new DefaultListModel<InfoReserva>();
     private JList<InfoReserva> lista_reservas = new JList<InfoReserva>(modelo_lista_reservas);
-    private ConstructorDeCelda celda = new ConstructorDeCelda();
+    private ConstructorDeCeldaReservas celda = new ConstructorDeCeldaReservas();
  	
  	static Locale currentLocale;
     static ResourceBundle messages;
