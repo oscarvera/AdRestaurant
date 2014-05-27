@@ -159,7 +159,7 @@ public class ptnPerfilCliente extends JFrame {
 		lblNewLabel.setBounds(31, 83, 322, 326);
 		panel.add(lblNewLabel);
 
-		JLabel lblNombre = new JLabel("Nombre:");
+		JLabel lblNombre = new JLabel(messages.getString("Nombre"));
 		lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNombre.setForeground(Color.LIGHT_GRAY);
 		lblNombre.setFont(new Font("Fira Sans OT Light", Font.BOLD, 23));
@@ -173,14 +173,14 @@ public class ptnPerfilCliente extends JFrame {
 		Nombre.setBounds(593, 129, 251, 25);
 		panel.add(Nombre);
 
-		JLabel lblPrimerApellido = new JLabel("Primer apellido:");
+		JLabel lblPrimerApellido = new JLabel(messages.getString("PA"));
 		lblPrimerApellido.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPrimerApellido.setForeground(Color.LIGHT_GRAY);
 		lblPrimerApellido.setFont(new Font("Fira Sans OT Light", Font.BOLD, 23));
 		lblPrimerApellido.setBounds(347, 166, 236, 25);
 		panel.add(lblPrimerApellido);
 
-		JLabel lblSegundoApellido = new JLabel("Segundo Apellido:");
+		JLabel lblSegundoApellido = new JLabel(messages.getString("SA"));
 		lblSegundoApellido.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblSegundoApellido.setForeground(Color.LIGHT_GRAY);
 		lblSegundoApellido.setFont(new Font("Fira Sans OT Light", Font.BOLD, 23));
@@ -194,7 +194,7 @@ public class ptnPerfilCliente extends JFrame {
 		SegundoApellido.setBounds(593, 202, 236, 25);
 		panel.add(SegundoApellido);
 
-		JLabel lblNombreUsuario = new JLabel("Nombre usuario:");
+		JLabel lblNombreUsuario = new JLabel(messages.getString("NU"));
 		lblNombreUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNombreUsuario.setForeground(Color.LIGHT_GRAY);
 		lblNombreUsuario.setFont(new Font("Fira Sans OT Light", Font.BOLD, 23));
@@ -208,14 +208,14 @@ public class ptnPerfilCliente extends JFrame {
 		NombreUsuario.setBounds(593, 257, 236, 25);
 		panel.add(NombreUsuario);
 
-		JLabel lblEmail = new JLabel("E-mail:");
+		JLabel lblEmail = new JLabel(messages.getString("Email"));
 		lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEmail.setForeground(Color.LIGHT_GRAY);
 		lblEmail.setFont(new Font("Fira Sans OT Light", Font.BOLD, 23));
 		lblEmail.setBounds(374, 293, 209, 25);
 		panel.add(lblEmail);
 
-		JLabel lbTelefono = new JLabel("Tel\u00E9fono:");
+		JLabel lbTelefono = new JLabel(messages.getString("Telefono"));
 		lbTelefono.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbTelefono.setForeground(Color.LIGHT_GRAY);
 		lbTelefono.setFont(new Font("Fira Sans OT Light", Font.BOLD, 23));
@@ -236,7 +236,7 @@ public class ptnPerfilCliente extends JFrame {
 		Telefono.setBounds(593, 329, 225, 25);
 		panel.add(Telefono);
 
-		final JButton btnEditar = new JButton("Editar");
+		final JButton btnEditar = new JButton(messages.getString("Editar"));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(btnEditar.getText()=="Editar"){
