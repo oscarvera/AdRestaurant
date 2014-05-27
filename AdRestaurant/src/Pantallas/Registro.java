@@ -465,7 +465,7 @@ public class Registro extends JPanel{
 								&&!textPoblacionRest.getText().isEmpty()
 								&&!textProvinciaRest.getText().isEmpty()
 								&&(comboTipoRest.getSelectedIndex()!=0)
-								&&btnImagen1.getText()=="Cambiar Imagen"){
+								&&btnImagen1.getText()==messages.getString("Cambiar")){
 							btnRegRest.setEnabled(true);
 						}else{
 							btnRegRest.setEnabled(false);
@@ -718,13 +718,13 @@ public class Registro extends JPanel{
 				}
 				panel.add(aptoMinus);
 
-				JLabel lblImagen1 = new JLabel(messages.getString("IMG1"));
+				JLabel lblImagen1 = new JLabel("IMG 1");
 				lblImagen1.setForeground(new Color(255, 153, 51));
 				lblImagen1.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
 				lblImagen1.setBounds(318, 127, 92, 22);
 				panel.add(lblImagen1);
 
-				JLabel lblImagen2 = new JLabel(messages.getString("IMG2"));
+				JLabel lblImagen2 = new JLabel("IMG 2");
 				lblImagen2.setForeground(new Color(255, 153, 51));
 				lblImagen2.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
 				lblImagen2.setBounds(577, 127, 92, 22);
@@ -748,7 +748,7 @@ public class Registro extends JPanel{
 				panel.add(textTelefonoRest);
 				textTelefonoRest.setBorder(borde);
 
-				btnImagen1 = new JButton("Imagen1");
+				btnImagen1 = new JButton(". . .");
 				btnImagen1.setForeground(Color.WHITE);
 				btnImagen1.addKeyListener(keyLis);
 				FocusListener flImagen=new FocusListener() {
@@ -764,7 +764,7 @@ public class Registro extends JPanel{
 								&&!textPoblacionRest.getText().isEmpty()
 								&&!textProvinciaRest.getText().isEmpty()
 								&&(comboTipoRest.getSelectedIndex()!=0)
-								&&btnImagen1.getText()=="Cambiar Imagen"){
+								&&btnImagen1.getText()==messages.getString("Cambiar")){
 							btnRegRest.setEnabled(true);
 						}else{
 							btnRegRest.setEnabled(false);
@@ -787,15 +787,15 @@ public class Registro extends JPanel{
 						file1 = null;
 						if(returnVal == JFileChooser.APPROVE_OPTION) {
 							file1 = chooser.getSelectedFile(); // ruta de la primera foto
-							btnImagen1.setText("Cambiar Imagen");
-							JOptionPane.showMessageDialog(null, "Imagen Guardada","Mensaje" , JOptionPane.PLAIN_MESSAGE);
+							btnImagen1.setText(messages.getString("Cambiar"));
+							JOptionPane.showMessageDialog(null, messages.getString("ImgSubida1"),"" , JOptionPane.PLAIN_MESSAGE);
 						}
 					}
 				});
 				btnImagen1.setBounds(420, 127, 136, 23);
 				panel.add(btnImagen1);
 
-				btnImagen2 = new JButton("Imagen2");
+				btnImagen2 = new JButton(". . .");
 				btnImagen2.setForeground(new Color(255, 255, 255));
 				btnImagen2.setBackground(new Color(255, 153, 0));
 				btnImagen2.addActionListener(new ActionListener() {
@@ -807,8 +807,8 @@ public class Registro extends JPanel{
 						file2 = null;
 						if(returnVal == JFileChooser.APPROVE_OPTION) {
 							file2 = chooser.getSelectedFile(); // ruta de la segunda foto
-							btnImagen2.setText("Cambiar Imagen");
-							JOptionPane.showMessageDialog(null, "Imagen Guardada","Mensaje" , JOptionPane.PLAIN_MESSAGE);
+							btnImagen2.setText(messages.getString("Cambiar"));
+							JOptionPane.showMessageDialog(null, messages.getString("ImgSubida2"),"" , JOptionPane.PLAIN_MESSAGE);
 						}
 					}
 				});
