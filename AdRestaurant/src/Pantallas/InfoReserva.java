@@ -13,6 +13,7 @@ import Clases.Restaurante;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class InfoReserva extends JPanel{
 	
@@ -21,17 +22,23 @@ public class InfoReserva extends JPanel{
 	private JLabel etiquetaHora;
 	private JLabel etiquetaPersonas;
 	private JLabel etiquetaVerificado;
-	private int codigoUsuRest;
+
 	private boolean realizado;
 	private boolean verificado;
 	private JLabel lblVerificacion;
 	private JLabel lblRealizado;
 	
+	private int codigoUsuRest;
+	private int codigoUsuClie;
 	String usuario;
 	String fecha;
 	String hora;
 	int personas;
 	int codigoUsuario;
+	private JLabel lblPersonas;
+	private JLabel lblVerificado;
+	private JLabel lblRealizado_1;
+	private JLabel etiquetaRealizacion;
 	
 	/**
 	 * @wbp.parser.constructor
@@ -41,7 +48,7 @@ public class InfoReserva extends JPanel{
 		
 		this.realizado=realizado;
 		this.verificado=verificado;
-		this.codigoUsuRest=codigoUs;
+		this.codigoUsuClie=codigoUs;
 		
 		this.etiquetaNombre = new JLabel(usuario);	
 		etiquetaNombre.setBounds(12, 11, 75, 17);
@@ -67,7 +74,12 @@ public class InfoReserva extends JPanel{
 		etiquetaPersonas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		etiquetaPersonas.setForeground(new Color(255,153,0));
 		
-		this.etiquetaVerificado = new JLabel(String.valueOf(verificado));
+		this.etiquetaVerificado = new JLabel("");
+		if(verificado){
+			etiquetaVerificado.setIcon(new ImageIcon(InfoReserva.class.getResource("/Imagen/Check_si.png")));
+		}else{
+			etiquetaVerificado.setIcon(new ImageIcon(InfoReserva.class.getResource("/Imagen/Check_no.png")));
+		}
 		etiquetaVerificado.setBounds(375, 40, 49, 14);
 		etiquetaVerificado.setHorizontalAlignment(SwingConstants.LEFT);
 		etiquetaVerificado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
@@ -79,7 +91,12 @@ public class InfoReserva extends JPanel{
 		add(etiquetaPersonas);
 		add(etiquetaVerificado);
 		
-		JLabel etiquetaRealizacion = new JLabel("false");
+		JLabel etiquetaRealizacion = new JLabel("");
+		if(realizado){
+			etiquetaRealizacion.setIcon(new ImageIcon(InfoReserva.class.getResource("/Imagen/Check_si.png")));
+		}else{
+			etiquetaRealizacion.setIcon(new ImageIcon(InfoReserva.class.getResource("/Imagen/Check_no.png")));
+		}
 		etiquetaRealizacion.setHorizontalAlignment(SwingConstants.LEFT);
 		etiquetaRealizacion.setForeground(new Color(255, 153, 0));
 		etiquetaRealizacion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
@@ -115,6 +132,7 @@ public class InfoReserva extends JPanel{
 		add(lblVerificacion);
 		
 		lblRealizado = new JLabel("Realizado:");
+		
 		lblRealizado.setHorizontalAlignment(SwingConstants.LEFT);
 		lblRealizado.setForeground(new Color(255, 153, 0));
 		lblRealizado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
@@ -128,67 +146,94 @@ public class InfoReserva extends JPanel{
 		this.codigoUsuRest=codigoRes;
 		this.realizado=realizado;
 		this.verificado=verificado;
+		this.codigoUsuRest=codigoRes;
 		
 		this.etiquetaNombre = new JLabel(nomrest);	
+		etiquetaNombre.setBounds(12, 13, 79, 17);
 		etiquetaNombre.setHorizontalAlignment(SwingConstants.LEFT);
 		etiquetaNombre.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		etiquetaNombre.setForeground(new Color(255,153,0));
 		
 		this.etiquetaFecha = new JLabel(fecha);
+		etiquetaFecha.setBounds(92, 41, 82, 17);
 		etiquetaFecha.setHorizontalAlignment(SwingConstants.LEFT);
 		etiquetaFecha.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		etiquetaFecha.setForeground(new Color(255,153,0));
 		
 		this.etiquetaHora = new JLabel(hora);
+		etiquetaHora.setBounds(92, 69, 91, 17);
 		etiquetaHora.setHorizontalAlignment(SwingConstants.LEFT);
 		etiquetaHora.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		etiquetaHora.setForeground(new Color(255,153,0));
 		
 		this.etiquetaPersonas = new JLabel(String.valueOf(pers));
+		etiquetaPersonas.setBounds(260, 59, 25, 17);
 		etiquetaPersonas.setHorizontalAlignment(SwingConstants.LEFT);
 		etiquetaPersonas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		etiquetaPersonas.setForeground(new Color(255,153,0));
 		
-		this.etiquetaVerificado = new JLabel(String.valueOf(verificado));
+		this.etiquetaVerificado = new JLabel("");
+		if(verificado){
+			etiquetaVerificado.setIcon(new ImageIcon(InfoReserva.class.getResource("/Imagen/Check_si.png")));
+		}else{
+			etiquetaVerificado.setIcon(new ImageIcon(InfoReserva.class.getResource("/Imagen/Check_no.png")));
+		}
+		
+		etiquetaVerificado.setBounds(373, 27, 38, 34);
 		etiquetaVerificado.setHorizontalAlignment(SwingConstants.LEFT);
 		etiquetaVerificado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		etiquetaVerificado.setForeground(new Color(255,153,0));
 		
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(etiquetaNombre)
-							.addContainerGap(194, Short.MAX_VALUE))
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(etiquetaHora, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
-								.addComponent(etiquetaFecha, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
-							.addGap(90)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(etiquetaPersonas, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-								.addComponent(etiquetaVerificado, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
-							.addGap(19))))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(etiquetaNombre)
-					.addGap(29)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(etiquetaPersonas)
-						.addComponent(etiquetaFecha, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
-					.addGap(9)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(etiquetaHora, GroupLayout.PREFERRED_SIZE, 12, GroupLayout.PREFERRED_SIZE)
-						.addComponent(etiquetaVerificado, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
-		);
-		setLayout(groupLayout);	
+		JLabel lblDia = new JLabel("Dia:");
+		lblDia.setBounds(32, 41, 82, 17);
+		lblDia.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDia.setForeground(new Color(255, 153, 0));
+		lblDia.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		
+		JLabel lblHora = new JLabel("Hora:");
+		lblHora.setBounds(28, 69, 82, 17);
+		lblHora.setHorizontalAlignment(SwingConstants.LEFT);
+		lblHora.setForeground(new Color(255, 153, 0));
+		lblHora.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		setLayout(null);
+		add(etiquetaNombre);
+		add(lblHora);
+		add(etiquetaHora);
+		add(lblDia);
+		add(etiquetaFecha);
+		add(etiquetaPersonas);
+		add(etiquetaVerificado);
+		
+		lblPersonas = new JLabel("Personas:");
+		lblPersonas.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPersonas.setForeground(new Color(255, 153, 0));
+		lblPersonas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		lblPersonas.setBounds(181, 59, 82, 17);
+		add(lblPersonas);
+		
+		lblVerificado = new JLabel("Verificado:");
+		lblVerificado.setHorizontalAlignment(SwingConstants.LEFT);
+		lblVerificado.setForeground(new Color(255, 153, 0));
+		lblVerificado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		lblVerificado.setBounds(278, 41, 97, 17);
+		add(lblVerificado);
+		
+		lblRealizado_1 = new JLabel("Realizado:");
+		lblRealizado_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblRealizado_1.setForeground(new Color(255, 153, 0));
+		lblRealizado_1.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		lblRealizado_1.setBounds(278, 69, 104, 17);
+		add(lblRealizado_1);
+		
+		etiquetaRealizacion = new JLabel("");
+		if(realizado){
+			etiquetaRealizacion.setIcon(new ImageIcon(InfoReserva.class.getResource("/Imagen/Check_si.png")));
+		}else{
+			etiquetaRealizacion.setIcon(new ImageIcon(InfoReserva.class.getResource("/Imagen/Check_no.png")));
+		}
+		
+		etiquetaRealizacion.setBounds(373, 59, 38, 40);
+		add(etiquetaRealizacion);
 	}
 	
 	public void fondoNaranja(){
