@@ -135,7 +135,7 @@ import Clases.Restaurante;
  		 * Panel deslizante de la lista de reservas
  		 */
  		JScrollPane scroll_lista_reservas = new JScrollPane(); 	
- 		scroll_lista_reservas.setBounds(23, 11, 848, 413);
+ 		scroll_lista_reservas.setBounds(343, 11, 530, 459);
  		scroll_lista_reservas.setBorder(null);
  		
  		/**
@@ -143,7 +143,7 @@ import Clases.Restaurante;
  		 */
  		
  		JButton btnVerificar = new JButton("Verificar");
- 		btnVerificar.setBounds(121, 430, 325, 40);
+ 		btnVerificar.setBounds(47, 168, 248, 40);
  		btnVerificar.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent arg0) {
  				InfoReserva reservaSelec = (InfoReserva) lista_reservas.getSelectedValue();
@@ -183,7 +183,7 @@ import Clases.Restaurante;
 				}
  			}
  		});
- 		btnRealizar.setBounds(466, 430, 325, 40);
+ 		btnRealizar.setBounds(47, 233, 248, 40);
  		btnRealizar.setBackground(new Color(255, 153,0));
  		btnRealizar.setForeground(new Color(255, 255, 255));
  		btnRealizar.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
