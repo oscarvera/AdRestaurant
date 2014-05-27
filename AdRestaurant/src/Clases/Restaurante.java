@@ -28,7 +28,6 @@ public class Restaurante {
 	private String provincia;
 	private String codigoPostal;
 	private boolean minusvalidoApto;
-	//De momento las imagenes van con este tipo, hasta que no esté claro, todo lo de imagenes está comentado.
 	private BufferedImage foto1;
 	private BufferedImage foto2;
 	private File fotofile1;
