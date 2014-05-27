@@ -393,10 +393,7 @@ public class Restaurante {
 
 			public void setFotofile2(File fotofile2) {
 				this.fotofile2 = fotofile2;
-			}
-			
-
-			
+			}			
 			
 }
 			

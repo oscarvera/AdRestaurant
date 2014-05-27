@@ -37,11 +37,9 @@ public class ptnMenuRestaurante extends JFrame {
 	 * Create the frame.
 	 */
 	public ptnMenuRestaurante(Restaurante rest,ResourceBundle messages){
-		
 		this.rest=rest;
 		this.messages=messages;
 		initialize();
-	
 	}
 	
 	private void initialize() {
@@ -63,24 +61,24 @@ public class ptnMenuRestaurante extends JFrame {
 		panel.setLayout(null);
 		
 		JButton btnNewButton_1 = new JButton("Perfil");
+		btnNewButton_1.setBounds(182, 68, 232, 345);
+		panel.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ptnRestaurante ptnrest=new ptnRestaurante(rest, messages);
 				frame.dispose();
 			}
 		});
-		btnNewButton_1.setBounds(182, 68, 232, 345);
-		panel.add(btnNewButton_1);
 		
 		JButton button = new JButton("Reservas");
+		button.setBounds(487, 68, 232, 345);
+		panel.add(button);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ptnBuscarReservasRestaurante reser=new ptnBuscarReservasRestaurante(rest, messages);
 				frame.dispose();
 			}
 		});
-		button.setBounds(487, 68, 232, 345);
-		panel.add(button);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);

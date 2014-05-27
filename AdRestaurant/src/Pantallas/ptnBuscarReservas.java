@@ -297,7 +297,6 @@ import javax.swing.SwingConstants;
  		/**
  		 * Panel deslizante de la lista y su layout.
  		 */
- 		this.lista_reservas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 11));
  		JScrollPane scroll_lista_reservas = new JScrollPane(this.lista_reservas); 		
  		scroll_lista_reservas.setBorder(null);
  		GroupLayout gl_panel = new GroupLayout(panel);

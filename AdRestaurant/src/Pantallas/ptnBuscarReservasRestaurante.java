@@ -1,6 +1,6 @@
  package Pantallas;
  
- import java.awt.Color;
+import java.awt.Color;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -39,6 +39,7 @@ import javax.swing.border.MatteBorder;
 //import com.mysql.jdbc.PreparedStatement;
 //import com.mysql.jdbc.ResultSet;
 
+
 import Clases.Cliente;
 import Clases.Restaurante;
  
@@ -69,7 +70,9 @@ import Clases.Restaurante;
 	this.rest=rest;
 	this.messages=messages;
 	this.conexion=this.rest.getConexionConsulta().getConexion();
- 	realizaBusqueda();
+ 	initialize();
+	realizaBusqueda();
+ 	
  }
  	 
  private void initialize() {
@@ -86,12 +89,10 @@ import Clases.Restaurante;
  		frame.setUndecorated(true);
  		frame.getContentPane().setLayout(null);
  		
- 		
  		JPanel panel = new JPanel();
  		panel.setBackground(new Color(255, 255, 255));
  		panel.setBounds(0, 86, 895, 481);
  		frame.getContentPane().add(panel);
- 		
  		
  		panel_1 = new JPanel();
  		panel_1.setBorder(new MatteBorder(0, 0, 0, 4, (Color) new Color(255, 153, 51)));
@@ -254,9 +255,6 @@ import Clases.Restaurante;
  		textNombreRest.addKeyListener(keylisNombre);
  		textNombreRest.setBorder(null);
  		
- 		
- 		
- 		
  		textFecha = new JTextField();
  		textFecha.setBounds(10, 197, 165, 46);
  		textFecha.setText(messages.getString("Fecha"));
@@ -283,9 +281,6 @@ import Clases.Restaurante;
  		btnXNombre.setIcon(new ImageIcon(BuscarRestaurante.class.getResource("/Imagen/botonX.png")));
  		btnXNombre.setBorder(null);
  		
- 		
- 		
- 		
  		panel_1.add(textNombreRest);
  		panel_1.add(textFecha);
  		panel_1.add(btnBuscar);
@@ -311,6 +306,22 @@ import Clases.Restaurante;
  		 */
  		JScrollPane scroll_lista_reservas = new JScrollPane(this.lista_reservas); 	
  		scroll_lista_reservas.setBorder(null);
+ 		GroupLayout gl_panel = new GroupLayout(panel);
+ 		gl_panel.setHorizontalGroup(
+ 			gl_panel.createParallelGroup(Alignment.LEADING)
+ 				.addGroup(gl_panel.createSequentialGroup()
+ 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
+ 					.addPreferredGap(ComponentPlacement.RELATED)
+ 					.addComponent(scroll_lista_reservas, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE))
+ 		);
+ 		gl_panel.setVerticalGroup(
+ 			gl_panel.createParallelGroup(Alignment.LEADING)
+ 				.addGroup(gl_panel.createSequentialGroup()
+ 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+ 						.addComponent(scroll_lista_reservas, GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+ 						.addComponent(panel_1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE))
+ 					.addContainerGap())
+ 		);
  		
  		/**
  		 * Lista de reservas del restaurante
@@ -324,6 +335,7 @@ import Clases.Restaurante;
  		this.lista_reservas.setForeground(new Color(255, 153, 0));
  		this.lista_reservas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
  		scroll_lista_reservas.setViewportView(this.lista_reservas);
+ 		panel.setLayout(gl_panel);
  		
  		JButton btnVerificar = new JButton("Verificar");
  		btnVerificar.addActionListener(new ActionListener() {
@@ -342,36 +354,36 @@ import Clases.Restaurante;
  		btnRealizar.setBackground(new Color(255, 153,0));
  		btnRealizar.setForeground(new Color(255, 255, 255));
  		btnRealizar.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
- 		GroupLayout gl_panel = new GroupLayout(panel);
- 		gl_panel.setHorizontalGroup(
- 			gl_panel.createParallelGroup(Alignment.LEADING)
- 				.addGroup(gl_panel.createSequentialGroup()
+ 		GroupLayout gl_panel1 = new GroupLayout(panel);
+ 		gl_panel1.setHorizontalGroup(
+ 			gl_panel1.createParallelGroup(Alignment.LEADING)
+ 				.addGroup(gl_panel1.createSequentialGroup()
  					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
  					.addPreferredGap(ComponentPlacement.RELATED)
- 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
- 						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+ 					.addGroup(gl_panel1.createParallelGroup(Alignment.LEADING)
+ 						.addGroup(Alignment.TRAILING, gl_panel1.createSequentialGroup()
  							.addComponent(btnVerificar, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE)
  							.addPreferredGap(ComponentPlacement.RELATED)
  							.addComponent(btnRealizar, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE)
  							.addContainerGap())
  						.addComponent(scroll_lista_reservas, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)))
  		);
- 		gl_panel.setVerticalGroup(
- 			gl_panel.createParallelGroup(Alignment.LEADING)
- 				.addGroup(gl_panel.createSequentialGroup()
- 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+ 		gl_panel1.setVerticalGroup(
+ 			gl_panel1.createParallelGroup(Alignment.LEADING)
+ 				.addGroup(gl_panel1.createSequentialGroup()
+ 					.addGroup(gl_panel1.createParallelGroup(Alignment.LEADING)
  						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE)
- 						.addGroup(gl_panel.createSequentialGroup()
+ 						.addGroup(gl_panel1.createSequentialGroup()
  							.addComponent(scroll_lista_reservas, GroupLayout.PREFERRED_SIZE, 424, GroupLayout.PREFERRED_SIZE)
  							.addPreferredGap(ComponentPlacement.RELATED)
- 							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+ 							.addGroup(gl_panel1.createParallelGroup(Alignment.BASELINE)
  								.addComponent(btnRealizar, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
  								.addComponent(btnVerificar, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))))
  					.addContainerGap())
  		);
  		
  		DefaultListModel dlm=new DefaultListModel();
- 		panel.setLayout(gl_panel);
+ 		panel.setLayout(gl_panel1);
  		
  		JLabel lblnomUser = new JLabel(rest.getNombre());
  		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);

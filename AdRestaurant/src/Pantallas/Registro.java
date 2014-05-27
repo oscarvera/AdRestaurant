@@ -1004,7 +1004,8 @@ public class Registro extends JPanel{
 
 		//Comprobamos la direccion
 		textoIntroducido = this.textDireccionRest.getText();	
-		pat = Pattern.compile("^\\p{L}+[\\p{L}\\p{Z}\\p{P}]{0,}");
+		//pat = Pattern.compile("^\\p{L}+[\\p{L}\\p{Z}\\p{P}]{0,}");
+		pat = Pattern.compile("^\\p{L}+[\\p{L}\\p{Z}\\p{P}]+[0-9]");
 		mat = pat.matcher(textoIntroducido);
 		if (!mat.matches()){
 			mensajesError.add(messages.getString("ErrorDIRECCION")); 
@@ -1068,7 +1069,10 @@ public class Registro extends JPanel{
 			frame.setEnabled(false);
 		}else{
 			RegistroCompleto regCom=new RegistroCompleto(messages, conexionConsulta);
-			Restaurante r = new Restaurante(this.textNomUserRest.getText(),this.pwdContraRest.getPassword(),this.textNombreRest.getText(),this.comboTipoRest.getSelectedItem().toString(),this.textTelefonoRest.getText(),this.textDireccionRest.getText(),this.textPoblacionRest.getText(), this.textProvinciaRest.getText(),this.textCodPostRest.getText(),aptoMinusvalido, this.file1, this.file2, this.conexionConsulta);
+			Restaurante r = new Restaurante(this.textNomUserRest.getText(),this.pwdContraRest.getPassword(),this.textNombreRest.getText(),
+					this.comboTipoRest.getSelectedItem().toString(),this.textTelefonoRest.getText(),this.textDireccionRest.getText(),
+					this.textPoblacionRest.getText(), this.textProvinciaRest.getText(),this.textCodPostRest.getText(),aptoMinusvalido, 
+					this.file1, this.file2, this.conexionConsulta);
 			frame.dispose();
 		}
 	}
