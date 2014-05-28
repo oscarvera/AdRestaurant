@@ -1,5 +1,6 @@
 package Pantallas;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Font;
@@ -19,6 +20,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import Clases.Cliente;
 import Clases.Comentario;
+import Clases.FiltroTamañoDocumento;
 import Clases.Reserva;
 import Clases.Restaurante;
 
@@ -36,7 +38,10 @@ import java.util.ResourceBundle;
 
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextArea;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.text.AbstractDocument;
+import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.DocumentFilter;
 public class ptnCrearComentario extends JFrame {
 
@@ -45,6 +50,9 @@ public class ptnCrearComentario extends JFrame {
 	Restaurante rest;
 	static Locale currentLocale;
 	static ResourceBundle messages;
+	private DefaultStyledDocument documento;
+    private JLabel etiquetaPalabras = new JLabel();
+    private JTextArea textComentario;
 	
 
 	/**
@@ -149,32 +157,41 @@ public class ptnCrearComentario extends JFrame {
 		scrollPane.setBounds(48, 195, 789, 188);
 		panel.add(scrollPane);
 		
-		final JTextArea textComentario = new JTextArea();
-		textComentario.setWrapStyleWord(true);
-		textComentario.setLineWrap(true);
+		
+		/**
+		 * Crea el Panel para el nuevo comentario, junto con un nuevo estilo de 
+		 * documento para poner un límite de caracteres y una etiqueta que lo indique
+		 */
+		this.textComentario = new JTextArea();
+		this.textComentario.setWrapStyleWord(true);
+		this.textComentario.setLineWrap(true);
 		scrollPane.setViewportView(textComentario);
-		//AbstractDocument docComentario = (AbstractDocument) textComentario.getDocument();
 		
-//		kommentarArea.getDocument().addDocumentListener(new DocumentListener {
-//		    public void insertUpdate(DocumentEvent event) {
-//		        if (kommentarArea.getDocument().getLength() > 255) {
-//		            JOptionPane.showMessageDialog(null, "Die Länge der Kommentare ist länger als 255 Zeichern");
-//		        }
-//		    }
-//
-//		    public void removeUpdate(DocumentEvent e) {
-//		        if (kommentarArea.getDocument().getLength() > 255) {
-//		            JOptionPane.showMessageDialog(null, "Die Länge der Kommentare ist länger als 255 Zeichern");
-//		        }
-//		    }
-//
-//		    public void changeUpdate(DocumentEvent event) {
-//		        if (kommentarArea.getDocument().getLength() > 255) {
-//		            JOptionPane.showMessageDialog(null, "Die Länge der Kommentare ist länger als 255 Zeichern");
-//		        }
-//		    }
-//		});
-		
+		getContentPane().setLayout(new BorderLayout());
+        this.documento = new DefaultStyledDocument();
+        this.documento.setDocumentFilter(new FiltroTamañoDocumento(500));
+        this.documento.addDocumentListener(new DocumentListener(){
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				updateCount();
+			}
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				updateCount();
+			}
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				updateCount();
+			}
+        });
+        this.textComentario.setDocument(documento);
+        
+        this.etiquetaPalabras = new JLabel("500 caracteres disponibles");
+        this.etiquetaPalabras.setBounds(48, 384, 172, 14);
+        this.etiquetaPalabras.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 14));
+        this.etiquetaPalabras.setForeground(new Color(255, 153, 0));
+        panel.add(this.etiquetaPalabras);
+   
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblnomUser.setForeground(Color.WHITE);
@@ -222,7 +239,7 @@ public class ptnCrearComentario extends JFrame {
 		btnReservar.setFocusable(false);
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Comentario comentario=new Comentario(rest, clie,textComentario.getText(), clie.getConexionConsulta());
+				Comentario comentario=new Comentario(rest, clie, textComentario.getText(), clie.getConexionConsulta());
 				ptnComentarioCompletado comple=new ptnComentarioCompletado(clie, rest, messages);
 				frame.dispose();
 				//Comprobar campos
@@ -244,5 +261,12 @@ public class ptnCrearComentario extends JFrame {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+	
+	/**
+	 * Actualiza el contador de caracteres cuando se está escribiendo un comentario
+	 */
+	private void updateCount(){
+        this.etiquetaPalabras.setText((500 -this.documento.getLength()) + " caracteres disponibles");
+    }
 }
 
