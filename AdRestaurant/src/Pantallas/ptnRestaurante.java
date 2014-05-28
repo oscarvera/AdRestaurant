@@ -71,7 +71,7 @@ public class ptnRestaurante extends JFrame {
 	 * @param rest
 	 * @param messages
 	 */
-	public ptnRestaurante(final Cliente clie, final Restaurante rest,final ResourceBundle messages){
+	public ptnRestaurante(final Cliente clie, final Restaurante rest, final ResourceBundle messages){
 		this.clie=clie;
 		this.rest=rest;
 		this.messages=messages;
@@ -84,7 +84,7 @@ public class ptnRestaurante extends JFrame {
 	 * @param messages
 	 * @wbp.parser.constructor
 	 */
-	public ptnRestaurante(final Restaurante rest,final ResourceBundle messages) {
+	public ptnRestaurante(final Restaurante rest, final ResourceBundle messages) {
 		this.rest=rest;
 		this.messages=messages;
 		this.conexion=this.rest.getConexionConsulta().getConexion();
