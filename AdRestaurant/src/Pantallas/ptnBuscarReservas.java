@@ -133,6 +133,11 @@ import javax.swing.SwingConstants;
 		});
  		
  		JButton btnBuscar = new JButton(messages.getString("BUSCAR"));
+ 		btnBuscar.addActionListener(new ActionListener() {
+ 			public void actionPerformed(ActionEvent arg0) {
+ 				//buscarReservas();
+ 			}
+ 		});
  		btnBuscar.setFocusable(false);
  		btnBuscar.setBounds(10, 274, 187, 43);
  		btnBuscar.setForeground(new Color(255, 153, 0));
