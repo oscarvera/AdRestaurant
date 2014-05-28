@@ -27,7 +27,7 @@ public class ConstructorDeCelda implements ListCellRenderer<Object>{
 		}else {
 			component.setBackground(new Color(255, 255, 255));
 			//comp.fondoNaranja();
-			comp.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 200, 0), new Color(255, 200, 0), Color.ORANGE, Color.ORANGE));
+			comp.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 222, 173), new Color(255, 222, 173), new Color(255, 222, 173), new Color(255, 222, 173)));
 		}
 		return component;
 	}
