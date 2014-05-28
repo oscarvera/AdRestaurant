@@ -356,7 +356,7 @@ import javax.swing.SwingConstants;
 				this.modelo_lista_reservas.addElement(new InfoReserva(resultadoConsulta.getInt("codigoRestaurante"), 
 						resultadoConsulta.getString("Nombre"), resultadoConsulta.getString("fechaReserva"),
 						resultadoConsulta.getString("hora"), resultadoConsulta.getInt("personas"), 
-						resultadoConsulta.getBoolean("realizacion"), resultadoConsulta.getBoolean("verificacion")));
+						resultadoConsulta.getBoolean("realizacion"), resultadoConsulta.getBoolean("verificacion"), messages));
 			}
 			
 		} catch (SQLException e) {

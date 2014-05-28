@@ -13,7 +13,12 @@ import Clases.Restaurante;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import javax.swing.ImageIcon;
+
+import com.mysql.jdbc.Messages;
 
 public class InfoReserva extends JPanel{
 
@@ -38,13 +43,15 @@ public class InfoReserva extends JPanel{
 	private JLabel etiquetaRealizacion;
 	private JLabel lblHora;
 	private JLabel lblFecha;
+	static Locale currentLocale;
+	static ResourceBundle messages;
 
 	/**
 	 * @wbp.parser.constructor
 	 */
-	public InfoReserva(String usuario, String fecha, String hora, int pers, int codigoUs, boolean realizado, boolean verificado){
+	public InfoReserva(String usuario, String fecha, String hora, int pers, int codigoUs, boolean realizado, boolean verificado, ResourceBundle messages){
 		setBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 200, 0), new Color(255, 200, 0), Color.ORANGE, Color.ORANGE));
-
+		this.messages=messages;
 		this.realizado=realizado;
 		this.verificado=verificado;
 		this.codigoUsuClie=codigoUs;
@@ -93,27 +100,27 @@ public class InfoReserva extends JPanel{
 		etiquetaRealizacion.setForeground(new Color(255, 153, 0));
 		etiquetaRealizacion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
-		lblFecha = new JLabel("Dia:");
+		lblFecha = new JLabel(messages.getString("Fecha"));
 		lblFecha.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFecha.setForeground(new Color(255, 153, 0));
 		lblFecha.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
-		lblHora = new JLabel("Hora:");
+		lblHora = new JLabel(messages.getString("Hora"));
 		lblHora.setHorizontalAlignment(SwingConstants.LEFT);
 		lblHora.setForeground(new Color(255, 153, 0));
 		lblHora.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
-		lblPersonas = new JLabel("Personas:");
+		lblPersonas = new JLabel(messages.getString("Personas"));
 		lblPersonas.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPersonas.setForeground(new Color(255, 153, 0));
 		lblPersonas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
-		lblVerificacion = new JLabel("Verificado:");
+		lblVerificacion = new JLabel(messages.getString("Verificado"));
 		lblVerificacion.setHorizontalAlignment(SwingConstants.LEFT);
 		lblVerificacion.setForeground(new Color(255, 153, 0));
 		lblVerificacion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
-		lblRealizado = new JLabel("Realizado:");
+		lblRealizado = new JLabel(messages.getString("Realizado"));
 		lblRealizado.setHorizontalAlignment(SwingConstants.LEFT);
 		lblRealizado.setForeground(new Color(255, 153, 0));
 		lblRealizado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
@@ -187,9 +194,10 @@ public class InfoReserva extends JPanel{
 		setLayout(groupLayout);
 	}
 
-	public InfoReserva(int codigoRes, String nomrest, String fecha, String hora, int pers, boolean realizado, boolean verificado){
+	public InfoReserva(int codigoRes, String nomrest, String fecha, String hora, int pers, boolean realizado, boolean verificado, ResourceBundle messages){
 		setBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 200, 0), new Color(255, 200, 0), Color.ORANGE, Color.ORANGE));
 
+		this.messages=messages;
 		this.codigoUsuRest=codigoRes;
 		this.realizado=realizado;
 		this.verificado=verificado;
@@ -229,27 +237,27 @@ public class InfoReserva extends JPanel{
 		etiquetaVerificado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		etiquetaVerificado.setForeground(new Color(255,153,0));
 		
-		lblFecha = new JLabel("Dia:");
+		lblFecha = new JLabel(messages.getString("Dia"));
 		lblFecha.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFecha.setForeground(new Color(255, 153, 0));
 		lblFecha.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
-		lblHora = new JLabel("Hora:");
+		lblHora = new JLabel(messages.getString("Hora"));
 		lblHora.setHorizontalAlignment(SwingConstants.LEFT);
 		lblHora.setForeground(new Color(255, 153, 0));
 		lblHora.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
-		lblPersonas = new JLabel("Personas:");
+		lblPersonas = new JLabel(messages.getString("Personas"));
 		lblPersonas.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPersonas.setForeground(new Color(255, 153, 0));
 		lblPersonas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
-		lblVerificacion = new JLabel("Verificado:");
+		lblVerificacion = new JLabel(messages.getString("Verificado"));
 		lblVerificacion.setHorizontalAlignment(SwingConstants.LEFT);
 		lblVerificacion.setForeground(new Color(255, 153, 0));
 		lblVerificacion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
-		lblRealizado = new JLabel("Realizado:");
+		lblRealizado = new JLabel(messages.getString("Realizado"));
 		lblRealizado.setHorizontalAlignment(SwingConstants.LEFT);
 		lblRealizado.setForeground(new Color(255, 153, 0));
 		lblRealizado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));

@@ -273,7 +273,7 @@ import Clases.Restaurante;
  				modelo_lista_reservas.clear();
  				while(resultadoConsulta.next()){
  					System.out.println(resultadoConsulta.getString("usuario"));
- 					modelo_lista_reservas.addElement(new InfoReserva(resultadoConsulta.getString("usuario"),resultadoConsulta.getString("fechaReserva"),resultadoConsulta.getString("hora"),resultadoConsulta.getInt("personas"), resultadoConsulta.getInt("Codigo_Cliente"),resultadoConsulta.getBoolean("realizacion"),resultadoConsulta.getBoolean("verificacion")));
+ 					modelo_lista_reservas.addElement(new InfoReserva(resultadoConsulta.getString("usuario"),resultadoConsulta.getString("fechaReserva"),resultadoConsulta.getString("hora"),resultadoConsulta.getInt("personas"), resultadoConsulta.getInt("Codigo_Cliente"),resultadoConsulta.getBoolean("realizacion"),resultadoConsulta.getBoolean("verificacion"),messages));
  				}
  				
  			} catch (SQLException e) {
