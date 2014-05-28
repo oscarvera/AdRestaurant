@@ -76,7 +76,13 @@ public class Consulta {
 		return esRest;
 	}
 	
-
+	/**
+	 * Devuelve true si el usuario y la contraseña existen en la BD para el ingreso.
+	 * Primero comprueba el usuario y la contraseña de la tabla cliente y luego en la de restaurantes
+	 * @param user
+	 * @param contraseña
+	 * @return
+	 */
 	public boolean loginCliente(String user, char[] contraseña){
 		//Primero se comprueba el usuario.
 		
