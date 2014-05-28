@@ -83,25 +83,48 @@ public class InfoRestaurante extends JPanel  {
 					.addContainerGap(0, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
-		
 	}
 	
-	public void fondoBlanco(){
-		this.etiqueta_direccion.setForeground(new Color(255, 255, 255));
-		this.etiqueta_poblacion.setForeground(new Color(255, 255, 255));
-		this.etiqueta_tipo.setForeground(new Color(255, 255, 255));
-		this.etiqueta_nombre.setForeground(new Color(255, 255, 255));
+//	public void fondoBlanco(){
+//		this.etiqueta_direccion.setForeground(new Color(255, 255, 255));
+//		this.etiqueta_poblacion.setForeground(new Color(255, 255, 255));
+//		this.etiqueta_tipo.setForeground(new Color(255, 255, 255));
+//		this.etiqueta_nombre.setForeground(new Color(255, 255, 255));
+//	}
+//	
+//	public void fondoNaranja(){
+//		this.etiqueta_direccion.setForeground(new Color(255, 153, 0));
+//		this.etiqueta_poblacion.setForeground(new Color(255, 153, 0));
+//		this.etiqueta_tipo.setForeground(new Color(255, 153, 0));
+//		this.etiqueta_nombre.setForeground(new Color(255, 153, 0));
+//	}
+	
+	/**
+	 * Cambia el color y tipo de la fuente aun color más fuerte
+	 */
+	public void fondoOscuro(){
+		this.etiqueta_direccion.setForeground(new Color(255, 140, 0));
+		this.etiqueta_direccion.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
+		this.etiqueta_poblacion.setForeground(new Color(255, 140, 0));
+		this.etiqueta_poblacion.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
+		this.etiqueta_tipo.setForeground(new Color(255, 140, 0));
+		this.etiqueta_tipo.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
+		this.etiqueta_nombre.setForeground(new Color(255, 140, 0));
+		this.etiqueta_nombre.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
 	}
 	
-	public void fondoNaranja(){
-		this.etiqueta_direccion.setForeground(new Color(255, 153, 0));
-		this.etiqueta_poblacion.setForeground(new Color(255, 153, 0));
-		this.etiqueta_tipo.setForeground(new Color(255, 153, 0));
-		this.etiqueta_nombre.setForeground(new Color(255, 153, 0));
-	}
-	
-	public void cambiaColor(){
-		this.etiqueta_nombre.setForeground(new Color(255, 255, 255));
+	/**
+	 * Cambia el color y tipo de la fuente al tipo normal
+	 */
+	public void letraNormal(){
+		this.etiqueta_direccion.setForeground(new Color(255,153,0));
+		this.etiqueta_direccion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		this.etiqueta_poblacion.setForeground(new Color(255,153,0));
+		this.etiqueta_poblacion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		this.etiqueta_tipo.setForeground(new Color(255,153,0));
+		this.etiqueta_tipo.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		this.etiqueta_nombre.setForeground(new Color(255,153,0));
+		this.etiqueta_nombre.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 	}
 	
 	public InfoRestaurante getInfoRestaurante(){

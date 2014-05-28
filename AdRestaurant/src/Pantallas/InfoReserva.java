@@ -349,32 +349,88 @@ public class InfoReserva extends JPanel{
 		setLayout(groupLayout);
 	}
 
-	public void fondoNaranja(){
-		this.etiquetaNombre.setForeground(new Color(255, 153, 0));
-		this.etiquetaFecha.setForeground(new Color(255, 153, 0));
-		this.etiquetaHora.setForeground(new Color(255, 153, 0));
-		this.etiquetaPersonas.setForeground(new Color(255, 153, 0));
-		this.etiquetaVerificado.setForeground(new Color(255, 153, 0));
-		this.lblFecha.setForeground(new Color(255, 153, 0));
-		this.lblFecha.setForeground(new Color(255, 153, 0));
-		this.lblHora.setForeground(new Color(255, 153, 0));
-		this.lblPersonas.setForeground(new Color(255, 153, 0));
-		this.lblRealizado.setForeground(new Color(255, 153, 0));
-		this.lblVerificacion.setForeground(new Color(255, 153, 0));
+//	public void fondoNaranja(){
+//		this.etiquetaNombre.setForeground(new Color(255, 153, 0));
+//		this.etiquetaFecha.setForeground(new Color(255, 153, 0));
+//		this.etiquetaHora.setForeground(new Color(255, 153, 0));
+//		this.etiquetaPersonas.setForeground(new Color(255, 153, 0));
+//		this.etiquetaVerificado.setForeground(new Color(255, 153, 0));
+//		this.lblFecha.setForeground(new Color(255, 153, 0));
+//		this.lblFecha.setForeground(new Color(255, 153, 0));
+//		this.lblHora.setForeground(new Color(255, 153, 0));
+//		this.lblPersonas.setForeground(new Color(255, 153, 0));
+//		this.lblRealizado.setForeground(new Color(255, 153, 0));
+//		this.lblVerificacion.setForeground(new Color(255, 153, 0));
+//	}
+//
+//	public void fondoBlanco() {
+//		this.etiquetaNombre.setForeground(new Color(255, 255, 255));
+//		this.etiquetaFecha.setForeground(new Color(255, 255, 255));
+//		this.etiquetaHora.setForeground(new Color(255, 255, 255));
+//		this.etiquetaPersonas.setForeground(new Color(255, 255, 255));
+//		this.etiquetaVerificado.setForeground(new Color(255, 255, 255));
+//		this.lblFecha.setForeground(new Color(255, 255, 255));
+//		this.lblFecha.setForeground(new Color(255, 255, 255));
+//		this.lblHora.setForeground(new Color(255, 255, 255));
+//		this.lblPersonas.setForeground(new Color(255, 255, 255));
+//		this.lblRealizado.setForeground(new Color(255, 255, 255));
+//		this.lblVerificacion.setForeground(new Color(255, 255, 255));
+//	}
+//	
+	/**
+	 * Cambia el color y tipo de la fuente al tipo normal
+	 */
+	public void letraNormal(){
+		this.etiquetaNombre.setForeground(new Color(255, 140, 0));
+		this.etiquetaNombre.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		this.etiquetaFecha.setForeground(new Color(255,140,0));
+		this.etiquetaFecha.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		this.etiquetaHora.setForeground(new Color(255,140,0));
+		this.etiquetaHora.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		this.etiquetaPersonas.setForeground(new Color(255,140,0));
+		this.etiquetaPersonas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		this.etiquetaVerificado.setForeground(new Color(255,140,0));
+		this.etiquetaVerificado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		this.lblFecha.setForeground(new Color(255,140,0));
+		this.lblFecha.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		this.lblHora.setForeground(new Color(255,140,0));
+		this.lblHora.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		this.lblPersonas.setForeground(new Color(255,140,0));
+		this.lblPersonas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		this.lblRealizado.setForeground(new Color(255,140,0));
+		this.lblRealizado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		this.lblVerificacion.setForeground(new Color(255,140,0));
+		this.lblVerificacion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		
+		
 	}
-
-	public void fondoBlanco() {
-		this.etiquetaNombre.setForeground(new Color(255, 255, 255));
-		this.etiquetaFecha.setForeground(new Color(255, 255, 255));
-		this.etiquetaHora.setForeground(new Color(255, 255, 255));
-		this.etiquetaPersonas.setForeground(new Color(255, 255, 255));
-		this.etiquetaVerificado.setForeground(new Color(255, 255, 255));
-		this.lblFecha.setForeground(new Color(255, 255, 255));
-		this.lblFecha.setForeground(new Color(255, 255, 255));
-		this.lblHora.setForeground(new Color(255, 255, 255));
-		this.lblPersonas.setForeground(new Color(255, 255, 255));
-		this.lblRealizado.setForeground(new Color(255, 255, 255));
-		this.lblVerificacion.setForeground(new Color(255, 255, 255));
+	
+	/**
+	 * Cambia el color y tipo de la fuente aun color más fuerte
+	 */
+	public void letraOscura(){
+		this.etiquetaNombre.setForeground(new Color(255, 153, 0));
+		this.etiquetaNombre.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
+		this.etiquetaFecha.setForeground(new Color(255,153,0));
+		this.etiquetaFecha.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
+		this.etiquetaHora.setForeground(new Color(255,153,0));
+		this.etiquetaHora.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
+		this.etiquetaPersonas.setForeground(new Color(255,153,0));
+		this.etiquetaPersonas.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
+		this.etiquetaVerificado.setForeground(new Color(255,153,0));
+		this.etiquetaVerificado.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
+		this.lblFecha.setForeground(new Color(255,153,0));
+		this.lblFecha.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
+		this.lblHora.setForeground(new Color(255,153,0));
+		this.lblHora.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
+		this.lblPersonas.setForeground(new Color(255,153,0));
+		this.lblPersonas.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
+		this.lblRealizado.setForeground(new Color(255,153,0));
+		this.lblRealizado.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
+		this.lblVerificacion.setForeground(new Color(255,153,0));
+		this.lblVerificacion.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
+		
+		
 	}
 
 	//GETTERS
