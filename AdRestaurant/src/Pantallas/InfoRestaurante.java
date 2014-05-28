@@ -32,7 +32,7 @@ public class InfoRestaurante extends JPanel  {
 	 * Create the panel.
 	 */
 	public InfoRestaurante(String nombre, String direccion, String poblacion, String tipo, int codigo) {
-		setBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 200, 0), new Color(255, 200, 0), Color.ORANGE, Color.ORANGE));
+		setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(255, 140, 0), new Color(255, 140, 0), new Color(255, 140, 0), new Color(255, 140, 0)));
 		setBackground(Color.GRAY);
 		
 		this.codigo=codigo;
