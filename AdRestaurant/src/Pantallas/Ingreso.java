@@ -109,7 +109,7 @@ public class Ingreso extends JPanel{
 	 * Todos los botones de la pantalla Ingreso
 	 */
 	public void botonesIngreso(){
-		lblBienvenid = new JLabel(messages.getString("WLCOME"));
+		this.lblBienvenid = new JLabel(messages.getString("WLCOME"));
 		lblBienvenid.setBounds(334, 193, 227, 64);
 		lblBienvenid.setForeground(new Color(255, 255, 255));
 		lblBienvenid.setBackground(new Color(255, 255, 0));
