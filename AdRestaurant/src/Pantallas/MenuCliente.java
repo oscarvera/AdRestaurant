@@ -113,7 +113,7 @@ public class MenuCliente{
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 94, 895, 481);
 		frame.getContentPane().add(panel);
-		
+
 		JButton btnBuscarRestaurante = new JButton(messages.getString("BuscarRestaurantes"),(new ImageIcon(MenuCliente.class.getResource("/Imagen/BuscarRestaurantes.png"))));
 		btnBuscarRestaurante.setForeground(new Color(255, 153, 0));
 		btnBuscarRestaurante.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -170,36 +170,36 @@ public class MenuCliente{
 		});
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+				gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(label_1)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(99)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(btnComentarios, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-								.addComponent(btnPerfil, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(label_1)
 								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 464, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(btnBuscarReservas, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)))))
-					.addContainerGap(93, Short.MAX_VALUE))
-		);
+										.addGap(99)
+										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+												.addComponent(btnComentarios, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+												.addComponent(btnPerfil, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+												.addGroup(gl_panel.createSequentialGroup()
+														.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 464, GroupLayout.PREFERRED_SIZE)
+														.addGap(18)
+														.addComponent(btnBuscarReservas, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)))))
+														.addContainerGap(93, Short.MAX_VALUE))
+				);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+				gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(22)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 190, Short.MAX_VALUE)
-						.addComponent(btnBuscarReservas, 0, 0, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(label_1)
-						.addComponent(btnPerfil, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnComentarios, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-					.addGap(22))
-		);
+						.addGap(22)
+						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnBuscarRestaurante, GroupLayout.PREFERRED_SIZE, 190, Short.MAX_VALUE)
+								.addComponent(btnBuscarReservas, 0, 0, Short.MAX_VALUE))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addComponent(label_1)
+										.addComponent(btnPerfil, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(btnComentarios, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+										.addGap(22))
+				);
 		panel.setLayout(gl_panel);
 
 		JLabel lblnomUser = new JLabel(clie.getNombre());

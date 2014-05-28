@@ -64,7 +64,7 @@ public class Salir extends JPanel{
 		initialize();
 		this.consulta=c;
 	}
-	
+
 	public Salir(ResourceBundle messages, Restaurante rest) {
 		this.messages=messages;
 		this.rest=rest;

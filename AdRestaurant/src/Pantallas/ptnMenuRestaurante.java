@@ -31,8 +31,8 @@ public class ptnMenuRestaurante extends JFrame {
 	JFrame frame;
 	Restaurante rest;
 	static Locale currentLocale;
-    static ResourceBundle messages;
-	
+	static ResourceBundle messages;
+
 	/**
 	 * Create the frame.
 	 */
@@ -41,7 +41,7 @@ public class ptnMenuRestaurante extends JFrame {
 		this.messages=messages;
 		initialize();
 	}
-	
+
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
@@ -53,13 +53,13 @@ public class ptnMenuRestaurante extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
 		frame.getContentPane().setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 94, 895, 481);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
-		
+
 		JButton btnNewButton_1 = new JButton(messages.getString("Perfil"));
 		btnNewButton_1.setBounds(182, 68, 232, 345);
 		panel.add(btnNewButton_1);
@@ -69,7 +69,7 @@ public class ptnMenuRestaurante extends JFrame {
 				frame.dispose();
 			}
 		});
-		
+
 		JButton button = new JButton(messages.getString("Reservas"));
 		button.setBounds(487, 68, 232, 345);
 		panel.add(button);
@@ -79,7 +79,7 @@ public class ptnMenuRestaurante extends JFrame {
 				frame.dispose();
 			}
 		});
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(0, 0, 895, 22);
@@ -114,11 +114,11 @@ public class ptnMenuRestaurante extends JFrame {
 				Salir salir=new Salir(messages, c);
 			}
 		});
-		
-		
-		
-		
-		
+
+
+
+
+
 		JLabel lblnomUser = new JLabel(rest.getNombre());
 		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblnomUser.setForeground(Color.WHITE);
@@ -126,14 +126,14 @@ public class ptnMenuRestaurante extends JFrame {
 		lblnomUser.setBackground(Color.YELLOW);
 		lblnomUser.setBounds(500, 33, 239, 64);
 		frame.getContentPane().add(lblnomUser);
-		
+
 		JLabel lblBienvenido = new JLabel(messages.getString("WLCOME1"));
 		lblBienvenido.setForeground(Color.WHITE);
 		lblBienvenido.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		lblBienvenido.setBackground(Color.YELLOW);
 		lblBienvenido.setBounds(379, 33, 86, 64);
 		frame.getContentPane().add(lblBienvenido);
-		
+
 		JButton btnCerrarsesion = new JButton(messages.getString("CerrarSesion"));
 		btnCerrarsesion.setFocusable(false);
 		btnCerrarsesion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
@@ -147,7 +147,7 @@ public class ptnMenuRestaurante extends JFrame {
 		btnCerrarsesion.setBackground(new Color(255, 153, 51));
 		btnCerrarsesion.setBounds(757, 55, 128, 23);
 		frame.getContentPane().add(btnCerrarsesion);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(MenuCliente.class.getResource("/Imagen/TituloPEQUE.png")));
 		lblNewLabel.setBounds(-18, 33, 393, 64);

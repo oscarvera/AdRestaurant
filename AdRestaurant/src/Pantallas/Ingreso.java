@@ -143,12 +143,12 @@ public class Ingreso extends JPanel{
 				}
 			}
 			@Override
-			
-			
+
+
 			public void keyPressed(KeyEvent e) {
-				   if (e.getKeyCode()==KeyEvent.VK_ENTER){
-			            btnIngresar.doClick();
-			        }
+				if (e.getKeyCode()==KeyEvent.VK_ENTER){
+					btnIngresar.doClick();
+				}
 			}
 		};
 		textLabelUser.addKeyListener(kl);

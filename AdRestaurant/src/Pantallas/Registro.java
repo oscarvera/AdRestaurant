@@ -228,8 +228,8 @@ public class Registro extends JPanel{
 					public void keyPressed(KeyEvent e) {
 						// TODO Auto-generated method stub
 						if (e.getKeyCode()==KeyEvent.VK_ENTER){
-				            btnRegistrarse.doClick();
-				        }
+							btnRegistrarse.doClick();
+						}
 					}
 				};
 
@@ -475,7 +475,7 @@ public class Registro extends JPanel{
 					public void keyPressed(KeyEvent e) {
 						// TODO Auto-generated method stub
 						if (e.getKeyCode()==KeyEvent.VK_ENTER){
-				            btnRegRest.doClick();
+							btnRegRest.doClick();
 						}
 					}
 				};

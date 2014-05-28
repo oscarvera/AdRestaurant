@@ -50,8 +50,8 @@ public class ptnRestaurante extends JFrame {
 	static Locale currentLocale;
 	static ResourceBundle messages;
 	private DefaultListModel<InfoComentario> modelo_lista_comentarios = new DefaultListModel<InfoComentario>();
-    private JList<InfoComentario> lista_comentarios = new JList<InfoComentario>(modelo_lista_comentarios);
-    private ConstructorDeCeldaComentarios celda = new ConstructorDeCeldaComentarios();
+	private JList<InfoComentario> lista_comentarios = new JList<InfoComentario>(modelo_lista_comentarios);
+	private ConstructorDeCeldaComentarios celda = new ConstructorDeCeldaComentarios();
 	Connection conexion;
 
 	/**
@@ -161,9 +161,9 @@ public class ptnRestaurante extends JFrame {
 
 		JLabel lblImagen = new JLabel("");
 		lblImagen.setBounds(22, 88, 360, 235);
-		
+
 		//LLegim el fitxer de la Imatge
-		
+
 		if(rest.getFoto1().getWidth()>360){
 			ImageIcon imagen = new ImageIcon(rest.getFoto1());
 			ImageIcon icon = new ImageIcon(imagen.getImage().getScaledInstance(360, imagen.getIconHeight(), Image.SCALE_DEFAULT));
@@ -173,10 +173,10 @@ public class ptnRestaurante extends JFrame {
 			ImageIcon icon = new ImageIcon(imagen.getImage().getScaledInstance(imagen.getIconWidth(), 235, Image.SCALE_DEFAULT));
 			lblImagen.setIcon(icon);
 		}
-			ImageIcon icon =new ImageIcon(rest.getFoto1());
-			lblImagen.setIcon(icon);
-	       	//image = ImageIO.read(rest.getFotofile1());
-			
+		ImageIcon icon =new ImageIcon(rest.getFoto1());
+		lblImagen.setIcon(icon);
+		//image = ImageIO.read(rest.getFotofile1());
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(22, 359, 846, 164);
 
@@ -381,16 +381,16 @@ public class ptnRestaurante extends JFrame {
 		/**
 		 * Lista de comentarios
 		 */
-//		DefaultListModel dlm=new DefaultListModel();
-//		JList list = new JList();
-//		list.setBorder(new EmptyBorder(3, 3, 3, 3));
-//		list.setFont(new Font("Fira Sans OT", Font.PLAIN, 11));
-//		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//		scrollPane.setViewportView(list);
+		//		DefaultListModel dlm=new DefaultListModel();
+		//		JList list = new JList();
+		//		list.setBorder(new EmptyBorder(3, 3, 3, 3));
+		//		list.setFont(new Font("Fira Sans OT", Font.PLAIN, 11));
+		//		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		//		scrollPane.setViewportView(list);
 		this.lista_comentarios.setCellRenderer(celda);
 		this.lista_comentarios.setFocusable(false);		
 		scrollPane.setViewportView(this.lista_comentarios);
-		
+
 		/**
 		 * Listar comentarios del restaurante.
 		 */
@@ -428,7 +428,7 @@ public class ptnRestaurante extends JFrame {
 		}
 		if(hayComentarios==false){
 			String reserva="<html>No hay comentarios en este restaurante<br><font color=silver>Te proponemos ir al restaurante, probarlo y opinar sobre él</font></html>";
-//			this.modelo_lista_comentarios.addElement(reserva);
+			//			this.modelo_lista_comentarios.addElement(reserva);
 		}
 		this.lista_comentarios.setModel(this.modelo_lista_comentarios);
 		if(clie!=null){
@@ -481,6 +481,7 @@ public class ptnRestaurante extends JFrame {
 					frame.dispose();
 				}else{
 					ptnMenuRestaurante menurest=new ptnMenuRestaurante(rest, messages);
+					frame.dispose();
 				}
 
 			}
@@ -498,19 +499,19 @@ public class ptnRestaurante extends JFrame {
 		frame.getContentPane().add(label);
 
 		if(clie!=null){
-		JButton btnVolverBusqueda = new JButton(messages.getString("VolverBusqueda"));
-		btnVolverBusqueda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				BuscarRestaurante buscarrestaurante=new BuscarRestaurante(clie, messages);
-				frame.dispose();
-			}
-		});
-		btnVolverBusqueda.setForeground(Color.WHITE);
-		btnVolverBusqueda.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
-		btnVolverBusqueda.setFocusable(false);
-		btnVolverBusqueda.setBackground(new Color(255, 153, 0));
-		btnVolverBusqueda.setBounds(211, 623, 271, 23);
-		frame.getContentPane().add(btnVolverBusqueda);
+			JButton btnVolverBusqueda = new JButton(messages.getString("VolverBusqueda"));
+			btnVolverBusqueda.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					BuscarRestaurante buscarrestaurante=new BuscarRestaurante(clie, messages);
+					frame.dispose();
+				}
+			});
+			btnVolverBusqueda.setForeground(Color.WHITE);
+			btnVolverBusqueda.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 12));
+			btnVolverBusqueda.setFocusable(false);
+			btnVolverBusqueda.setBackground(new Color(255, 153, 0));
+			btnVolverBusqueda.setBounds(211, 623, 271, 23);
+			frame.getContentPane().add(btnVolverBusqueda);
 		}
 		frame.setBounds(100, 100, 895, 646);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
