@@ -22,10 +22,12 @@ public class ConstructorDeCelda implements ListCellRenderer<Object>{
 			component.setBackground(new Color(255, 255, 255));
 			//component.setBackground(new Color(255, 153, 0));
 			//comp.fondoBlanco();
+			comp.fondoOscuro();
 			comp.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(255, 140, 0), new Color(255, 140, 0), new Color(255, 140, 0), new Color(255, 140, 0)));
 			
 		}else {
 			component.setBackground(new Color(255, 255, 255));
+			comp.letraNormal();
 			//comp.fondoNaranja();
 			comp.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 222, 173), new Color(255, 222, 173), new Color(255, 222, 173), new Color(255, 222, 173)));
 		}
