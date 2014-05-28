@@ -186,7 +186,7 @@ public class ptnCrearComentario extends JFrame {
         });
         this.textComentario.setDocument(documento);
         
-        this.etiquetaPalabras = new JLabel("500 caracteres disponibles");
+        this.etiquetaPalabras = new JLabel(messages.getString("500"));
         this.etiquetaPalabras.setBounds(48, 384, 172, 14);
         this.etiquetaPalabras.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 14));
         this.etiquetaPalabras.setForeground(new Color(255, 153, 0));

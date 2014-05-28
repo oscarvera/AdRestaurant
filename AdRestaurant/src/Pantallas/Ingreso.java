@@ -120,7 +120,7 @@ public class Ingreso extends JPanel{
 		lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUsuario.setForeground(new Color(255, 255, 255));
 		lblUsuario.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-		lblUsuario.setBounds(169, 276, 160, 22);
+		lblUsuario.setBounds(107, 276, 222, 22);
 		frame.getContentPane().add(lblUsuario);
 
 		textLabelUser = new JTextField();
@@ -157,7 +157,7 @@ public class Ingreso extends JPanel{
 		lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPass.setForeground(Color.WHITE);
 		lblPass.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
-		lblPass.setBounds(107, 327, 222, 22);
+		lblPass.setBounds(29, 327, 300, 22);
 		frame.getContentPane().add(lblPass);
 
 		JPanel panel = new JPanel();
