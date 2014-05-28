@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,7 +36,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.SwingConstants;
 
-import com.mysql.jdbc.Connection;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.AbstractListModel;
@@ -49,8 +49,10 @@ public class ptnRestaurante extends JFrame {
 	private JFrame frameBusqueda;
 	static Locale currentLocale;
 	static ResourceBundle messages;
-
-	Connection conexion = null;
+	private DefaultListModel<InfoComentario> modelo_lista_comentarios = new DefaultListModel<InfoComentario>();
+    private JList<InfoComentario> lista_comentarios = new JList<InfoComentario>(modelo_lista_comentarios);
+    private ConstructorDeCeldaComentarios celda = new ConstructorDeCeldaComentarios();
+	Connection conexion;
 
 	/**
 	 * Launch the application.
@@ -73,6 +75,7 @@ public class ptnRestaurante extends JFrame {
 		this.clie=clie;
 		this.rest=rest;
 		this.messages=messages;
+		this.conexion=this.clie.getConexionConsulta().getConexion();
 		iniciar();
 	}
 	/**
@@ -84,6 +87,7 @@ public class ptnRestaurante extends JFrame {
 	public ptnRestaurante(final Restaurante rest,final ResourceBundle messages) {
 		this.rest=rest;
 		this.messages=messages;
+		this.conexion=this.rest.getConexionConsulta().getConexion();
 		iniciar();	
 	}
 
@@ -307,10 +311,9 @@ public class ptnRestaurante extends JFrame {
 		panel.add(scrollPane);
 		panel.add(lblNewLabel);
 
-
-
-		Consulta consul=new Consulta(messages);
-		conexion=(Connection) consul.getConexion();
+		/**
+		 * Boton nuevo comentario y consulta para comprobar si tiene una reserva realizada y puede comentar.
+		 */
 		String consulta= "SELECT realizacion FROM reserva WHERE Codigo_Cliente=? AND Codigo_Restaurante=?";
 		PreparedStatement stmt;
 		ResultSet resultadoConsulta1 = null;
@@ -378,14 +381,20 @@ public class ptnRestaurante extends JFrame {
 		/**
 		 * Lista de comentarios
 		 */
-		DefaultListModel dlm=new DefaultListModel();
-		JList list = new JList();
-		list.setBorder(new EmptyBorder(3, 3, 3, 3));
-		list.setFont(new Font("Fira Sans OT", Font.PLAIN, 11));
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.setViewportView(list);
+//		DefaultListModel dlm=new DefaultListModel();
+//		JList list = new JList();
+//		list.setBorder(new EmptyBorder(3, 3, 3, 3));
+//		list.setFont(new Font("Fira Sans OT", Font.PLAIN, 11));
+//		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//		scrollPane.setViewportView(list);
+		this.lista_comentarios.setCellRenderer(celda);
+		this.lista_comentarios.setFocusable(false);		
+		scrollPane.setViewportView(this.lista_comentarios);
 		
-		consulta= "SELECT cli.usuario, c.fechaCreacion, c.txtComentario FROM comentarios c INNER JOIN clientes cli on cli.codigoCliente=c.Codigo_Cliente WHERE Codigo_Restaurante=?";
+		/**
+		 * Listar comentarios del restaurante.
+		 */
+		consulta= "SELECT cli.usuario, c.fechaCreacion, c.txtComentario FROM comentarios c INNER JOIN clientes cli on cli.codigoCliente=c.Codigo_Cliente WHERE Codigo_Restaurante=? order by c.fechaCreacion DESC";
 		try {
 			stmt = conexion.prepareStatement(consulta);
 			stmt.setInt(1, rest.getCodigoRestaurante());
@@ -409,7 +418,7 @@ public class ptnRestaurante extends JFrame {
 				}
 				text=resultadoConsulta1.getString("txtComentario");
 				String reserva="<html><div width=600px><font color=silver size=5>"+usuario+" </font>     <font color=silver size=3>  "+fechacreacion+"</font><br><font size=4>"+text+"</font><br></html>";
-				dlm.addElement(reserva);
+				this.modelo_lista_comentarios.addElement(new InfoComentario(resultadoConsulta1.getString("usuario"), resultadoConsulta1.getString("FechaCreacion"), resultadoConsulta1.getString("txtComentario")));
 				hayComentarios=true;
 
 			}
@@ -419,9 +428,9 @@ public class ptnRestaurante extends JFrame {
 		}
 		if(hayComentarios==false){
 			String reserva="<html>No hay comentarios en este restaurante<br><font color=silver>Te proponemos ir al restaurante, probarlo y opinar sobre él</font></html>";
-			dlm.addElement(reserva);
+//			this.modelo_lista_comentarios.addElement(reserva);
 		}
-		list.setModel(dlm);
+		this.lista_comentarios.setModel(this.modelo_lista_comentarios);
 		if(clie!=null){
 			JLabel lblnomUser = new JLabel(clie.getNombre());
 			lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);

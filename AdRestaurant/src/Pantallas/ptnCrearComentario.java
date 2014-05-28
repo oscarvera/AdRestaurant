@@ -36,6 +36,8 @@ import java.util.ResourceBundle;
 
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextArea;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.DocumentFilter;
 public class ptnCrearComentario extends JFrame {
 
 	private JFrame frame;
@@ -148,7 +150,30 @@ public class ptnCrearComentario extends JFrame {
 		panel.add(scrollPane);
 		
 		final JTextArea textComentario = new JTextArea();
+		textComentario.setWrapStyleWord(true);
+		textComentario.setLineWrap(true);
 		scrollPane.setViewportView(textComentario);
+		//AbstractDocument docComentario = (AbstractDocument) textComentario.getDocument();
+		
+//		kommentarArea.getDocument().addDocumentListener(new DocumentListener {
+//		    public void insertUpdate(DocumentEvent event) {
+//		        if (kommentarArea.getDocument().getLength() > 255) {
+//		            JOptionPane.showMessageDialog(null, "Die Länge der Kommentare ist länger als 255 Zeichern");
+//		        }
+//		    }
+//
+//		    public void removeUpdate(DocumentEvent e) {
+//		        if (kommentarArea.getDocument().getLength() > 255) {
+//		            JOptionPane.showMessageDialog(null, "Die Länge der Kommentare ist länger als 255 Zeichern");
+//		        }
+//		    }
+//
+//		    public void changeUpdate(DocumentEvent event) {
+//		        if (kommentarArea.getDocument().getLength() > 255) {
+//		            JOptionPane.showMessageDialog(null, "Die Länge der Kommentare ist länger als 255 Zeichern");
+//		        }
+//		    }
+//		});
 		
 		JLabel lblnomUser = new JLabel(clie.getNombre());
 		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);

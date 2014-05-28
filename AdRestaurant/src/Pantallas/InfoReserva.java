@@ -35,9 +35,9 @@ public class InfoReserva extends JPanel{
 	String hora;
 	int personas;
 	private JLabel lblPersonas;
-	private JLabel lblVerificado;
-	private JLabel lblRealizado_1;
 	private JLabel etiquetaRealizacion;
+	private JLabel lblHora;
+	private JLabel lblFecha;
 
 	/**
 	 * @wbp.parser.constructor
@@ -93,17 +93,17 @@ public class InfoReserva extends JPanel{
 		etiquetaRealizacion.setForeground(new Color(255, 153, 0));
 		etiquetaRealizacion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
-		JLabel lblFecha = new JLabel("Dia:");
+		lblFecha = new JLabel("Dia:");
 		lblFecha.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFecha.setForeground(new Color(255, 153, 0));
 		lblFecha.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
-		JLabel lblHora = new JLabel("Hora:");
+		lblHora = new JLabel("Hora:");
 		lblHora.setHorizontalAlignment(SwingConstants.LEFT);
 		lblHora.setForeground(new Color(255, 153, 0));
 		lblHora.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
-		JLabel lblPersonas = new JLabel("Personas:");
+		lblPersonas = new JLabel("Personas:");
 		lblPersonas.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPersonas.setForeground(new Color(255, 153, 0));
 		lblPersonas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
@@ -114,10 +114,10 @@ public class InfoReserva extends JPanel{
 		lblVerificacion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
 		lblRealizado = new JLabel("Realizado:");
-
 		lblRealizado.setHorizontalAlignment(SwingConstants.LEFT);
 		lblRealizado.setForeground(new Color(255, 153, 0));
 		lblRealizado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -228,13 +228,13 @@ public class InfoReserva extends JPanel{
 		etiquetaVerificado.setHorizontalAlignment(SwingConstants.LEFT);
 		etiquetaVerificado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		etiquetaVerificado.setForeground(new Color(255,153,0));
+		
+		lblFecha = new JLabel("Dia:");
+		lblFecha.setHorizontalAlignment(SwingConstants.LEFT);
+		lblFecha.setForeground(new Color(255, 153, 0));
+		lblFecha.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
-		JLabel lblDia = new JLabel("Dia:");
-		lblDia.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDia.setForeground(new Color(255, 153, 0));
-		lblDia.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
-
-		JLabel lblHora = new JLabel("Hora:");
+		lblHora = new JLabel("Hora:");
 		lblHora.setHorizontalAlignment(SwingConstants.LEFT);
 		lblHora.setForeground(new Color(255, 153, 0));
 		lblHora.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
@@ -244,15 +244,15 @@ public class InfoReserva extends JPanel{
 		lblPersonas.setForeground(new Color(255, 153, 0));
 		lblPersonas.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
-		lblVerificado = new JLabel("Verificado:");
-		lblVerificado.setHorizontalAlignment(SwingConstants.LEFT);
-		lblVerificado.setForeground(new Color(255, 153, 0));
-		lblVerificado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		lblVerificacion = new JLabel("Verificado:");
+		lblVerificacion.setHorizontalAlignment(SwingConstants.LEFT);
+		lblVerificacion.setForeground(new Color(255, 153, 0));
+		lblVerificacion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
-		lblRealizado_1 = new JLabel("Realizado:");
-		lblRealizado_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblRealizado_1.setForeground(new Color(255, 153, 0));
-		lblRealizado_1.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
+		lblRealizado = new JLabel("Realizado:");
+		lblRealizado.setHorizontalAlignment(SwingConstants.LEFT);
+		lblRealizado.setForeground(new Color(255, 153, 0));
+		lblRealizado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 
 		etiquetaRealizacion = new JLabel("");
 		if(realizado){
@@ -270,7 +270,7 @@ public class InfoReserva extends JPanel{
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(4)
-									.addComponent(lblDia, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
+									.addComponent(lblFecha, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
 								.addComponent(lblHora, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(64)
@@ -279,10 +279,10 @@ public class InfoReserva extends JPanel{
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(18)
-									.addComponent(lblRealizado_1, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE))
+									.addComponent(lblRealizado, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(18)
-									.addComponent(lblVerificado, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE))
+									.addComponent(lblVerificacion, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE))
 								.addComponent(etiquetaPersonas, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(113)
@@ -308,10 +308,10 @@ public class InfoReserva extends JPanel{
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(42)
-							.addComponent(lblRealizado_1))
+							.addComponent(lblRealizado))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(14)
-							.addComponent(lblVerificado))
+							.addComponent(lblVerificacion))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(32)
 							.addComponent(etiquetaPersonas))
@@ -326,7 +326,7 @@ public class InfoReserva extends JPanel{
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(11)
-							.addComponent(lblDia)
+							.addComponent(lblFecha)
 							.addGap(11)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblHora)
@@ -347,6 +347,12 @@ public class InfoReserva extends JPanel{
 		this.etiquetaHora.setForeground(new Color(255, 153, 0));
 		this.etiquetaPersonas.setForeground(new Color(255, 153, 0));
 		this.etiquetaVerificado.setForeground(new Color(255, 153, 0));
+		this.lblFecha.setForeground(new Color(255, 153, 0));
+		this.lblFecha.setForeground(new Color(255, 153, 0));
+		this.lblHora.setForeground(new Color(255, 153, 0));
+		this.lblPersonas.setForeground(new Color(255, 153, 0));
+		this.lblRealizado.setForeground(new Color(255, 153, 0));
+		this.lblVerificacion.setForeground(new Color(255, 153, 0));
 	}
 
 	public void fondoBlanco() {
@@ -355,6 +361,12 @@ public class InfoReserva extends JPanel{
 		this.etiquetaHora.setForeground(new Color(255, 255, 255));
 		this.etiquetaPersonas.setForeground(new Color(255, 255, 255));
 		this.etiquetaVerificado.setForeground(new Color(255, 255, 255));
+		this.lblFecha.setForeground(new Color(255, 255, 255));
+		this.lblFecha.setForeground(new Color(255, 255, 255));
+		this.lblHora.setForeground(new Color(255, 255, 255));
+		this.lblPersonas.setForeground(new Color(255, 255, 255));
+		this.lblRealizado.setForeground(new Color(255, 255, 255));
+		this.lblVerificacion.setForeground(new Color(255, 255, 255));
 	}
 
 	//GETTERS

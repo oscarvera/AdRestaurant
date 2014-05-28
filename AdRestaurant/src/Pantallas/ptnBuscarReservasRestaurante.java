@@ -265,7 +265,7 @@ import Clases.Restaurante;
  		 * Realiza la búsqueda, cuenta resultados y los muestra en la lista.
  		 */
  		public void realizaBusqueda(){
- 			String consulta="select c.usuario, r.fechaReserva, r.hora, r.fechaCreacion, r.personas,r.Codigo_Cliente,r.verificacion, r.realizacion from reserva r inner join clientes c on r.Codigo_Cliente=c.codigoCliente where r.Codigo_Restaurante=? order by r.fechaCreacion ASC";
+ 			String consulta="select c.usuario, r.fechaReserva, r.hora, r.fechaCreacion, r.personas,r.Codigo_Cliente,r.verificacion, r.realizacion from reserva r inner join clientes c on r.Codigo_Cliente=c.codigoCliente where r.Codigo_Restaurante=? order by r.fechaReserva DESC;";
  			try {
  				this.stmt = (PreparedStatement) conexion.prepareStatement(consulta);
  				this.stmt.setInt(1, rest.getCodigoRestaurante());

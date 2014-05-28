@@ -18,9 +18,11 @@ public class ConstructorDeCeldaComentarios implements ListCellRenderer<Object>{
 		Component component = (Component)value;
 		InfoComentario comp =(InfoComentario)component;
 		if (isSelected){
-			component.setBackground(new Color(255, 153, 0));
+//			component.setBackground(new Color(255, 153, 0));
+//			comp.colorBlanco();
 		}else {
 			component.setBackground(new Color(255, 255, 255));
+//			comp.colorNaranja();
 		}
 		return component;
 	}

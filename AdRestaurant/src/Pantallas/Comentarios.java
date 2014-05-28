@@ -193,15 +193,15 @@ public class Comentarios extends JFrame {
 	}
 	
 	public void mostrarComentarios(){
-		this.consulta="SELECT fechaCreacion, txtComentario FROM Comentarios WHERE Codigo_Cliente="+this.clie.getCodigoCliente()+";";
+		this.consulta="SELECT r.Nombre, c.fechaCreacion, c.txtComentario FROM Restaurantes r INNER JOIN Comentarios c ON r.codigoRestaurante=c.Codigo_Restaurante WHERE Codigo_Cliente=? order by c.fechaCreacion DESC;";
  		try {
 			this.stmt = conexion.prepareStatement(this.consulta);
-			//this.stmt.setInt(1, this.clie.getCodigoCliente());
+			this.stmt.setInt(1, this.clie.getCodigoCliente());
 			this.resultadoConsulta = this.stmt.executeQuery();
 			this.modelo_lista_comentarios.clear();
 			System.out.println("Consulta:"+this.consulta);
 			while(resultadoConsulta.next()){
-				this.modelo_lista_comentarios.addElement(new InfoComentario(this.clie.getUsuario(), resultadoConsulta.getString("fechaCreacion"), resultadoConsulta.getString("txtComentario")));
+				this.modelo_lista_comentarios.addElement(new InfoComentario(resultadoConsulta.getString("nombre"), resultadoConsulta.getString("fechaCreacion"), resultadoConsulta.getString("txtComentario"), 1));
 				System.out.print(resultadoConsulta.getString(1)+resultadoConsulta.getString(2));
 			}	
 		} catch (SQLException e) {

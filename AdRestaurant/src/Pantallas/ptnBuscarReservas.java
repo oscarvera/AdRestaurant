@@ -390,9 +390,10 @@ import javax.swing.SwingConstants;
  	public void buscarReservas(){
 		this.consulta="select rest.codigoRestaurante, rest.nombre, r.fechaReserva, r.hora, r.personas, r.verificacion, r.realizacion "
 				+ "from reserva r INNER JOIN Restaurantes rest ON r.Codigo_Restaurante=rest.codigoRestaurante "
-				+ "where r.codigo_Cliente="+String.valueOf(this.clie.getCodigoCliente())+";";
+				+ "where r.codigo_Cliente=? order by r.fechaReserva DESC;";
  		try {
 			this.stmt = conexion.prepareStatement(this.consulta);
+			this.stmt.setInt(1, this.clie.getCodigoCliente());
 			this.resultadoConsulta = this.stmt.executeQuery();
 			this.modelo_lista_reservas.clear();
 			while(resultadoConsulta.next()){
