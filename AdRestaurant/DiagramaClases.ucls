@@ -3,7 +3,7 @@
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="BBDD.Consulta" project="AdRestaurant" file="/AdRestaurant/src/BBDD/Consulta.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="351" width="188" x="4776" y="1935"/>    
+    <position height="351" width="188" x="4033" y="1935"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="Clases.Comentario" project="AdRestaurant" 
     file="/AdRestaurant/src/Clases/Comentario.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="441" width="258" x="2199" y="37"/>    
+    <position height="441" width="258" x="4033" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="Clases.Restaurante" project="AdRestaurant" 
     file="/AdRestaurant/src/Clases/Restaurante.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="1125" width="603" x="3452" y="770"/>    
+    <position height="1125" width="603" x="3044" y="770"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="Clases.Reserva" project="AdRestaurant" 
     file="/AdRestaurant/src/Clases/Reserva.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="693" width="290" x="4776" y="37"/>    
+    <position height="693" width="290" x="4331" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="Clases.Cliente" project="AdRestaurant" 
     file="/AdRestaurant/src/Clases/Cliente.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="693" width="325" x="4095" y="770"/>    
+    <position height="693" width="325" x="3687" y="770"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="Pantallas.Ingreso" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/Ingreso.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="423" width="214" x="2445" y="770"/>    
+    <position height="423" width="214" x="2769" y="770"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="Pantallas.InfoReserva" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/InfoReserva.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="567" width="293" x="590" y="37"/>    
+    <position height="567" width="293" x="41" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="Pantallas.ptnComentarioCompletado" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/ptnComentarioCompletado.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="336" x="3109" y="37"/>    
+    <position height="153" width="336" x="3294" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="Pantallas.Comentarios" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/Comentarios.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="279" width="319" x="5710" y="37"/>    
+    <position height="279" width="319" x="5731" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="Pantallas.ErrorRegistro" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/ErrorRegistro.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="315" width="309" x="6069" y="37"/>    
+    <position height="315" width="309" x="6090" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="Pantallas.ptnRestaurante" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/ptnRestaurante.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="279" width="285" x="2784" y="37"/>    
+    <position height="333" width="319" x="2054" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="Pantallas.ConstructorDeCeldaReservas" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/ConstructorDeCeldaReservas.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="409" x="2982" y="770"/>    
+    <position height="99" width="409" x="4962" y="770"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="Pantallas.MenuCliente" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/MenuCliente.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="207" x="3848" y="37"/>    
+    <position height="189" width="207" x="3047" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="Pantallas.ptnCrearComentario" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/ptnCrearComentario.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="307" x="4095" y="37"/>    
+    <position height="207" width="307" x="2413" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +129,7 @@
   </class>  
   <class id="15" language="java" name="Pantallas.ConstructorDeCelda" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/ConstructorDeCelda.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="409" x="4941" y="770"/>    
+    <position height="99" width="409" x="4513" y="770"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,7 +138,7 @@
   </class>  
   <class id="16" language="java" name="Pantallas.ptnReservaCompletada" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/ptnReservaCompletada.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="323" x="3485" y="37"/>    
+    <position height="189" width="323" x="3670" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,7 +147,7 @@
   </class>  
   <class id="17" language="java" name="Pantallas.ConstructorDeCeldaComentarios" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/ConstructorDeCeldaComentarios.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="409" x="5390" y="770"/>    
+    <position height="99" width="409" x="5411" y="770"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -156,7 +156,7 @@
   </class>  
   <class id="18" language="java" name="Pantallas.BuscarRestaurante" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/BuscarRestaurante.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="513" width="327" x="5343" y="37"/>    
+    <position height="513" width="327" x="4661" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -165,7 +165,7 @@
   </class>  
   <class id="19" language="java" name="Pantallas.Registro" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/Registro.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="945" width="199" x="5839" y="770"/>    
+    <position height="945" width="199" x="5860" y="770"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -174,7 +174,7 @@
   </class>  
   <class id="20" language="java" name="Pantallas.ptnMenuRestaurante" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/ptnMenuRestaurante.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="171" width="276" x="1883" y="37"/>    
+    <position height="171" width="276" x="1404" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -183,7 +183,7 @@
   </class>  
   <class id="21" language="java" name="Pantallas.ptnPerfilCliente" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/ptnPerfilCliente.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="351" width="247" x="2497" y="37"/>    
+    <position height="351" width="247" x="2760" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -192,7 +192,7 @@
   </class>  
   <class id="22" language="java" name="Pantallas.ptnCrearReserva" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/ptnCrearReserva.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="294" x="4442" y="37"/>    
+    <position height="135" width="294" x="1720" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -201,7 +201,7 @@
   </class>  
   <class id="23" language="java" name="Pantallas.ptnBuscarReservas" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/ptnBuscarReservas.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="423" width="291" x="1295" y="37"/>    
+    <position height="369" width="291" x="5400" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -210,7 +210,7 @@
   </class>  
   <class id="24" language="java" name="Pantallas.Salir" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/Salir.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="243" width="197" x="5106" y="37"/>    
+    <position height="243" width="197" x="1167" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -219,7 +219,7 @@
   </class>  
   <class id="25" language="java" name="Pantallas.RegistroCompleto" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/RegistroCompleto.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="243" x="2699" y="770"/>    
+    <position height="189" width="243" x="2486" y="770"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -228,7 +228,7 @@
   </class>  
   <class id="26" language="java" name="Pantallas.ptnReservasRestaurante" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/ptnReservasRestaurante.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="279" width="217" x="1626" y="37"/>    
+    <position height="279" width="217" x="910" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -237,7 +237,7 @@
   </class>  
   <class id="27" language="java" name="Pantallas.InfoComentario" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/InfoComentario.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="171" width="223" x="41" y="37"/>    
+    <position height="207" width="210" x="374" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -246,7 +246,7 @@
   </class>  
   <class id="28" language="java" name="Pantallas.InfoRestaurante" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/InfoRestaurante.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="261" width="246" x="304" y="37"/>    
+    <position height="261" width="246" x="624" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -255,7 +255,7 @@
   </class>  
   <class id="29" language="java" name="Pantallas.ptnBuscarReservasRestaurante" project="AdRestaurant" 
     file="/AdRestaurant/src/Pantallas/ptnBuscarReservasRestaurante.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="333" width="332" x="923" y="37"/>    
+    <position height="333" width="332" x="5028" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -263,24 +263,24 @@
     </display>  
   </class>  
   <association id="30">    
-    <bendpoint x="3421" y="770"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="31" name="conexionConsulta"/>      
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="31" name="celda"/>      
       <multiplicity id="32" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="33">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="34" name="usuarioReserva"/>      
+    <bendpoint x="6099" y="770"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="34" name="err"/>      
       <multiplicity id="35" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="36">    
-    <end type="SOURCE" refId="2" navigable="false">      
+    <end type="SOURCE" refId="29" navigable="false">      
       <attribute id="37" name="rest"/>      
       <multiplicity id="38" minimum="0" maximum="1"/>    
     </end>    
@@ -288,16 +288,15 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="39">    
-    <bendpoint x="6078" y="770"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="40" name="err"/>      
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="40" name="rest"/>      
       <multiplicity id="41" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="42">    
-    <end type="SOURCE" refId="14" navigable="false">      
+    <end type="SOURCE" refId="11" navigable="false">      
       <attribute id="43" name="rest"/>      
       <multiplicity id="44" minimum="0" maximum="1"/>    
     </end>    
@@ -305,71 +304,71 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="45">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="46" name="registro"/>      
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="46" name="clie"/>      
       <multiplicity id="47" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="48">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="49" name="conexionConsulta"/>      
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="49" name="clie"/>      
       <multiplicity id="50" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="51">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="52" name="clie"/>      
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="52" name="rest"/>      
       <multiplicity id="53" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="54">    
-    <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="55" name="clie"/>      
-      <multiplicity id="56" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="57">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="58" name="restaurante"/>      
-      <multiplicity id="59" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="60">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="61" name="clie"/>      
-      <multiplicity id="62" minimum="0" maximum="1"/>    
+  <association id="54">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="55" name="rest"/>      
+      <multiplicity id="56" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="57">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="58" name="user"/>      
+      <multiplicity id="59" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="60">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="61" name="rest"/>      
+      <multiplicity id="62" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="63">    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="64" name="celda"/>      
+      <attribute id="64" name="clie"/>      
       <multiplicity id="65" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="66">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="67" name="registro"/>      
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="67" name="clie"/>      
       <multiplicity id="68" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="69">    
-    <end type="SOURCE" refId="8" navigable="false">      
+    <end type="SOURCE" refId="20" navigable="false">      
       <attribute id="70" name="rest"/>      
       <multiplicity id="71" minimum="0" maximum="1"/>    
     </end>    
@@ -377,56 +376,55 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="72">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="73" name="consulta"/>      
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="73" name="registro"/>      
       <multiplicity id="74" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="75">    
-    <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="76" name="rest"/>      
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="76" name="restaurante"/>      
       <multiplicity id="77" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="78">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="79" name="clie"/>      
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="79" name="celda"/>      
       <multiplicity id="80" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="81">    
-    <bendpoint x="4910" y="770"/>    
-    <end type="SOURCE" refId="24" navigable="false">      
-      <attribute id="82" name="consulta"/>      
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="82" name="celda"/>      
       <multiplicity id="83" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="84">    
-    <end type="SOURCE" refId="24" navigable="false">      
-      <attribute id="85" name="clie"/>      
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="85" name="celda"/>      
       <multiplicity id="86" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="87">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="88" name="clie"/>      
+      <multiplicity id="89" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="87">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="88" name="rest"/>      
-      <multiplicity id="89" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <association id="90">    
-    <end type="SOURCE" refId="29" navigable="false">      
+    <end type="SOURCE" refId="14" navigable="false">      
       <attribute id="91" name="rest"/>      
       <multiplicity id="92" minimum="0" maximum="1"/>    
     </end>    
@@ -434,47 +432,48 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="93">    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="94" name="rest"/>      
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="94" name="clie"/>      
       <multiplicity id="95" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="96">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="97" name="clie"/>      
-      <multiplicity id="98" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="99">    
-    <end type="SOURCE" refId="29" navigable="false">      
-      <attribute id="100" name="celda"/>      
-      <multiplicity id="101" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="102">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="103" name="conexionConsulta"/>      
-      <multiplicity id="104" minimum="0" maximum="1"/>    
+  <association id="96">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="97" name="consulta"/>      
+      <multiplicity id="98" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="105">    
+  <association id="99">    
+    <bendpoint x="3013" y="770"/>    
     <end type="SOURCE" refId="24" navigable="false">      
-      <attribute id="106" name="rest"/>      
+      <attribute id="100" name="consulta"/>      
+      <multiplicity id="101" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="102">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="103" name="usuarioReserva"/>      
+      <multiplicity id="104" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="105">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="106" name="conexionConsulta"/>      
       <multiplicity id="107" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="108">    
-    <end type="SOURCE" refId="8" navigable="false">      
+    <end type="SOURCE" refId="14" navigable="false">      
       <attribute id="109" name="clie"/>      
       <multiplicity id="110" minimum="0" maximum="1"/>    
     </end>    
@@ -482,15 +481,16 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="111">    
+    <bendpoint x="4191" y="770"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="112" name="rest"/>      
+      <attribute id="112" name="conexionConsulta"/>      
       <multiplicity id="113" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="114">    
-    <end type="SOURCE" refId="26" navigable="false">      
+    <end type="SOURCE" refId="21" navigable="false">      
       <attribute id="115" name="rest"/>      
       <multiplicity id="116" minimum="0" maximum="1"/>    
     </end>    
@@ -498,8 +498,8 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="117">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="118" name="rest"/>      
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="118" name="restauranteSeleccionado"/>      
       <multiplicity id="119" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
@@ -514,15 +514,15 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="123">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="124" name="celda"/>      
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="124" name="conexionConsulta"/>      
       <multiplicity id="125" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="126">    
-    <end type="SOURCE" refId="16" navigable="false">      
+    <end type="SOURCE" refId="18" navigable="false">      
       <attribute id="127" name="clie"/>      
       <multiplicity id="128" minimum="0" maximum="1"/>    
     </end>    
@@ -530,7 +530,7 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="129">    
-    <end type="SOURCE" refId="25" navigable="false">      
+    <end type="SOURCE" refId="6" navigable="false">      
       <attribute id="130" name="consulta"/>      
       <multiplicity id="131" minimum="0" maximum="1"/>    
     </end>    
@@ -538,23 +538,23 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="132">    
-    <end type="SOURCE" refId="23" navigable="false">      
-      <attribute id="133" name="celda"/>      
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="133" name="rest"/>      
       <multiplicity id="134" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="135">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="136" name="restauranteSeleccionado"/>      
-      <multiplicity id="137" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="135">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="136" name="conexionConsulta"/>      
+      <multiplicity id="137" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="138">    
-    <end type="SOURCE" refId="23" navigable="false">      
+    <end type="SOURCE" refId="21" navigable="false">      
       <attribute id="139" name="clie"/>      
       <multiplicity id="140" minimum="0" maximum="1"/>    
     </end>    
@@ -563,43 +563,43 @@
   </association>  
   <association id="141">    
     <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="142" name="conexionConsulta"/>      
+      <attribute id="142" name="registro"/>      
       <multiplicity id="143" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="144">    
-    <bendpoint x="4785" y="770"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="145" name="conexionConsulta"/>      
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="145" name="rest"/>      
       <multiplicity id="146" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="147">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="148" name="user"/>      
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="148" name="clie"/>      
       <multiplicity id="149" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="150">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="151" name="rest"/>      
+    <bendpoint x="4042" y="770"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="151" name="conexionConsulta"/>      
       <multiplicity id="152" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="153">    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="154" name="clie"/>      
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="154" name="rest"/>      
       <multiplicity id="155" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

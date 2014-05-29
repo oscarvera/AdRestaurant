@@ -266,7 +266,8 @@ public class ptnCrearComentario extends JFrame {
 	 * Actualiza el contador de caracteres cuando se está escribiendo un comentario
 	 */
 	private void updateCount(){
-        this.etiquetaPalabras.setText((500 -this.documento.getLength()) + " caracteres disponibles");
+		String restantes=messages.getString("500a");
+        this.etiquetaPalabras.setText((500 -this.documento.getLength()) +" "+ restantes);
     }
 }
 
