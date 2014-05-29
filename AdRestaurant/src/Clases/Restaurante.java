@@ -34,7 +34,7 @@ public class Restaurante {
 	private File fotofile1;
 	private File fotofile2;
 	private String nombreUsuario;
-	private char[] contraseña;
+	private char[] pass;
 	private PreparedStatement stmt;
 	private Connection conexion;
 	private String consulta;
@@ -45,10 +45,10 @@ public class Restaurante {
 	FileInputStream io2 = null;
 	
 	//Constructor para el registro de restaurantes en la Base de Datos:
-		public Restaurante(String nombreUsuario, char[] contraseña, String nombre, String tipo, String telf, String direccion, 
+		public Restaurante(String nombreUsuario, char[] pass, String nombre, String tipo, String telf, String direccion, 
 				String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto, BufferedImage foto1, BufferedImage foto2, Consulta c){
 			this.nombreUsuario=nombreUsuario;
-			this.contraseña=contraseña;
+			this.pass=pass;
 			this.nombre=nombre;
 			this.tipo=tipo;
 			this.telefono=telf;
@@ -65,11 +65,11 @@ public class Restaurante {
 		}
 		
 		//Constructor para el registro de un restaurante nuevo:
-				public Restaurante(String nombreUsuario, char[] contraseña, String nombre, String tipo, String telf, String direccion, 
+				public Restaurante(String nombreUsuario, char[] pass, String nombre, String tipo, String telf, String direccion, 
 						String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto, File fotofile1, File fotofile2, Consulta c){
 					System.out.println("Estoy aqui");
 					this.nombreUsuario=nombreUsuario;
-					this.contraseña=contraseña;
+					this.pass=pass;
 					this.nombre=nombre;
 					this.tipo=tipo;
 					this.telefono=telf;
@@ -108,7 +108,7 @@ public class Restaurante {
 
 			
 			/**
-			 * Si la contraseña también es correcta, selecciona todos los datos del usuario y crea una instancia de Restaurante con ellos.
+			 * Si la pass también es correcta, selecciona todos los datos del usuario y crea una instancia de Restaurante con ellos.
 			 */
 			public void loginRestaurante(){
 				this.consulta = "SELECT * FROM restaurantes WHERE codigoRestaurante=?;";
@@ -141,7 +141,7 @@ public class Restaurante {
 						this.foto2= img2; //guardo la imagen*/
 						}
 						this.nombreUsuario=resultadoConsulta.getString("nombreUsuario");
-						this.contraseña=resultadoConsulta.getString("contraseña").toCharArray();
+						this.pass=resultadoConsulta.getString("pass").toCharArray();
 					
 					}
 					
@@ -185,7 +185,7 @@ public class Restaurante {
 						BufferedImage img2 = ImageIO.read(new ByteArrayInputStream(data2));//Creo la imagen a partir del array 
 						this.foto2= img2; //guardo la imagen
 						this.nombreUsuario=resultadoConsulta.getString("nombreUsuario");
-						this.contraseña=resultadoConsulta.getString("contraseña").toCharArray();
+						this.pass=resultadoConsulta.getString("pass").toCharArray();
 					
 					}
 					
@@ -244,7 +244,7 @@ public class Restaurante {
 				
 				try{
 				//Escribimos la consulta SQL en la variable consulta -->De momento, las fotos se quedan fuera:
-				this.consulta = "INSERT INTO restaurantes (Nombre,direccion,poblacion,provincia,codigoPostal,Telefono,tipo,Minusvalido_Apto,foto1,foto2,nombreUsuario,contraseña)"
+				this.consulta = "INSERT INTO restaurantes (Nombre,direccion,poblacion,provincia,codigoPostal,Telefono,tipo,Minusvalido_Apto,foto1,foto2,nombreUsuario,pass)"
 						+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";  
 					try{
 					//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.
@@ -266,10 +266,10 @@ public class Restaurante {
 						stmt.setBinaryStream(10, (InputStream)io1, (int)fotofile1.length());
 					}
 					stmt.setString(11, this.nombreUsuario);
-					//En contraseña hay que pasarlo a String y borrar el contenido de la variable de clase por seguridad.
-					stmt.setString(12, String.copyValueOf(this.contraseña));
-					for(int i=0; i<contraseña.length; i++){
-						this.contraseña[i]=0;
+					//En pass hay que pasarlo a String y borrar el contenido de la variable de clase por seguridad.
+					stmt.setString(12, String.copyValueOf(this.pass));
+					for(int i=0; i<pass.length; i++){
+						this.pass[i]=0;
 					}
 
 					
@@ -299,12 +299,12 @@ public class Restaurante {
 				this.codigoRestaurante = codigoRestaurante;
 			}
 
-			public char[] getContraseña() {
-				return contraseña;
+			public char[] getpass() {
+				return pass;
 			}
 
-			public void setContraseña(char[] contraseña) {
-				this.contraseña = contraseña;
+			public void setpass(char[] pass) {
+				this.pass = pass;
 			}
 
 			public String getNombre() {

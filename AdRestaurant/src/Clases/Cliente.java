@@ -120,7 +120,7 @@ public class Cliente {
 				this.email=resultadoConsulta.getString("email");
 				this.usuario=resultadoConsulta.getString("usuario");
 				this.codigoCliente=resultadoConsulta.getInt("codigoCliente");
-				this.contraseña=resultadoConsulta.getString("contraseña").toCharArray();
+				this.contraseña=resultadoConsulta.getString("pass").toCharArray();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -159,7 +159,7 @@ public class Cliente {
 	
 	public void insertarCliente(){
 		//Escribimos la consulta SQL en la variable consulta
-		this.consulta = "INSERT INTO Clientes (Nombre, primerApellido, segundoApellido, usuario, email, telefono, contraseña)"
+		this.consulta = "INSERT INTO Clientes (Nombre, primerApellido, segundoApellido, usuario, email, telefono, pass)"
 				+ " VALUES (?,?,?,?,?,?,?);";
 		try{
 			//Asignamos la consulta a nuestro PreparedStatement. De esta forma precompila la consulta antes de conectar incluso.

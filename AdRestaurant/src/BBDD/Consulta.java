@@ -88,7 +88,7 @@ public class Consulta {
 		
 		try{
 			/*consulta si es un usuario*/
-			this.consulta = "SELECT usuario FROM Clientes WHERE usuario=? AND contraseña=?";
+			this.consulta = "SELECT usuario FROM Clientes WHERE usuario=? AND pass=?";
 			this.stmt = conexion.prepareStatement(this.consulta);
 			this.stmt.setString(1, user);
 			this.stmt.setString(2, String.copyValueOf(contraseña));
@@ -97,7 +97,7 @@ public class Consulta {
 					return true;
 			}else{/*Buscarmos el usuario en restaurante, ya que en cliente no existe*/
 					
-					this.consulta = "SELECT nombreUsuario FROM Restaurantes WHERE nombreUsuario=? AND contraseña=?";
+					this.consulta = "SELECT nombreUsuario FROM Restaurantes WHERE nombreUsuario=? AND pass=?";
 					this.stmt = conexion.prepareStatement(this.consulta);
 					this.stmt.setString(2, String.copyValueOf(contraseña));
 					this.stmt.setString(1, user);
