@@ -56,11 +56,13 @@ public class ptnMenuRestaurante extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 94, 895, 481);
+		panel.setBounds(0, 89, 895, 481);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JButton btnNewButton_1 = new JButton(messages.getString("Perfil"));
+		btnNewButton_1.setBackground(Color.WHITE);
+		btnNewButton_1.setIcon(new ImageIcon(ptnMenuRestaurante.class.getResource("/Imagen/perfil2.png")));
 		btnNewButton_1.setBounds(182, 68, 232, 345);
 		panel.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -70,7 +72,12 @@ public class ptnMenuRestaurante extends JFrame {
 			}
 		});
 
+		//messages.getString("Reservas")
+		
 		JButton button = new JButton(messages.getString("Reservas"));
+		button.setFont(new Font("Fira Sans OT", Font.PLAIN, 34));
+		button.setForeground(Color.WHITE);
+		button.setIcon(new ImageIcon(ptnMenuRestaurante.class.getResource("/Imagen/restaurants-icon.png")));
 		button.setBounds(487, 68, 232, 345);
 		panel.add(button);
 		button.addActionListener(new ActionListener() {

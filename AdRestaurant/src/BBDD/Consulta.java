@@ -94,17 +94,7 @@ public class Consulta {
 			this.stmt.setString(2, String.copyValueOf(contraseña));
 			resultadoConsulta = stmt.executeQuery();
 			if (resultadoConsulta.next()){
-				/*//Cuando el usuario es correcto comprobamos la contraseña.
-				this.consulta = "SELECT usuario FROM Clientes WHERE  usuario=?";
-				this.stmt = conexion.prepareStatement(this.consulta);
-				//this.stmt.setString(1, String.copyValueOf(contraseña));
-				this.stmt.setString(1, user);
-				resultadoConsulta = stmt.executeQuery();
-				if(resultadoConsulta.next()){/*El usuario existe pero la contraseña no es correcta*/
 					return true;
-				/*}else{
-					err=new ErrorRegistro("El usuario es incorrecto",this.messages);
-				}*/
 			}else{/*Buscarmos el usuario en restaurante, ya que en cliente no existe*/
 					
 					this.consulta = "SELECT nombreUsuario FROM Restaurantes WHERE nombreUsuario=? AND contraseña=?";
