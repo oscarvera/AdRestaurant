@@ -45,67 +45,87 @@ public class Restaurante {
 	FileInputStream io2 = null;
 	
 	//Constructor para el registro de restaurantes en la Base de Datos:
-		public Restaurante(String nombreUsuario, char[] pass, String nombre, String tipo, String telf, String direccion, 
-				String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto, BufferedImage foto1, BufferedImage foto2, Consulta c){
-			this.nombreUsuario=nombreUsuario;
-			this.pass=pass;
-			this.nombre=nombre;
-			this.tipo=tipo;
-			this.telefono=telf;
-			this.direccion=direccion;
-			this.poblacion=poblacion;
-			this.provincia=provincia;
-			this.codigoPostal=codigoPostal;
-			this.minusvalidoApto=minusvalidoApto;
-			this.foto1=foto1;
-			this.foto2=foto2;
-			this.conexionConsulta=c;
-			this.conexion=this.conexionConsulta.getConexion();
-			insertarRestaurante();
+	public Restaurante(String nombreUsuario, char[] pass, String nombre, String tipo, String telf, String direccion, 
+			String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto, BufferedImage foto1, BufferedImage foto2, Consulta c){
+		this.nombreUsuario=nombreUsuario;
+		this.pass=pass;
+		this.nombre=nombre;
+		this.tipo=tipo;
+		this.telefono=telf;
+		this.direccion=direccion;
+		this.poblacion=poblacion;
+		this.provincia=provincia;
+		this.codigoPostal=codigoPostal;
+		this.minusvalidoApto=minusvalidoApto;
+		this.foto1=foto1;
+		this.foto2=foto2;
+		this.conexionConsulta=c;
+		this.conexion=this.conexionConsulta.getConexion();
+		insertarRestaurante();
+	}	
+	
+	/**
+	 * Constructor para el registro de un restaurante nuevo
+	 * @param nombreUsuario
+	 * @param pass
+	 * @param nombre
+	 * @param tipo
+	 * @param telf
+	 * @param direccion
+	 * @param poblacion
+	 * @param provincia
+	 * @param codigoPostal
+	 * @param minusvalidoApto
+	 * @param fotofile1
+	 * @param fotofile2
+	 * @param c
+	 */
+	public Restaurante(String nombreUsuario, char[] pass, String nombre, String tipo, String telf, String direccion, 
+			String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto, File fotofile1, File fotofile2, Consulta c){
+		System.out.println("Estoy aqui");
+		this.nombreUsuario=nombreUsuario;
+		this.pass=pass;
+		this.nombre=nombre;
+		this.tipo=tipo;
+		this.telefono=telf;
+		this.direccion=direccion;
+		this.poblacion=poblacion;
+		this.provincia=provincia;
+		this.codigoPostal=codigoPostal;
+		this.minusvalidoApto=minusvalidoApto;
+		this.fotofile1=fotofile1;
+		this.fotofile2=fotofile2;
+		this.conexionConsulta=c;
+		this.conexion=this.conexionConsulta.getConexion();
+		if(this.fotofile1==null){
+			System.out.println("esta nula la imagen");
 		}
-		
-		//Constructor para el registro de un restaurante nuevo:
-				public Restaurante(String nombreUsuario, char[] pass, String nombre, String tipo, String telf, String direccion, 
-						String poblacion, String provincia, String codigoPostal, boolean minusvalidoApto, File fotofile1, File fotofile2, Consulta c){
-					System.out.println("Estoy aqui");
-					this.nombreUsuario=nombreUsuario;
-					this.pass=pass;
-					this.nombre=nombre;
-					this.tipo=tipo;
-					this.telefono=telf;
-					this.direccion=direccion;
-					this.poblacion=poblacion;
-					this.provincia=provincia;
-					this.codigoPostal=codigoPostal;
-					this.minusvalidoApto=minusvalidoApto;
-					this.fotofile1=fotofile1;
-					this.fotofile2=fotofile2;
-					this.conexionConsulta=c;
-					this.conexion=this.conexionConsulta.getConexion();
-					if(this.fotofile1==null){
-						System.out.println("esta nula la imagen");
-					}
-					insertarRestaurante();
-				}
-		
-		//Constructor para consultar restaurantes:
-		
-			//Constructor desde lista
-			public Restaurante(int codigo, Consulta c){
-				this.codigoRestaurante=codigo;
-				this.conexionConsulta=c;
-				this.conexion=this.conexionConsulta.getConexion();
-				loginRestaurante();
-			}
-			
-			//Constructor desde ingreso
-			public Restaurante(String nombreUsuario, Consulta c){
-				this.nombreUsuario=nombreUsuario;
-				this.conexionConsulta=c;
-				this.conexion=this.conexionConsulta.getConexion();
-				loginRestauranteIngreso();
-			}
+		insertarRestaurante();
+	}	
 
+	/**
+	 * Constructor desde lista
+	 * @param codigo
+	 * @param c
+	 */
+	public Restaurante(int codigo, Consulta c){
+		this.codigoRestaurante=codigo;
+		this.conexionConsulta=c;
+		this.conexion=this.conexionConsulta.getConexion();
+		loginRestaurante();
+	}		
+	
+	/**
+	 * constructor desde ingreso
+	 * @param nombreUsuario
+	 * @param c
+	 */
+	public Restaurante(String nombreUsuario, Consulta c){
+		this.nombreUsuario=nombreUsuario;
+		this.conexionConsulta=c;
+		this.conexion=this.conexionConsulta.getConexion();
+		loginRestauranteIngreso();
+	}		
 			
 			/**
 			 * Si la pass también es correcta, selecciona todos los datos del usuario y crea una instancia de Restaurante con ellos.

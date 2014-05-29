@@ -47,7 +47,15 @@ public class InfoReserva extends JPanel{
 	static ResourceBundle messages;
 
 	/**
-	 * @wbp.parser.constructor
+	 * Constructor desde buscar reservas del restaurante
+	 * @param usuario
+	 * @param fecha
+	 * @param hora
+	 * @param pers
+	 * @param codigoUs
+	 * @param realizado
+	 * @param verificado
+	 * @param messages
 	 */
 	public InfoReserva(String usuario, String fecha, String hora, int pers, int codigoUs, boolean realizado, boolean verificado, ResourceBundle messages){
 		setBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 200, 0), new Color(255, 200, 0), Color.ORANGE, Color.ORANGE));
@@ -194,6 +202,17 @@ public class InfoReserva extends JPanel{
 		setLayout(groupLayout);
 	}
 
+	/**
+	 * Constructor desde la pantalla de buscar reservas del cliente
+	 * @param codigoRes
+	 * @param nomrest
+	 * @param fecha
+	 * @param hora
+	 * @param pers
+	 * @param realizado
+	 * @param verificado
+	 * @param messages
+	 */
 	public InfoReserva(int codigoRes, String nomrest, String fecha, String hora, int pers, boolean realizado, boolean verificado, ResourceBundle messages){
 		setBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 200, 0), new Color(255, 200, 0), Color.ORANGE, Color.ORANGE));
 
@@ -401,8 +420,6 @@ public class InfoReserva extends JPanel{
 		this.lblRealizado.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
 		this.lblVerificacion.setForeground(new Color(255,140,0));
 		this.lblVerificacion.setFont(new Font("Fira Sans OT Light", Font.PLAIN, 16));
-		
-		
 	}
 	
 	/**
@@ -428,9 +445,7 @@ public class InfoReserva extends JPanel{
 		this.lblRealizado.setForeground(new Color(255,153,0));
 		this.lblRealizado.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
 		this.lblVerificacion.setForeground(new Color(255,153,0));
-		this.lblVerificacion.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));
-		
-		
+		this.lblVerificacion.setFont(new Font("Fira Sans OT Light", Font.BOLD, 16));	
 	}
 
 	//GETTERS
@@ -454,4 +469,8 @@ public class InfoReserva extends JPanel{
 	public int getCodigoUsuario(){
 		return codigoUsuClie;
 	}	
+	
+	public int getCodigoRestaurante(){
+		return this.codigoUsuRest;
+	}
 }

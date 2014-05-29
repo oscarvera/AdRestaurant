@@ -9,6 +9,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
@@ -34,6 +35,7 @@ import javax.swing.border.MatteBorder;
 
 import BBDD.Consulta;
 import Clases.Cliente;
+import Clases.Restaurante;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
@@ -285,6 +287,23 @@ import javax.swing.SwingConstants;
  		lista_reservas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
  		scroll_lista_reservas.setViewportView(lista_reservas);
  		panel.setLayout(gl_panel);
+ 		
+ 		/**
+ 		 * Listener de la lista reservas. Al clickar sobre una, se abre el perfil de ese restaurante
+ 		 */
+ 		this.lista_reservas.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		        JList list = (JList)evt.getSource();
+		        if (evt.getClickCount() == 2) {
+		            InfoReserva restauranteSelec = (InfoReserva) list.getSelectedValue();
+		            Restaurante restauranteSeleccionado = new Restaurante(restauranteSelec.getCodigoRestaurante(), clie.getConexionConsulta());
+		            ptnRestaurante datosRestaurante = new ptnRestaurante(clie, restauranteSeleccionado, messages);
+		            datosRestaurante.setFrameBusqueda(frame);
+		            //frame.setEnabled(false);
+		            frame.dispose();
+		        }    
+		    }
+		});
  		
  		JLabel lblnomUser = new JLabel(clie.getNombre());
  		lblnomUser.setHorizontalAlignment(SwingConstants.RIGHT);

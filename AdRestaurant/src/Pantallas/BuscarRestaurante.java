@@ -76,7 +76,6 @@ public class BuscarRestaurante extends JFrame{
     private JList<InfoRestaurante> lista_restaurantes = new JList<InfoRestaurante>(modelo_lista_restaurantes);
     private ConstructorDeCelda celda = new ConstructorDeCelda();
     
-
 	/**
 	 * Create the application.
 	 */
