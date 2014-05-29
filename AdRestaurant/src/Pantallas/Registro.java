@@ -746,6 +746,7 @@ public class Registro extends JPanel{
 				textTelefonoRest.setColumns(10);
 				textTelefonoRest.setBounds(599, 248, 197, 22);
 				panel.add(textTelefonoRest);
+				textTelefonoRest.addKeyListener(keyLis);
 				textTelefonoRest.setBorder(borde);
 
 				btnImagen1 = new JButton(". . .");
