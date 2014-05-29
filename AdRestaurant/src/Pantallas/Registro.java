@@ -718,13 +718,13 @@ public class Registro extends JPanel{
 				}
 				panel.add(aptoMinus);
 
-				JLabel lblImagen1 = new JLabel("IMG 1");
+				JLabel lblImagen1 = new JLabel(messages.getString("IMG1"));
 				lblImagen1.setForeground(new Color(255, 153, 51));
 				lblImagen1.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
 				lblImagen1.setBounds(318, 127, 92, 22);
 				panel.add(lblImagen1);
 
-				JLabel lblImagen2 = new JLabel("IMG 2");
+				JLabel lblImagen2 = new JLabel(messages.getString("IMG2"));
 				lblImagen2.setForeground(new Color(255, 153, 51));
 				lblImagen2.setFont(new Font("Fira Sans OT Light", Font.BOLD, 18));
 				lblImagen2.setBounds(577, 127, 92, 22);
